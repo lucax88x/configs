@@ -1,0 +1,103 @@
+[winUpdater]
+	recentlySeenVersion = 2.19.1.windows.1
+[user]
+	name = lucatrazzi
+	email = lucax88x@gmail.com
+
+[alias]
+	aliases = config --get-regexp ^alias
+
+	#TRIO
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	sh = show -M
+	df = diff -M
+	#lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --name-only
+	#lgp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p -M
+
+	# tree (mauro) with branches, author, time
+	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Creset%Cgreen(%an %cr)%Creset%Cred%d' --abbrev-commit
+	history = log --oneline --graph --decorate --all
+	last = diff-tree --no-commit-id --name-only -r HEAD
+	ll = log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]\" --decorate --numstat
+	lo = log --oneline
+	ls = log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]\" --decorate
+	po = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+
+	# PERSO
+	poop = stash pop
+	st = status
+	c = commit
+	cp = cherry-pick
+	cm = commit
+	ap = add -p
+	fetch = fetch --prune
+	f = fetch --prune
+	cam = commit --amend
+	rb = rebase
+	rbi = rebase --interactive
+	rbc = rebase --continue
+	rba = rebase --abort
+	m = merge
+	ma = merge --abort
+	mc = merge --continue
+	ms = merge --skip
+	rmc = rm --cached
+	ls = ls-files
+	lsf = !git ls-files | grep -i
+	fk = fsck
+	g = grep -p
+	l = log --oneline
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --name-only
+	lga = log --oneline --graph --decorate --all
+	lgaa = log --graph --decorate --all
+	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Creset%Cgreen(%an %cr)%Creset%Cred%d' --abbrev-commit
+	lgb = log --oneline --graph --decorate --branches
+	b = branch
+	ba = branch -a
+	bv = branch -v
+	bav = branch -av
+	bva = branch -av
+	barebranch = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
+	flat = clone --depth 1
+	subrepo = !sh -c 'filter-branch --prune-empty --subdirectory-filter $1 master' -
+	human = name-rev --name-only --refs=refs/heads/*
+	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
+	snapshot = !git stash savesnapshot: $(date)&& git stash applystash@{0}
+	rup = remote update
+	sthcom = commit -a -mSTASH
+	amend = commit --amend
+	pf = push -f
+	last = log -1 --stat
+	cp = cherry-pick
+	co = checkout
+	cl = clone
+	ci = commit
+	br = branch
+	unstage = reset HEAD --
+	dt = difftool
+	dtd = difftool -d
+	d = diff
+	dc = diff --cached
+	wdiff = diff --color-words
+	dw = diff --color-words
+	dwc = diff --color-words --cached
+	wdc = diff --color-words --cached
+	root = !sh -c \"cd $(git rev-parse --show-toplevel)\"
+	wip = commit -am WIP
+	undo = reset --soft HEAD^
+	standup = "!git log --since yesterday  --author `git config user.email` --pretty=oneline"
+
+	# merging conflicts w/ sublime
+	slresolvemod = !subl `git status|grep 'both modified'|cut -d: -f2`
+
+	#deletemergedbranches = !sh -c 'git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+
+	# ignoring
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
+	ignored = !git ls-files -v | grep "^[[:lower:]]"
+	root = !pwd
+	lgp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p -M
