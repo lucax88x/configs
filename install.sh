@@ -23,6 +23,30 @@ if ! [ -x "$(command -v zsh)" ]; then
 	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 	# sed -i -e 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k/powerlevel9k"/g' ~/.zshrc		
+
+    # ZSH_THEME="powerlevel9k/powerlevel9k"
+    # POWERLEVEL9K_DISABLE_RPROMPT=true
+    # POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+    # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "
+    # POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+    # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+    # POWERLEVEL9K_DISABLE_RPROMPT=false
+    # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+    # POWERLEVEL9K_MODE='nerdfont-complete'
+
+    # plugins=(git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-better-npm-completion yarn-completion)
+
+    # alias c='xclip -selection clipboard'
+    # alias v='xclip -o'
+
+    # alias ls='lsd'
+    # alias l='ls -l'
+    # alias la='ls -a'
+    # alias lla='ls -la'
+    # alias lt='ls --tree'
+    # alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+    # alias repo='f() { cd ~/repos/$1 };f'
+
 else
 	echo ZSH ALREADY INSTALLED
 fi
