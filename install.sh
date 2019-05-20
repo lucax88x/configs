@@ -101,9 +101,9 @@ fi
 if ! [ -f ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox ]; then
     echo INSTALLING JETBRAINS TOOLBOX
     
-    wget https://download.jetbrains.com/toolbox/$NAME.tar.gz -q --show-progress
-    tar xvzf $NAME.tar.gz>/dev/null
-    ./$NAME/jetbrains-toolbox>/dev/null
+    wget https://download.jetbrains.com/toolbox/$JETBRAINS_TOOLBOX.tar.gz -q --show-progress
+    tar xvzf $JETBRAINS_TOOLBOX.tar.gz > /dev/null
+    ./$JETBRAINS_TOOLBOX/jetbrains-toolbox
 else
     echo JETBRAINS TOOLBOX ALREADY INSTALLED
 fi
@@ -157,5 +157,4 @@ cd ~
 echo Purged temp folder
 
 # add g as alias to zshrc
-# add git aliases to .gitconfig
 # auto start apps, albert, diodon
