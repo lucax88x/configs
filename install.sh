@@ -2,6 +2,7 @@ mkdir -p ~/setup-temp
 mkdir -p ~/.config/autostart
 cd ~/setup-temp
 
+EMAIL=lucax88x@gmail.com
 UBUNTU_VERSION=19.04
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
 
@@ -10,7 +11,7 @@ echo "this installer is for $UBUNTU_VERSION"
 if ! [ -x "$(command -v curl)" ]; then
     echo INSTALLING CURL
     apt-get update > /dev/null
-    apt-get install curl
+    apt-get -y install curl
 else
     echo CURL ALREADY INSTALLED
 fi
@@ -18,9 +19,13 @@ fi
 if ! [ -x "$(command -v git)" ]; then
     echo INSTALLING GIT
     apt-get update > /dev/null
-    apt-get install git-core
+    apt-get -y install git-core
     
     wget https://raw.githubusercontent.com/lucax88x/configs/master/.gitconfig -O ~/.gitconfig
+    
+    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C $EMAIL -P ""
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
 else
     echo GIT ALREADY INSTALLED
 fi
@@ -32,14 +37,18 @@ else
     echo FIRACODE ALREADY INSTALLED
 fi
 
-if ! [ "$(fc-list | grep -c 'nerdfont-complete')" -ge 1 ]; then
-    echo INSTALLING NERDFONT
-
-    git clone https://github.com/ryanoasis/nerd-fonts ~/setup-temp/nerd-fonts
-
-    sh ~/setup-temp/nerd-fonts/install.sh
+if ! [ "$(fc-list | grep -c 'PowerlineSymbols')" -ge 1 ]; then
+    echo INSTALLING POWERLINE
+    
+    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    
+    mv PowerlineSymbols.otf ~/.local/share/fonts/
+    fc-cache -vf ~/.local/share/fonts/
+    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+    
 else
-    echo NERDFONT ALREADY INSTALLED
+    echo POWERLINE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v lsd)" ]; then
@@ -56,7 +65,7 @@ if ! [ -x "$(command -v zsh)" ]; then
     
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')" \
     
-
+    
     chmod a+x /usr/bin/chsh
     chsh -s $(which zsh)
     
@@ -75,7 +84,7 @@ alias lt='ls --tree'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias repo='f() { cd ~/repos/$1 };f'
 EOT
-
+    
     
 else
     echo ZSH ALREADY INSTALLED
@@ -116,14 +125,14 @@ if ! [ -x "$(command -v albert)" ]; then
     sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_$UBUNTU_VERSION/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list"
     apt-get update > /dev/null
     apt-get -y install albert
-
+    
 cat <<EOT >> ~/.config/autostart/albert
 [Desktop Entry]
 Name=albert
 Exec=albert
 Type=Application
 EOT
-
+    
 else
     echo ALBERT ALREADY INSTALLED
 fi
@@ -150,6 +159,17 @@ else
     echo DIODON ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v bd)" ]; then
+    echo INSTALLING BD
+    
+    mkdir -p $HOME/.zsh/plugins/bd
+    curl https://raw.githubusercontent.com/Tarrasch/zsh-bd/master/bd.zsh > $HOME/.zsh/plugins/bd/bd.zsh
+    print -- "\n# zsh-bd\n. \$HOME/.zsh/plugins/bd/bd.zsh" >> $HOME/.zshrc
+    
+else
+    echo BD ALREADY INSTALLED
+fi
+
 cd ~
 
 #rm -rf ~/setup-temp
@@ -157,4 +177,9 @@ cd ~
 echo Purged temp folder
 
 # add g as alias to zshrc
-# auto start apps, albert, diodon
+# add bd https://github.com/Tarrasch/zsh-bd
+# add auto-ls
+
+
+echo REMEMBER TO:
+echo - register ssh public key to github
