@@ -38,35 +38,34 @@ fi
 #     echo FIRACODE ALREADY INSTALLED
 # fi
 
-if ! [ "$(fc-list | grep -c 'firacode')" -ge 1 ]; then
-    echo INSTALLING NERDFONTS
+# if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
+#     echo INSTALLING NERDFONTS
     
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip
+# 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip
 
-	unzip ~/setup-temp/FiraCode.zip -d ~/.fonts
+# 	unzip ~/setup-temp/FiraCode.zip -d ~/.fonts
 
-	fc-cache -f -v
-else
-    echo NERDFONTS ALREADY INSTALLED
-fi
-
-exit 1
-
-# if ! [ "$(fc-list | grep -c 'PowerlineSymbols')" -ge 1 ]; then
-#     echo INSTALLING POWERLINE
-    
-#     wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-#     wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-    
-#     mkdir -p ~/.local/share/fonts/
-#     mv PowerlineSymbols.otf ~/.local/share/fonts/
-#     fc-cache -vf ~/.local/share/fonts/
-#     mkdir -p ~/.config/fontconfig/conf.d
-#     mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
-    
+# 	fc-cache -f -v
 # else
-#     echo POWERLINE ALREADY INSTALLED
+#     echo NERDFONTS ALREADY INSTALLED
 # fi
+
+if ! [ "$(fc-list | grep -c 'PowerlineSymbols')" -ge 1 ]; then
+    echo INSTALLING POWERLINE
+    
+	apt-get -y install fonts-powerline
+    # wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    # wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    
+    # mkdir -p ~/.local/share/fonts/
+    # mv PowerlineSymbols.otf ~/.local/share/fonts/
+    # fc-cache -vf ~/.local/share/fonts/
+    # mkdir -p ~/.config/fontconfig/conf.d
+    # mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+    
+else
+    echo POWERLINE ALREADY INSTALLED
+fi
 
 if ! [ -x "$(command -v lsd)" ]; then
     echo INSTALLING LSD
@@ -208,6 +207,10 @@ fi
 echo Purged temp folder
 
 # add auto-ls
+
+echo TODO:
+echo - autols
+echo - set rigths to updated config files
 
 echo REMEMBER TO:
 echo - register ssh public key to github
