@@ -55,7 +55,7 @@ fi
 
 if ! [ -x "$(command -v lsd)" ]; then
     echo INSTALLING LSD
-    snap install lsd --classic
+    snap install lsd --devmode
 else
     echo LSD ALREADY INSTALLED
 fi
@@ -72,7 +72,10 @@ if ! [ -x "$(command -v zsh)" ]; then
     chsh -s $(which zsh)
     
     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
     git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
+	git clone https://github.com/buonomo/yarn-completion ~/.oh-my-zsh/custom/plugins/yarn-completion
     
     sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)"/g' ~/.zshrc
     sed -i 's/plugins=(git)/plugins=(git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-better-npm-completion yarn-completion)/g' ~/.zshrc
@@ -179,9 +182,9 @@ cd ~
 echo Purged temp folder
 
 # add g as alias to zshrc
-# add bd https://github.com/Tarrasch/zsh-bd
 # add auto-ls
-
 
 echo REMEMBER TO:
 echo - register ssh public key to github
+echo - set terminal to dark and to use firacode
+echo - install vscode settings by using extension 'setting sync'
