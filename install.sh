@@ -43,8 +43,10 @@ if ! [ "$(fc-list | grep -c 'PowerlineSymbols')" -ge 1 ]; then
     wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
     wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
     
+	mkdir -p ~/.local/share/fonts/
     mv PowerlineSymbols.otf ~/.local/share/fonts/
     fc-cache -vf ~/.local/share/fonts/
+	mkdir -p ~/.config/fontconfig/conf.d
     mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
     
 else
@@ -61,7 +63,7 @@ fi
 if ! [ -x "$(command -v zsh)" ]; then
     echo INSTALLING ZSH WITH OH-MY-ZSH
     apt-get update > /dev/null
-    apt-get install zsh
+    apt-get -y install zsh
     
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')" \
     
@@ -72,7 +74,7 @@ if ! [ -x "$(command -v zsh)" ]; then
     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
     git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
     
-    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)\nPOWERLEVEL9K_MODE="nerdfont-complete"/g' ~/.zshrc
+    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)"/g' ~/.zshrc
     sed -i 's/plugins=(git)/plugins=(git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-better-npm-completion yarn-completion)/g' ~/.zshrc
     
 cat <<EOT >> ~/.zshrc
@@ -95,7 +97,7 @@ if ! [ -x "$(command -v google-chrome)" ]; then
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
     sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
     apt-get update > /dev/null
-    apt-get install google-chrome-stable
+    apt-get -y install google-chrome-stable
 else
     echo CHROME ALREADY INSTALLED
 fi
@@ -142,7 +144,7 @@ if [ $(dpkg-query -W -f='${Status}' telegram 2>/dev/null | grep -c "ok installed
     
     add-apt-repository -y ppa:atareao/telegram
     apt-get update > /dev/null
-    apt-get install telegram
+    apt-get -y install telegram
     
 else
     echo TELEGRAM ALREADY INSTALLED
