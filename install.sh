@@ -37,21 +37,32 @@ else
     echo FIRACODE ALREADY INSTALLED
 fi
 
-if ! [ "$(fc-list | grep -c 'PowerlineSymbols')" -ge 1 ]; then
-    echo INSTALLING POWERLINE
+if ! [ "$(fc-list | grep -c 'NerdFonts')" -ge 1 ]; then
+    echo INSTALLING NERDFONTS
     
-    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-    
-    mkdir -p ~/.local/share/fonts/
-    mv PowerlineSymbols.otf ~/.local/share/fonts/
-    fc-cache -vf ~/.local/share/fonts/
-    mkdir -p ~/.config/fontconfig/conf.d
-    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+	git clone https://github.com/ryanoasis/nerd-fonts.git ~/setup-temp/nerd-fonts
+
+	~/setup-temp/nerd-fonts/install.sh
     
 else
-    echo POWERLINE ALREADY INSTALLED
+    echo NERDFONTS ALREADY INSTALLED
 fi
+
+# if ! [ "$(fc-list | grep -c 'PowerlineSymbols')" -ge 1 ]; then
+#     echo INSTALLING POWERLINE
+    
+#     wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+#     wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    
+#     mkdir -p ~/.local/share/fonts/
+#     mv PowerlineSymbols.otf ~/.local/share/fonts/
+#     fc-cache -vf ~/.local/share/fonts/
+#     mkdir -p ~/.config/fontconfig/conf.d
+#     mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+    
+# else
+#     echo POWERLINE ALREADY INSTALLED
+# fi
 
 if ! [ -x "$(command -v lsd)" ]; then
     echo INSTALLING LSD
@@ -77,15 +88,20 @@ if ! [ -x "$(command -v zsh)" ]; then
     git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
 	git clone https://github.com/buonomo/yarn-completion ~/.oh-my-zsh/custom/plugins/yarn-completion
     
-    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)"/g' ~/.zshrc
+    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(os_icon kubecontext load ram disk_usage battery status root_indicator dir_writable time)"\nPOWERLEVEL9K_MODE="nerdfont-complete"/g' ~/.zshrc
     sed -i 's/plugins=(git)/plugins=(git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-better-npm-completion yarn-completion)/g' ~/.zshrc
     
 cat <<EOT >> ~/.zshrc
+
+alias c='xclip -selection clipboard'
+alias v='xclip -o'
+
 alias ls='lsd'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
+
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias repo='f() { cd ~/repos/$1 };f'
 EOT
@@ -175,13 +191,18 @@ else
     echo BD ALREADY INSTALLED
 fi
 
-cd ~
+if ! [ -x "$(command -v xclip)" ]; then
+    echo INSTALLING XCLIP
+    apt-get -y install xclip
+else
+    echo XCLIP ALREADY INSTALLED
+fi
+
 
 #rm -rf ~/setup-temp
 
 echo Purged temp folder
 
-# add g as alias to zshrc
 # add auto-ls
 
 echo REMEMBER TO:
