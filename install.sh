@@ -164,9 +164,9 @@ fi
 if ! [ -x "$(command -v bd)" ]; then
     echo INSTALLING BD
     
-    mkdir -p $HOME/.zsh/plugins/bd
-    curl https://raw.githubusercontent.com/Tarrasch/zsh-bd/master/bd.zsh > $HOME/.zsh/plugins/bd/bd.zsh
-    print -- "\n# zsh-bd\n. \$HOME/.zsh/plugins/bd/bd.zsh" >> $HOME/.zshrc
+    mkdir -p ~/.zsh/plugins/bd
+    curl https://raw.githubusercontent.com/Tarrasch/zsh-bd/master/bd.zsh > ~/.zsh/plugins/bd/bd.zsh
+    print -- "\n# zsh-bd\n. ~/.zsh/plugins/bd/bd.zsh" >> ~/.zshrc
     
 else
     echo BD ALREADY INSTALLED
