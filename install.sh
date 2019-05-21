@@ -4,6 +4,7 @@ cd ~/setup-temp
 
 EMAIL=lucax88x@gmail.com
 UBUNTU_VERSION=19.04
+NERDFONT_VERSION=2.0.0
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
 
 echo "this installer is for $UBUNTU_VERSION"
@@ -30,23 +31,26 @@ else
     echo GIT ALREADY INSTALLED
 fi
 
-if ! [ "$(fc-list | grep -c 'firacode')" -ge 1 ]; then
-    echo INSTALLING FIRACODE
-    apt install fonts-firacode
-else
-    echo FIRACODE ALREADY INSTALLED
-fi
+# if ! [ "$(fc-list | grep -c 'firacode')" -ge 1 ]; then
+#     echo INSTALLING FIRACODE
+#     apt install fonts-firacode
+# else
+#     echo FIRACODE ALREADY INSTALLED
+# fi
 
-if ! [ "$(fc-list | grep -c 'NerdFonts')" -ge 1 ]; then
+if ! [ "$(fc-list | grep -c 'firacode')" -ge 1 ]; then
     echo INSTALLING NERDFONTS
     
-	git clone https://github.com/ryanoasis/nerd-fonts.git ~/setup-temp/nerd-fonts
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip
 
-	~/setup-temp/nerd-fonts/install.sh
-    
+	unzip ~/setup-temp/FiraCode.zip -d ~/.fonts
+
+	fc-cache -f -v
 else
     echo NERDFONTS ALREADY INSTALLED
 fi
+
+exit 1
 
 # if ! [ "$(fc-list | grep -c 'PowerlineSymbols')" -ge 1 ]; then
 #     echo INSTALLING POWERLINE
