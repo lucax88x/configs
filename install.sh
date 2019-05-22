@@ -47,7 +47,7 @@ fi
 if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
     echo INSTALLING PATCHED FIRACODE
     
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FuraCode.zip
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip -O ~/setup-temp/FuraCode.zip
 
 	unzip ~/setup-temp/FuraCode.zip -d ~/.fonts
 
@@ -109,7 +109,7 @@ alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias repo='f() { cd ~/repos/$1 };f'
 EOT
 
-    echo "\n# auto-ls\nAUTO_LS_COMMANDS=(ls)\n. ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh" >> ~/.zshrc
+    echo -e "\n# auto-ls\nAUTO_LS_COMMANDS=(ls)\n. ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh" >> ~/.zshrc
 
 else
     echo ZSH ALREADY INSTALLED
@@ -189,7 +189,7 @@ if ! [ -x "$(command -v bd)" ]; then
     
     mkdir -p ~/.oh-my-zsh/custom/plugins/bd
     curl https://raw.githubusercontent.com/Tarrasch/zsh-bd/master/bd.zsh > ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
-    echo "\n# zsh-bd\n. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh" >> ~/.zshrc
+    echo echo -e "\n# zsh-bd\n. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh" >> ~/.zshrc
     
 else
     echo BD ALREADY INSTALLED
@@ -211,6 +211,7 @@ echo TODO:
 echo - set rigths to updated config files
 echo - install rider with jetbrains toolbox
 echo - install extension sync of vscode by script
+echo - setup shortcuts (ctrl+ ~ for terminal, etc)
 
 echo REMEMBER TO:
 echo - register ssh public key to github
