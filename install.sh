@@ -5,6 +5,7 @@ cd ~/setup-temp
 EMAIL=lucax88x@gmail.com
 UBUNTU_VERSION=19.04
 NERDFONT_VERSION=2.0.0
+FIRACODE_VERSION=1.206
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
 
 echo "this installer is for $UBUNTU_VERSION"
@@ -31,40 +32,37 @@ else
     echo GIT ALREADY INSTALLED
 fi
 
-# if ! [ "$(fc-list | grep -c 'firacode')" -ge 1 ]; then
-#     echo INSTALLING FIRACODE
-#     apt install fonts-firacode
-# else
-#     echo FIRACODE ALREADY INSTALLED
-# fi
-
-# if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
-#     echo INSTALLING NERDFONTS
+if ! [ "$(fc-list | grep -c 'FiraCode')" -ge 1 ]; then
+    echo INSTALLING FIRACODE
     
-# 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip
+	wget https://github.com/tonsky/FiraCode/releases/download/$FIRACODE_VERSION/FiraCode_$FIRACODE_VERSION.zip -O ~/setup-temp/FiraCode.zip
 
-# 	unzip ~/setup-temp/FiraCode.zip -d ~/.fonts
+	unzip ~/setup-temp/FiraCode.zip -d ~/.fonts
 
-# 	fc-cache -f -v
-# else
-#     echo NERDFONTS ALREADY INSTALLED
-# fi
-
-if ! [ "$(fc-list | grep -c 'PowerlineSymbols')" -ge 1 ]; then
-    echo INSTALLING POWERLINE
-    
-	apt-get -y install fonts-powerline
-    # wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-    # wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-    
-    # mkdir -p ~/.local/share/fonts/
-    # mv PowerlineSymbols.otf ~/.local/share/fonts/
-    # fc-cache -vf ~/.local/share/fonts/
-    # mkdir -p ~/.config/fontconfig/conf.d
-    # mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
-    
+	fc-cache
 else
-    echo POWERLINE ALREADY INSTALLED
+    echo FIRACODE ALREADY INSTALLED
+fi
+
+if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
+    echo INSTALLING PATCHED FIRACODE
+    
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FuraCode.zip
+
+	unzip ~/setup-temp/FuraCode.zip -d ~/.fonts
+
+	fc-cache
+else
+    echo PATCHED FIRACODE ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v gnome-tweaks)" ]; then
+    echo INSTALLING GNOME-TWEAKS-TOOL
+    
+	add-apt-repository universe
+    apt -y install gnome-tweak-tool
+else
+    echo GNOME-TWEAKS-TOOL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v lsd)" ]; then
@@ -90,12 +88,14 @@ if ! [ -x "$(command -v zsh)" ]; then
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
     git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
 	git clone https://github.com/buonomo/yarn-completion ~/.oh-my-zsh/custom/plugins/yarn-completion
+    mkdir -p ~/.oh-my-zsh/custom/plugins/auto-ls
+    curl -L https://git.io/auto-ls > ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh
     
-    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(os_icon kubecontext load ram disk_usage battery status root_indicator dir_writable time)"\nPOWERLEVEL9K_MODE="nerdfont-complete"/g' ~/.zshrc
+    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(os_icon kubecontext load ram disk_usage battery status root_indicator dir_writable time)\nPOWERLEVEL9K_MODE="nerdfont-complete"/g' ~/.zshrc
     sed -i 's/plugins=(git)/plugins=(git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-better-npm-completion yarn-completion)/g' ~/.zshrc
     
 cat <<EOT >> ~/.zshrc
-
+# aliases
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 
@@ -108,8 +108,9 @@ alias lt='ls --tree'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias repo='f() { cd ~/repos/$1 };f'
 EOT
-    
-    
+
+    echo "\n# auto-ls\nAUTO_LS_COMMANDS=(ls)\n. ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh" >> ~/.zshrc
+
 else
     echo ZSH ALREADY INSTALLED
 fi
@@ -186,9 +187,9 @@ fi
 if ! [ -x "$(command -v bd)" ]; then
     echo INSTALLING BD
     
-    mkdir -p ~/.zsh/plugins/bd
-    curl https://raw.githubusercontent.com/Tarrasch/zsh-bd/master/bd.zsh > ~/.zsh/plugins/bd/bd.zsh
-    print -- "\n# zsh-bd\n. ~/.zsh/plugins/bd/bd.zsh" >> ~/.zshrc
+    mkdir -p ~/.oh-my-zsh/custom/plugins/bd
+    curl https://raw.githubusercontent.com/Tarrasch/zsh-bd/master/bd.zsh > ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
+    echo "\n# zsh-bd\n. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh" >> ~/.zshrc
     
 else
     echo BD ALREADY INSTALLED
@@ -206,13 +207,14 @@ fi
 
 echo Purged temp folder
 
-# add auto-ls
-
 echo TODO:
-echo - autols
 echo - set rigths to updated config files
+echo - install rider with jetbrains toolbox
+echo - install extension sync of vscode by script
 
 echo REMEMBER TO:
 echo - register ssh public key to github
-echo - set terminal to dark and to use firacode
+echo - run gnome-tweaks and set system font with FuraCode Regular
+echo - set terminal to dark theme
 echo - install vscode settings by using extension 'setting sync'
+echo - reboot!
