@@ -7,8 +7,8 @@ function installSnap {
 
     case $DISTRO in
         MANJARO)
-            sudo pacman -S --noconfirm snapdS
-            systemctl enable --now snapd.socket
+            sudo pacman -Sy --noconfirm snapd
+            sudo systemctl enable --now snapd.socket
 
             echo Either log out and back in again, or restart your system, to ensure snap’s paths are updated correctly.
             echo Once done, restart the script!
@@ -39,12 +39,6 @@ function installGit {
         UBUNTU)
             apt-get update > /dev/null
             apt-get -y install git-core
-            
-            wget https://raw.githubusercontent.com/lucax88x/configs/master/.gitconfig -O ~/.gitconfig
-            
-            ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C $EMAIL -P ""
-            eval "$(ssh-agent -s)"
-            ssh-add ~/.ssh/id_rsa
         ;;
         MANJARO)
             sudo pacman -S --noconfirm git
@@ -55,11 +49,12 @@ function installGit {
     esac    
 }
 
-
 ## SYSTEM DEPENDENCIES
-function installLibunique3 {
+function installLib32Glibc {
     sudo pacman -S --noconfirm lib32-glibc
+}
 
+function installLibunique3 {
     git clone https://aur.archlinux.org/libunique3.git
     cd libunique3
     makepkg -s --noconfirm
@@ -69,12 +64,19 @@ function installLibunique3 {
 function installSystemDependencies {
     case $DISTRO in
         MANJARO)
-            if ! [ $(isManjaroPackageInstalled 'libunique3') ]; then 
-                echo INSTALLING LIBUNIQUE3
-                installLibunique3
-            else
-                echo LIBUNIQUE3 ALREADY INSTALLED
-            fi            
+            # if [ $(isManjaroPackageInstalled 'lib32-glibc') == 1 ]; then 
+            #     echo INSTALLING LIB32-GLIBC
+            #     installLib32Glibc
+            # else
+            #     echo LIB32-GLIBC ALREADY INSTALLED
+            # fi          
+
+            # if [ $(isManjaroPackageInstalled 'libunique3') == 1 ]; then 
+            #     echo INSTALLING LIBUNIQUE3
+            #     installLibunique3
+            # else
+            #     echo LIBUNIQUE3 ALREADY INSTALLED
+            # fi
         ;;
         *)
         ;;
@@ -123,23 +125,30 @@ function installZsh {
         UBUNTU)
             apt-get update > /dev/null
             apt-get -y install zsh
-            
-            sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')" \
-            
-            
+                                               
             chmod a+x /usr/bin/chsh
             chsh -s $(which zsh)
-            
-            git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-            git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-            git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-            git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
-            git clone https://github.com/buonomo/yarn-completion ~/.oh-my-zsh/custom/plugins/yarn-completion
-            mkdir -p ~/.oh-my-zsh/custom/plugins/auto-ls
-            curl -L https://git.io/auto-ls > ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh
-            
-            sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(os_icon kubecontext load ram disk_usage battery status root_indicator dir_writable time)\nPOWERLEVEL9K_MODE="nerdfont-complete"/g' ~/.zshrc
-            sed -i 's/plugins=(git)/plugins=(git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-better-npm-completion yarn-completion)/g' ~/.zshrc
+        ;;
+        *)
+            echo NOT IMPLEMENTED!
+        ;;
+    esac
+}
+
+function installOhMyZsh {        
+    echo TELL NO TO CHANGE TO SHELL OR THE SCRIPT WILL ABORT!
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')" \
+
+    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
+    git clone https://github.com/buonomo/yarn-completion ~/.oh-my-zsh/custom/plugins/yarn-completion
+    mkdir -p ~/.oh-my-zsh/custom/plugins/auto-ls
+    curl -L https://git.io/auto-ls > ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh
+    
+    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(os_icon kubecontext load ram disk_usage battery status root_indicator dir_writable time)\nPOWERLEVEL9K_MODE="nerdfont-complete"/g' ~/.zshrc
+    sed -i 's/plugins=(git)/plugins=(git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-better-npm-completion yarn-completion)/g' ~/.zshrc
     
 cat <<EOT >> ~/.zshrc
 # aliases
@@ -156,12 +165,7 @@ alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias repo='f() { cd ~/repos/$1 };f'
 EOT
 
-            echo -e "\n# auto-ls\nAUTO_LS_COMMANDS=(ls)\n. ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh" >> ~/.zshrc
-        ;;
-        *)
-            echo NOT IMPLEMENTED!
-        ;;
-    esac
+    echo -e "\n# auto-ls\nAUTO_LS_COMMANDS=(ls)\n. ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh" >> ~/.zshrc        
 }
 
 function installChrome {
@@ -186,7 +190,7 @@ function installChrome {
 }
 
 function installVsCode {
-    snap install code --classic
+    sudo snap install code --classic
 }
 
 function installJetbrainsToolbox {
@@ -214,7 +218,7 @@ EOT
             
         ;;
         MANJARO)            
-            sudo pacman -S --noconfirm glibc
+            # sudo pacman -S --noconfirm glibc
             sudo pacman -S --noconfirm albert
         ;;
         *)
@@ -249,11 +253,7 @@ function installDiodon {
             apt-get -y install diodon
         ;;
         MANJARO)
-            sudo pacman -S --noconfirm libunique3
-            git clone https://aur.archlinux.org/diodon.git
-            cd diodon
-            makepkg -s --noconfirm
-            # find google-chrome-*.tar.xz | sudo xargs pacman -U --noconfirm
+            echo NOT SUPPORTED!
         ;;
         *)
             echo NOT IMPLEMENTED!
@@ -265,6 +265,7 @@ function installBd {
     mkdir -p ~/.oh-my-zsh/custom/plugins/bd
     curl https://raw.githubusercontent.com/Tarrasch/zsh-bd/master/bd.zsh > ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
     echo echo -e "\n# zsh-bd\n. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh" >> ~/.zshrc
+
 }
 
 function installXClip {
@@ -280,4 +281,14 @@ function installXClip {
             echo NOT IMPLEMENTED!
         ;;
     esac
+}
+
+## CONFIGURATION
+
+function configureGit {        
+    wget https://raw.githubusercontent.com/lucax88x/configs/master/.gitconfig -O ~/.gitconfig
+    
+    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C $EMAIL -P ""
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
 }

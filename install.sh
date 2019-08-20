@@ -29,11 +29,17 @@ cd $TEMP_DIR
 ## HELPERS
 
 function isManjaroPackageInstalled() {
-  pacman -Qi "$packageName" &> /dev/null
-  echo $?
+    package="$1";
+    check="$(sudo pacman -Qs --color always "${package}" | grep "local" | grep "${package} ")";
+    if [ -n "${check}" ] ; then
+        echo 0; #'0' means 'true' in Bash
+        return; #true
+    fi;
+    echo 1; #'1' means 'false' in Bash
+    return; #false
 }
 
-## GLOBAL SOFTWARE
+echo '# GLOBAL SOFTWARE #'
 
 if ! [ -x "$(command -v snap)" ]; then
     echo INSTALLING SNAP
@@ -56,11 +62,11 @@ else
     echo GIT ALREADY INSTALLED
 fi
 
-## SYSTEM DEPENDENCIES
+echo '# SYSTEM DEPENDENCIES #'
 
 installSystemDependencies
 
-## SOFTWARE
+echo '# SOFTWARE #'
 
 if ! [ "$(fc-list | grep -c 'FiraCode')" -ge 1 ]; then
     echo INSTALLING FIRACODE
@@ -91,10 +97,17 @@ else
 fi
 
 if ! [ -x "$(command -v zsh)" ]; then
-    echo INSTALLING ZSH WITH OH-MY-ZSH
+    echo INSTALLING ZSH
     installZsh
 else
     echo ZSH ALREADY INSTALLED
+fi
+
+if [ ! -d ~/.oh-my-zsh ]; then
+    echo INSTALLING OH-MY-ZSH
+    installOhMyZsh
+else
+    echo OH-MY-ZSH ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v google-chrome-stable)" ]; then
@@ -125,7 +138,7 @@ else
     echo ALBERT ALREADY INSTALLED
 fi
 
-if [ $(dpkg-query -W -f='${Status}' telegram 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+if ! [ -x "$(command -v telegram-desktop)" ]; then
     echo INSTALLING TELEGRAM
     installTelegram
 else
@@ -153,17 +166,26 @@ else
     echo XCLIP ALREADY INSTALLED
 fi
 
+echo '# CONFIGURATIONS'
+
+if [ ! -f ~/.gitconfig ]; then
+    echo CONFIGURING git
+    configureGit
+else
+    echo GIT ALREADY CONFIGURED
+fi
+
 
 # rm -rf $TEMP_DIR
 
 echo Purged temp folder
 
 echo TODO:
-echo - SET SSH for github
 echo - set rigths to updated config files
 echo - install rider with jetbrains toolbox
 echo - install extension sync of vscode by script
 echo '- setup shortcuts (for terminal, etc)'
+echo - install sublime merge
 
 echo REMEMBER TO:
 echo - register ssh public key to github
