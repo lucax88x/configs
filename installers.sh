@@ -1,5 +1,15 @@
-## HELPERS
+## SYSTEM UPGRADE
 
+
+function upgradeSystem {
+    case $DISTRO in
+        MANJARO)
+	    sudo pacman -Syu --noconfirm
+        ;;
+        *)
+        ;;
+    esac
+}
 
 ## GLOBAL SOFTWARE
 
@@ -21,7 +31,7 @@ function installSnap {
     esac    
 }
 
-function installCurl() {
+function installCurl {
     case $DISTRO in
         UBUNTU)
             apt-get update > /dev/null
@@ -280,7 +290,7 @@ function installXClip {
 function installSublimeMerge {
 	curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
 	echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
-	sudo pacman -Syu --no-confirm sublime-merge
+	sudo pacman -Sy --noconfirm sublime-merge
 }
 
 ## CONFIGURATION

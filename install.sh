@@ -39,6 +39,10 @@ function isManjaroPackageInstalled() {
     return; #false
 }
 
+echo '# UPGRADE SYSTEM #'
+
+upgradeSystem
+
 echo '# GLOBAL SOFTWARE #'
 
 if ! [ -x "$(command -v snap)" ]; then
