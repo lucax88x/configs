@@ -1,8 +1,6 @@
-[winUpdater]
-	recentlySeenVersion = 2.19.1.windows.1
 [user]
+	email = luca.trazzi@garaio.com
 	name = lucatrazzi
-	email = lucax88x@gmail.com
 
 [alias]
 	aliases = config --get-regexp ^alias
@@ -11,11 +9,12 @@
 	co = checkout
 	br = branch
 	ci = commit
-	st = status
 	sh = show -M
 	df = diff -M
 	#lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --name-only
 	#lgp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p -M
+	a = add
+	all = add -A
 
 	# tree (mauro) with branches, author, time
 	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Creset%Cgreen(%an %cr)%Creset%Cred%d' --abbrev-commit
@@ -25,17 +24,19 @@
 	lo = log --oneline
 	ls = log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]\" --decorate
 	po = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+	pl = !git pull --no-edit
 
 	# PERSO
 	poop = stash pop
-	st = status
+	st = status --untracked-files=all --branch
 	c = commit
 	cp = cherry-pick
-	cm = commit
+	cm = commit	
 	ap = add -p
 	fetch = fetch --prune
 	f = fetch --prune
-	cam = commit --amend
+	cam = commit --amend --no-edit
+	came = commit --amend
 	rb = rebase
 	rbi = rebase --interactive
 	rbc = rebase --continue
@@ -77,6 +78,7 @@
 	ci = commit
 	br = branch
 	unstage = reset HEAD --
+	discard = checkout -- .
 	dt = difftool
 	dtd = difftool -d
 	d = diff
@@ -89,11 +91,11 @@
 	wip = commit -am WIP
 	undo = reset --soft HEAD^
 	standup = "!git log --since yesterday  --author `git config user.email` --pretty=oneline"
+	hash = rev-parse HEAD
 
-	# merging conflicts w/ sublime
-	slresolvemod = !subl `git status|grep 'both modified'|cut -d: -f2`
+	# flush = !sh -c "git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
+	flush = "!git branch | grep -v "master" | xargs git branch -D"
 
-	#deletemergedbranches = !sh -c 'git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 
 	# ignoring
 	ignore = update-index --assume-unchanged
@@ -101,3 +103,9 @@
 	ignored = !git ls-files -v | grep "^[[:lower:]]"
 	root = !pwd
 	lgp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p -M
+
+	# flow
+	feature = "!f() { feature=${1}; git flow feature start $feature;  }; f"	
+	bugfix = "!f() { bugfix=${1}; git flow bugfix start $bugfix;  }; f"
+	release = "!f() { release=${1}; git flow release start $release;  }; f"
+
