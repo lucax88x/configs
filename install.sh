@@ -66,10 +66,6 @@ else
     echo GIT ALREADY INSTALLED
 fi
 
-echo '# SYSTEM DEPENDENCIES #'
-
-installSystemDependencies
-
 echo '# SOFTWARE #'
 
 if ! [ "$(fc-list | grep -c 'FiraCode')" -ge 1 ]; then
@@ -203,7 +199,6 @@ echo - set rigths to updated config files
 echo - install rider with jetbrains toolbox
 echo - install extension sync of vscode by script
 echo '- setup shortcuts (for terminal, etc)'
-echo - install sublime merge
 
 echo REMEMBER TO:
 echo - register ssh public key to github

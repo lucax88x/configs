@@ -4,7 +4,7 @@
 function upgradeSystem {
     case $DISTRO in
         MANJARO)
-	    sudo pacman -Syu --noconfirm
+	    sudo pacman -Syyu --noconfirm
         ;;
         *)
         ;;
@@ -58,42 +58,6 @@ function installGit {
         ;;
     esac    
 }
-
-## SYSTEM DEPENDENCIES
-function installLib32Glibc {
-    sudo pacman -S --noconfirm lib32-glibc
-}
-
-function installLibunique3 {
-    git clone https://aur.archlinux.org/libunique3.git
-    cd libunique3
-    makepkg -s --noconfirm
-    find libunique3-*.tar.xz | sudo xargs pacman -U --noconfirm
-}
-
-function installSystemDependencies {
-    case $DISTRO in
-        MANJARO)
-	    sudo pacman -Syu --noconfirm
-            # if [ $(isManjaroPackageInstalled 'lib32-glibc') == 1 ]; then 
-            #     echo INSTALLING LIB32-GLIBC
-            #     installLib32Glibc
-            # else
-            #     echo LIB32-GLIBC ALREADY INSTALLED
-            # fi          
-
-            # if [ $(isManjaroPackageInstalled 'libunique3') == 1 ]; then 
-            #     echo INSTALLING LIBUNIQUE3
-            #     installLibunique3
-            # else
-            #     echo LIBUNIQUE3 ALREADY INSTALLED
-            # fi
-        ;;
-        *)
-        ;;
-    esac
-}
-
 
 ## SOFTWARE ##
 
