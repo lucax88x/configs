@@ -160,21 +160,35 @@ else
 fi
 
 if ! [ -x "$(command -v xclip)" ]; then
-    echo INSTALLING xclip
+    echo INSTALLING XCLIP
     installXClip
 else
     echo XCLIP ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v smerge)" ]; then
+    echo INSTALLING SUBLIME MERGE
+    installSublimeMerge
+else
+    echo SUBLIME MERGE ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
-    echo CONFIGURING git
+    echo CONFIGURING GIT
     configureGit
 else
     echo GIT ALREADY CONFIGURED
 fi
 
+
+if [ ! -f ~/.config/autostart/albert ]; then
+    echo CONFIGURING ALBERT AUTOSTART
+    configureAlbertAutostart
+else
+    echo ALBERT AUTOSTART ALREADY CONFIGURED
+fi
 
 # rm -rf $TEMP_DIR
 

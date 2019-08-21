@@ -64,6 +64,7 @@ function installLibunique3 {
 function installSystemDependencies {
     case $DISTRO in
         MANJARO)
+	    sudo pacman -Syu --no-confirm
             # if [ $(isManjaroPackageInstalled 'lib32-glibc') == 1 ]; then 
             #     echo INSTALLING LIB32-GLIBC
             #     installLib32Glibc
@@ -209,13 +210,6 @@ function installAlbert {
             apt-get update > /dev/null
             apt-get -y install albert
             
-cat <<EOT >> ~/.config/autostart/albert
-[Desktop Entry]
-Name=albert
-Exec=albert
-Type=Application
-EOT
-            
         ;;
         MANJARO)            
             # sudo pacman -S --noconfirm glibc
@@ -283,6 +277,12 @@ function installXClip {
     esac
 }
 
+function installSublimeMerge {
+	curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
+	echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
+	sudo pacman -Syu --no-confirm sublime-merge
+}
+
 ## CONFIGURATION
 
 function configureGit {        
@@ -291,4 +291,15 @@ function configureGit {
     ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C $EMAIL -P ""
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_rsa
+}
+
+function configureAlbertAutostart {
+            
+cat <<EOT >> ~/.config/autostart/albert
+[Desktop Entry]
+Name=albert
+Exec=albert
+Type=Application
+EOT
+
 }
