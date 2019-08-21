@@ -64,7 +64,7 @@ function installLibunique3 {
 function installSystemDependencies {
     case $DISTRO in
         MANJARO)
-	    sudo pacman -Syu --no-confirm
+	    sudo pacman -Syu --noconfirm
             # if [ $(isManjaroPackageInstalled 'lib32-glibc') == 1 ]; then 
             #     echo INSTALLING LIB32-GLIBC
             #     installLib32Glibc
