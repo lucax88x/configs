@@ -116,7 +116,7 @@ function installGnomeTweaks {
 }
 
 function installLsd {
-    snap install lsd --devmode
+    sudo snap install lsd --devmode
 }
 
 function installZsh {
