@@ -267,6 +267,14 @@ function installYarn {
     sudo pacman -Sy --noconfirm yarn
 }
 
+function installDocker {
+    sudo pacman -Sy --noconfirm docker
+}
+
+function installDockerCompose {
+    sudo pacman -Sy --noconfirm docker-compose
+}
+
 ## CONFIGURATION
 
 function configureGit {

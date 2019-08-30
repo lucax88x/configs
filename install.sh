@@ -194,6 +194,20 @@ else
     echo YARN ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v docker)" ]; then
+    echo INSTALLING DOCKER
+    installDocker
+else
+    echo DOCKER ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v docker-compose)" ]; then
+    echo INSTALLING DOCKER-COMPOSE
+    installDockerCompose
+else
+    echo DOCKER-COMPOSE ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
