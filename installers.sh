@@ -1,10 +1,9 @@
 ## SYSTEM UPGRADE
 
-
 function upgradeSystem {
     case $DISTRO in
         MANJARO)
-	    sudo pacman -Syyu --noconfirm
+            sudo pacman -Syyu --noconfirm
         ;;
         *)
         ;;
@@ -14,21 +13,21 @@ function upgradeSystem {
 ## GLOBAL SOFTWARE
 
 function installSnap {
-
+    
     case $DISTRO in
         MANJARO)
             sudo pacman -Sy --noconfirm snapd
             sudo systemctl enable --now snapd.socket
-
+            
             echo Either log out and back in again, or restart your system, to ensure snap’s paths are updated correctly.
             echo Once done, restart the script!
-
+            
             exit 1
         ;;
         *)
             echo NOT IMPLEMENTED!
         ;;
-    esac    
+    esac
 }
 
 function installCurl {
@@ -44,7 +43,7 @@ function installCurl {
 }
 
 function installGit {
-
+    
     case $DISTRO in
         UBUNTU)
             apt-get update > /dev/null
@@ -56,29 +55,29 @@ function installGit {
         *)
             echo NOT IMPLEMENTED!
         ;;
-    esac    
+    esac
 }
 
 ## SOFTWARE ##
 
 function installFiraCode {
-	wget https://github.com/tonsky/FiraCode/releases/download/$FIRACODE_VERSION/FiraCode_$FIRACODE_VERSION.zip -O $TEMP_DIR/FiraCode.zip
-
-	unzip $TEMP_DIR/FiraCode.zip -d ~/.fonts
-
-	fc-cache
+    wget https://github.com/tonsky/FiraCode/releases/download/$FIRACODE_VERSION/FiraCode_$FIRACODE_VERSION.zip -O $TEMP_DIR/FiraCode.zip
+    
+    unzip $TEMP_DIR/FiraCode.zip -d ~/.fonts
+    
+    fc-cache
 }
 
 function installFuraCode {
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip -O $TEMP_DIR/FuraCode.zip
-
-	unzip $TEMP_DIR/FuraCode.zip -d ~/.fonts
-
-	fc-cache
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip -O $TEMP_DIR/FuraCode.zip
+    
+    unzip $TEMP_DIR/FuraCode.zip -d ~/.fonts
+    
+    fc-cache
 }
 
 function installGnomeTweaks {
-
+    
     case $DISTRO in
         UBUNTU)
             add-apt-repository universe
@@ -95,12 +94,12 @@ function installLsd {
 }
 
 function installZsh {
-
+    
     case $DISTRO in
         UBUNTU)
             apt-get update > /dev/null
             apt-get -y install zsh
-                                               
+            
             chmod a+x /usr/bin/chsh
             chsh -s $(which zsh)
         ;;
@@ -110,10 +109,10 @@ function installZsh {
     esac
 }
 
-function installOhMyZsh {        
+function installOhMyZsh {
     echo TELL NO TO CHANGE TO SHELL OR THE SCRIPT WILL ABORT!
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')" \
-
+    
     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
@@ -139,12 +138,12 @@ alias lt='ls --tree'
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias repo='f() { cd ~/repos/$1 };f'
 EOT
-
-    echo -e "\n# auto-ls\nAUTO_LS_COMMANDS=(ls)\n. ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh" >> ~/.zshrc        
+    
+    echo -e "\n# auto-ls\nAUTO_LS_COMMANDS=(ls)\n. ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh" >> ~/.zshrc
 }
 
 function installChrome {
-
+    
     case $DISTRO in
         UBUNTU)
             wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -175,7 +174,7 @@ function installJetbrainsToolbox {
 }
 
 function installAlbert {
-
+    
     case $DISTRO in
         UBUNTU)
             curl https://build.opensuse.org/projects/home:manuelschneid3r/public_key | apt-key add -
@@ -185,7 +184,7 @@ function installAlbert {
             apt-get -y install albert
             
         ;;
-        MANJARO)            
+        MANJARO)
             # sudo pacman -S --noconfirm glibc
             sudo pacman -S --noconfirm albert
         ;;
@@ -196,7 +195,7 @@ function installAlbert {
 }
 
 function installTelegram {
-
+    
     case $DISTRO in
         UBUNTU)
             add-apt-repository -y ppa:atareao/telegram
@@ -213,7 +212,7 @@ function installTelegram {
 }
 
 function installDiodon {
-
+    
     case $DISTRO in
         UBUNTU)
             add-apt-repository -y ppa:diodon-team/stable
@@ -229,17 +228,16 @@ function installDiodon {
     esac
 }
 
-function installBd {    
+function installBd {
     mkdir -p ~/.oh-my-zsh/custom/plugins/bd
     curl https://raw.githubusercontent.com/Tarrasch/zsh-bd/master/bd.zsh > ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
-    echo echo -e "\n# zsh-bd\n. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh" >> ~/.zshrc
-
+    echo -e "\n# zsh-bd\n. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh" >> ~/.zshrc
 }
 
 function installXClip {
-
+    
     case $DISTRO in
-        UBUNTU)    
+        UBUNTU)
             apt-get -y install xclip
         ;;
         MANJARO)
@@ -252,14 +250,18 @@ function installXClip {
 }
 
 function installSublimeMerge {
-	curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
-	echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
-	sudo pacman -Sy --noconfirm sublime-merge
+    curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo pacman-key --add sublimehq-pub.gpg && sudo pacman-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
+    echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/pacman.conf
+    sudo pacman -Sy --noconfirm sublime-merge
+}
+
+function installDotnetSdk {
+    sudo pacman -Sy --noconfirm dotnet-sdk
 }
 
 ## CONFIGURATION
 
-function configureGit {        
+function configureGit {
     wget https://raw.githubusercontent.com/lucax88x/configs/master/.gitconfig -O ~/.gitconfig
     
     ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C $EMAIL -P ""
@@ -268,12 +270,11 @@ function configureGit {
 }
 
 function configureAlbertAutostart {
-            
+    
 cat <<EOT >> ~/.config/autostart/albert
 [Desktop Entry]
 Name=albert
 Exec=albert
 Type=Application
 EOT
-
 }

@@ -4,16 +4,16 @@
 DISTRO=${1^^}
 
 case $DISTRO in
-	UBUNTU)
-		echo installing for ubuntu
-	;;
-	MANJARO)
-		echo installing for manjaro
-	;;
-	*)
-		echo not supported distro
-	exit 1
-	;;
+    UBUNTU)
+        echo installing for ubuntu
+    ;;
+    MANJARO)
+        echo installing for manjaro
+    ;;
+    *)
+        echo not supported distro
+        exit 1
+    ;;
 esac
 
 TEMP_DIR=~/setup-temp
@@ -173,6 +173,13 @@ else
     echo SUBLIME MERGE ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v dotnet)" ]; then
+    echo INSTALLING DOTNETCORE SDK
+    installDotnetSdk
+else
+    echo DOTNETCORE SDK ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
@@ -202,7 +209,5 @@ echo '- setup shortcuts (for terminal, etc)'
 
 echo REMEMBER TO:
 echo - register ssh public key to github
-echo - run gnome-tweaks and set system font with FuraCode Regular
-echo - set terminal to dark theme
 echo - install vscode settings by using extension 'setting sync'
-echo - reboot!
+echo - reboot
