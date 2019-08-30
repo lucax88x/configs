@@ -110,7 +110,7 @@ function installZsh {
 }
 
 function installOhMyZsh {
-    echo TELL NO TO CHANGE TO SHELL OR THE SCRIPT WILL ABORT!
+    echo TELL YES TO CHANGE TO SHELL AND THEN EXIT!
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')" \
     
     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
@@ -257,6 +257,14 @@ function installSublimeMerge {
 
 function installDotnetSdk {
     sudo pacman -Sy --noconfirm dotnet-sdk
+}
+
+function installNode {
+    sudo pacman -Sy --noconfirm node
+}
+
+function installYarn {
+    sudo pacman -Sy --noconfirm yarn
 }
 
 ## CONFIGURATION

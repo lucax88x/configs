@@ -180,6 +180,20 @@ else
     echo DOTNETCORE SDK ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v node)" ]; then
+    echo INSTALLING NODE
+    installNode
+else
+    echo NODE ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v yarn)" ]; then
+    echo INSTALLING YARN
+    installYarn
+else
+    echo YARN ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
@@ -208,6 +222,7 @@ echo - install extension sync of vscode by script
 echo '- setup shortcuts (for terminal, etc)'
 
 echo REMEMBER TO:
+echo - update all packages and the system
 echo - register ssh public key to github
 echo - install vscode settings by using extension 'setting sync'
 echo - reboot
