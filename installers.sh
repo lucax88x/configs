@@ -164,7 +164,18 @@ function installChrome {
 }
 
 function installVsCode {
-    sudo snap install code --classic
+    case $DISTRO in
+        UBUNTU)
+            sudo snap install code --classic
+            
+        ;;
+        MANJARO)
+            sudo pacman -S --noconfirm code
+        ;;
+        *)
+            echo NOT IMPLEMENTED!
+        ;;
+    esac
 }
 
 function installJetbrainsToolbox {
