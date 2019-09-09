@@ -298,10 +298,18 @@ function configureGit {
 
 function configureAlbertAutostart {
     
-cat <<EOT >> ~/.config/autostart/albert
+cat <<EOT >> ~/.config/autostart/albert.desktop
 [Desktop Entry]
-Name=albert
-Exec=albert
+Encoding=UTF-8
+Version=0.9.4
 Type=Application
+Name=Albert
+Comment=
+Exec=albert
+OnlyShowIn=XFCE;
+RunHook=0
+StartupNotify=false
+Terminal=false
+Hidden=false
 EOT
 }
