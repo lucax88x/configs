@@ -280,6 +280,10 @@ function installYarn {
 
 function installDocker {
     sudo pacman -Sy --noconfirm docker
+    sudo systemctl enable docker
+    sudo systemctl start docker
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
 }
 
 function installDockerCompose {
