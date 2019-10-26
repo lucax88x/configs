@@ -121,9 +121,30 @@ function installOhMyZsh {
     mkdir -p ~/.oh-my-zsh/custom/plugins/auto-ls
     curl -L https://git.io/auto-ls > ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh
     
-    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"\nPOWERLEVEL9K_DISABLE_RPROMPT=false\nPOWERLEVEL9K_PROMPT_ON_NEWLINE=true\nPOWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "\nPOWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""\nPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)\nPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(os_icon kubecontext load ram disk_usage battery status root_indicator dir_writable time)\nPOWERLEVEL9K_MODE="nerdfont-complete"/g' ~/.zshrc
+    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"/g' ~/.zshrc
     sed -i 's/plugins=(git)/plugins=(git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-better-npm-completion yarn-completion)/g' ~/.zshrc
     
+cat <<EOT >> ~/.zshrc
+POWERLEVEL9K_DISABLE_RPROMPT=false
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(os_icon kubecontext ram status root_indicator time)
+POWERLEVEL9K_MODE="nerdfont-complete"
+
+POWERLEVEL9K_TIME_FOREGROUND='#fff'
+
+POWERLEVEL9K_DIR_HOME_FOREGROUND='#fff'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='#fff'
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='#fff'
+POWERLEVEL9K_DIR_ETC_FOREGROUND='#fff'
+
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='#fff'
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#fff'
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#fff'
+EOT
+
 cat <<EOT >> ~/.zshrc
 # aliases
 alias c='xclip -selection clipboard'
@@ -271,7 +292,8 @@ function installDotnetSdk {
 }
 
 function installNode {
-    sudo pacman -Sy --noconfirm node
+    sudo pacman -Sy --noconfirm nodejs
+    sudo pacman -Sy --noconfirm npm
 }
 
 function installYarn {

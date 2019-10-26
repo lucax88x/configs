@@ -234,6 +234,7 @@ echo - set rigths to updated config files
 echo - install rider with jetbrains toolbox
 echo - install extension sync of vscode by script
 echo '- setup shortcuts (for terminal, etc)'
+echo '- https://forum.manjaro.org/t/remap-capslock-to-control/57705'
 
 echo REMEMBER TO:
 echo - update all packages and the system
