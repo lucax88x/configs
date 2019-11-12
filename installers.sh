@@ -110,57 +110,18 @@ function installZsh {
 }
 
 function installOhMyZsh {
-    echo TELL YES TO CHANGE TO SHELL AND THEN EXIT!
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')" \
+    # echo TELL YES TO CHANGE TO SHELL AND THEN EXIT!
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')"
     
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
     git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
     git clone https://github.com/buonomo/yarn-completion ~/.oh-my-zsh/custom/plugins/yarn-completion
-    mkdir -p ~/.oh-my-zsh/custom/plugins/auto-ls
-    curl -L https://git.io/auto-ls > ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh
     
-    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel9k\/powerlevel9k"/g' ~/.zshrc
-    sed -i 's/plugins=(git)/plugins=(git colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-better-npm-completion yarn-completion)/g' ~/.zshrc
-    
-cat <<EOT >> ~/.zshrc
-POWERLEVEL9K_DISABLE_RPROMPT=false
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="λ "
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(os_icon kubecontext ram status root_indicator time)
-POWERLEVEL9K_MODE="nerdfont-complete"
-
-POWERLEVEL9K_TIME_FOREGROUND='#fff'
-
-POWERLEVEL9K_DIR_HOME_FOREGROUND='#fff'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='#fff'
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='#fff'
-POWERLEVEL9K_DIR_ETC_FOREGROUND='#fff'
-
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='#fff'
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#fff'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#fff'
-EOT
-
-cat <<EOT >> ~/.zshrc
-# aliases
-alias c='xclip -selection clipboard'
-alias v='xclip -o'
-
-alias ls='lsd'
-alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-alias lt='ls --tree'
-
-alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias repo='f() { cd ~/repos/$1 };f'
-EOT
-    
-    echo -e "\n# auto-ls\nAUTO_LS_COMMANDS=(ls)\n. ~/.oh-my-zsh/custom/plugins/auto-ls/auto-ls.zsh" >> ~/.zshrc
+    wget https://raw.githubusercontent.com/lucax88x/configs/master/.p10k.zsh -O ~/.p10k.zsh
+    wget https://raw.githubusercontent.com/lucax88x/configs/master/.zshrc -O ~/.zshrc
 }
 
 function installChrome {
@@ -289,6 +250,9 @@ function installSublimeMerge {
 
 function installDotnetSdk {
     sudo pacman -Sy --noconfirm dotnet-sdk
+
+    curl https://dot.net/v1/dotnet-install.sh > $TEMP_DIR/dotnet-install.sh
+    $TEMP_DIR/dotnet-install.sh --install-dir /opt/dotnet -channel Current -version latest
 }
 
 function installNode {
@@ -310,6 +274,9 @@ function installDocker {
 
 function installDockerCompose {
     sudo pacman -Sy --noconfirm docker-compose
+}
+
+function installTeams {
 }
 
 ## CONFIGURATION
@@ -338,4 +305,9 @@ StartupNotify=false
 Terminal=false
 Hidden=false
 EOT
+}
+
+function configureCapsLockToCtrl {
+    # - https://forum.manjaro.org/t/remap-capslock-to-control/57705
+    sudo sed -i 's/EndSection/        Option "XkbOptions" " ctrl:swapcaps"\r\nEndSection/g' /etc/X11/xorg.conf.d/00-keyboard.conf
 }

@@ -1,5 +1,5 @@
 #!/bin/bash
-. installers.sh
+. ./installers.sh
 
 DISTRO=${1^^}
 
@@ -19,7 +19,7 @@ esac
 TEMP_DIR=~/setup-temp
 EMAIL=lucax88x@gmail.com
 NERDFONT_VERSION=2.0.0
-FIRACODE_VERSION=1.206
+FIRACODE_VERSION=2
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
 
 mkdir -p $TEMP_DIR
@@ -208,6 +208,13 @@ else
     echo DOCKER-COMPOSE ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v teams-for-linux)" ]; then
+    echo INSTALLING TEAMS
+    installTeams
+else
+    echo TEAMS ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
@@ -217,7 +224,6 @@ else
     echo GIT ALREADY CONFIGURED
 fi
 
-
 if [ ! -f ~/.config/autostart/albert ]; then
     echo CONFIGURING ALBERT AUTOSTART
     configureAlbertAutostart
@@ -225,16 +231,21 @@ else
     echo ALBERT AUTOSTART ALREADY CONFIGURED
 fi
 
-# rm -rf $TEMP_DIR
+if grep -q XkbOptions /etc/X11/xorg.conf.d/00-keyboard.conf
+    echo MAPPING CAPSLOCK TO CTRL
+    configureCapsLockToCtrl
+else
+    echo CAPSLOCK TO CTRL ALREADY MAPPED
+fi
+
+rm -rf $TEMP_DIR
 
 echo Purged temp folder
 
 echo TODO:
-echo - set rigths to updated config files
+echo - set rights to updated config files
 echo - install rider with jetbrains toolbox
-echo - install extension sync of vscode by script
 echo '- setup shortcuts (for terminal, etc)'
-echo '- https://forum.manjaro.org/t/remap-capslock-to-control/57705'
 
 echo REMEMBER TO:
 echo - update all packages and the system
