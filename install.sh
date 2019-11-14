@@ -268,6 +268,7 @@ echo TODO:
 echo - set rights to updated config files
 echo - install rider with jetbrains toolbox
 echo '- setup shortcuts (for terminal, etc)'
+echo xfce4-popup-clipman shift+ctrl+v
 
 echo REMEMBER TO:
 echo - update all packages and the system
