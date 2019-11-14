@@ -178,7 +178,6 @@ function installAlbert {
             
         ;;
         MANJARO)
-            # sudo pacman -S --noconfirm glibc
             sudo pacman -S --noconfirm albert
         ;;
         *)
@@ -251,8 +250,8 @@ function installSublimeMerge {
 function installDotnetSdk {
     sudo pacman -Sy --noconfirm dotnet-sdk
 
-    curl https://dot.net/v1/dotnet-install.sh > $TEMP_DIR/dotnet-install.sh
-    $TEMP_DIR/dotnet-install.sh --install-dir /opt/dotnet -channel Current -version latest
+    wget https://dot.net/v1/dotnet-install.sh -O $TEMP_DIR/dotnet-install.sh
+    sudo $TEMP_DIR/dotnet-install.sh --install-dir /opt/dotnet -channel Current -version latest
 }
 
 function installNode {
@@ -266,10 +265,11 @@ function installYarn {
 
 function installDocker {
     sudo pacman -Sy --noconfirm docker
-    sudo systemctl enable docker
-    sudo systemctl start docker
     sudo groupadd docker
     sudo usermod -aG docker $USER
+    newgrp docker
+    sudo systemctl enable docker
+    sudo systemctl start docker
 }
 
 function installDockerCompose {
@@ -277,6 +277,21 @@ function installDockerCompose {
 }
 
 function installTeams {
+    sudo snap install teams-for-linux
+}
+
+function installKubectl {
+    sudo snap install kubectl --classic
+}
+
+function installSlack {
+    sudo snap install slack --classic
+}
+
+function installEmacs {
+    sudo snap install emacs --classic
+    git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+    ~/.emacs.d/bin/doom install
 }
 
 ## CONFIGURATION
@@ -309,5 +324,5 @@ EOT
 
 function configureCapsLockToCtrl {
     # - https://forum.manjaro.org/t/remap-capslock-to-control/57705
-    sudo sed -i 's/EndSection/        Option "XkbOptions" " ctrl:swapcaps"\r\nEndSection/g' /etc/X11/xorg.conf.d/00-keyboard.conf
+    sudo sed -i 's/EndSection/        Option "XkbOptions" " ctrl:nocaps"\r\nEndSection/g' /etc/X11/xorg.conf.d/00-keyboard.conf
 }

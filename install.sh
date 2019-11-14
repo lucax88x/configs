@@ -215,6 +215,27 @@ else
     echo TEAMS ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v kubectl)" ]; then
+    echo INSTALLING KUBECTL
+    installKubectl
+else
+    echo KUBECTL ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v slack)" ]; then
+    echo INSTALLING SLACK
+    installSlack
+else
+    echo SLACK ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v emacs)" ]; then
+    echo INSTALLING EMACS
+    installEmacs
+else
+    echo EMACS ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
@@ -231,7 +252,8 @@ else
     echo ALBERT AUTOSTART ALREADY CONFIGURED
 fi
 
-if grep -q XkbOptions /etc/X11/xorg.conf.d/00-keyboard.conf
+
+if [ "$(grep -c XkbOptions /etc/X11/xorg.conf.d/00-keyboard.conf)" -eq 0 ]; then
     echo MAPPING CAPSLOCK TO CTRL
     configureCapsLockToCtrl
 else
@@ -251,4 +273,5 @@ echo REMEMBER TO:
 echo - update all packages and the system
 echo - register ssh public key to github
 echo - install vscode settings by using extension 'setting sync'
+echo '- disable alt+space shortcut (https://unix.stackexchange.com/questions/44643/change-global-keyboard-shortcuts)'
 echo - reboot
