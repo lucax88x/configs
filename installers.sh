@@ -301,11 +301,12 @@ function installI3 {
     
     mkdir -p ~/.config/i3
     mkdir -p ~/.config/polybar
+    mkdir -p ~/.config/rofi
 
     wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/config -O ~/.config/i3/config
-    wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/polybar/launch.sh -O ~/.config/polybar/launch.sh
     wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/polybar/config -O ~/.config/polybar/config
-    wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/rofi/config.rasi -O ~/.config/rofi/config.rasi
+    wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/polybar/launch.sh -O ~/.config/polybar/launch.sh
+    wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/rofi/config -O ~/.config/rofi/config
 
     chmod +x ~/.config/polybar/launch.sh
 }
