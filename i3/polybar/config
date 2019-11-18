@@ -1,0 +1,141 @@
+;=====================================================
+;
+;   To learn more about how to configure Lemonbuddy
+;   go to https://github.com/jaagr/lemonbuddy
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+;; bars
+[bar/bigscreen]
+monitor = DVI-I-2
+dock = false
+; bottom = true
+width = 100%
+height = 17
+
+background = #212121
+foreground = #FFFFFF
+linecolor = #212121
+line-size = 2
+
+; border-bottom = 3
+; border-bottom-color = #000000
+
+spacing = 1
+lineheight = 1
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = "Source Code Pro:size=8;1"
+font-1 = "FontAwesome:size=10;1"
+
+modules-left = i3
+modules-center = fuzzyclock
+modules-right = memory cpu date
+
+tray-position = right
+
+
+[bar/smallscreen]
+monitor = DVI-I-1
+dock = false
+; bottom = true
+width = 100%
+height = 17
+
+background = #212121
+foreground = #FFFFFF
+linecolor = #212121
+line-size = 2
+
+; border-bottom = 3
+; border-bottom-color = #000000
+
+spacing = 1
+lineheight = 1
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = "Source Code Pro:size=8;1"
+font-1 = "FontAwesome:size=10;1"
+
+modules-left = i3
+modules-center = fuzzyclock
+; modules-right = memory cpu date
+
+; tray-position = right
+
+; wm-restack = i3
+
+
+;; modules
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+pin-workspaces = true
+strip-wsnumbers = true
+; wsname-maxlen = 3
+; name-font = 2
+index-sort = true
+
+label-focused = %index% %name%
+label-focused-background = #424242
+label-focused-padding = 1
+label-focused-underline = #F44336
+
+label-unfocused = %index% %name%
+label-unfocused-padding = 1
+label-unfocused-background = #303030
+; label-unfocused-underline = #424242
+
+label-urgent = %index% 
+label-urgent-background = #F44336
+label-urgent-padding = 1
+
+label-visible = %index% %name%
+; label-visible-foreground = #212121
+label-visible-padding = 1
+label-visible-underline = #8b0000
+
+[module/date]
+type = internal/date
+date = %Y-%m-%d 
+date-alt = %%{F#e60053}%H:%M:%S%%{F#cc}
+interval = 1
+
+[module/fuzzyclock]
+type = custom/script
+exec = bash-fuzzy-clock
+interval = 30
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format = <label> <ramp-coreload>
+label = CPU
+
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+[module/memory]
+type = internal/memory
+interval = 3
+; format = <label> <bar-used>
+label = RAM %percentage_used%
