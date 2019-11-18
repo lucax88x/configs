@@ -131,12 +131,12 @@ else
     echo JETBRAINS TOOLBOX ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v albert)" ]; then
-    echo INSTALLING ALBERT
-    installAlbert
-else
-    echo ALBERT ALREADY INSTALLED
-fi
+# if ! [ -x "$(command -v albert)" ]; then
+#     echo INSTALLING ALBERT
+#     installAlbert
+# else
+#     echo ALBERT ALREADY INSTALLED
+# fi
 
 if ! [ -x "$(command -v telegram-desktop)" ]; then
     echo INSTALLING TELEGRAM
@@ -236,6 +236,19 @@ else
     echo EMACS ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v i3)" ]; then
+    echo INSTALLING I3
+    installI3
+else
+    echo I3 ALREADY INSTALLED
+fi
+if ! [ -x "$(command -v rofi)" ]; then
+    echo INSTALLING ROFI
+    installRofi
+else
+    echo ROFI ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
@@ -245,13 +258,12 @@ else
     echo GIT ALREADY CONFIGURED
 fi
 
-if [ ! -f ~/.config/autostart/albert ]; then
-    echo CONFIGURING ALBERT AUTOSTART
-    configureAlbertAutostart
-else
-    echo ALBERT AUTOSTART ALREADY CONFIGURED
-fi
-
+# if [ ! -f ~/.config/autostart/albert ]; then
+#     echo CONFIGURING ALBERT AUTOSTART
+#     configureAlbertAutostart
+# else
+#     echo ALBERT AUTOSTART ALREADY CONFIGURED
+# fi
 
 if [ "$(grep -c XkbOptions /etc/X11/xorg.conf.d/00-keyboard.conf)" -eq 0 ]; then
     echo MAPPING CAPSLOCK TO CTRL

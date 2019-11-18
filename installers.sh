@@ -294,6 +294,16 @@ function installEmacs {
     ~/.emacs.d/bin/doom install
 }
 
+function installI3 {
+    sudo pacman -S i3
+    mkdir -p ~/.config/i3
+    wget https://raw.githubusercontent.com/lucax88x/configs/master/i3config -O ~/.config/i3/config
+}
+
+function installRofi {
+    sudo pacman -S rofi
+}
+
 ## CONFIGURATION
 
 function configureGit {
