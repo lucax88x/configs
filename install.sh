@@ -4,16 +4,16 @@
 DISTRO=${1^^}
 
 case $DISTRO in
-    UBUNTU)
-        echo installing for ubuntu
-    ;;
-    MANJARO)
-        echo installing for manjaro
-    ;;
-    *)
-        echo not supported distro
-        exit 1
-    ;;
+  UBUNTU)
+    echo installing for ubuntu
+  ;;
+  MANJARO)
+    echo installing for manjaro
+  ;;
+  *)
+    echo not supported distro
+    exit 1
+  ;;
 esac
 
 TEMP_DIR=~/setup-temp
@@ -28,242 +28,241 @@ cd $TEMP_DIR
 
 ## HELPERS
 
-function isManjaroPackageInstalled() {
-    package="$1";
-    check="$(sudo pacman -Qs --color always "${package}" | grep "local" | grep "${package} ")";
-    if [ -n "${check}" ] ; then
-        echo 0; #'0' means 'true' in Bash
-        return; #true
-    fi;
-    echo 1; #'1' means 'false' in Bash
-    return; #false
-}
-
-echo '# UPGRADE SYSTEM #'
-
-upgradeSystem
-
 echo '# GLOBAL SOFTWARE #'
 
 if ! [ -x "$(command -v snap)" ]; then
-    echo INSTALLING SNAP
-    installSnap
+  echo INSTALLING SNAP
+  installSnap
 else
-    echo SNAP ALREADY INSTALLED
+  echo SNAP ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v yay)" ]; then
+  echo INSTALLING YAY
+  installYay
+else
+  echo YAY ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v curl)" ]; then
-    echo INSTALLING CURL
-    installCurl
+  echo INSTALLING CURL
+  installCurl
 else
-    echo CURL ALREADY INSTALLED
+  echo CURL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v git)" ]; then
-    echo INSTALLING GIT
-    installGit
+  echo INSTALLING GIT
+  installGit
 else
-    echo GIT ALREADY INSTALLED
+  echo GIT ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v git-flow)" ]; then
+  echo INSTALLING GIT FLOW
+  # installGitFlow
+else
+  echo GIT FLOW ALREADY INSTALLED
 fi
 
 echo '# SOFTWARE #'
 
 if ! [ "$(fc-list | grep -c 'FiraCode')" -ge 1 ]; then
-    echo INSTALLING FIRACODE
-    installFiraCode
+  echo INSTALLING FIRACODE
+  installFiraCode
 else
-    echo FIRACODE ALREADY INSTALLED
+  echo FIRACODE ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
-    echo INSTALLING PATCHED FIRACODE
-    installFuraCode
+  echo INSTALLING PATCHED FIRACODE
+  installFuraCode
 else
-    echo PATCHED FIRACODE ALREADY INSTALLED
+  echo PATCHED FIRACODE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v gnome-tweaks)" ]; then
-    echo INSTALLING GNOME-TWEAKS-TOOL
-    installGnomeTweaks
+  echo INSTALLING GNOME-TWEAKS-TOOL
+  installGnomeTweaks
 else
-    echo GNOME-TWEAKS-TOOL ALREADY INSTALLED
+  echo GNOME-TWEAKS-TOOL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v lsd)" ]; then
-    echo INSTALLING LSD
-    installLsd
+  echo INSTALLING LSD
+  installLsd
 else
-    echo LSD ALREADY INSTALLED
+  echo LSD ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v zsh)" ]; then
-    echo INSTALLING ZSH
-    installZsh
+  echo INSTALLING ZSH
+  installZsh
 else
-    echo ZSH ALREADY INSTALLED
+  echo ZSH ALREADY INSTALLED
 fi
 
 if [ ! -d ~/.oh-my-zsh ]; then
-    echo INSTALLING OH-MY-ZSH
-    installOhMyZsh
+  echo INSTALLING OH-MY-ZSH
+  installOhMyZsh
 else
-    echo OH-MY-ZSH ALREADY INSTALLED
+  echo OH-MY-ZSH ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v google-chrome-stable)" ]; then
-    echo INSTALLING CHROME
-    installChrome
+  echo INSTALLING CHROME
+  installChrome
 else
-    echo CHROME ALREADY INSTALLED
+  echo CHROME ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v code)" ]; then
-    echo INSTALLING VSCODE
-    installVsCode
+  echo INSTALLING VSCODE
+  installVsCode
 else
-    echo VSCODE ALREADY INSTALLED
+  echo VSCODE ALREADY INSTALLED
 fi
 
 if ! [ -f ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox ]; then
-    echo INSTALLING JETBRAINS TOOLBOX
-    installJetbrainsToolbox
+  echo INSTALLING JETBRAINS TOOLBOX
+  installJetbrainsToolbox
 else
-    echo JETBRAINS TOOLBOX ALREADY INSTALLED
+  echo JETBRAINS TOOLBOX ALREADY INSTALLED
 fi
 
 # if ! [ -x "$(command -v albert)" ]; then
-#     echo INSTALLING ALBERT
-#     installAlbert
+#   echo INSTALLING ALBERT
+#   installAlbert
 # else
-#     echo ALBERT ALREADY INSTALLED
+#   echo ALBERT ALREADY INSTALLED
 # fi
 
 if ! [ -x "$(command -v telegram-desktop)" ]; then
-    echo INSTALLING TELEGRAM
-    installTelegram
+  echo INSTALLING TELEGRAM
+  installTelegram
 else
-    echo TELEGRAM ALREADY INSTALLED
+  echo TELEGRAM ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v diodon)" ]; then
-    echo INSTALLING DIODON
-    installDiodon
+  echo INSTALLING DIODON
+  installDiodon
 else
-    echo DIODON ALREADY INSTALLED
+  echo DIODON ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v bd)" ]; then
-    echo INSTALLING BD
-    installBd
+  echo INSTALLING BD
+  installBd
 else
-    echo BD ALREADY INSTALLED
+  echo BD ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v xclip)" ]; then
-    echo INSTALLING XCLIP
-    installXClip
+  echo INSTALLING XCLIP
+  installXClip
 else
-    echo XCLIP ALREADY INSTALLED
+  echo XCLIP ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v smerge)" ]; then
-    echo INSTALLING SUBLIME MERGE
-    installSublimeMerge
+  echo INSTALLING SUBLIME MERGE
+  installSublimeMerge
 else
-    echo SUBLIME MERGE ALREADY INSTALLED
+  echo SUBLIME MERGE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v dotnet)" ]; then
-    echo INSTALLING DOTNETCORE SDK
-    installDotnetSdk
+  echo INSTALLING DOTNETCORE SDK
+  installDotnetSdk
 else
-    echo DOTNETCORE SDK ALREADY INSTALLED
+  echo DOTNETCORE SDK ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v node)" ]; then
-    echo INSTALLING NODE
-    installNode
+  echo INSTALLING NODE
+  installNode
 else
-    echo NODE ALREADY INSTALLED
+  echo NODE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v yarn)" ]; then
-    echo INSTALLING YARN
-    installYarn
+  echo INSTALLING YARN
+  installYarn
 else
-    echo YARN ALREADY INSTALLED
+  echo YARN ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v docker)" ]; then
-    echo INSTALLING DOCKER
-    installDocker
+  echo INSTALLING DOCKER
+  installDocker
 else
-    echo DOCKER ALREADY INSTALLED
+  echo DOCKER ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v docker-compose)" ]; then
-    echo INSTALLING DOCKER-COMPOSE
-    installDockerCompose
+  echo INSTALLING DOCKER-COMPOSE
+  installDockerCompose
 else
-    echo DOCKER-COMPOSE ALREADY INSTALLED
+  echo DOCKER-COMPOSE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v teams-for-linux)" ]; then
-    echo INSTALLING TEAMS
-    installTeams
+  echo INSTALLING TEAMS
+  installTeams
 else
-    echo TEAMS ALREADY INSTALLED
+  echo TEAMS ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v kubectl)" ]; then
-    echo INSTALLING KUBECTL
-    installKubectl
+  echo INSTALLING KUBECTL
+  installKubectl
 else
-    echo KUBECTL ALREADY INSTALLED
+  echo KUBECTL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v slack)" ]; then
-    echo INSTALLING SLACK
-    installSlack
+  echo INSTALLING SLACK
+  installSlack
 else
-    echo SLACK ALREADY INSTALLED
+  echo SLACK ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v emacs)" ]; then
-    echo INSTALLING EMACS
-    installEmacs
+  echo INSTALLING EMACS
+  installEmacs
 else
-    echo EMACS ALREADY INSTALLED
+  echo EMACS ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v i3)" ]; then
-    echo INSTALLING I3
-    installI3
+  echo INSTALLING I3
+  installI3
 else
-    echo I3 ALREADY INSTALLED
+  echo I3 ALREADY INSTALLED
 fi
 
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
-    echo CONFIGURING GIT
-    configureGit
+  echo CONFIGURING GIT
+  configureGit
 else
-    echo GIT ALREADY CONFIGURED
+  echo GIT ALREADY CONFIGURED
 fi
 
 # if [ ! -f ~/.config/autostart/albert ]; then
-#     echo CONFIGURING ALBERT AUTOSTART
-#     configureAlbertAutostart
+#   echo CONFIGURING ALBERT AUTOSTART
+#   configureAlbertAutostart
 # else
-#     echo ALBERT AUTOSTART ALREADY CONFIGURED
+#   echo ALBERT AUTOSTART ALREADY CONFIGURED
 # fi
 
 if [ "$(grep -c XkbOptions /etc/X11/xorg.conf.d/00-keyboard.conf)" -eq 0 ]; then
-    echo MAPPING CAPSLOCK TO CTRL
-    configureCapsLockToCtrl
+  echo MAPPING CAPSLOCK TO CTRL
+  configureCapsLockToCtrl
 else
-    echo CAPSLOCK TO CTRL ALREADY MAPPED
+  echo CAPSLOCK TO CTRL ALREADY MAPPED
 fi
 
 rm -rf $TEMP_DIR
