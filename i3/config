@@ -3,8 +3,12 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod1
+set $altMod Mod4
+set $laptop_monitor eDP-1
+set $center_monitor DP-1-1
+set $right_monitor DP-1-2
 
-font Fura Code Retina Nerd Font Complete
+font FuraCode Nerd Font Mono:style=Retina,Regular
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -93,18 +97,27 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+
+#####################
+### workspaces ###
+######################
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1-chat"
+set $ws2 "2-ide-work"
+set $ws3 "3-ide-personal"
+set $ws4 "4-terminal-work"
+set $ws5 "5-terminal-personal"
+set $ws6 "6-browser-work"
+set $ws7 "7-browser-personal"
+
+workspace $ws1 output $laptop_monitor
+workspace $ws2 output $center_monitor
+workspace $ws3 output $center_monitor
+workspace $ws4 output $right_monitor
+workspace $ws5 output $right_monitor
+workspace $ws6 output $right_monitor
+workspace $ws7 output $right_monitor
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -114,9 +127,6 @@ bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -126,9 +136,11 @@ bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
 bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+
+
+#####################
+### helpers ###
+######################
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -165,11 +177,17 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 #####################
+### i3lock ###
+######################
+bindsym $altMod+l exec "i3lock -c 333333"
+
+#####################
 ### i3-gaps ###
 ######################
 for_window [class=".*"] border pixel 0
-gaps inner all set 20
 
+gaps inner 10
+gaps outer 0
 
 #####################
 ### Set background ###
