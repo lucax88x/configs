@@ -41,11 +41,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+space exec --no-startup-id rofi -show run -lines 10
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
 
 # change focus
 bindsym $mod+$left focus left
@@ -168,34 +164,19 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# DARCULA THEME
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
+#####################
+### i3-gaps ###
+######################
+for_window [class=".*"] border pixel 0
+gaps inner all set 20
 
 
-bar {
-  # DARCULA THEME
-  colors {
-    background #282A36
-    statusline #F8F8F2
-    separator  #44475A
-
-    focused_workspace  #44475A #44475A #F8F8F2
-    active_workspace   #282A36 #44475A #F8F8F2
-    inactive_workspace #282A36 #282A36 #BFBFBF
-    urgent_workspace   #FF5555 #FF5555 #F8F8F2
-    binding_mode       #FF5555 #FF5555 #F8F8F2
-  }
-}
+#####################
+### Set background ###
+######################
+exec --no-startup-id feh --bg-fill ~/backgrounds/mountain.jpg
 
 #####################
 ### Launch Polybar ###
 ######################
-
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-
+exec_always --no-startup-id ~/.config/polybar/launch.sh

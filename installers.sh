@@ -295,9 +295,11 @@ function installEmacs {
 }
 
 function installI3 {
-    sudo pacman -S i3-wm
-    sudo pacman -S i3lock
-    sudo pacman -S polybar
+    sudo pacman -Sy --noconfirm i3-gaps
+    sudo pacman -Sy --noconfirm i3lock
+    sudo pacman -Sy --noconfirm polybar
+    sudo pacman -Sy --noconfirm rofi
+    sudo pacman -Sy --noconfirm feh
     
     mkdir -p ~/.config/i3
     mkdir -p ~/.config/polybar
@@ -309,10 +311,6 @@ function installI3 {
     wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/rofi/config -O ~/.config/rofi/config
 
     chmod +x ~/.config/polybar/launch.sh
-}
-
-function installRofi {
-    sudo pacman -S rofi
 }
 
 ## CONFIGURATION
