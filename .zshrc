@@ -115,7 +115,23 @@ alias lla='ls -la'
 alias lt='ls --tree'
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-alias repo='f() { cd ~/repos/ };f'
+
+function backlight(){
+  echo $1 | sudo tee /sys/class/backlight/nv_backlight/brightness
+}
+
+function project(){
+  cd ~/repos/$1
+}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# zsh-bd
+. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
+
+# zsh-bd
+. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
+
+# zsh-bd
+. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
