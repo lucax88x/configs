@@ -2,8 +2,11 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
-set $altMod Mod4
+# mod1 = ALT
+# mod4 = SUPER (WIN)
+
+set $mod Mod4
+set $altMod Mod1
 set $laptop_monitor eDP-1
 set $center_monitor DP-1-1
 set $right_monitor DP-1-2
@@ -31,7 +34,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
 set $up i
-set $down k 
+set $down k
 set $left j
 set $right l
 
@@ -39,13 +42,13 @@ set $right l
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+t exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
+bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
 
 # change focus
 bindsym $mod+$left focus left
@@ -104,38 +107,26 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1-chat"
-set $ws2 "2-ide-work"
-set $ws3 "3-ide-personal"
-set $ws4 "4-terminal-work"
-set $ws5 "5-terminal-personal"
-set $ws6 "6-browser-work"
-set $ws7 "7-browser-personal"
+set $ws2 "2-ide"
+set $ws3 "3-terminal"
+set $ws4 "4-browser"
 
 workspace $ws1 output $laptop_monitor
 workspace $ws2 output $center_monitor
-workspace $ws3 output $center_monitor
+workspace $ws3 output $right_monitor
 workspace $ws4 output $right_monitor
-workspace $ws5 output $right_monitor
-workspace $ws6 output $right_monitor
-workspace $ws7 output $right_monitor
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
 
 
 #####################
@@ -150,44 +141,41 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# mode "resize" {
+        # # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym $left resize shrink width 10 px or 10 ppt
-        bindsym $right resize grow height 10 px or 10 ppt
-        bindsym $up resize shrink height 10 px or 10 ppt
-        bindsym $down resize grow width 10 px or 10 ppt
+        # # Pressing left will shrink the window’s width.
+        # # Pressing right will grow the window’s width.
+        # # Pressing up will shrink the window’s height.
+        # # Pressing down will grow the window’s height.
+        # bindsym $left resize shrink width 10 px or 10 ppt
+        # bindsym $right resize grow height 10 px or 10 ppt
+        # bindsym $up resize shrink height 10 px or 10 ppt
+        # bindsym $down resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        # bindsym Left resize shrink width 10 px or 10 ppt
+        # bindsym Down resize grow height 10 px or 10 ppt
+        # bindsym Up resize shrink height 10 px or 10 ppt
+        # bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
+        # bindsym Return mode "default"
+        # bindsym Escape mode "default"
+        # bindsym $mod+r mode "default"
+# }
 
-bindsym $mod+r mode "resize"
+# bindsym $mod+r mode "resize"
 
 #####################
 ### i3lock ###
 ######################
-bindsym $altMod+l exec "i3lock -c 333333"
+bindsym $mod+q exec "i3lock -c 333333"
 
 #####################
-### i3-gaps ###
+### i3 custom gaps ###
 ######################
-for_window [class=".*"] border pixel 0
-
-gaps inner 10
-gaps outer 0
+for_window [class=".*"] border pixel 5
 
 #####################
 ### Set background ###
@@ -198,3 +186,19 @@ exec --no-startup-id feh --bg-fill ~/backgrounds/mountain.jpg
 ### Launch Polybar ###
 ######################
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+#####################
+### Theme ###
+######################
+# colour of border, background, text, indicator, and child_border
+client.focused              #bf616a #bf616a #d8dee8 #bf616a #bf616a
+client.focused_inactive     #333333 #333333 #d8dee8 #333333 #333333
+client.unfocused            #333333 #333333 #d8dee8 #333333 #333333
+client.urgent               #333333 #333333 #d8dee8 #333333 #333333
+client.placeholder          #333333 #333333 #d8dee8 #333333 #333333
+client.background           #333333
+
+#####################
+### picom ###
+######################
+exec_always compton --config ~/.config/i3/compton.conf

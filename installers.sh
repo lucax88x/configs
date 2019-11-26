@@ -325,6 +325,9 @@ function installI3 {
   wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/rofi/config -O ~/.config/rofi/config
   
   chmod +x ~/.config/polybar/launch.sh
+
+  # enables font glyphs
+  sudo rm -rf /etc/fonts/conf.d/70-no-bitmaps.conf
 }
 
 ## CONFIGURATION
