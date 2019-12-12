@@ -166,7 +166,10 @@ function installVsCode {
       
     ;;
     MANJARO)
-      sudo pacman -S --noconfirm code
+      sudo snap install code --classic
+      sudo pacman -S libdbusmenu-glib
+      sudo pacman -S gconf
+      # sudo pacman -S --noconfirm code
     ;;
     *)
       echo NOT IMPLEMENTED!

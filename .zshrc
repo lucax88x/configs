@@ -120,18 +120,21 @@ function backlight(){
   echo $1 | sudo tee /sys/class/backlight/nv_backlight/brightness
 }
 
-function project(){
+function prj(){
   cd ~/repos/$1
+}
+
+function wifi(){
+  if [[ -n "$1" ]]
+    then
+      nmcli dev wifi connect "$1"
+    else
+      nmcli dev wifi
+  fi
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# zsh-bd
-. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
-
-# zsh-bd
-. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
 
 # zsh-bd
 . ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
