@@ -279,5 +279,6 @@ echo REMEMBER TO:
 echo - update all packages and the system
 echo - register ssh public key to github
 echo - install vscode settings by using extension 'setting sync'
+echo - copy scripts in ~/bin and set them as executable
 echo '- disable alt+space shortcut (https://unix.stackexchange.com/questions/44643/change-global-keyboard-shortcuts)'
 echo - reboot
