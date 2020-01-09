@@ -114,25 +114,6 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
-alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-
-function backlight(){
-  echo $1 | sudo tee /sys/class/backlight/nv_backlight/brightness
-}
-
-function prj(){
-  cd ~/repos/$1
-}
-
-function wifi(){
-  if [[ -n "$1" ]]
-    then
-      nmcli dev wifi connect "$1"
-    else
-      nmcli dev wifi
-  fi
-}
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

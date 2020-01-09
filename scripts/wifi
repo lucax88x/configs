@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [[ -n "$1" ]]
+    then
+        nmcli dev wifi connect "$1"
+    else
+        nmcli dev wifi
+fi

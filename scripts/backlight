@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo $1 | sudo tee /sys/class/backlight/nv_backlight/brightness
