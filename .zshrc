@@ -114,6 +114,16 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+
+# sets nvim as default editor
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
+
+function prj(){
+  cd ~/repos/$1
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

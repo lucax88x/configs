@@ -294,7 +294,7 @@ function installDockerCompose {
 }
 
 function installTeams {
-  sudo snap install teams-for-linux
+  yay install -y teams
 }
 
 function installKubectl {
@@ -314,8 +314,12 @@ function installEmacs {
 function installI3 {
   sudo pacman -Sy --noconfirm i3-gaps
   sudo pacman -Sy --noconfirm i3lock
+  
+  # status bar
   sudo pacman -Sy --noconfirm polybar
+  # launcher
   sudo pacman -Sy --noconfirm rofi
+  # background
   sudo pacman -Sy --noconfirm feh
   
   mkdir -p ~/.config/i3

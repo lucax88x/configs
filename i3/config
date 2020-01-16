@@ -7,9 +7,9 @@
 
 set $mod Mod4
 set $altMod Mod1
-set $laptop_monitor eDP-1
-set $center_monitor DP-1-1
-set $right_monitor DP-1-2
+set $laptop_monitor DP-4
+set $center_monitor DP-3.1
+set $right_monitor DP-3.2
 
 font FuraCode Nerd Font Mono:style=Retina,Regular
 
@@ -175,7 +175,7 @@ bindsym $mod+q exec "i3lock -c 333333"
 #####################
 ### i3 custom gaps ###
 ######################
-for_window [class=".*"] border pixel 5
+for_window [class=".*"] border pixel 3
 
 #####################
 ### Set background ###
@@ -198,7 +198,13 @@ client.urgent               #333333 #333333 #d8dee8 #333333 #333333
 client.placeholder          #333333 #333333 #d8dee8 #333333 #333333
 client.background           #333333
 
+
 #####################
-### picom ###
+### Teams notification ###
 ######################
-exec_always compton --config ~/.config/i3/compton.conf
+
+for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
+for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
+
+
+
