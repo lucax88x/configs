@@ -43,6 +43,10 @@ peco
 
 ripgrep
 
+## documentation
+
+tldr
+
 ## to be inspired i3
 
 [https://github.com/ntcarlson/dotfiles](https://github.com/ntcarlson/dotfiles)
