@@ -4,7 +4,7 @@ function installSnap {
   
   case $DISTRO in
     MANJARO)
-      sudo pacman -Sy --noconfirm snapd
+      yay -Sy --noconfirm snapd
       sudo systemctl enable --now snapd.socket
       
       echo Either log out and back in again, or restart your system, to ensure snap’s paths are updated correctly.
@@ -52,7 +52,7 @@ function installGit {
       apt-get -y install git-core
     ;;
     MANJARO)
-      sudo pacman -S --noconfirm git
+      yay -S --noconfirm git
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -167,9 +167,9 @@ function installVsCode {
     ;;
     MANJARO)
       sudo snap install code --classic
-      sudo pacman -S libdbusmenu-glib
-      sudo pacman -S gconf
-      # sudo pacman -S --noconfirm code
+      yay -S libdbusmenu-glib
+      yay -S gconf
+      # yay -S --noconfirm code
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -195,7 +195,7 @@ function installAlbert {
       
     ;;
     MANJARO)
-      sudo pacman -S --noconfirm albert
+      yay -S --noconfirm albert
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -212,7 +212,7 @@ function installTelegram {
       apt-get -y install telegram
     ;;
     MANJARO)
-      sudo pacman -S --noconfirm telegram-desktop
+      yay -S --noconfirm telegram-desktop
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -250,7 +250,7 @@ function installXClip {
       apt-get -y install xclip
     ;;
     MANJARO)
-      sudo pacman -S --noconfirm xclip
+      yay -S --noconfirm xclip
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -261,27 +261,26 @@ function installXClip {
 function installSublimeMerge {
   curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo yay-key --add sublimehq-pub.gpg && sudo yay-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
   echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/yay.conf
-  sudo pacman -Sy --noconfirm sublime-merge
+  yay -Sy --noconfirm sublime-merge
 }
 
 function installDotnetSdk {
-  sudo pacman -Sy --noconfirm dotnet-sdk
+  yay -Sy --noconfirm dotnet-runtime
   
   wget https://dot.net/v1/dotnet-install.sh -O $TEMP_DIR/dotnet-install.sh
   sudo $TEMP_DIR/dotnet-install.sh --install-dir /opt/dotnet -channel Current -version latest
 }
 
 function installNode {
-  sudo pacman -Sy --noconfirm nodejs
-  sudo pacman -Sy --noconfirm npm
+  yay -Sy --noconfirm nvm
 }
 
 function installYarn {
-  sudo pacman -Sy --noconfirm yarn
+  yay -Sy --noconfirm yarn
 }
 
 function installDocker {
-  sudo pacman -Sy --noconfirm docker
+  yay -Sy --noconfirm docker
   sudo groupadd docker
   sudo usermod -aG docker $USER
   newgrp docker
@@ -290,7 +289,7 @@ function installDocker {
 }
 
 function installDockerCompose {
-  sudo pacman -Sy --noconfirm docker-compose
+  yay -Sy --noconfirm docker-compose
 }
 
 function installTeams {
@@ -312,16 +311,20 @@ function installEmacs {
 }
 
 function installI3 {
-  sudo pacman -Sy --noconfirm i3-gaps
-  sudo pacman -Sy --noconfirm i3lock
-  
+  yay -Sy --noconfirm i3-gaps
+  yay -Sy --noconfirm i3lock
+
+  # used for lock
+  yay -Sy --noconfirm scrot
   # status bar
-  sudo pacman -Sy --noconfirm polybar
+  yay -Sy --noconfirm polybar
   # launcher
-  sudo pacman -Sy --noconfirm rofi
+  yay -Sy --noconfirm rofi
   # background
-  sudo pacman -Sy --noconfirm feh
+  yay -Sy --noconfirm feh
+  yay -Sy --noconfirm i3-battery-popup-git
   
+
   mkdir -p ~/.config/i3
   mkdir -p ~/.config/polybar
   mkdir -p ~/.config/rofi

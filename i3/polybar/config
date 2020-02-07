@@ -1,21 +1,8 @@
 [colors]
-background = #222
-foreground = #eee
-linecolor = #bf616a
-bordercolor = #333
-accent = #bf616a
+include-file = ~/.config/polybar/colors
 
 [settings]
 screenchange-reload = true
-;throttle-output-for = 10
-;throttle-output = 5
-;throttle-input-for = 40
-
-;compositing-background = over
-;compositing-background = screen
-;compositing-foreground = xor
-;compositing-foreground = source
-;compositing-border = over
 
 [global/wm]
 margin-top = 0
@@ -23,7 +10,7 @@ margin-bottom = 0
 
 [bar/center]
 enable-ipc = true
-monitor = DP-1-1
+monitor = DP-3.1
 bottom = true
 width = 100%
 height = 24
@@ -43,13 +30,14 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = dina:pixelsize=9;1
-font-1 = siji:pixelsize=10;1
-font-2 = unifont:size=6;1
+font-0 = FiraCode:pixelsize=12;1
+font-1 = dina:pixelsize=9;1
+font-2 = siji:pixelsize=10;1
+font-3 = unifont:size=6;1
 
 modules-left = bspwm i3
 modules-center = xwindow
-modules-right = xbacklight volume wired wifi battery date
+modules-right = pulseaudio battery date
 
 tray-position = right
 tray-padding = 4
@@ -68,7 +56,7 @@ bspwm-focused-underline = #cc333333
 inherit = bar/center
 
 enable-ipc = true
-monitor = eDP-1
+monitor = DP-4
 bottom = true
 
 underline-size = ${bar/center.overline-size}
@@ -86,7 +74,7 @@ bspwm-focused-underline = ${colors.linecolor}
 inherit = bar/center
 
 enable-ipc = true
-monitor = DP-1-2
+monitor = DP-3.2
 bottom = true
 
 underline-size = ${bar/center.overline-size}
@@ -101,17 +89,6 @@ tray-position = none
 # bar/module specific vars
 bspwm-focused-overline = #cc333333
 bspwm-focused-underline = ${colors.linecolor}
-
-[module/github]
-type = internal/github
-token = ${file:/home/lucatrazzi/.git-token}
-
-;empty-notifications = true
-
-label = %{A1:web --new-window https\://github.com/notifications&:}%notifications%%{A}
-label-padding = 2
-label-background = #f0c209
-label-foreground = #000
 
 [module/fs-root]
 type = internal/fs
@@ -137,7 +114,6 @@ ws-icon-default = x
 
 inline-mode = true
 
-;label-focused = %icon%
 label-focused = o
 label-focused-background = #383838
 label-focused-foreground = #fff
@@ -169,12 +145,12 @@ label-empty-padding = 2
 label-monocle = 
 label-monocle-padding = 2
 label-monocle-background = #171717
-label-monocle-foreground = ${colors.accent}
+label-monocle-foreground = ${colors.primary}
 
 label-floating = 
 label-floating-padding = 2
 label-floating-background = #171717
-label-floating-foreground = ${colors.accent}
+label-floating-foreground = ${colors.primary}
 
 label-locked = locked
 label-locked-padding = 1
@@ -182,12 +158,6 @@ label-sticky = sticky
 label-sticky-padding = 1
 label-private = private
 label-private-padding = 1
-;label-pseudotiled = pseudo
-;label-pseudotiled-padding = 2
-;label-pseudotiled-background = #f09
-;label-tiled = tiled
-;label-tiled-padding = 2
-;label-tiled-background = #f90
 
 label-dimmed-background = ${root.background}
 label-dimmed-overline = ${root.background}
@@ -200,14 +170,12 @@ index-sort = true
 pin-workspaces = true
 strip-wsnumbers = true
 wrapping-scroll = true
-;reverse-scroll = false
-;enable-scroll = false
 
 format = <label-state> <label-mode>
 
 label-mode = %mode%
 label-mode-padding = 2
-label-mode-background = ${colors.accent}
+label-mode-background = ${colors.primary}
 
 label-focused = %name%
 label-focused-background = ${module/bspwm.label-focused-background}
@@ -288,43 +256,6 @@ date = %Y-%m-%d
 time = %H:%M
 interval = 5
 
-[module/xbacklight]
-type = internal/xbacklight
-format = <ramp> <label>
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = #666
-label-foreground = ${root.foreground}
-
-menu-0-0 = Terminate WM
-menu-0-0-foreground = ${colors.accent}
-menu-0-0-exec = bspc quit -1
-
-[module/volume]
-type = internal/volume
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-headphone-id = 9
-
-format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage%%
-label-volume-foreground = ${root.foreground}
-
-format-muted-prefix = " "
-format-muted-foreground = #777
-label-muted = sound muted
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
-ramp-volume-foreground = #666
-
-ramp-headphones-0 = 
-ramp-headphones-1 = 
-ramp-headphones-foreground = #666
-
 [module/battery]
 type = internal/battery
 full-at = 98
@@ -360,27 +291,27 @@ label-separator = /
 label-separator-margin = 1
 
 menu-0-0 = Reboot
-menu-0-0-foreground = ${colors.accent}
+menu-0-0-foreground = ${colors.primary}
 menu-0-0-exec = menu-open-1
 menu-0-1 = Power off
-menu-0-1-foreground = ${colors.accent}
+menu-0-1-foreground = ${colors.primary}
 menu-0-1-exec = menu-open-2
 menu-0-2 = Lock
-menu-0-2-foreground = ${colors.accent}
+menu-0-2-foreground = ${colors.primary}
 menu-0-2-exec = i3lock -c 333333
 
 menu-1-0 = Cancel
-menu-1-0-foreground = ${colors.accent}
+menu-1-0-foreground = ${colors.primary}
 menu-1-0-exec = menu-open-0
 menu-1-1 = Reboot
-menu-1-1-foreground = ${colors.accent}
+menu-1-1-foreground = ${colors.primary}
 menu-1-1-exec = sudo reboot
 
 menu-2-0 = Power off
-menu-2-0-foreground = ${colors.accent}
+menu-2-0-foreground = ${colors.primary}
 menu-2-0-exec = sudo poweroff
 menu-2-1 = Cancel
-menu-2-1-foreground = ${colors.accent}
+menu-2-1-foreground = ${colors.primary}
 menu-2-1-exec = menu-open-0
 
 [module/xkeyboard]
@@ -394,9 +325,35 @@ format-prefix-foreground = #666
 label-layout = %layout%
 
 label-indicator-padding = 2
-label-indicator-background = ${colors.accent}
+label-indicator-background = ${colors.primary}
 
 [module/xwindow]
 type = internal/xwindow
 format = <label>
 label-maxlen = 75
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = muted
+label-muted-foreground = #666
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground}

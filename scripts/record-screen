@@ -1,0 +1,4 @@
+printf "BEGIN CAPTURING.."
+printf "Press Q to stop"
+
+screenkey --scr 1 -t 1 & screencast -S view-range.webm

@@ -116,13 +116,22 @@ alias lt='ls --tree'
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
+alias v+='f(){ amixer -q sset Master "$@"%+;  unset -f f; }; f'
+alias v-='f(){ amixer -q sset Master "$@"%-;  unset -f f; }; f'
+alias v='f(){ amixer -q sset Master toggle;  unset -f f; }; f'
+
+alias tree='broot'
+alias grep='rg'
+
 # sets nvim as default editor
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 
+REPOSITORIES_FOLDER=~/repos
 function prj(){
-  cd ~/repos/$1
+  cd $REPOSITORIES_FOLDER/$1
 }
+compctl -W $REPOSITORIES_FOLDER -/ prj
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -30,18 +30,18 @@ cd $TEMP_DIR
 
 echo '# GLOBAL SOFTWARE #'
 
-if ! [ -x "$(command -v snap)" ]; then
-  echo INSTALLING SNAP
-  installSnap
-else
-  echo SNAP ALREADY INSTALLED
-fi
-
 if ! [ -x "$(command -v yay)" ]; then
   echo INSTALLING YAY
   installYay
 else
   echo YAY ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v snap)" ]; then
+  echo INSTALLING SNAP
+  installSnap
+else
+  echo SNAP ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v curl)" ]; then
@@ -280,5 +280,6 @@ echo - update all packages and the system
 echo - register ssh public key to github
 echo - install vscode settings by using extension 'setting sync'
 echo - copy scripts in ~/bin and set them as executable
+echo - install node with nvm
 echo '- disable alt+space shortcut (https://unix.stackexchange.com/questions/44643/change-global-keyboard-shortcuts)'
 echo - reboot

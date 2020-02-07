@@ -11,7 +11,7 @@ set $laptop_monitor DP-4
 set $center_monitor DP-3.1
 set $right_monitor DP-3.2
 
-font FuraCode Nerd Font Mono:style=Retina,Regular
+font pango: FiraCode 6
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -42,7 +42,7 @@ set $right l
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+t exec i3-sensible-terminal
+bindsym $mod+t exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -170,7 +170,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #####################
 ### i3lock ###
 ######################
-bindsym $mod+q exec "i3lock -c 333333"
+bindsym $mod+q exec $HOME/bin/lock
 
 #####################
 ### i3 custom gaps ###
@@ -207,4 +207,7 @@ for_window [title="Microsoft Teams Notification" class="microsoft teams - previe
 for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
 
 
-
+#####################
+### Battery popup ###
+######################
+exec --no-startup-id i3-battery-popup -n
