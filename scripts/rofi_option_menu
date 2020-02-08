@@ -17,25 +17,25 @@ list_icons() {
 handle_option() {
     case "$1" in
         "$LOCK")
-            lock
+            $HOME/bin/lock
             ;;
         "$SLEEP")
-            if $(rofi_confirm $SLEEP); then
+            if $($HOME/bin/rofi_confirm $SLEEP); then
                 systemctl suspend
             fi
             ;;
         "$LOGOUT")
-            if $(rofi_confirm $LOGOUT); then
+            if $($HOME/bin/rofi_confirm $LOGOUT); then
                 i3-msg exit
             fi
             ;;
         "$RESTART")
-            if $(rofi_confirm $RESTART); then
+            if $($HOME/bin/rofi_confirm $RESTART); then
                 reboot
             fi
             ;;
         "$SHUTDOWN")
-            if $(rofi_confirm $SHUTDOWN); then
+            if $($HOME/bin/rofi_confirm $SHUTDOWN); then
                 shutdown now
             fi
             ;;

@@ -171,7 +171,11 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 ### i3lock ###
 ######################
 bindsym $mod+q exec $HOME/bin/rofi_option_menu
-# bindsym $mod+q exec $HOME/bin/lock
+
+#####################
+### greenclip ###
+######################
+bindsym Shift+$mod+v exec "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
 
 #####################
 ### i3 custom gaps ###

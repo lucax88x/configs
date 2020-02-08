@@ -326,6 +326,8 @@ function installI3 {
   yay -Sy --noconfirm polybar
   # launcher
   yay -Sy --noconfirm rofi
+  # clipboard manager
+  yay -Sy --noconfirm rofi-greenclip
   # background
   yay -Sy --noconfirm feh
   yay -Sy --noconfirm i3-battery-popup-git

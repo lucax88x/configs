@@ -1,10 +1,13 @@
 #!/bin/bash
 
 ICON="$1"
+CANCEL_ICON=""
+CONFIRM_ICON=""
 
-case "$(echo -e "Cancel\nConfirm" | rofi -dmenu -theme confirmation_dialog -mesg "$ICON")" in
-    "Cancel")  exit 1;;
-    "Confirm") exit 0;;
+case "$(echo -e "$CANCEL_ICON\n$CONFIRM_ICON" | rofi -dmenu -theme confirmation_dialog -mesg "$ICON")" in
+    $CANCEL_ICON$)  exit 1;;
+    $CONFIRM_ICON) exit 0;;
 esac
 
 exit 1
+
