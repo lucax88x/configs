@@ -191,12 +191,12 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 ### Theme ###
 ######################
 # colour of border, background, text, indicator, and child_border
-client.focused              #bf616a #bf616a #d8dee8 #bf616a #bf616a
-client.focused_inactive     #333333 #333333 #d8dee8 #333333 #333333
-client.unfocused            #333333 #333333 #d8dee8 #333333 #333333
-client.urgent               #333333 #333333 #d8dee8 #333333 #333333
-client.placeholder          #333333 #333333 #d8dee8 #333333 #333333
-client.background           #333333
+client.focused              #202020 #202020 #c0b18b #202020 #202020
+client.focused_inactive     #2f2f2f #2f2f2f #c0b18b #2f2f2f #2f2f2f
+client.unfocused            #2f2f2f #2f2f2f #c0b18b #2f2f2f #2f2f2f
+client.urgent               #2f2f2f #2f2f2f #c0b18b #2f2f2f #2f2f2f
+client.placeholder          #2f2f2f #2f2f2f #c0b18b #2f2f2f #2f2f2f
+client.background           #2f2f2f
 
 
 #####################

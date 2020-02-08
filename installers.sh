@@ -90,6 +90,15 @@ function installFuraCode {
   fc-cache
 }
 
+function installFontAwesome {
+  # wget https://github.com/FortAwesome/Font-Awesome/releases/download/$FONTAWESOME_VERSION/fontawesome-free-$FONTAWESOME_VERSION-desktop.zip -O $TEMP_DIR/FontAwesome.zip
+  
+  # unzip $TEMP_DIR/FontAwesome.zip -d ~/.fonts
+  
+  # fc-cache
+  echo MANUALLY INSTALL FONTAWESOME 5 PRO!
+}
+
 function installGnomeTweaks {
   
   case $DISTRO in
@@ -323,21 +332,10 @@ function installI3 {
   # background
   yay -Sy --noconfirm feh
   yay -Sy --noconfirm i3-battery-popup-git
-  
+}
 
-  mkdir -p ~/.config/i3
-  mkdir -p ~/.config/polybar
-  mkdir -p ~/.config/rofi
-  
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/config -O ~/.config/i3/config
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/polybar/config -O ~/.config/polybar/config
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/polybar/launch.sh -O ~/.config/polybar/launch.sh
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/i3/rofi/config -O ~/.config/rofi/config
-  
-  chmod +x ~/.config/polybar/launch.sh
-
-  # enables font glyphs
-  sudo rm -rf /etc/fonts/conf.d/70-no-bitmaps.conf
+function installKitty {
+  yay -Sy --noconfirm kitty
 }
 
 ## CONFIGURATION
@@ -350,22 +348,27 @@ function configureGit {
   ssh-add ~/.ssh/id_rsa
 }
 
-function configureAlbertAutostart {
+function configureI3 {
+  mkdir -p ~/.config/i3
+  mkdir -p ~/.config/polybar
+  mkdir -p ~/.config/rofi
   
-cat <<EOT >> ~/.config/autostart/albert.desktop
-[Desktop Entry]
-Encoding=UTF-8
-Version=0.9.4
-Type=Application
-Name=Albert
-Comment=
-Exec=albert
-OnlyShowIn=XFCE;
-RunHook=0
-StartupNotify=false
-Terminal=false
-Hidden=false
-EOT
+  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/i3/config -O ~/.config/i3/config
+  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/polybar/colors -O ~/.config/polybar/colors
+  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/polybar/config -O ~/.config/polybar/config
+  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/polybar/launch.sh -O ~/.config/polybar/launch.sh
+  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/rofi/config -O ~/.config/rofi/config
+  
+  chmod +x ~/.config/polybar/launch.sh
+
+  # enables font glyphs
+  sudo rm -rf /etc/fonts/conf.d/70-no-bitmaps.conf
+}
+
+function configureKitty {
+  # mkdir -p ~/.config/kitty
+  
+  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/kitty/kitty.conf -O ~/.config/kitty/kitty/conf
 }
 
 function configureCapsLockToCtrl {

@@ -15,6 +15,10 @@ fi
 
 declare -A pairs=(
     [~/.config/i3/config]=./dotfiles/.config/i3/config
+    [~/.config/polybar/colors]=./dotfiles/.config/polybar/colors
+    [~/.config/polybar/config]=./dotfiles/.config/polybar/config
+    [~/.config/polybar/launch.sh]=./dotfiles/.config/polybar/launch.sh
+    [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
 )
 
 for KEY in "${!pairs[@]}"; do
@@ -25,11 +29,9 @@ for KEY in "${!pairs[@]}"; do
     VALUE_DIR=$(dirname $VALUE)
     
     if [ "$TYPE" == "up" ]; then
-        echo "Uploading $KEY to $VALUE"
         mkdir -p $VALUE_DIR
         cp $KEY $VALUE
     else
-        echo "Downloading $VALUE to $KEY"
         mkdir -p $KEY_DIR
         cp -vaR $VALUE $KEY
     fi

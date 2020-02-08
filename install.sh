@@ -20,6 +20,7 @@ TEMP_DIR=~/setup-temp
 EMAIL=lucax88x@gmail.com
 NERDFONT_VERSION=2.0.0
 FIRACODE_VERSION=2
+FONTAWESOME_VERSION=5.12.1
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
 
 mkdir -p $TEMP_DIR
@@ -79,6 +80,13 @@ if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
   installFuraCode
 else
   echo PATCHED FIRACODE ALREADY INSTALLED
+fi
+
+if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then
+  echo INSTALLING FONTAWESOME
+  installFontAwesome
+else
+  echo FONTAWESOME ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v gnome-tweaks)" ]; then
@@ -207,7 +215,7 @@ else
   echo DOCKER-COMPOSE ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v teams-for-linux)" ]; then
+if ! [ -x "$(command -v teams)" ]; then
   echo INSTALLING TEAMS
   installTeams
 else
@@ -242,6 +250,13 @@ else
   echo I3 ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v kitty)" ]; then
+  echo INSTALLING KITTY
+  installKitty
+else
+  echo KITTY ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
@@ -251,12 +266,19 @@ else
   echo GIT ALREADY CONFIGURED
 fi
 
-# if [ ! -f ~/.config/autostart/albert ]; then
-#   echo CONFIGURING ALBERT AUTOSTART
-#   configureAlbertAutostart
-# else
-#   echo ALBERT AUTOSTART ALREADY CONFIGURED
-# fi
+if [ ! -f ~/.config/polybar/launch.sh ]; then
+  echo CONFIGURING i3
+  configureI3
+else
+  echo i3 ALREADY CONFIGURED
+fi
+
+if [ ! -f ~/.config/kitty/kitty.conf ]; then
+  echo CONFIGURING KITTY
+  configureKitty
+else
+  echo KITTY ALREADY CONFIGURED
+fi
 
 if [ "$(grep -c XkbOptions /etc/X11/xorg.conf.d/00-keyboard.conf)" -eq 0 ]; then
   echo MAPPING CAPSLOCK TO CTRL
