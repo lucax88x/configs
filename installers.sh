@@ -157,10 +157,7 @@ function installChrome {
       apt-get -y install google-chrome-stable
     ;;
     MANJARO)
-      git clone https://aur.archlinux.org/google-chrome.git
-      cd google-chrome
-      makepkg -s --noconfirm
-      find google-chrome-*.tar.xz | sudo xargs yay -U --noconfirm
+      yay -S --noconfirm google-chrome
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -334,6 +331,10 @@ function installI3 {
   yay -Sy --noconfirm i3-battery-popup-git
 }
 
+function installDunst {
+  yay -Sy --noconfirm dunst
+}
+
 function installKitty {
   yay -Sy --noconfirm kitty
 }
@@ -363,6 +364,13 @@ function configureI3 {
 
   # enables font glyphs
   sudo rm -rf /etc/fonts/conf.d/70-no-bitmaps.conf
+}
+
+function configureDunst {
+  # mkdir -p ~/.config/dunst
+  
+  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/dunst/dunstrc -O ~/.config/dunst/dunstrc
+  
 }
 
 function configureKitty {

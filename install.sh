@@ -250,6 +250,13 @@ else
   echo I3 ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v dunst)" ]; then
+  echo INSTALLING DUNST
+  installDunst
+else
+  echo DUNST ALREADY INSTALLED
+fi
+
 if ! [ -x "$(command -v kitty)" ]; then
   echo INSTALLING KITTY
   installKitty
@@ -267,10 +274,17 @@ else
 fi
 
 if [ ! -f ~/.config/polybar/launch.sh ]; then
-  echo CONFIGURING i3
+  echo CONFIGURING I3
   configureI3
 else
-  echo i3 ALREADY CONFIGURED
+  echo I3 ALREADY CONFIGURED
+fi
+
+if [ ! -f ~/.config/dunst/dunstrc ]; then
+  echo CONFIGURING DUNST
+  configureDunst
+else
+  echo DUNST ALREADY CONFIGURED
 fi
 
 if [ ! -f ~/.config/kitty/kitty.conf ]; then

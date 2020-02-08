@@ -170,7 +170,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #####################
 ### i3lock ###
 ######################
-bindsym $mod+q exec $HOME/bin/lock
+bindsym $mod+q exec $HOME/bin/rofi_option_menu
+# bindsym $mod+q exec $HOME/bin/lock
 
 #####################
 ### i3 custom gaps ###

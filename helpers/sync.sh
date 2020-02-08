@@ -18,7 +18,12 @@ declare -A pairs=(
     [~/.config/polybar/colors]=./dotfiles/.config/polybar/colors
     [~/.config/polybar/config]=./dotfiles/.config/polybar/config
     [~/.config/polybar/launch.sh]=./dotfiles/.config/polybar/launch.sh
+    [~/.config/rofi/config.rasi]=./dotfiles/.config/rofi/config.rasi
+    [~/.config/rofi/options_menu.rasi]=./dotfiles/.config/rofi/options_menu.rasi
+    [~/.config/rofi/confirmation_dialog.rasi]=./dotfiles/.config/rofi/confirmation_dialog.rasi
+    [~/.config/dunst/dunstrc]=./dotfiles/.config/dunst/dunstrc
     [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
+    [~/bin/*]=./scripts
 )
 
 for KEY in "${!pairs[@]}"; do
@@ -36,3 +41,7 @@ for KEY in "${!pairs[@]}"; do
         cp -vaR $VALUE $KEY
     fi
 done
+
+if [ "$TYPE" == "down" ]; then
+    chmod +x ~/bin -R
+fi

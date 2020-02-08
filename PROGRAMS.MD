@@ -47,6 +47,11 @@ ripgrep
 
 tldr
 
+## audio
+
+alsamixer
+pavucontrol
+
 ## to be inspired i3
 
 [https://github.com/ntcarlson/dotfiles](https://github.com/ntcarlson/dotfiles)
