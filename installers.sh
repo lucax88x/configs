@@ -322,6 +322,10 @@ function installI3 {
 
   # used for lock
   yay -Sy --noconfirm scrot
+  # used for overall opacity
+  yay -Sy --noconfirm picom
+  # used for overall system-monitor
+  yay -Sy --noconfirm conky
   # status bar
   yay -Sy --noconfirm polybar
   # launcher

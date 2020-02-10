@@ -20,9 +20,11 @@ declare -A pairs=(
     [~/.config/polybar/launch.sh]=./dotfiles/.config/polybar/launch.sh
     [~/.config/rofi/config.rasi]=./dotfiles/.config/rofi/config.rasi
     [~/.config/rofi/options_menu.rasi]=./dotfiles/.config/rofi/options_menu.rasi
-    [~/.config/rofi/confirmation_dialog.rasi]=./dotfiles/.config/rofi/confirmation_dialog.rasi
+    [~/.config/rofi/confirm_menu.rasi]=./dotfiles/.config/rofi/confirm_menu.rasi
     [~/.config/dunst/dunstrc]=./dotfiles/.config/dunst/dunstrc
     [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
+    [~/.config/picom/picom.conf]=./dotfiles/.config/picom/picom.conf
+    [~/.conkyrc]=./dotfiles/.conkyrc
     [~/bin/*]=./scripts
 )
 

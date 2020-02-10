@@ -106,10 +106,10 @@ bindsym $mod+a focus parent
 ######################
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1-chat"
-set $ws2 "2-ide"
-set $ws3 "3-terminal"
-set $ws4 "4-browser"
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
 
 workspace $ws1 output $laptop_monitor
 workspace $ws2 output $center_monitor
@@ -170,7 +170,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #####################
 ### i3lock ###
 ######################
-bindsym $mod+q exec $HOME/bin/rofi_option_menu
+bindsym $mod+q exec $HOME/bin/rofi-option-menu
 
 #####################
 ### greenclip ###
@@ -180,12 +180,12 @@ bindsym Shift+$mod+v exec "rofi -modi 'clipboard:greenclip print' -show clipboar
 #####################
 ### i3 custom gaps ###
 ######################
-for_window [class=".*"] border pixel 3
+for_window [class=".*"] border-left pixel 1
 
 #####################
 ### Set background ###
 ######################
-exec --no-startup-id feh --bg-fill ~/backgrounds/mountain.jpg
+exec --no-startup-id feh --bg-fill ~/backgrounds/background.jpg
 
 #####################
 ### Launch Polybar ###
@@ -196,7 +196,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 ### Theme ###
 ######################
 # colour of border, background, text, indicator, and child_border
-client.focused              #202020 #202020 #c0b18b #202020 #202020
+client.focused              #c0b18b #c0b18b #202020 #c0b18b #c0b18b
 client.focused_inactive     #2f2f2f #2f2f2f #c0b18b #2f2f2f #2f2f2f
 client.unfocused            #2f2f2f #2f2f2f #c0b18b #2f2f2f #2f2f2f
 client.urgent               #2f2f2f #2f2f2f #c0b18b #2f2f2f #2f2f2f
@@ -216,3 +216,8 @@ for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Previe
 ### Battery popup ###
 ######################
 exec --no-startup-id i3-battery-popup -n
+
+#####################
+### Picom ###
+######################
+picom --config /home/lucatrazzi/.config/picom/picom.conf -b

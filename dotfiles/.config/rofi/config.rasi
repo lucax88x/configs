@@ -9,6 +9,8 @@ configuration {
     background:                     #202020;
     background-alt:                 #2f2f2f;
     text-color:                     #c0b18b;
+    foreground:                     #c0b18b;
+    border-color:                   #c0b18b;
     primary:                        #268BD2;
     urgent:                         #bd2c40;
 }
@@ -23,6 +25,7 @@ window {
 
 mainbox {
     children:                       [ entry, listview, message ];
+    border:                         1px;
 }
 
 entry {
@@ -46,15 +49,15 @@ element normal.urgent, element alternate.urgent {
 
 element normal.active, element alternate.active {
     background-color:               @background-alt;
-    border:                         4px 4px solid 4px 4px;
-    border-radius:                  8;
+    border:                         0px 0px solid 4px 0px;
+    border-radius:                  0;
     border-color:                   transparent;
 }
 
 element selected {
-    border:                         4px 4px solid 4px 4px;
-    border-radius:                  8;
-    border-color:                   @primary;
+    border:                         0px 0px solid 4px 0px;
+    border-radius:                  0;
+    border-color:                   @border-color;
 }
 
 element selected.urgent {
@@ -67,7 +70,7 @@ element selected.active {
 
 element-icon {
     border:                         1px;
-    border-color:                   @primary;
+    border-color:                   @border-color;
     border-radius:                  5;
     padding:                        6px;
 }

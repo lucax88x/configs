@@ -1,26 +1,26 @@
 configuration {
     theme:                          "config";
     show-icons:                     false;
-    font:                           "Font Awesome 16";
+    font:                           "Font Awesome 72";
 }
 
 window {
-    height:                         50%;
-    width:                          50%;
+    height:                         150px;
+    width:                          230px;
     x-offset:                       -16;
     y-offset:                       16;
 }
 
 mainbox {
     children:                       [listview]; /* No text entry */
-    border:                         4px;
-    border-color:                   @primary;
-    padding:                        12px;
+    border:                         1px;
+    border-color:                   @border-color;
 }
 
 listview {
     layout:                         horizontal;
     spacing:                        15px;
+    padding:                        15px 15px;
 }
 
 element-text {
@@ -28,7 +28,7 @@ element-text {
     vertical-align:                 0.5;
     margin:                         5px;
     border:                         0px;
-    border-color:                   @primary;
+    border-color:                   @border-color;
     border-radius:                  5;
     padding:                        12px 0px 6px;
     width:                          75px;

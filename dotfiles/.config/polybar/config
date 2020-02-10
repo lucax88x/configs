@@ -25,6 +25,7 @@ foreground = ${colors.foreground}
 line-color = ${colors.linecolor}
 underline-size = 1
 overline-size = 2
+line-size = 10
 
 border-bottom-size = 2
 border-bottom-color = ${colors.bordercolor}
@@ -108,7 +109,7 @@ label-focused-padding = 2
 label-unfocused = %index%
 label-unfocused-padding = 2
 
-label-urgent = %name%!
+label-urgent = %name% 
 label-urgent-background = ${colors.urgent}
 label-urgent-padding = 2
 
@@ -121,6 +122,7 @@ interval = 2
 label = %percentage%%
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.underline}
 
 [module/memory]
 type = internal/memory
@@ -128,6 +130,7 @@ interval = 2
 label = %percentage_used%%
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.underline}
 
 [module/wifi]
 type = internal/network
@@ -138,19 +141,20 @@ interval = 3.0
 format-connected = <ramp-signal> <label-connected>
 format-connected-prefix = 
 format-connected-prefix-foreground = ${colors.foreground}
-format-connected-prefix-offset = -6
-label-connected = %essid:8%
+format-connected-underline = ${colors.underline}
+label-connected = %essid:8% %upspeed:2% %downspeed:2%
 
 format-disconnected = <label-disconnected>
 format-disconnected-prefix = " "
 format-disconnected-prefix-foreground = ${colors.foreground}
+format-disconnected-underline = ${colors.underline}
 label-disconnected = not connected
 label-disconnected-foreground = ${colors.foreground}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
-ramp-signal-3 = 
+ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground}
 
@@ -160,9 +164,12 @@ type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-prefix = " "
+format-underline = ${colors.underline}
+
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground}
-label-connected = %local_ip%
+label-connected = %local_ip% %upspeed:2% %downspeed:2%
+
 
 [module/date]
 type = internal/date
@@ -170,17 +177,19 @@ label = %{F${colors.foreground}%{F-} %date%  %{F#${colors.foreground}%{F-}
 date = %m-%d
 time = %H:%M
 interval = 5
+format-underline = ${colors.underline}
 
 [module/battery]
 type = internal/battery
 full-at = 98
-time-format = %H:%M
 
 format-charging = <animation-charging> <label-charging>
-label-charging = %percentage%% %time%
+format-charging-underline = ${colors.underline}
+label-charging = %percentage%%
 
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = %percentage%% %time%
+format-discharging-underline = ${colors.underline}
+label-discharging = %percentage%%
 
 format-full = <label-full>
 format-full-prefix = " "
@@ -188,7 +197,7 @@ format-full-prefix-foreground = ${colors.foreground}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground}
 
 animation-charging-0 = 
@@ -206,11 +215,13 @@ label-maxlen = 75
 type = internal/pulseaudio
 
 format-volume = <label-volume>
+format-volume-underline = ${colors.underline}
 label-volume =  %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = 
 label-muted-foreground = ${colors.foreground}
+format-muted-underline = ${colors.underline}
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
