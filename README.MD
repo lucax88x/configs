@@ -9,3 +9,7 @@ sh install.sh MANJARO/UBUNTU
 ```
 
 **DO NOT RUN AS SUDO!**
+
+# Gallery
+
+![https://imgur.com/Dzse3aV](https://i.imgur.com/Dzse3aV.png)
