@@ -220,4 +220,4 @@ exec --no-startup-id i3-battery-popup -n
 #####################
 ### Picom ###
 ######################
-picom --config /home/lucatrazzi/.config/picom/picom.conf -b
+exec_always picom -b
