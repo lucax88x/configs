@@ -25,6 +25,7 @@ declare -A pairs=(
     [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
     [~/.config/picom/picom.conf]=./dotfiles/.config/picom/picom.conf
     [~/.conkyrc]=./dotfiles/.conkyrc
+    [~/.gitconfig]=./dotfiles/.gitconfig
     [~/bin/*]=./scripts
 )
 

@@ -348,7 +348,7 @@ function installKitty {
 ## CONFIGURATION
 
 function configureGit {
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/.gitconfig -O ~/.gitconfig
+  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.gitconfig -O ~/.gitconfig
   
   ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C $EMAIL -P ""
   eval "$(ssh-agent -s)"
