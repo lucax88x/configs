@@ -99,19 +99,6 @@ function installFontAwesome {
   echo MANUALLY INSTALL FONTAWESOME 5 PRO!
 }
 
-function installGnomeTweaks {
-  
-  case $DISTRO in
-    UBUNTU)
-      add-apt-repository universe
-      apt -y install gnome-tweak-tool
-    ;;
-    *)
-      echo NOT IMPLEMENTED!
-    ;;
-  esac
-}
-
 function installLsd {
   sudo snap install lsd --devmode
 }
@@ -189,26 +176,6 @@ function installJetbrainsToolbox {
   ./$JETBRAINS_TOOLBOX/jetbrains-toolbox
 }
 
-function installAlbert {
-  
-  case $DISTRO in
-    UBUNTU)
-      curl https://build.opensuse.org/projects/home:manuelschneid3r/public_key | apt-key add -
-      
-      sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_$UBUNTU_VERSION/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list"
-      apt-get update > /dev/null
-      apt-get -y install albert
-      
-    ;;
-    MANJARO)
-      yay -S --noconfirm albert
-    ;;
-    *)
-      echo NOT IMPLEMENTED!
-    ;;
-  esac
-}
-
 function installTelegram {
   
   case $DISTRO in
@@ -219,23 +186,6 @@ function installTelegram {
     ;;
     MANJARO)
       yay -S --noconfirm telegram-desktop
-    ;;
-    *)
-      echo NOT IMPLEMENTED!
-    ;;
-  esac
-}
-
-function installDiodon {
-  
-  case $DISTRO in
-    UBUNTU)
-      add-apt-repository -y ppa:diodon-team/stable
-      apt-get update > /dev/null
-      apt-get -y install diodon
-    ;;
-    MANJARO)
-      echo NOT SUPPORTED!
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -336,6 +286,8 @@ function installI3 {
   # background
   yay -Sy --noconfirm feh
   yay -Sy --noconfirm i3-battery-popup-git
+  # 
+  yay -Sy --noconfirm sway
 }
 
 function installDunst {
@@ -374,16 +326,16 @@ function configureI3 {
 }
 
 function configureDunst {
-  # mkdir -p ~/.config/dunst
+  mkdir -p ~/.config/dunst
   
   wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/dunst/dunstrc -O ~/.config/dunst/dunstrc
   
 }
 
 function configureKitty {
-  # mkdir -p ~/.config/kitty
+  mkdir -p ~/.config/kitty
   
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/kitty/kitty.conf -O ~/.config/kitty/kitty/conf
+  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/kitty/kitty.conf -O ~/.config/kitty/kitty.conf
 }
 
 function configureCapsLockToCtrl {

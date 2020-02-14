@@ -50,6 +50,7 @@ bindsym $mod+Shift+q kill
 
 # start rofi
 bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
+bindsym $altMod+Tab exec "rofi -combi window -show"
 
 # change focus
 bindsym $mod+$left focus left

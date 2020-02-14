@@ -89,13 +89,6 @@ else
   echo FONTAWESOME ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v gnome-tweaks)" ]; then
-  echo INSTALLING GNOME-TWEAKS-TOOL
-  installGnomeTweaks
-else
-  echo GNOME-TWEAKS-TOOL ALREADY INSTALLED
-fi
-
 if ! [ -x "$(command -v lsd)" ]; then
   echo INSTALLING LSD
   installLsd
@@ -138,25 +131,11 @@ else
   echo JETBRAINS TOOLBOX ALREADY INSTALLED
 fi
 
-# if ! [ -x "$(command -v albert)" ]; then
-#   echo INSTALLING ALBERT
-#   installAlbert
-# else
-#   echo ALBERT ALREADY INSTALLED
-# fi
-
 if ! [ -x "$(command -v telegram-desktop)" ]; then
   echo INSTALLING TELEGRAM
   installTelegram
 else
   echo TELEGRAM ALREADY INSTALLED
-fi
-
-if ! [ -x "$(command -v diodon)" ]; then
-  echo INSTALLING DIODON
-  installDiodon
-else
-  echo DIODON ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v bd)" ]; then
