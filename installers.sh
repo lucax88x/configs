@@ -299,7 +299,7 @@ function installDockerCompose {
 }
 
 function installTeams {
-  yay install -y teams
+  yay -Sy --noconfirm teams
 }
 
 function installKubectl {
@@ -317,7 +317,7 @@ function installEmacs {
 }
 
 function installI3 {
-  yay -Sy --noconfirm i3-gaps
+  yay -Sy --noconfirm i3
   yay -Sy --noconfirm i3lock
 
   # used for lock
@@ -332,6 +332,7 @@ function installI3 {
   yay -Sy --noconfirm rofi
   # clipboard manager
   yay -Sy --noconfirm rofi-greenclip
+  systemctl --user enable greenclip.service
   # background
   yay -Sy --noconfirm feh
   yay -Sy --noconfirm i3-battery-popup-git

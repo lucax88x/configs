@@ -15,7 +15,12 @@
 
 ## system monitoring
 
+- ytop
 - htop
+
+## network monitoring
+
+- termshark
 
 ## file system
 
@@ -56,6 +61,15 @@ tldr
 alsamixer
 pavucontrol
 
-## to be inspired i3
+## docker
 
-[https://github.com/ntcarlson/dotfiles](https://github.com/ntcarlson/dotfiles)
+dive
+
+## interactive piping
+
+up
+
+## k8s
+
+k9s
+kubebox

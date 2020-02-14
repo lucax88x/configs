@@ -14,7 +14,7 @@ margin-bottom = 0
 
 [bar/center]
 enable-ipc = true
-monitor = DP-3.1
+monitor = DP-5
 bottom = true
 width = 100%
 height = 24
@@ -85,6 +85,11 @@ modules-right = date
 wm-restack = ${bar/center.wm-restack}
 
 tray-position = none
+
+[bar/left]
+inherit = bar/center
+monitor = DP-3.1
+
 
 [module/i3]
 type = internal/i3

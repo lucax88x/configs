@@ -8,7 +8,8 @@
 set $mod Mod4
 set $altMod Mod1
 set $laptop_monitor DP-4
-set $center_monitor DP-3.1
+set $left_monitor DP-3.1
+set $center_monitor DP-5
 set $right_monitor DP-3.2
 
 font pango: FiraCode 6
@@ -106,17 +107,25 @@ bindsym $mod+a focus parent
 ######################
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1 "
+# chat
+set $ws1 "1 " 
+# ide
 set $ws2 "2 "
+# terminal
 set $ws3 "3 "
+# browser
 set $ws4 "4 "
+# virtualbox
 set $ws5 "5 "
+# monitoring
+set $ws6 "6 "
 
-workspace $ws1 output $laptop_monitor
+workspace $ws1 output $left_monitor
 workspace $ws2 output $center_monitor
-workspace $ws5 output $center_monitor
-workspace $ws3 output $right_monitor
+workspace $ws3 output $left_monitor
 workspace $ws4 output $right_monitor
+workspace $ws5 output $center_monitor
+workspace $ws6 output $laptop_monitor
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -124,6 +133,7 @@ bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -131,6 +141,7 @@ bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
 
 
 #####################
