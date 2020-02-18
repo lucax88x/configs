@@ -252,49 +252,15 @@ else
   echo GIT ALREADY CONFIGURED
 fi
 
-if [ ! -f ~/.config/polybar/launch.sh ]; then
-  echo CONFIGURING I3
-  configureI3
-else
-  echo I3 ALREADY CONFIGURED
-fi
-
-if [ ! -f ~/.config/dunst/dunstrc ]; then
-  echo CONFIGURING DUNST
-  configureDunst
-else
-  echo DUNST ALREADY CONFIGURED
-fi
-
-if [ ! -f ~/.config/kitty/kitty.conf ]; then
-  echo CONFIGURING KITTY
-  configureKitty
-else
-  echo KITTY ALREADY CONFIGURED
-fi
-
-if [ "$(grep -c XkbOptions /etc/X11/xorg.conf.d/00-keyboard.conf)" -eq 0 ]; then
-  echo MAPPING CAPSLOCK TO CTRL
-  configureCapsLockToCtrl
-else
-  echo CAPSLOCK TO CTRL ALREADY MAPPED
-fi
-
 rm -rf $TEMP_DIR
 
 echo Purged temp folder
-
-echo TODO:
-echo - set rights to updated config files
-echo - install rider with jetbrains toolbox
-echo '- setup shortcuts (for terminal, etc)'
-echo xfce4-popup-clipman shift+ctrl+v
 
 echo REMEMBER TO:
 echo - update all packages and the system
 echo - register ssh public key to github
 echo - install vscode settings by using extension 'setting sync'
-echo - copy scripts in ~/bin and set them as executable
 echo - install node with nvm
 echo '- disable alt+space shortcut (https://unix.stackexchange.com/questions/44643/change-global-keyboard-shortcuts)'
+echo '- sync dotfiles'
 echo - reboot

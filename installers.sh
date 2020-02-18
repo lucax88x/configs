@@ -222,9 +222,6 @@ function installSublimeMerge {
 
 function installDotnetSdk {
   yay -Sy --noconfirm dotnet-runtime
-  
-  wget https://dot.net/v1/dotnet-install.sh -O $TEMP_DIR/dotnet-install.sh
-  sudo $TEMP_DIR/dotnet-install.sh --install-dir /opt/dotnet -channel Current -version latest
 }
 
 function installNode {
@@ -286,8 +283,6 @@ function installI3 {
   # background
   yay -Sy --noconfirm feh
   yay -Sy --noconfirm i3-battery-popup-git
-  # 
-  yay -Sy --noconfirm sway
 }
 
 function installDunst {
@@ -301,44 +296,7 @@ function installKitty {
 ## CONFIGURATION
 
 function configureGit {
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.gitconfig -O ~/.gitconfig
-  
   ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C $EMAIL -P ""
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_rsa
-}
-
-function configureI3 {
-  mkdir -p ~/.config/i3
-  mkdir -p ~/.config/polybar
-  mkdir -p ~/.config/rofi
-  
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/i3/config -O ~/.config/i3/config
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/polybar/colors -O ~/.config/polybar/colors
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/polybar/config -O ~/.config/polybar/config
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/polybar/launch.sh -O ~/.config/polybar/launch.sh
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/rofi/config -O ~/.config/rofi/config
-  
-  chmod +x ~/.config/polybar/launch.sh
-
-  # enables font glyphs
-  sudo rm -rf /etc/fonts/conf.d/70-no-bitmaps.conf
-}
-
-function configureDunst {
-  mkdir -p ~/.config/dunst
-  
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/dunst/dunstrc -O ~/.config/dunst/dunstrc
-  
-}
-
-function configureKitty {
-  mkdir -p ~/.config/kitty
-  
-  wget https://raw.githubusercontent.com/lucax88x/configs/master/dotfiles/.config/kitty/kitty.conf -O ~/.config/kitty/kitty.conf
-}
-
-function configureCapsLockToCtrl {
-  # - https://forum.manjaro.org/t/remap-capslock-to-control/57705
-  sudo sed -i 's/EndSection/    Option "XkbOptions" " ctrl:nocaps"\r\nEndSection/g' /etc/X11/xorg.conf.d/00-keyboard.conf
 }

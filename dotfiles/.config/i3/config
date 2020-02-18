@@ -8,8 +8,8 @@
 set $mod Mod4
 set $altMod Mod1
 set $laptop_monitor DP-4
-set $left_monitor DP-3.1
-set $center_monitor DP-5
+set $left_monitor DP-5
+set $center_monitor DP-3.1
 set $right_monitor DP-3.2
 
 font pango: FiraCode 6

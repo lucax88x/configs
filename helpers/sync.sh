@@ -26,6 +26,7 @@ declare -A pairs=(
     [~/.config/picom/picom.conf]=./dotfiles/.config/picom/picom.conf
     [~/.conkyrc]=./dotfiles/.conkyrc
     [~/.gitconfig]=./dotfiles/.gitconfig
+    [~/.Xmodmap]=./dotfiles/.Xmodmap
     [~/bin/*]=./scripts
 )
 

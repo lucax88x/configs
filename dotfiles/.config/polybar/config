@@ -14,7 +14,7 @@ margin-bottom = 0
 
 [bar/center]
 enable-ipc = true
-monitor = DP-5
+monitor = DP-3.1
 bottom = true
 width = 100%
 height = 24
@@ -88,7 +88,7 @@ tray-position = none
 
 [bar/left]
 inherit = bar/center
-monitor = DP-3.1
+monitor = DP-5
 
 
 [module/i3]
