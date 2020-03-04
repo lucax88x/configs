@@ -90,6 +90,9 @@ tray-position = none
 inherit = bar/center
 monitor = DP-5
 
+[bar/home]
+inherit = bar/center
+monitor = DP-3
 
 [module/i3]
 type = internal/i3

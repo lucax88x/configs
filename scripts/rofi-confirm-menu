@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ICON="$1"
-CANCEL_ICON=""
-CONFIRM_ICON=""
+CANCEL_ICON="No "
+CONFIRM_ICON="Ok "
 
 case "$(echo -e "$CANCEL_ICON\n$CONFIRM_ICON" | rofi -dmenu -theme confirm_menu -mesg "$ICON")" in
     $CANCEL_ICON$)  exit 1;;

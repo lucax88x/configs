@@ -14,35 +14,51 @@ if [ "$CONT" = "n" ]; then
 fi
 
 declare -A pairs=(
-    [~/.config/i3/config]=./dotfiles/.config/i3/config
-    [~/.config/polybar/colors]=./dotfiles/.config/polybar/colors
-    [~/.config/polybar/config]=./dotfiles/.config/polybar/config
-    [~/.config/polybar/launch.sh]=./dotfiles/.config/polybar/launch.sh
-    [~/.config/rofi/config.rasi]=./dotfiles/.config/rofi/config.rasi
-    [~/.config/rofi/options_menu.rasi]=./dotfiles/.config/rofi/options_menu.rasi
-    [~/.config/rofi/confirm_menu.rasi]=./dotfiles/.config/rofi/confirm_menu.rasi
-    [~/.config/dunst/dunstrc]=./dotfiles/.config/dunst/dunstrc
-    [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
-    [~/.config/picom/picom.conf]=./dotfiles/.config/picom/picom.conf
-    [~/.conkyrc]=./dotfiles/.conkyrc
-    [~/.gitconfig]=./dotfiles/.gitconfig
-    [~/.Xmodmap]=./dotfiles/.Xmodmap
-    [~/bin/*]=./scripts
+    # [~/.config/i3/config]=./dotfiles/.config/i3/config
+    # [~/.config/polybar/colors]=./dotfiles/.config/polybar/colors
+    # [~/.config/polybar/config]=./dotfiles/.config/polybar/config
+    # [~/.config/polybar/launch.sh]=./dotfiles/.config/polybar/launch.sh
+    # [~/.config/rofi/config.rasi]=./dotfiles/.config/rofi/config.rasi
+    # [~/.config/rofi/options_menu.rasi]=./dotfiles/.config/rofi/options_menu.rasi
+    # [~/.config/rofi/confirm_menu.rasi]=./dotfiles/.config/rofi/confirm_menu.rasi
+    # [~/.config/dunst/dunstrc]=./dotfiles/.config/dunst/dunstrc
+    # [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
+    # [~/.config/picom/picom.conf]=./dotfiles/.config/picom/picom.conf
+    # [~/.conkyrc]=./dotfiles/.conkyrc
+    # [~/.gitconfig]=./dotfiles/.gitconfig
+    # [~/.Xmodmap]=./dotfiles/.Xmodmap
+    [~/bin/]=./scripts/
 )
+
+function sync()
+{
+    FROM=$1
+    TO=$2
+
+    FROM_DIR=$(dirname $FROM)
+    TO_DIR=$(dirname $TO)
+
+    if [ -d "$FROM" ]; then  
+        mkdir -p $TO
+        rsync -auv $FROM $TO
+        # cp -vaR $FROM/* $TO
+    else
+        mkdir -p $TO_DIR
+        rsync -auv $FROM $TO
+        # cp -vaR $FROM $TO
+    fi
+}
 
 for KEY in "${!pairs[@]}"; do
     VALUE="${pairs[$KEY]}"
 
-    
     KEY_DIR=$(dirname $KEY)
     VALUE_DIR=$(dirname $VALUE)
     
     if [ "$TYPE" == "up" ]; then
-        mkdir -p $VALUE_DIR
-        cp $KEY $VALUE
+        sync $KEY $VALUE
     else
-        mkdir -p $KEY_DIR
-        cp -vaR $VALUE $KEY
+        sync $VALUE $KEY
     fi
 done
 

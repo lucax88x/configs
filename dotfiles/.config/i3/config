@@ -11,6 +11,7 @@ set $laptop_monitor DP-4
 set $left_monitor DP-5
 set $center_monitor DP-3.1
 set $right_monitor DP-3.2
+set $home_monitor DP-3
 
 font pango: FiraCode 6
 
@@ -34,9 +35,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
-set $up i
-set $down k
-set $left j
+set $up k
+set $down j
+set $left h
 set $right l
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -77,7 +78,7 @@ bindsym $mod+Shift+$right move right
 # bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+g split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -121,11 +122,11 @@ set $ws5 "5 "
 # monitoring
 set $ws6 "6 "
 
-workspace $ws1 output $left_monitor
-workspace $ws2 output $center_monitor
-workspace $ws3 output $left_monitor
-workspace $ws4 output $right_monitor
-workspace $ws5 output $center_monitor
+workspace $ws1 output $left_monitor $home_monitor
+workspace $ws2 output $center_monitor $home_monitor
+workspace $ws3 output $left_monitor $home_monitor
+workspace $ws4 output $right_monitor $home_monitor
+workspace $ws5 output $center_monitor $home_monitor
 workspace $ws6 output $laptop_monitor
 
 # switch to workspace
@@ -196,7 +197,8 @@ bindsym Shift+$mod+v exec "rofi -modi 'clipboard:greenclip print' -show clipboar
 #####################
 ### i3 custom gaps ###
 ######################
-for_window [class=".*"] border-left pixel 1
+for_window [class=".*"] border pixel 1
+hide_edge_borders smart
 
 #####################
 ### Set background ###

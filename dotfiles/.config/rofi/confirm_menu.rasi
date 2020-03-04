@@ -1,12 +1,12 @@
 configuration {
     theme:                          "config";
     show-icons:                     false;
-    font:                           "Font Awesome 72";
+    font:                           "Font Awesome 36";
 }
 
 window {
-    height:                         150px;
-    width:                          230px;
+    height:                         170px;
+    width:                          170px;
     x-offset:                       -16;
     y-offset:                       16;
 }
@@ -18,7 +18,7 @@ mainbox {
 }
 
 listview {
-    layout:                         horizontal;
+    layout:                         vertical;
     spacing:                        15px;
     padding:                        15px 15px;
 }
