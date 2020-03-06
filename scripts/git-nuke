@@ -7,8 +7,15 @@
 # remove from origin.
 #
 
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
+
+
 if [ -z $1 ] ; then
-    echo "Branch Needed";
+    echo "${RED}Branch Needed"
+    echo "${RESET}Use one of the following";
+    git branch | xargs -L 1 echo
     exit 1
 fi
 
@@ -21,16 +28,17 @@ fi
 
 if git show-branch "$1" > /dev/null 2>&1
 then
+    echo "${GREEN}Deleting local $1"
     git branch -D "$1"
 else
-    echo "No local branch to delete"
+    echo "${RED}No local branch to delete"
 fi
 
 git remote prune origin
 if git show-branch "origin/$1" > /dev/null 2>&1
 then
-    echo "Deleting remote $1 ..."
+    echo "${GREEN}Deleting remote $1"
     git push origin ":$1"
 else
-    echo "No remote branch to delete"
+    echo "${RED}No remote branch to delete"
 fi
