@@ -94,7 +94,8 @@
 	hash = rev-parse HEAD
 
 	# flush = !sh -c "git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
-	flush = "!git branch | grep -v "master" | xargs git branch -D"
+	nuke = !sh -c 'git-nuke' -
+	flush = "!git branch --no-merged | grep -v 'master|develop' | xargs -n 1 git nuke"
 
 
 	# ignoring

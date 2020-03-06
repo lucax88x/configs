@@ -178,7 +178,6 @@ format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip% %upspeed:2% %downspeed:2%
 
-
 [module/date]
 type = internal/date
 label = %{F${colors.foreground}%{F-} %date%  %{F#${colors.foreground}%{F-} %time%
@@ -205,7 +204,7 @@ format-full-prefix-foreground = ${colors.foreground}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground}
 
 animation-charging-0 = 
