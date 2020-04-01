@@ -150,14 +150,12 @@ format-connected = <ramp-signal> <label-connected>
 format-connected-prefix = 
 format-connected-prefix-foreground = ${colors.foreground}
 format-connected-underline = ${colors.underline}
-label-connected = %essid:8% %upspeed:2% %downspeed:2%
+label-connected = %essid:8% %local_ip% %upspeed:2% %downspeed:2%
 
-format-disconnected = <label-disconnected>
-format-disconnected-prefix = " "
-format-disconnected-prefix-foreground = ${colors.foreground}
+format-disconnected = 
 format-disconnected-underline = ${colors.underline}
-label-disconnected = not connected
-label-disconnected-foreground = ${colors.foreground}
+label-disconnected = 
+label-disconnected-foreground = ${colors.urgent}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -177,6 +175,11 @@ format-underline = ${colors.underline}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip% %upspeed:2% %downspeed:2%
+
+format-disconnected = 
+format-disconnected-underline = ${colors.underline}
+label-disconnected = 
+label-disconnected-foreground = ${colors.urgent}
 
 [module/date]
 type = internal/date

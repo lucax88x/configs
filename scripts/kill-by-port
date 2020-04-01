@@ -2,5 +2,8 @@
 
 if [[ -n "$1" ]]
     then
-        kill $(lsof -t -i:$1)
+        PIDS=$(lsof -t -i:$1)
+        for pid in $PIDS; do 
+            kill -9 $pid
+        done
 fi

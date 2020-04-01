@@ -1,38 +1,16 @@
 configuration {
     theme:                          "config";
     show-icons:                     false;
-    font:                           "Font Awesome 36";
+    font:                           "Font Awesome 50";
 }
+
+@import "./options_menu.rasi"
 
 window {
-    height:                         170px;
-    width:                          170px;
-    x-offset:                       -16;
-    y-offset:                       16;
+    height:                         110px;
+    width:                          415px;
 }
-
-mainbox {
-    children:                       [listview]; /* No text entry */
-    border:                         1px;
-    border-color:                   @border-color;
-}
-
-listview {
-    layout:                         vertical;
-    spacing:                        15px;
-    padding:                        15px 15px;
-}
-
-element-text {
-    horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    margin:                         5px;
-    border:                         0px;
-    border-color:                   @border-color;
-    border-radius:                  5;
-    padding:                        12px 0px 6px;
-    width:                          75px;
-}
+    
 element {
-    padding:                        0px;
+    width:                          200px;
 }
