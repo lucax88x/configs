@@ -28,6 +28,7 @@ declare -A pairs=(
     [~/.gitconfig]=./dotfiles/.gitconfig
     [~/.Xmodmap]=./dotfiles/.Xmodmap
     [~/bin/]=./scripts/
+    [~/.doom.d]=./dotfiles/.doom.d/
 )
 
 function sync()
