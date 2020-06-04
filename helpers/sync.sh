@@ -24,6 +24,7 @@ declare -A pairs=(
     [~/.config/dunst/dunstrc]=./dotfiles/.config/dunst/dunstrc
     [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
     [~/.config/picom/picom.conf]=./dotfiles/.config/picom/picom.conf
+    [~/.config/nvim]=./dotfiles/.config/nvim
     [~/.conkyrc]=./dotfiles/.conkyrc
     [~/.gitconfig]=./dotfiles/.gitconfig
     [~/.Xmodmap]=./dotfiles/.Xmodmap
@@ -39,7 +40,7 @@ function sync()
     FROM_DIR=$(dirname $FROM)
     TO_DIR=$(dirname $TO)
 
-    if [ -d "$FROM" ]; then  
+    if [ -d "$FROM" ]; then
         mkdir -p $TO
         rsync -auv $FROM $TO
     else
@@ -53,7 +54,7 @@ for KEY in "${!pairs[@]}"; do
 
     KEY_DIR=$(dirname $KEY)
     VALUE_DIR=$(dirname $VALUE)
-    
+
     if [ "$TYPE" == "up" ]; then
         sync $KEY $VALUE
     else

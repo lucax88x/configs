@@ -1,15 +1,15 @@
 ## GLOBAL SOFTWARE
 
 function installSnap {
-  
+
   case $DISTRO in
     MANJARO)
       yay -Sy --noconfirm snapd
       sudo systemctl enable --now snapd.socket
-      
+
       echo Either log out and back in again, or restart your system, to ensure snap’s paths are updated correctly.
       echo Once done, restart the script!
-      
+
       exit 1
     ;;
     *)
@@ -19,7 +19,7 @@ function installSnap {
 }
 
 function installYay {
-  
+
   case $DISTRO in
     MANJARO)
       git clone https://aur.archlinux.org/yay.git
@@ -45,7 +45,7 @@ function installCurl {
 }
 
 function installGit {
-  
+
   case $DISTRO in
     UBUNTU)
       apt-get update > /dev/null
@@ -61,7 +61,7 @@ function installGit {
 }
 
 function installGitFlow {
-  
+
   case $DISTRO in
     MANJARO)
       yay -S --noconfirm gitflow-avh
@@ -76,25 +76,25 @@ function installGitFlow {
 
 function installFiraCode {
   wget https://github.com/tonsky/FiraCode/releases/download/$FIRACODE_VERSION/FiraCode_$FIRACODE_VERSION.zip -O $TEMP_DIR/FiraCode.zip
-  
+
   unzip $TEMP_DIR/FiraCode.zip -d ~/.fonts
-  
+
   fc-cache
 }
 
 function installFuraCode {
   wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip -O $TEMP_DIR/FuraCode.zip
-  
+
   unzip $TEMP_DIR/FuraCode.zip -d ~/.fonts
-  
+
   fc-cache
 }
 
 function installFontAwesome {
   # wget https://github.com/FortAwesome/Font-Awesome/releases/download/$FONTAWESOME_VERSION/fontawesome-free-$FONTAWESOME_VERSION-desktop.zip -O $TEMP_DIR/FontAwesome.zip
-  
+
   # unzip $TEMP_DIR/FontAwesome.zip -d ~/.fonts
-  
+
   # fc-cache
   echo MANUALLY INSTALL FONTAWESOME 5 PRO!
 }
@@ -104,12 +104,12 @@ function installLsd {
 }
 
 function installZsh {
-  
+
   case $DISTRO in
     UBUNTU)
       apt-get update > /dev/null
       apt-get -y install zsh
-      
+
       chmod a+x /usr/bin/chsh
       chsh -s $(which zsh)
     ;;
@@ -122,20 +122,20 @@ function installZsh {
 function installOhMyZsh {
   # echo TELL YES TO CHANGE TO SHELL AND THEN EXIT!
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')"
-  
+
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-  
+
   git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
   git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
   git clone https://github.com/buonomo/yarn-completion ~/.oh-my-zsh/custom/plugins/yarn-completion
-  
+
   wget https://raw.githubusercontent.com/lucax88x/configs/master/.p10k.zsh -O ~/.p10k.zsh
   wget https://raw.githubusercontent.com/lucax88x/configs/master/.zshrc -O ~/.zshrc
 }
 
 function installChrome {
-  
+
   case $DISTRO in
     UBUNTU)
       wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -156,7 +156,7 @@ function installVsCode {
   case $DISTRO in
     UBUNTU)
       sudo snap install code --classic
-      
+
     ;;
     MANJARO)
       sudo snap install code --classic
@@ -177,7 +177,7 @@ function installJetbrainsToolbox {
 }
 
 function installTelegram {
-  
+
   case $DISTRO in
     UBUNTU)
       add-apt-repository -y ppa:atareao/telegram
@@ -200,7 +200,7 @@ function installBd {
 }
 
 function installXClip {
-  
+
   case $DISTRO in
     UBUNTU)
       apt-get -y install xclip
@@ -263,6 +263,10 @@ function installEmacs {
   yay -Sy --noconfirm ripgrep
   git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
   ~/.emacs.d/bin/doom install
+}
+
+function installNVim {
+  yay -Sy --noconfirm neovim
 }
 
 function installI3 {
