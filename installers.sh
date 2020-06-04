@@ -268,6 +268,7 @@ function installEmacs {
 function installI3 {
   yay -Sy --noconfirm i3
   yay -Sy --noconfirm i3lock
+  yay -Sy --noconfirm i3-easyfocus
 
   # used for lock
   yay -Sy --noconfirm scrot

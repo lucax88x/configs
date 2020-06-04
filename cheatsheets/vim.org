@@ -11,49 +11,58 @@
       [$]($) - to the end of the line, INCLUDING the last character.
 
 ### Generic
-| command | explanation              | example       |
-|---------+--------------------------+---------------|
-| u       | undo                     |               |
-| U       | undo whole line          |               |
-| C-r     | redo                     |               |
-| y       | copy (yank)              |               |
-| d       | cut (delete)             |               |
-| p       | paste after              |               |
-| P       | paste before             |               |
-| r       | replace                  |               |
-| ce      | change until end of word |               |
-| c$      | change until end of line |               |
-|         |                          |               |
+| command | explanation                       | example |
+|---------+-----------------------------------+---------|
+| i       | insert mode                       |         |
+| a       | insert mode after cursor          |         |
+| I       | insert mode at beginning of line  |         |
+| A       | insert mode at end of line        |         |
+| u       | undo                              |         |
+| U       | undo whole line                   |         |
+| C-r     | redo                              |         |
+| y       | copy (yank)                       |         |
+| d       | cut (delete)                      |         |
+| p       | paste after                       |         |
+| P       | paste before                      |         |
+| r       | replace                           |         |
+| ce      | change until end of word          |         |
+| c$      | change until end of line          |         |
+| ci'     | changes internal of next '        |         |
+| ~       | uppercase / lowercase char        |         |
+| Y       | concat lower line to current line |         |
 
 ### Moving
-| command | explanation                                              |
-|---------+----------------------------------------------------------|
-| w       | to move to beginning of next word                        |
-| e       | to move to end of next word                              |
-| 2w      | to move the cursor two words forward                     |
-| 3e      | to move the cursor to the end of the third word forward. |
-| 0       | to move to beginning of line                             |
-| $       | to move to end of line                                   |
-| b       | to move backwards by word                                |
-| C-b     | to page down                                             |
-| C-f     | to page up                                               |
-| C-d     | to page down 1/2 screen                                  |
-| C-u     | to page up 1/2 screen                                    |
-| G       | to move to end of document                               |
-| 50G     | to move to line 50                                       |
-| (       | to jump backward one sentence                            |
-| )       | to jump forward one sentence                             |
-| {       | to jump backward one paragraph                           |
-| }       | to jump forward one paragraph                            |
-| H       | to jump to top of screen                                 |
-| M       | to jump to middle of screen                              |
-| L       | to jump to end of screen                                 |
-| g;      | to move back to last edited place                        |
-| ^       | to move to first non-whitespace character of line        |
-| _       | to move to first non-whitespace character of line        |
-| +       | to move to first non-whitespace character of upper line  |
-| -       | to move to first non-whitespace character of below line  |
-|         |                                                          |
+| command | explanation                                                    |
+|---------+----------------------------------------------------------------|
+| w       | to move to beginning of next word                              |
+| e       | to move to end of next word                                    |
+| 2w      | to move the cursor two words forward                           |
+| 3e      | to move the cursor to the end of the third word forward.       |
+| 0       | to move to beginning of line                                   |
+| $       | to move to end of line                                         |
+| b       | to move backwards by word                                      |
+| C-b     | to page down                                                   |
+| C-f     | to page up                                                     |
+| C-d     | to page down 1/2 screen                                        |
+| C-u     | to page up 1/2 screen                                          |
+| gg      | to move to start of document                                   |
+| G       | to move to end of document                                     |
+| 50G     | to move to line 50                                             |
+| (       | to jump backward one sentence                                  |
+| )       | to jump forward one sentence                                   |
+| {       | to jump backward one paragraph                                 |
+| }       | to jump forward one paragraph                                  |
+| H       | to jump to top of screen                                       |
+| M       | to jump to middle of screen                                    |
+| L       | to jump to end of screen                                       |
+| g;      | to move back to last edited place                              |
+| ^       | to move to first non-whitespace character of line              |
+| _       | to move to first non-whitespace character of line              |
+| +       | to move to first non-whitespace character of upper line        |
+| -       | to move to first non-whitespace character of below line        |
+| f       | to move to next letter you press (; forward , backward)        |
+| t       | to move to before next letter you press (; forward , backward) |
+| %       | to move to enclosing (closing bracket, etc)                    |
 
 ### Searching
 | command | explanation                         |
@@ -67,12 +76,14 @@
 
 ### Deleting
 
-| command | explanation            |
-|---------+------------------------|
-| dw      | deletes word           |
-| d$ D    | deletes to end of line |
-| x       | deletes char           |
-| dd      | deletes line           |
+| command | explanation                            |
+|---------+----------------------------------------|
+| dw      | deletes word                           |
+| d$ D    | deletes to end of line                 |
+| x       | deletes char                           |
+| dd      | deletes line                           |
+| d63G    | deletes from current to line 63        |
+| di{     | deletes body (of function, of if, etc) |
 
 
 ### Specific commands
@@ -84,7 +95,7 @@
 | :s/old/new/g    | replace all words with word in current line    |
 | :5,7s/old/new/g | replace all words with word in specified lines |
 | :s/old/new/gc   | replace all words with word with a prompt      |
-|                 |                                                |
+| :reg            | clipboard                                      |
 
 #### Substitute
 | command               | explanation             |
@@ -94,3 +105,10 @@
 | counsel-git-grep      | search in all files     |
 | counsel-switch-buffer | switch between buffers  |
 |                       |                         |
+
+
+#### Emacs
+| shortcut | explanation    |
+|----------+----------------|
+| C-=      | increase font  |
+| C--      | decrease font  |
