@@ -121,13 +121,16 @@ set $ws4 "4 "
 set $ws5 "5 "
 # emails
 set $ws6 "6 "
+# devtools 
+set $ws7 "7 "
 
 workspace $ws1 output $left_monitor $home_monitor
 workspace $ws2 output $center_monitor $home_monitor
 workspace $ws3 output $left_monitor $home_monitor
 workspace $ws4 output $right_monitor $home_monitor
 workspace $ws5 output $center_monitor $home_monitor
-workspace $ws6 output $left_monitor $home_monitor
+workspace $ws6 output $home_monitor
+workspace $ws7 output $right_monitor $home_monitor
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -136,6 +139,7 @@ bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -144,6 +148,7 @@ bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
 bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
 
 
 #####################
@@ -229,11 +234,20 @@ client.background           #2f2f2f
 for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
 for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
 
+#####################
+### Teams notification ###
+######################
+for_window [title="Android Emulator - "] floating enable
 
 #####################
 ### Battery popup ###
 ######################
 exec --no-startup-id i3-battery-popup -n
+
+#####################
+### i3-easyfocus ###
+######################
+bindsym $mod+semicolon exec "i3-easyfocus -a -f -xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1"
 
 #####################
 ### Picom ###

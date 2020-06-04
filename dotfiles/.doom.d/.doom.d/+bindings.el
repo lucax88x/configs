@@ -1,7 +1,6 @@
 ;;; ~/.doom.d/bindings.el -*- lexical-binding: t; -*-
 
 (evil-define-key 'normal tide-mode-map "R" 'tide-references)
-(evil-define-key 'normal tide-mode-map "." 'tide-fix)
 (evil-define-key 'normal tide-mode-map "C-c t r" 'tide-rename-symbol)
 (evil-define-key 'normal tide-mode-map "C-o" 'tide-organize-imports)
 (evil-define-key 'normal tide-mode-map "Q" 'rjsx-rename-tag-at-point)
@@ -19,7 +18,12 @@
     ("C-c t r" . tide-rename-symbol)
     ("C-c t o" . tide-organize-imports)
     ("C-M-l" . prettier-js)
-    )
+)
+
+(use-package expand-region
+  :bind
+  ("C-=" . er/expand-region)
+)
 
 ;;;(use-package rust
   ;;;:bind

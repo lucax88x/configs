@@ -108,4 +108,5 @@
 	# flow
 	feature = "!f() { feature=${1}; git flow feature start $feature;  }; f"	
 	bugfix = "!f() { bugfix=${1}; git flow bugfix start $bugfix;  }; f"
+    hotfix = "!f() { hotfix=${1}; git flow hotfix start $hotfix;  }; f"
 	release = "!f() { release=${1}; git flow release start $release;  }; f"

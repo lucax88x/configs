@@ -54,3 +54,7 @@
 
 (package! tide)
 (package! prettier-js)
+
+
+(package! yaml-mode)
+(package! expand-region)
