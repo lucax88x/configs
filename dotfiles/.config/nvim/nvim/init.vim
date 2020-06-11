@@ -17,7 +17,8 @@ set smartindent
 set smarttab
 set nowrap
 
-set number norelativenumber
+" set number norelativenumber
+set relativenumber number
 set smartcase
 set noswapfile
 set nobackup
@@ -49,17 +50,25 @@ set signcolumn=yes
 call plug#begin('~/.nvim/plugged')
 
 Plug 'mhinz/vim-startify'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocomplete
-Plug 'tweekmonster/gofmt.vim' " go formatter
 Plug 'tpope/vim-fugitive' " git
 Plug 'vim-utils/vim-man' " man pages
 Plug 'mbbill/undotree' " undo tree
-Plug 'sheerun/vim-polyglot' " programming language packs
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
-Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 
+" Autocomplete & Linters
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocomplete
+Plug 'dense-analysis/ale'
+
+" Language packs
+Plug 'sheerun/vim-polyglot' " programming language packs
+Plug 'rust-lang/rust.vim'
+Plug 'tweekmonster/gofmt.vim' " go formatter
+
+" Theming
 Plug 'morhetz/gruvbox'
 Plug 'phanviet/vim-monokai-pro'
 Plug 'vim-airline/vim-airline' " status bar
@@ -93,6 +102,11 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Rust settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rustfmt_autosave = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Theme
@@ -146,10 +160,9 @@ let g:ale_sign_warning = '⚠'
 " alternative esc
 inoremap jj <ESC>
 
-" close buffer
+" buffers
 nnoremap <leader>bd :bd<cr>
-
-" save
+nnoremap <leader>bad :%bd<cr>
 nnoremap <leader>bs :update<cr>
 nnoremap <leader>bw :update<cr>
 
@@ -211,7 +224,6 @@ nnoremap <leader>cr :CocRestart
 nnoremap <leader>cf :CocFix<CR>
 nnoremap <leader>fo :CocAction('runCommand', 'tsserver.organizeImports')<CR>
 
-
 " ALE maps
 nnoremap <leader>ff :ALEFix<CR>
 
@@ -221,7 +233,8 @@ nmap <leader>gu :diffget //2<CR>
 nmap <leader>gs :G<CR>
 
 " Easymotion maps
-map <leader>ss <Plug>(easymotion-prefix)
+map <leader>jl <Plug>(easymotion-bd-l)
+map <leader>js <Plug>(easymotion-bd-s)
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
