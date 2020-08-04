@@ -31,7 +31,7 @@
 	st = status --untracked-files=all --branch
 	c = commit
 	cp = cherry-pick
-	cm = commit	
+	cm = commit
 	ap = add -p
 	fetch = fetch --prune
 	f = fetch --prune
@@ -74,6 +74,7 @@
 	last = log -1 --stat
 	cp = cherry-pick
 	co = checkout
+	cob = checkout -b
 	cl = clone
 	ci = commit
 	br = branch
@@ -97,7 +98,6 @@
 	nuke = !sh -c 'git-nuke' -
 	flush = "!git branch --no-merged | grep -v 'master|develop' | xargs -n 1 git nuke"
 
-
 	# ignoring
 	ignore = update-index --assume-unchanged
 	unignore = update-index --no-assume-unchanged
@@ -105,8 +105,10 @@
 	root = !pwd
 	lgp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p -M
 
+  fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && GIT_SEQUENCE_EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+
 	# flow
-	feature = "!f() { feature=${1}; git flow feature start $feature;  }; f"	
+	feature = "!f() { feature=${1}; git flow feature start $feature;  }; f"
 	bugfix = "!f() { bugfix=${1}; git flow bugfix start $bugfix;  }; f"
     hotfix = "!f() { hotfix=${1}; git flow hotfix start $hotfix;  }; f"
 	release = "!f() { release=${1}; git flow release start $release;  }; f"

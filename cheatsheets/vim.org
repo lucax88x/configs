@@ -63,6 +63,8 @@
 | f       | to move to next letter you press (; forward , backward)        |
 | t       | to move to before next letter you press (; forward , backward) |
 | %       | to move to enclosing (closing bracket, etc)                    |
+| C-i     | to move to to previous history                                 |
+| C-o     | to move to to next history                                     |
 
 ### Searching
 | command | explanation                         |

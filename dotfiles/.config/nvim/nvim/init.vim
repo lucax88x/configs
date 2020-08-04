@@ -49,7 +49,6 @@ set signcolumn=yes
 
 call plug#begin('~/.nvim/plugged')
 
-Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive' " git
 Plug 'vim-utils/vim-man' " man pages
 Plug 'mbbill/undotree' " undo tree
@@ -57,7 +56,22 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'                         " Change surrounding marks
+
+Plug 'antoinemadec/coc-fzf' " coc and fzf together
+Plug 'airblade/vim-gitgutter' " show git gutters
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " previews hex colors
+Plug 'junegunn/vim-peekaboo' " shows register preview
+Plug 'vim-scripts/BufOnly.vim' " deletes all buffers except
+Plug 'machakann/vim-highlightedyank' " highlights the yank
+Plug 'tpope/vim-vinegar' " improves netrw
+Plug 'psliwka/vim-smoothie' " smoother scroll
+Plug 'liuchengxu/vim-which-key' " shows 'emacs' preview of shortcuts
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'epilande/vim-react-snippets'
 
 " Autocomplete & Linters
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocomplete
@@ -66,16 +80,11 @@ Plug 'dense-analysis/ale'
 " Language packs
 Plug 'sheerun/vim-polyglot' " programming language packs
 Plug 'rust-lang/rust.vim'
-Plug 'tweekmonster/gofmt.vim' " go formatter
+Plug 'jceb/vim-orgmode'
 
 " Theming
 Plug 'morhetz/gruvbox'
-Plug 'phanviet/vim-monokai-pro'
 Plug 'vim-airline/vim-airline' " status bar
-Plug 'flazz/vim-colorschemes'
-Plug 'ryanoasis/vim-devicons'
-Plug 'ap/vim-css-color'                           " Color previews for CSS
-Plug 'tpope/vim-surround'                         " Change surrounding marks
 Plug 'vim-airline/vim-airline'
 
 call plug#end()
@@ -84,24 +93,6 @@ call plug#end()
 " => Airline settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_powerline_fonts = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Go settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Rust settings
@@ -155,16 +146,59 @@ let g:ale_sign_warning = '⚠'
 " let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => hexokinase settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:Hexokinase_highlighters = ['virtual']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => peekaboo settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:peekaboo_delay = 100
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => which-key settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Define prefix dictionary
+let g:which_key_map = {}
+
+let g:which_key_map.g = {
+            \ 'name':"git",
+            \}
+
+let g:which_key_map.t = {
+            \ 'name':"types",
+            \}
+
+let g:which_key_map.c = {
+            \ 'name':"CoC",
+            \}
+
+let g:which_key_map.b = {
+            \ 'name':"buffers",
+            \}
+
+let g:which_key_map.p = {
+            \ 'name':"project",
+            \}
+
+let g:which_key_map.f = {
+            \ 'name':"fix",
+            \}
+
+call which_key#register('<Space>', "g:which_key_map")
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Remaps
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " alternative esc
 inoremap jj <ESC>
 
 " buffers
-nnoremap <leader>bd :bd<cr>
-nnoremap <leader>bad :%bd<cr>
-nnoremap <leader>bs :update<cr>
-nnoremap <leader>bw :update<cr>
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bo :BufOnly<CR>
+nnoremap <leader>bad :%bd<CR>
+nnoremap <leader>bs :update<CR>
+nnoremap <leader>bw :update<CR>
 
 " window movement
 nnoremap <leader>h :wincmd h<CR>
@@ -193,7 +227,6 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap X "_d
 inoremap <C-c> <esc>
 
-
 " CoC autocomplete improvements
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -211,30 +244,57 @@ inoremap <silent><expr> <C-space> coc#refresh()
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
 " CoC maps
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
+nmap <leader>td <Plug>(coc-definition)
+nmap <leader>tt <Plug>(coc-type-definition)
+nmap <leader>ti <Plug>(coc-implementation)
+nmap <leader>tr <Plug>(coc-references)
+nnoremap <leader>th :call <SID>show_documentation()<CR>
+nnoremap <silent> <leader>to :<C-u>CocFzfList outline<CR>
+
 nmap <leader>rr <Plug>(coc-rename)
-nmap <leader>g[ <Plug>(coc-diagnostic-prev)
-nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
-nnoremap <leader>cr :CocRestart
+nnoremap <silent> <leader>cc :<C-u>CocFzfList commands<CR>
+nnoremap <silent> <leader>fe :<C-u>CocFzfList diagnostics<CR>
+nnoremap <silent> <leader>ff :<C-u>CocFzfList actions<CR>
+nnoremap <silent> <leader>fo :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+nnoremap <leader>pws :CocSearch <C-R>=expand("<cword>")<CR><CR>
+" nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+" nmap <leader>g] <Plug>(coc-diagnostic-next)
+" nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
+" nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
+nnoremap <leader>cr :CocRestart<CR>
 nnoremap <leader>cf :CocFix<CR>
-nnoremap <leader>fo :CocAction('runCommand', 'tsserver.organizeImports')<CR>
+
+" shows the actual type on cursor
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" triggers the shortcut suggestion
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " ALE maps
-nnoremap <leader>ff :ALEFix<CR>
+nnoremap <silent> <leader>fl :ALEFix<CR>
 
-" Sweet Sweet FuGITive
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
+" FuGITive
 nmap <leader>gs :G<CR>
+nmap <leader>gf :diffget //2<CR>
+nmap <leader>gj :diffget //3<CR>
+nmap <leader>gd :Gdiffsplit<CR>
+
+" vim-gitgutter
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
 
 " Easymotion maps
-map <leader>jl <Plug>(easymotion-bd-l)
-map <leader>js <Plug>(easymotion-bd-s)
+" :help easymotion and look for binds
+map <leader>; <Plug>(easymotion-s)
 
 fun! TrimWhitespace()
     let l:save = winsaveview()

@@ -1,5 +1,7 @@
 {
- "diagnostic.errorSign":  "⤫",
-"diagnostic.warningSign":"⤫",
-        "diagnostic.displayByAle": true
+  "diagnostic.errorSign":  "⤫",
+  "diagnostic.warningSign":"⤫",
+  "diagnostic.displayByAle": true,
+  "suggest.enablePreselect": true,
+  "suggest.noselect": false
 }
