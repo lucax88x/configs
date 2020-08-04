@@ -57,7 +57,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'                         " Change surrounding marks
-
 Plug 'antoinemadec/coc-fzf' " coc and fzf together
 Plug 'airblade/vim-gitgutter' " show git gutters
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " previews hex colors
@@ -67,6 +66,7 @@ Plug 'machakann/vim-highlightedyank' " highlights the yank
 Plug 'tpope/vim-vinegar' " improves netrw
 Plug 'psliwka/vim-smoothie' " smoother scroll
 Plug 'liuchengxu/vim-which-key' " shows 'emacs' preview of shortcuts
+Plug 'romainl/vim-cool' " disabled search highlight until next search
 
 " Snippets
 Plug 'SirVer/ultisnips'
