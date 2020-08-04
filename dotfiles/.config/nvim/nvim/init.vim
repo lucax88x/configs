@@ -70,8 +70,7 @@ Plug 'liuchengxu/vim-which-key' " shows 'emacs' preview of shortcuts
 
 " Snippets
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'epilande/vim-react-snippets'
+Plug 'mlaursen/vim-react-snippets'
 
 " Autocomplete & Linters
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocomplete
@@ -125,6 +124,7 @@ let g:netrw_winsize = 25
 " => ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_linters = {
+\  'json': ['eslint'],
 \  'javascript': ['eslint'],
 \  'javascript.jsx': ['eslint'],
 \  'typescript': ['eslint'],
@@ -132,6 +132,7 @@ let g:ale_linters = {
 \}
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'json': ['eslint', 'prettier'],
 \   'javascript': ['eslint', 'prettier'],
 \   'javascript.jsx': ['eslint', 'prettier'],
 \   'typescript': ['eslint', 'prettier'],
@@ -146,6 +147,11 @@ let g:ale_sign_warning = '⚠'
 " let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => fzf settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => hexokinase settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:Hexokinase_highlighters = ['virtual']
@@ -153,6 +159,7 @@ let g:Hexokinase_highlighters = ['virtual']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => peekaboo settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:peekaboo_window = 'vert bo 60new'
 let g:peekaboo_delay = 100
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -215,7 +222,6 @@ nnoremap <leader>ps :Rg<SPACE>
 " to include unstaged files
 nnoremap <leader>pg :GFiles --cached --others --exclude-standard<CR>
 nnoremap <leader>pf :Files<CR>
-nnoremap <leader>bl :Buffers<CR>
 
 " reload
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
@@ -243,6 +249,11 @@ inoremap <silent><expr> <C-space> coc#refresh()
 " To make <cr> select the first completion item and confirm the completion when no item has been selected:
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
+" fzf maps
+nnoremap <leader>sl :Snippets<CR>
+nnoremap <leader>ml :Marks<CR>
+nnoremap <leader>bl :Buffers<CR>
+
 " CoC maps
 nmap <leader>td <Plug>(coc-definition)
 nmap <leader>tt <Plug>(coc-type-definition)
@@ -255,6 +266,7 @@ nmap <leader>rr <Plug>(coc-rename)
 nnoremap <silent> <leader>cc :<C-u>CocFzfList commands<CR>
 nnoremap <silent> <leader>fe :<C-u>CocFzfList diagnostics<CR>
 nnoremap <silent> <leader>ff :<C-u>CocFzfList actions<CR>
+" nnoremap <silent> <leader>ff :<C-u>:call CocAction('format')<CR>
 nnoremap <silent> <leader>fo :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 nnoremap <leader>pws :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " nmap <leader>g[ <Plug>(coc-diagnostic-prev)
