@@ -67,6 +67,7 @@ Plug 'tpope/vim-vinegar' " improves netrw
 Plug 'psliwka/vim-smoothie' " smoother scroll
 Plug 'liuchengxu/vim-which-key' " shows 'emacs' preview of shortcuts
 Plug 'romainl/vim-cool' " disabled search highlight until next search
+Plug 'markonm/traces.vim' " previews the :s commands
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -223,8 +224,11 @@ nnoremap <leader>ps :Rg<SPACE>
 nnoremap <leader>pg :GFiles --cached --others --exclude-standard<CR>
 nnoremap <leader>pf :Files<CR>
 
+" quit
+nnoremap <silent> <leader>q :q<CR>
+
 " reload
-nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap <silent> <leader><CR> :so ~/.config/nvim/init.vim<CR>
 
 nnoremap <leader>+ :vertical resize +5<CR>
 nnoremap <leader>- :vertical resize -5<CR>
@@ -255,10 +259,10 @@ nnoremap <leader>ml :Marks<CR>
 nnoremap <leader>bl :Buffers<CR>
 
 " CoC maps
-nmap <leader>td <Plug>(coc-definition)
-nmap <leader>tt <Plug>(coc-type-definition)
-nmap <leader>ti <Plug>(coc-implementation)
-nmap <leader>tr <Plug>(coc-references)
+nmap <silent> <leader>td <Plug>(coc-definition)
+nmap <silent> <leader>tt <Plug>(coc-type-definition)
+nmap <silent> <leader>ti <Plug>(coc-implementation)
+nmap <silent> <leader>tr <Plug>(coc-references)
 nnoremap <leader>th :call <SID>show_documentation()<CR>
 nnoremap <silent> <leader>to :<C-u>CocFzfList outline<CR>
 
@@ -273,8 +277,8 @@ nnoremap <leader>pws :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " nmap <leader>g] <Plug>(coc-diagnostic-next)
 " nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
 " nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
-nnoremap <leader>cr :CocRestart<CR>
-nnoremap <leader>cf :CocFix<CR>
+nnoremap <silent> <leader>cr :CocRestart<CR>
+nnoremap <silent> <leader>cf :CocFix<CR>
 
 " shows the actual type on cursor
 function! s:show_documentation()
