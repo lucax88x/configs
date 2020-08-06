@@ -68,6 +68,8 @@ Plug 'psliwka/vim-smoothie' " smoother scroll
 Plug 'liuchengxu/vim-which-key' " shows 'emacs' preview of shortcuts
 Plug 'romainl/vim-cool' " disabled search highlight until next search
 Plug 'markonm/traces.vim' " previews the :s commands
+Plug 'AndrewRadev/sideways.vim' " allows to move functions parameters
+Plug 'AndrewRadev/splitjoin.vim' " allows to split one liner to multi lines
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -220,6 +222,7 @@ nnoremap <leader>u :UndotreeShow<CR>
 " project management
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
+nnoremap <leader>pt :Rg<SPACE>TODO\|FIXME<CR>
 " to include unstaged files
 nnoremap <leader>pg :GFiles --cached --others --exclude-standard<CR>
 nnoremap <leader>pf :Files<CR>
@@ -228,7 +231,7 @@ nnoremap <leader>pf :Files<CR>
 nnoremap <silent> <leader>q :q<CR>
 
 " reload
-nnoremap <silent> <leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 
 nnoremap <leader>+ :vertical resize +5<CR>
 nnoremap <leader>- :vertical resize -5<CR>
@@ -311,6 +314,14 @@ nmap ghp <Plug>(GitGutterPreviewHunk)
 " Easymotion maps
 " :help easymotion and look for binds
 map <leader>; <Plug>(easymotion-s)
+
+" sideways maps
+nnoremap <silent> <leader>rpl :SidewaysLeft<cr>
+nnoremap <silent> <leader>rpr :SidewaysRight<cr>
+
+" splitjoin maps
+nnoremap <silent> <leader>rls :SplitjoinSplit<cr>
+nnoremap <silent> <leader>rlj :SplitjoinJoin<cr>
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
