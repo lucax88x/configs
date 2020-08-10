@@ -24,4 +24,14 @@ let g:which_key_map.f = {
             \ 'name':"fix",
             \}
 
+let g:which_key_map.r = {
+            \ 'name':"refactor",
+            \ 'l': {
+            \  'name': "line"
+            \ },
+            \ 'p': {
+            \  'name': "parameter"
+            \ }
+            \}
+
 call which_key#register('<Space>', "g:which_key_map")

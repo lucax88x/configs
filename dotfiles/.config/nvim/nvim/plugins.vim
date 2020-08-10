@@ -14,7 +14,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf' " coc and fzf together
 
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " previews hex colors
-Plug 'luochen1990/rainbow' " colors the matching brackets
 Plug 'rrethy/vim-illuminate' " highlight matching words when cursor on it
 
 Plug 'junegunn/vim-peekaboo' " shows register preview
