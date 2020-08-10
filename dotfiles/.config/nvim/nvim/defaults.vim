@@ -1,5 +1,5 @@
 " set guicursor=
-set noshowmatch
+set showmatch
 " set nohlsearch
 set hidden
 set noerrorbells
@@ -37,5 +37,5 @@ set shortmess+=c
 " sign colum is the left one showing error & warnings
 set signcolumn=yes
 
-" let loaded_matchparen = 1
+let loaded_matchparen = 1
 let mapleader = " "
