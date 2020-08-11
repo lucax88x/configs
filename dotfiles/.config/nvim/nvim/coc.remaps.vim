@@ -10,9 +10,33 @@ nnoremap <silent> <leader>cc :<C-u>CocFzfList commands<CR>
 
 nnoremap <silent> <leader>fe :<C-u>CocFzfList diagnostics<CR>
 nnoremap <silent> <leader>fa :<C-u>CocFzfList actions<CR>
-nnoremap <silent> <leader>fo :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
-nnoremap <silent> <leader>ff :<C-u>:call CocAction('format')<CR>
-nnoremap <silent> <leader>fl :CocCommand eslint.executeAutofix<CR>
+
+function OrganizeImport()
+  silent :call CocAction('runCommand', 'editor.action.organizeImport')
+endfunction
+
+function Format()
+  silent :call CocAction('format')
+endfunction
+
+function Lint()
+  silent :CocCommand eslint.executeAutofix
+endfunction
+
+function FormatLintOrganize()
+  silent :call OrganizeImport()
+  silent :call Lint()
+  silent :call Format()
+endfunction
+
+nnoremap <silent> <leader>fo <CR>
+nnoremap <silent> <leader>fo :call OrganizeImport()<CR>
+nnoremap <silent> <leader>ff :call Format()<CR>
+nnoremap <silent> <leader>fl :call Lint()<CR>
+
+" organize import is too low to put on save
+" :autocmd BufWritePost * :call FormatLintOrganize()
+:autocmd BufWritePost * :call Format()
 
 nnoremap <leader>pws :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " nmap <leader>g[ <Plug>(coc-diagnostic-prev)

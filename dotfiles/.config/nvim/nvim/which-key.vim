@@ -24,6 +24,14 @@ let g:which_key_map.f = {
             \ 'name':"fix",
             \}
 
+let g:which_key_map.s = {
+            \ 'name':"snippets",
+            \}
+
+let g:which_key_map.m = {
+            \ 'name':"marks",
+            \}
+
 let g:which_key_map.r = {
             \ 'name':"refactor",
             \ 'l': {

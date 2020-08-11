@@ -42,6 +42,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocomplete
 Plug 'sheerun/vim-polyglot' " programming language packs
 Plug 'rust-lang/rust.vim'
 Plug 'jceb/vim-orgmode'
+Plug 'leafgarland/typescript-vim' " better syntax than polyglot
 
 " Theming
 Plug 'morhetz/gruvbox'
