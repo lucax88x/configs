@@ -243,6 +243,13 @@ else
   echo KITTY ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v fzf)" ]; then
+  echo INSTALLING FZF
+  installFzf
+else
+  echo FZF ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then

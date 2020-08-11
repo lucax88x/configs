@@ -25,9 +25,11 @@ Plug 'romainl/vim-cool' " disabled search highlight until next search
 Plug 'markonm/traces.vim' " previews the :s commands
 Plug 'AndrewRadev/sideways.vim' " allows to move functions parameters
 Plug 'AndrewRadev/splitjoin.vim' " allows to split one liner to multi lines
-Plug 'justinmk/vim-dirvish' " alternative file explorer
 Plug 'AndrewRadev/tagalong.vim' " changes the closing html / xml tag
+
+Plug 'justinmk/vim-dirvish' " alternative file explorer
 Plug 'airblade/vim-rooter'
+Plug 'tpope/vim-abolish' " :S to replace with smartcase
 
 " Snippets
 Plug 'SirVer/ultisnips'

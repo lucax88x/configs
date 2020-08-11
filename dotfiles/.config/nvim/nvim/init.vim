@@ -14,6 +14,8 @@ source $HOME/.config/nvim/theme.vim
 source $HOME/.config/nvim/airline.vim
 
 " Settings
+source $HOME/.config/nvim/netrw.vim
+source $HOME/.config/nvim/dirvish.vim
 source $HOME/.config/nvim/rust.vim
 source $HOME/.config/nvim/ale.vim
 source $HOME/.config/nvim/fzf.vim

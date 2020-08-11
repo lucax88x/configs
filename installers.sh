@@ -129,6 +129,7 @@ function installOhMyZsh {
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
   git clone https://github.com/lukechilds/zsh-better-npm-completion ~/.oh-my-zsh/custom/plugins/zsh-better-npm-completion
   git clone https://github.com/buonomo/yarn-completion ~/.oh-my-zsh/custom/plugins/yarn-completion
+  git clone https://github.com/Aloxaf/fzf-tab ~ZSH_CUSTOM/plugins/fzf-tab
 
   wget https://raw.githubusercontent.com/lucax88x/configs/master/.p10k.zsh -O ~/.p10k.zsh
   wget https://raw.githubusercontent.com/lucax88x/configs/master/.zshrc -O ~/.zshrc
@@ -298,6 +299,12 @@ function installDunst {
 
 function installKitty {
   yay -Sy --noconfirm kitty
+}
+
+function installFzf {
+  yay -Sy --noconfirm fzf
+
+  git clone https://github.com/Aloxaf/fzf-tab ~ZSH_CUSTOM/plugins/fzf-tab
 }
 
 ## CONFIGURATION
