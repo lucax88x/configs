@@ -37,7 +37,6 @@ Plug 'mlaursen/vim-react-snippets'
 
 " Autocomplete & Linters
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocomplete
-Plug 'dense-analysis/ale'
 
 " Language packs
 Plug 'sheerun/vim-polyglot' " programming language packs

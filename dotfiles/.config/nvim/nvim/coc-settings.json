@@ -1,7 +1,9 @@
 {
-  "diagnostic.errorSign":  "⤫",
-  "diagnostic.warningSign":"⤫",
-  "diagnostic.displayByAle": true,
+  "diagnostic.errorSign": "🕱",
+  "diagnostic.warningSign":"⚠",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "ﯦ",
+  "diagnostic.displayByAle": false,
   "suggest.enablePreselect": true,
   "suggest.noselect": false
 }

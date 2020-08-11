@@ -7,10 +7,13 @@ nnoremap <silent> <leader>to :<C-u>CocFzfList outline<CR>
 
 nmap <leader>rr <Plug>(coc-rename)
 nnoremap <silent> <leader>cc :<C-u>CocFzfList commands<CR>
+
 nnoremap <silent> <leader>fe :<C-u>CocFzfList diagnostics<CR>
-nnoremap <silent> <leader>ff :<C-u>CocFzfList actions<CR>
-" nnoremap <silent> <leader>ff :<C-u>:call CocAction('format')<CR>
+nnoremap <silent> <leader>fa :<C-u>CocFzfList actions<CR>
 nnoremap <silent> <leader>fo :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+nnoremap <silent> <leader>ff :<C-u>:call CocAction('format')<CR>
+nnoremap <silent> <leader>fl :CocCommand eslint.executeAutofix<CR>
+
 nnoremap <leader>pws :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 " nmap <leader>g] <Plug>(coc-diagnostic-next)
