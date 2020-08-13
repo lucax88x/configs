@@ -1,13 +1,16 @@
 call plug#begin('~/.nvim/plugged')
 
+Plug 'mhinz/vim-startify' " start screen
 Plug 'tpope/vim-fugitive' " git
 Plug 'airblade/vim-gitgutter' " show git gutters
 
 Plug 'vim-utils/vim-man' " man pages
 Plug 'mbbill/undotree' " undo tree
 Plug 'easymotion/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround' " Change surrounding marks
+Plug 'tpope/vim-surround' " Change surrounding arks
+Plug 'tpope/vim-repeat' " extends . repeat, for example for make it work with vim-sneak
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
@@ -46,6 +49,7 @@ Plug 'leafgarland/typescript-vim' " better syntax than polyglot
 
 " Theming
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline' " status bar
+Plug 'itchyny/lightline.vim' " status bar
+Plug 'shinchu/lightline-gruvbox.vim'
 
 call plug#end()

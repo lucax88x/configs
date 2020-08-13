@@ -11,9 +11,11 @@ source $HOME/.config/nvim/defaults.vim
 source $HOME/.config/nvim/plugins.vim
 
 source $HOME/.config/nvim/theme.vim
-source $HOME/.config/nvim/airline.vim
+source $HOME/.config/nvim/lightline.vim
 
 " Settings
+source $HOME/.config/nvim/startify.vim
+
 source $HOME/.config/nvim/netrw.vim
 source $HOME/.config/nvim/dirvish.vim
 
@@ -27,6 +29,7 @@ source $HOME/.config/nvim/ripgrep.vim
 
 " Remaps
 source $HOME/.config/nvim/default.remaps.vim
+source $HOME/.config/nvim/startify.remaps.vim
 source $HOME/.config/nvim/coc.remaps.vim
 source $HOME/.config/nvim/fzf.remaps.vim
 source $HOME/.config/nvim/project.remaps.vim

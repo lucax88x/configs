@@ -25,7 +25,7 @@ let g:which_key_map.f = {
             \}
 
 let g:which_key_map.s = {
-            \ 'name':"snippets",
+            \ 'name':"session",
             \}
 
 let g:which_key_map.m = {

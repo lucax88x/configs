@@ -39,3 +39,9 @@ set signcolumn=yes
 
 let loaded_matchparen = 1
 let mapleader = " "
+
+set cursorline   " highlight current line
+set cursorcolumn " highlight current column
+
+" done by status bar
+set noshowmode

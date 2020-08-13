@@ -1,6 +1,6 @@
 {
   "diagnostic.errorSign": "🕱",
-  "diagnostic.warningSign":"⚠",
+  "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "ℹ",
   "diagnostic.hintSign": "ﯦ",
   "diagnostic.displayByAle": false,
