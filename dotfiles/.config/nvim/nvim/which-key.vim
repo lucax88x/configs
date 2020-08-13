@@ -32,6 +32,10 @@ let g:which_key_map.m = {
             \ 'name':"marks",
             \}
 
+let g:which_key_map.w = {
+            \ 'name':"window",
+            \}
+
 let g:which_key_map.r = {
             \ 'name':"refactor",
             \ 'l': {
