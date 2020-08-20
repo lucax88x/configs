@@ -31,6 +31,7 @@ Plug 'AndrewRadev/splitjoin.vim' " allows to split one liner to multi lines
 Plug 'AndrewRadev/tagalong.vim' " changes the closing html / xml tag
 
 Plug 'justinmk/vim-dirvish' " alternative file explorer
+Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-abolish' " :S to replace with smartcase
 

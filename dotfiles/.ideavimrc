@@ -1,0 +1,91 @@
+let mapleader = " "
+set surround
+set multiple-cursors
+set history=1000
+set visualbell
+set noerrorbells
+set incsearch " Highlight search results when typing
+set hlsearch " Highlight search results
+set relativenumber " relative numbers
+" for yanking to clipboard
+set clipboard+=unnamed
+set scrolloff=3 " Display at least 3 lines around you cursor
+
+set ignorecase " Ignore case when searching
+set smartcase " If there is an uppercase in your search term
+
+" KEYMAP
+inoremap jj <esc>
+nnoremap <leader>td :action GotoDeclaration<CR>
+nnoremap <leader>tr :action FindUsages<CR>
+nnoremap <leader>ti :action GotoImplementation<CR>
+
+nnoremap <leader>fa :action Refactorings.QuickListPopupAction<CR>
+vmap <leader>fa :action Refactorings.QuickListPopupAction<CR>
+
+nnoremap <leader>ff :action ReformatCode<CR>
+nnoremap <leader>fo :action OptimizeImports<CR>
+
+nnoremap <leader>rr :action RenameElement<CR>
+nnoremap <leader>rf :action RenameFile<CR>
+
+" Comment
+" nnoremap <leader>cc :action CommentByLineComment<CR>
+" vmap <leader>cc :action CommentByLineComment<CR>
+" vmap <leader>cb :action CommentByBlockComment<CR>
+
+" Menus
+" nnoremap <leader>m :action ActivateProjectToolWindow<CR>
+
+" Refactorings
+" nnoremap <leader>ri :action Inline<CR>
+" nnoremap <leader>rv :action IntroduceVariable<CR>
+" nnoremap <leader>rm :action ExtractMethod<CR>
+" vmap <leader>rp :action IntroduceParameter<CR>
+" vmap <leader>ri :action Inline<CR>
+" vmap <leader>rv :action IntroduceVariable<CR>
+" vmap <leader>rm :action ExtractMethod<CR>
+" nnoremap <leader>rp :action IntroduceParameter<CR>
+" nnoremap <leader>im :action ImplementMethods<CR>
+" nnoremap <leader>om :action OverrideMethods<CR>
+" nnoremap <leader>qf :action ShowIntentionActions<CR>
+
+" GoTo
+nnoremap <leader>gs :action ActivateStructureToolWindow<CR>
+nnoremap <leader>sp :action ParameterInfo<CR>
+nnoremap <leader>sd :action QuickImplementations<CR>
+
+" Search
+" nnoremap <leader>fs :action GotoSymbol<CR>
+" nnoremap <leader>ff :action GotoFile<CR>
+" nnoremap <leader>fc :action GotoClass<CR>
+" nnoremap <leader>fa :action GotoAction<CR>
+" nnoremap <leader>fg :action FindInPath<CR>
+" nnoremap <leader>fr :action ReplaceInPath<CR>
+" vmap <leader>fg :action FindInPath<CR>
+" vmap <leader>fr :action ReplaceInPath<CR>
+
+" Test and Run
+" nnoremap <leader>gt :action GotoTest<CR>
+" nnoremap <leader>tn :action RunClass<CR>
+" nnoremap <leader>tl :action Rerun<CR>
+" nnoremap <leader>tf :action RerunFailedTests<CR>
+
+" Undo
+nnoremap <leader>u :action LocalHistory.ShowHistory<CR>
+
+" Jumping
+" built-in navigation to navigated items works better
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+
+" Navigation
+nnoremap ]c :action GotoNextError<cr>
+nnoremap [c :action GotoPreviousError<cr>
+nnoremap ]h :action VcsShowNextChangeMarker<cr>
+nnoremap [h :action VcsShowPrevChangeMarker<cr>
+nnoremap <leader>se :action ShowErrorDescription<cr>
+
+" Misc
+nnoremap <leader><cr> :source ~/.ideavimrc<CR>
+noremap <leader><cr> :source ~/.ideavimrc<CR>

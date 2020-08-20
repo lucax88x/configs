@@ -38,7 +38,7 @@ set shortmess+=c
 set signcolumn=yes
 
 let loaded_matchparen = 1
-let mapleader = " "
+let mapleader = "\<Space>"
 
 " set cursorline   " highlight current line
 " set cursorcolumn " highlight current column

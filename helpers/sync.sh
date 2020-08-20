@@ -30,6 +30,7 @@ declare -A pairs=(
     [~/.Xmodmap]=./dotfiles/.Xmodmap
     [~/bin/]=./scripts/
     [~/.doom.d]=./dotfiles/.doom.d/
+    [~/.ideavimrc]=./dotfiles/.ideavimrc
 )
 
 function sync()
