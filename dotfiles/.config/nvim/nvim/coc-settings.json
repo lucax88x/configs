@@ -5,5 +5,7 @@
   "diagnostic.hintSign": "ﯦ",
   "diagnostic.displayByAle": false,
   "suggest.enablePreselect": true,
-  "suggest.noselect": false
+  "suggest.noselect": false,
+  "javascript.preferences.renameShorthandProperties": false,
+  "typescript.preferences.renameShorthandProperties": false
 }

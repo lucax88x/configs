@@ -1,16 +1,20 @@
 call plug#begin('~/.nvim/plugged')
 
 Plug 'mhinz/vim-startify' " start screen
+
 Plug 'tpope/vim-fugitive' " git
 Plug 'airblade/vim-gitgutter' " show git gutters
+Plug 'stsewd/fzf-checkout.vim' " checkout branches with fzf
 
 Plug 'vim-utils/vim-man' " man pages
 Plug 'mbbill/undotree' " undo tree
+
 Plug 'easymotion/vim-easymotion'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround' " Change surrounding arks
 Plug 'tpope/vim-repeat' " extends . repeat, for example for make it work with vim-sneak
+Plug 'bkad/CamelCaseMotion' " allows to move by camelCase with w e
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'

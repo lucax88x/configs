@@ -1,3 +1,5 @@
+" https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+
 let mapleader = " "
 set surround
 set multiple-cursors
@@ -16,12 +18,17 @@ set smartcase " If there is an uppercase in your search term
 
 " KEYMAP
 inoremap jj <esc>
+nnoremap <leader>bw :action SaveDocument<CR>
+nnoremap <leader>pg :action SearchEverywhere<CR>
+
 nnoremap <leader>td :action GotoDeclaration<CR>
 nnoremap <leader>tr :action FindUsages<CR>
 nnoremap <leader>ti :action GotoImplementation<CR>
 
 nnoremap <leader>fa :action Refactorings.QuickListPopupAction<CR>
 vmap <leader>fa :action Refactorings.QuickListPopupAction<CR>
+
+nnoremap <leader>fc :action CopyElement<CR>
 
 nnoremap <leader>ff :action ReformatCode<CR>
 nnoremap <leader>fo :action OptimizeImports<CR>

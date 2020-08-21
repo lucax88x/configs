@@ -3,6 +3,7 @@ nmap <leader>gs :G<CR>
 nmap <leader>gf :diffget //2<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gd :Gdiffsplit<CR>
+nmap <leader>gc :GCheckout<CR>
 
 " vim-gitgutter
 nmap ]h <Plug>(GitGutterNextHunk)
