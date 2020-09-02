@@ -6,6 +6,7 @@
   "diagnostic.displayByAle": false,
   "suggest.enablePreselect": true,
   "suggest.noselect": false,
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
   "javascript.preferences.renameShorthandProperties": false,
   "typescript.preferences.renameShorthandProperties": false
 }

@@ -8,3 +8,10 @@ let g:startify_custom_header = [
         \ '| | |_| | (_| (_| | |_| | | (_| |/ / / /| |',
         \ '|_|\__,_|\___\__,_|\__|_|  \__,_/___/___|_|',
         \]
+
+let g:startify_lists = [
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ ]

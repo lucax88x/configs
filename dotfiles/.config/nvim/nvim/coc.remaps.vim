@@ -23,26 +23,26 @@ function Lint()
   silent :CocCommand eslint.executeAutofix
 endfunction
 
-function FormatLintOrganize()
-  silent :call OrganizeImport()
-  silent :call Lint()
-  silent :call Format()
-endfunction
+" Cannot wait for Organize import
+" function FormatLintOrganize()
+"   silent :call OrganizeImport()
+"   silent :call Lint()
+"   silent :call Format()
+" endfunction
 
 nnoremap <silent> <leader>fo <CR>
 nnoremap <silent> <leader>fo :call OrganizeImport()<CR>
 nnoremap <silent> <leader>ff :call Format()<CR>
 nnoremap <silent> <leader>fl :call Lint()<CR>
 
-" organize import is too low to put on save
-" :autocmd BufWritePost * :call FormatLintOrganize()
-:autocmd BufWritePost * :call Format()
-
 nnoremap <leader>pws :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 " nmap <leader>g] <Plug>(coc-diagnostic-next)
 " nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
 " nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
+"
+nmap <silent> ]e :call CocAction('diagnosticPrevious')<cr>
+nmap <silent> [e :call CocAction('diagnosticNext')<cr>
 nnoremap <silent> <leader>cr :CocRestart<CR>
 nnoremap <silent> <leader>cf :CocFix<CR>
 
