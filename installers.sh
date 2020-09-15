@@ -1,23 +1,5 @@
 ## GLOBAL SOFTWARE
 
-function installSnap {
-
-  case $DISTRO in
-    MANJARO)
-      yay -Sy --noconfirm snapd
-      sudo systemctl enable --now snapd.socket
-
-      echo Either log out and back in again, or restart your system, to ensure snap’s paths are updated correctly.
-      echo Once done, restart the script!
-
-      exit 1
-    ;;
-    *)
-      echo NOT IMPLEMENTED!
-    ;;
-  esac
-}
-
 function installYay {
 
   case $DISTRO in
@@ -100,7 +82,7 @@ function installFontAwesome {
 }
 
 function installLsd {
-  sudo snap install lsd --devmode
+  yay -S --noconfirm lsd
 }
 
 function installZsh {
@@ -146,24 +128,6 @@ function installChrome {
     ;;
     MANJARO)
       yay -S --noconfirm google-chrome
-    ;;
-    *)
-      echo NOT IMPLEMENTED!
-    ;;
-  esac
-}
-
-function installVsCode {
-  case $DISTRO in
-    UBUNTU)
-      sudo snap install code --classic
-
-    ;;
-    MANJARO)
-      sudo snap install code --classic
-      yay -S libdbusmenu-glib
-      yay -S gconf
-      # yay -S --noconfirm code
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -251,19 +215,13 @@ function installTeams {
 }
 
 function installKubectl {
-  sudo snap install kubectl --classic
+  # sudo snap install kubectl --classic
+  yay -Sy --noconfirm kubectl-bin
 }
 
 function installSlack {
-  sudo snap install slack --classic
-}
-
-function installEmacs {
-  echo SELECT THE VERSION NEEDED BY DOOM EMACS
-  sudo snap install emacs --channel=latest/beta --classic
-  yay -Sy --noconfirm ripgrep
-  git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
-  ~/.emacs.d/bin/doom install
+  # sudo snap install slack --classic
+  yay -Sy --noconfirm slack-desktop
 }
 
 function installNVim {

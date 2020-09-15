@@ -38,13 +38,6 @@ else
   echo YAY ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v snap)" ]; then
-  echo INSTALLING SNAP
-  installSnap
-else
-  echo SNAP ALREADY INSTALLED
-fi
-
 if ! [ -x "$(command -v curl)" ]; then
   echo INSTALLING CURL
   installCurl
@@ -115,13 +108,6 @@ if ! [ -x "$(command -v google-chrome-stable)" ]; then
   installChrome
 else
   echo CHROME ALREADY INSTALLED
-fi
-
-if ! [ -x "$(command -v code)" ]; then
-  echo INSTALLING VSCODE
-  installVsCode
-else
-  echo VSCODE ALREADY INSTALLED
 fi
 
 if ! [ -f ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox ]; then
@@ -215,13 +201,6 @@ else
   echo SLACK ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v emacs)" ]; then
-  echo INSTALLING EMACS
-  installEmacs
-else
-  echo EMACS ALREADY INSTALLED
-fi
-
 if ! [ -x "$(command -v i3)" ]; then
   echo INSTALLING I3
   installI3
@@ -266,7 +245,6 @@ echo Purged temp folder
 echo REMEMBER TO:
 echo - update all packages and the system
 echo - register ssh public key to github
-echo - install vscode settings by using extension 'setting sync'
 echo - install node with nvm
 echo '- disable alt+space shortcut (https://unix.stackexchange.com/questions/44643/change-global-keyboard-shortcuts)'
 echo '- sync dotfiles'
