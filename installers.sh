@@ -82,7 +82,7 @@ function installFontAwesome {
 }
 
 function installLsd {
-  yay -S --noconfirm lsd
+  yay -S --noconfirm lsd-bin
 }
 
 function installZsh {

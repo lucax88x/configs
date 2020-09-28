@@ -2,9 +2,12 @@ call plug#begin('~/.nvim/plugged')
 
 Plug 'mhinz/vim-startify' " start screen
 
+Plug 'antoinemadec/FixCursorHold.nvim' " Fix CursorHold Performance
+
 Plug 'tpope/vim-fugitive' " git
 Plug 'airblade/vim-gitgutter' " show git gutters
-Plug 'stsewd/fzf-checkout.vim' " checkout branches with fzf
+Plug 'Xuyuanp/scrollbar.nvim'
+Plug 'wfxr/minimap.vim' " requires code-minimap
 
 Plug 'vim-utils/vim-man' " man pages
 Plug 'mbbill/undotree' " undo tree
@@ -18,10 +21,10 @@ Plug 'bkad/CamelCaseMotion' " allows to move by camelCase with w e
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 Plug 'junegunn/fzf.vim'
-Plug 'antoinemadec/coc-fzf' " coc and fzf together
 
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " previews hex colors
 Plug 'rrethy/vim-illuminate' " highlight matching words when cursor on it
+Plug 'terryma/vim-expand-region'
 
 Plug 'junegunn/vim-peekaboo' " shows register preview
 Plug 'vim-scripts/BufOnly.vim' " deletes all buffers except
@@ -35,8 +38,8 @@ Plug 'AndrewRadev/splitjoin.vim' " allows to split one liner to multi lines
 Plug 'AndrewRadev/tagalong.vim' " changes the closing html / xml tag
 
 Plug 'justinmk/vim-dirvish' " alternative file explorer
-Plug 'ryanoasis/vim-devicons'
-Plug 'airblade/vim-rooter'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-abolish' " :S to replace with smartcase
 
 " Snippets
@@ -44,17 +47,26 @@ Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
 
 " Autocomplete & Linters
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocomplete
+Plug 'neoclide/coc.nvim', {'branch': 'master'}
+" Plug 'neoclide/coc.nvim', {'commit': '4f40c16a15336b589b1b5b509df4e00300d755eb'}
+Plug 'antoinemadec/coc-fzf' " coc and fzf together
 
 " Language packs
-Plug 'sheerun/vim-polyglot' " programming language packs
+
+" Plug 'sheerun/vim-polyglot' " programming language packs
+
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
 Plug 'rust-lang/rust.vim'
 Plug 'jceb/vim-orgmode'
-Plug 'leafgarland/typescript-vim' " better syntax than polyglot
+Plug 'mustache/vim-mustache-handlebars'
 
 " Theming
 Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim' " status bar
 Plug 'shinchu/lightline-gruvbox.vim'
+
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 call plug#end()

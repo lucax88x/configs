@@ -42,7 +42,7 @@ nnoremap <leader>pws :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
 "
 nmap <silent> ]e :call CocAction('diagnosticPrevious')<cr>
-nmap <silent> [e :call CocAction('diagnosticNext')<cr>
+nmap <silent> [c :call CocAction('diagnosticNext')<cr>
 nnoremap <silent> <leader>cr :CocRestart<CR>
 nnoremap <silent> <leader>cf :CocFix<CR>
 
