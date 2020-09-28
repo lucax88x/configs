@@ -1,6 +1,5 @@
 " alternative esc
-inoremap jj <esc>
-inoremap <C-c> <esc>
+inoremap jk <esc>
 
 " quit
 nnoremap <silent> <leader>q :q<CR>

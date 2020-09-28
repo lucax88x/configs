@@ -15,6 +15,7 @@ source $HOME/.config/nvim/lightline.vim
 
 " Settings
 source $HOME/.config/nvim/startify.vim
+source $HOME/.config/nvim/scrollbar.vim
 
 source $HOME/.config/nvim/fix-cursorhold.vim
 
@@ -30,7 +31,7 @@ source $HOME/.config/nvim/which-key.vim
 source $HOME/.config/nvim/ripgrep.vim
 source $HOME/.config/nvim/camelcasemotion.vim
 source $HOME/.config/nvim/firenvim.vim
-source $HOME/.config/nvim/scrollbar.vim
+source $HOME/.config/nvim/minimap.vim
 
 " Remaps
 source $HOME/.config/nvim/default.remaps.vim

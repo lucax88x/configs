@@ -6,7 +6,6 @@ Plug 'antoinemadec/FixCursorHold.nvim' " Fix CursorHold Performance
 
 Plug 'tpope/vim-fugitive' " git
 Plug 'airblade/vim-gitgutter' " show git gutters
-Plug 'Xuyuanp/scrollbar.nvim'
 Plug 'wfxr/minimap.vim' " requires code-minimap
 
 Plug 'vim-utils/vim-man' " man pages

@@ -17,7 +17,7 @@ set ignorecase " Ignore case when searching
 set smartcase " If there is an uppercase in your search term
 
 " KEYMAP
-inoremap jj <esc>
+inoremap jk <esc>
 nnoremap <leader>bw :action SaveDocument<CR>
 nnoremap <leader>pg :action SearchEverywhere<CR>
 
