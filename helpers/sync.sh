@@ -25,6 +25,7 @@ declare -A pairs=(
     [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
     [~/.config/picom/picom.conf]=./dotfiles/.config/picom/picom.conf
     [~/.config/nvim]=./dotfiles/.config/nvim
+    [~/.config/ranger/rc.conf]=./dotfiles/.config/ranger/rc.conf
     [~/.conkyrc]=./dotfiles/.conkyrc
     [~/.gitconfig]=./dotfiles/.gitconfig
     [~/.Xmodmap]=./dotfiles/.Xmodmap

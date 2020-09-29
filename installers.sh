@@ -265,6 +265,15 @@ function installFzf {
   git clone https://github.com/Aloxaf/fzf-tab ~ZSH_CUSTOM/plugins/fzf-tab
 }
 
+function installRanger {
+  yay -Sy --noconfirm ranger
+
+  # image preview for range
+  yay -Sy --noconfirm ueberzug
+
+  git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+}
+
 ## CONFIGURATION
 
 function configureGit {

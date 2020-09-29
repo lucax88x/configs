@@ -25,9 +25,9 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " previews hex colors
 Plug 'rrethy/vim-illuminate' " highlight matching words when cursor on it
 Plug 'terryma/vim-expand-region'
 
+Plug 'machakann/vim-highlightedyank' " highlights the yank
 Plug 'junegunn/vim-peekaboo' " shows register preview
 Plug 'vim-scripts/BufOnly.vim' " deletes all buffers except
-Plug 'machakann/vim-highlightedyank' " highlights the yank
 Plug 'psliwka/vim-smoothie' " smoother scroll
 Plug 'liuchengxu/vim-which-key' " shows 'emacs' preview of shortcuts
 Plug 'romainl/vim-cool' " disabled search highlight until next search
@@ -37,8 +37,7 @@ Plug 'AndrewRadev/splitjoin.vim' " allows to split one liner to multi lines
 Plug 'AndrewRadev/tagalong.vim' " changes the closing html / xml tag
 
 Plug 'justinmk/vim-dirvish' " alternative file explorer
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'airblade/vim-rooter'
+"" Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-abolish' " :S to replace with smartcase
 
 " Snippets
@@ -57,7 +56,6 @@ Plug 'antoinemadec/coc-fzf' " coc and fzf together
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 
-Plug 'rust-lang/rust.vim'
 Plug 'jceb/vim-orgmode'
 Plug 'mustache/vim-mustache-handlebars'
 

@@ -229,6 +229,13 @@ else
   echo FZF ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v ranger)" ]; then
+  echo INSTALLING RANGER
+  installRanger
+else
+  echo RANGER ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.gitconfig ]; then
