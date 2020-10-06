@@ -36,11 +36,14 @@ nnoremap <silent> <leader>ff :call Format()<CR>
 nnoremap <silent> <leader>fl :call Lint()<CR>
 
 nnoremap <leader>pws :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap [e <Plug>(coc-diagnostic-prev)
+nnoremap ]e <Plug>(coc-diagnostic-next)
+
 " nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 " nmap <leader>g] <Plug>(coc-diagnostic-next)
 " nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
 " nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
-"
+
 nmap <silent> ]e :call CocAction('diagnosticPrevious')<cr>
 nmap <silent> [c :call CocAction('diagnosticNext')<cr>
 nnoremap <silent> <leader>cr :CocRestart<CR>

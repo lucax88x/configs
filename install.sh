@@ -229,6 +229,20 @@ else
   echo FZF ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v rg)" ]; then
+  echo INSTALLING RG
+  installRg
+else
+  echo RG ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v fd)" ]; then
+  echo INSTALLING FD
+  installFd
+else
+  echo FD ALREADY INSTALLED
+fi
+
 if ! [ -x "$(command -v ranger)" ]; then
   echo INSTALLING RANGER
   installRanger

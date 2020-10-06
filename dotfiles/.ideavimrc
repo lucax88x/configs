@@ -1,4 +1,5 @@
 " https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+" or :actionlist
 
 let mapleader = " "
 set surround
@@ -18,6 +19,10 @@ set smartcase " If there is an uppercase in your search term
 
 " KEYMAP
 inoremap jk <esc>
+nnoremap - :action ActivateProjectToolWindow<CR>
+" nnoremap - :action ProjectViewChangeView<CR>
+nnoremap <c-w>o :action HideAllWindows<cr>
+
 nnoremap <leader>bw :action SaveDocument<CR>
 nnoremap <leader>pg :action SearchEverywhere<CR>
 
@@ -87,12 +92,13 @@ nnoremap <c-o> :action Back<cr>
 nnoremap <c-i> :action Forward<cr>
 
 " Navigation
-nnoremap ]c :action GotoNextError<cr>
-nnoremap [c :action GotoPreviousError<cr>
+nnoremap ]e :action ReSharperGotoNextErrorInSolution<cr>
+nnoremap [e :action ReSharperGotoPrevErrorInSolution<cr>
+nnoremap ]d :action GotoNextError<cr>
+nnoremap [d :action GotoPreviousError<cr>
 nnoremap ]h :action VcsShowNextChangeMarker<cr>
 nnoremap [h :action VcsShowPrevChangeMarker<cr>
-nnoremap <leader>se :action ShowErrorDescription<cr>
+nnoremap <leader>es :action ShowErrorDescription<cr>
 
 " Misc
 nnoremap <leader><cr> :source ~/.ideavimrc<CR>
-noremap <leader><cr> :source ~/.ideavimrc<CR>

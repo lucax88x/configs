@@ -26,7 +26,7 @@ Plug 'rrethy/vim-illuminate' " highlight matching words when cursor on it
 Plug 'terryma/vim-expand-region'
 
 Plug 'machakann/vim-highlightedyank' " highlights the yank
-Plug 'junegunn/vim-peekaboo' " shows register preview
+" Plug 'junegunn/vim-peekaboo' " shows register preview
 Plug 'vim-scripts/BufOnly.vim' " deletes all buffers except
 Plug 'psliwka/vim-smoothie' " smoother scroll
 Plug 'liuchengxu/vim-which-key' " shows 'emacs' preview of shortcuts

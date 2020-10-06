@@ -25,7 +25,7 @@ source $HOME/.config/nvim/dirvish.vim
 source $HOME/.config/nvim/fzf.vim
 source $HOME/.config/nvim/coc.vim
 source $HOME/.config/nvim/hexokinase.vim
-source $HOME/.config/nvim/peekaboo.vim
+" source $HOME/.config/nvim/peekaboo.vim
 source $HOME/.config/nvim/which-key.vim
 source $HOME/.config/nvim/ripgrep.vim
 source $HOME/.config/nvim/camelcasemotion.vim

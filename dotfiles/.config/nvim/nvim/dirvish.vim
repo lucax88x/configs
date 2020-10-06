@@ -24,7 +24,7 @@ endfunction
 augroup dirvish_confif
   autocmd!
   " 'I' will create a new file
-  autocmd FileType dirvish nnoremap <silent><buffer> I :call CreateFile()<CR>
+  autocmd FileType dirvish nnoremap <silent><buffer> mf :call CreateFile()<CR>
   " 'dd' will delete file under the cursor
   autocmd FileType dirvish nnoremap <silent><buffer> dd :call DeleteItemUnderCursor()<CR>
   " open now should preview directory as tree

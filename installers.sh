@@ -274,6 +274,14 @@ function installRanger {
   git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 }
 
+function installRg {
+  yay -Sy --noconfirm rg
+}
+
+function installFd {
+  yay -Sy --noconfirm fd
+}
+
 ## CONFIGURATION
 
 function configureGit {
