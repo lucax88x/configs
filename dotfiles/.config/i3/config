@@ -259,3 +259,9 @@ bindsym $mod+semicolon exec "i3-easyfocus -a -f -xos4-terminus-medium-r-normal--
 ### Picom ###
 ######################
 exec_always picom -b
+
+#####################
+### Change Language shortcuts ###
+######################
+bindsym $mod+Shift+i exec setxkbmap it
+bindsym $mod+Shift+u exec setxkbmap us

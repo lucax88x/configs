@@ -5,8 +5,9 @@ Plug 'mhinz/vim-startify' " start screen
 Plug 'antoinemadec/FixCursorHold.nvim' " Fix CursorHold Performance
 
 Plug 'tpope/vim-fugitive' " git
+Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter' " show git gutters
-Plug 'wfxr/minimap.vim' " requires code-minimap
+" Plug 'wfxr/minimap.vim' " requires code-minimap
 
 Plug 'vim-utils/vim-man' " man pages
 Plug 'mbbill/undotree' " undo tree
@@ -27,14 +28,14 @@ Plug 'terryma/vim-expand-region'
 
 Plug 'machakann/vim-highlightedyank' " highlights the yank
 " Plug 'junegunn/vim-peekaboo' " shows register preview
-Plug 'vim-scripts/BufOnly.vim' " deletes all buffers except
+Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' } " deletes all buffers except
 Plug 'psliwka/vim-smoothie' " smoother scroll
 Plug 'liuchengxu/vim-which-key' " shows 'emacs' preview of shortcuts
 Plug 'romainl/vim-cool' " disabled search highlight until next search
 Plug 'markonm/traces.vim' " previews the :s commands
 Plug 'AndrewRadev/sideways.vim' " allows to move functions parameters
 Plug 'AndrewRadev/splitjoin.vim' " allows to split one liner to multi lines
-Plug 'AndrewRadev/tagalong.vim' " changes the closing html / xml tag
+" Plug 'AndrewRadev/tagalong.vim' " changes the closing html / xml tag
 
 Plug 'justinmk/vim-dirvish' " alternative file explorer
 "" Plug 'ryanoasis/vim-devicons'

@@ -24,6 +24,8 @@ nnoremap - :action ActivateProjectToolWindow<CR>
 nnoremap <c-w>o :action HideAllWindows<cr>
 
 nnoremap <leader>bw :action SaveDocument<CR>
+nnoremap <leader>bl :action Switcher<CR>
+nnoremap <c-6> :action Switcher<CR>
 nnoremap <leader>pg :action SearchEverywhere<CR>
 
 nnoremap <leader>td :action GotoDeclaration<CR>
@@ -32,6 +34,7 @@ nnoremap <leader>ti :action GotoImplementation<CR>
 
 nnoremap <leader>fa :action Refactorings.QuickListPopupAction<CR>
 vmap <leader>fa :action Refactorings.QuickListPopupAction<CR>
+" nnoremap <leader>fa :action ShowIntentionActions<CR>
 
 nnoremap <leader>fc :action CopyElement<CR>
 
@@ -42,9 +45,9 @@ nnoremap <leader>rr :action RenameElement<CR>
 nnoremap <leader>rf :action RenameFile<CR>
 
 " Comment
-" nnoremap <leader>cc :action CommentByLineComment<CR>
-" vmap <leader>cc :action CommentByLineComment<CR>
-" vmap <leader>cb :action CommentByBlockComment<CR>
+nnoremap <leader>cc :action CommentByLineComment<CR>
+vmap <leader>cc :action CommentByLineComment<CR>
+vmap <leader>cb :action CommentByBlockComment<CR>
 
 " Menus
 " nnoremap <leader>m :action ActivateProjectToolWindow<CR>

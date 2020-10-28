@@ -12,4 +12,4 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap X "_d
 
 " undo
-nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
