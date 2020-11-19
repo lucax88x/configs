@@ -31,6 +31,8 @@ source $HOME/.config/nvim/ripgrep.vim
 source $HOME/.config/nvim/camelcasemotion.vim
 source $HOME/.config/nvim/firenvim.vim
 source $HOME/.config/nvim/minimap.vim
+" lua require('lsp');
+lua require('treesitter-config');
 
 " Remaps
 source $HOME/.config/nvim/default.remaps.vim

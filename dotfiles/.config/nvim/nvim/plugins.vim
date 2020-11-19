@@ -42,23 +42,22 @@ Plug 'justinmk/vim-dirvish' " alternative file explorer
 Plug 'tpope/vim-abolish' " :S to replace with smartcase
 
 " Snippets
-Plug 'SirVer/ultisnips'
-Plug 'mlaursen/vim-react-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'mlaursen/vim-react-snippets'
 
 " Autocomplete & Linters
-Plug 'neoclide/coc.nvim', {'branch': 'master'}
-" Plug 'neoclide/coc.nvim', {'commit': '4f40c16a15336b589b1b5b509df4e00300d755eb'}
+" Plug 'neovim/nvim-lspconfig'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf' " coc and fzf together
 
 " Language packs
-
-" Plug 'sheerun/vim-polyglot' " programming language packs
-
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'nvim-treesitter/nvim-treesitter'
+"" Plug 'sheerun/vim-polyglot' " programming language packs
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'maxmellon/vim-jsx-pretty'
 
 Plug 'jceb/vim-orgmode'
-Plug 'mustache/vim-mustache-handlebars'
 
 " Theming
 Plug 'morhetz/gruvbox'

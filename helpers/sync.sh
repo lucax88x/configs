@@ -32,6 +32,8 @@ declare -A pairs=(
     [~/bin/]=./scripts/
     [~/.doom.d]=./dotfiles/.doom.d/
     [~/.ideavimrc]=./dotfiles/.ideavimrc
+    [~/.tmux.conf]=./dotfiles/.tmux.conf
+    [~/.tmuxinator]=./dotfiles/.tmuxinator
 )
 
 function sync()

@@ -7,5 +7,3 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 polybar laptop & polybar left & polybar center & polybar right & polybar home
-
-echo "Bars launched..."

@@ -9,7 +9,8 @@ nmap <leader>rr <Plug>(coc-rename)
 nnoremap <silent> <leader>cc :<C-u>CocFzfList commands<CR>
 
 nnoremap <silent> <leader>fe :<C-u>CocFzfList diagnostics<CR>
-nnoremap <silent> <leader>fa :<C-u>CocFzfList actions<CR>
+" nnoremap <silent> <leader>fa :<C-u>CocFzfList actions<CR>
+nnoremap <silent> <leader>fa :<C-u>:call coc_fzf#actions#fzf_run()<CR>
 
 function OrganizeImport()
   silent :call CocAction('runCommand', 'editor.action.organizeImport')
