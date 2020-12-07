@@ -7,7 +7,6 @@ Plug 'antoinemadec/FixCursorHold.nvim' " Fix CursorHold Performance
 Plug 'tpope/vim-fugitive' " git
 Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter' " show git gutters
-" Plug 'wfxr/minimap.vim' " requires code-minimap
 
 Plug 'vim-utils/vim-man' " man pages
 Plug 'mbbill/undotree' " undo tree
@@ -27,7 +26,7 @@ Plug 'rrethy/vim-illuminate' " highlight matching words when cursor on it
 Plug 'terryma/vim-expand-region'
 
 Plug 'machakann/vim-highlightedyank' " highlights the yank
-" Plug 'junegunn/vim-peekaboo' " shows register preview
+Plug 'junegunn/vim-peekaboo' " shows register preview
 Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' } " deletes all buffers except
 Plug 'psliwka/vim-smoothie' " smoother scroll
 Plug 'liuchengxu/vim-which-key' " shows 'emacs' preview of shortcuts
@@ -46,13 +45,20 @@ Plug 'tpope/vim-abolish' " :S to replace with smartcase
 " Plug 'mlaursen/vim-react-snippets'
 
 " Autocomplete & Linters
+
 " Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-lua/lsp-status.nvim'
+" Plug 'gfanto/fzf-lsp.nvim', { 'branch': 'main' }
+" " Extensions to built-in LSP, for example, providing type inlay hints
+" Plug 'tjdevries/lsp_extensions.nvim'
+" Plug 'nvim-lua/completion-nvim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf' " coc and fzf together
 
 " Language packs
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 "" Plug 'sheerun/vim-polyglot' " programming language packs
 " Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'maxmellon/vim-jsx-pretty'

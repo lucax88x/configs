@@ -15,7 +15,6 @@ source $HOME/.config/nvim/lightline.vim
 
 " Settings
 source $HOME/.config/nvim/startify.vim
-source $HOME/.config/nvim/scrollbar.vim
 
 source $HOME/.config/nvim/fix-cursorhold.vim
 
@@ -23,22 +22,23 @@ source $HOME/.config/nvim/netrw.vim
 source $HOME/.config/nvim/dirvish.vim
 
 source $HOME/.config/nvim/fzf.vim
+" luafile $HOME/.config/nvim/lsp.lua
 source $HOME/.config/nvim/coc.vim
 source $HOME/.config/nvim/hexokinase.vim
-" source $HOME/.config/nvim/peekaboo.vim
+source $HOME/.config/nvim/peekaboo.vim
 source $HOME/.config/nvim/which-key.vim
 source $HOME/.config/nvim/ripgrep.vim
 source $HOME/.config/nvim/camelcasemotion.vim
 source $HOME/.config/nvim/firenvim.vim
-source $HOME/.config/nvim/minimap.vim
-" lua require('lsp');
-lua require('treesitter-config');
+
+luafile $HOME/.config/nvim/treesitter-config.lua
 
 " Remaps
 source $HOME/.config/nvim/default.remaps.vim
 source $HOME/.config/nvim/startify.remaps.vim
 source $HOME/.config/nvim/coc.remaps.vim
 source $HOME/.config/nvim/fzf.remaps.vim
+" luafile $HOME/.config/nvim/lsp.remaps.lua
 source $HOME/.config/nvim/project.remaps.vim
 source $HOME/.config/nvim/buffer.remaps.vim
 source $HOME/.config/nvim/window.remaps.vim
