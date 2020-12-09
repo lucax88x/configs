@@ -1,6 +1,7 @@
 call plug#begin('~/.nvim/plugged')
 
 Plug 'mhinz/vim-startify' " start screen
+Plug 'tweekmonster/startuptime.vim' " benchmark startup
 
 Plug 'antoinemadec/FixCursorHold.nvim' " Fix CursorHold Performance
 
@@ -46,23 +47,18 @@ Plug 'tpope/vim-abolish' " :S to replace with smartcase
 
 " Autocomplete & Linters
 
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/lsp-status.nvim'
-" Plug 'gfanto/fzf-lsp.nvim', { 'branch': 'main' }
-" " Extensions to built-in LSP, for example, providing type inlay hints
-" Plug 'tjdevries/lsp_extensions.nvim'
-" Plug 'nvim-lua/completion-nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp-status.nvim'
+Plug 'gfanto/fzf-lsp.nvim', { 'branch': 'main' }
+" Extensions to built-in LSP, for example, providing type inlay hints
+Plug 'tjdevries/lsp_extensions.nvim'
+Plug 'nvim-lua/completion-nvim'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'antoinemadec/coc-fzf' " coc and fzf together
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'antoinemadec/coc-fzf' " coc and fzf together
 
 " Language packs
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-"" Plug 'sheerun/vim-polyglot' " programming language packs
-" Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'maxmellon/vim-jsx-pretty'
-
 Plug 'jceb/vim-orgmode'
 
 " Theming
