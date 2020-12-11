@@ -9,32 +9,31 @@
 --     return !col || getline('.')[col - 1]  =~ '\s'
 -- endfunction
 
-nnoremap('n', '<leader>td', '<cmd>lua vim.lsp.buf.definition()<CR>')
-nnoremap('n', '<leader>tr', '<cmd>lua vim.lsp.buf.references()<CR>')
-nnoremap('n', '<leader>th', '<cmd>lua vim.lsp.buf.hover()<CR>')
-nnoremap('n', '<leader>ti', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-
-nnoremap('n', '<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-nnoremap('n', '<leader>fe', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-nnoremap('n', '<leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-
-nnoremap('n','<leader>rr','<cmd>lua vim.lsp.buf.rename()<CR>')
-
-
--- map('n', '1gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
--- map('n', 'g0', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
--- map('n', 'gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+nnoremap('<leader>td', '<cmd>lua vim.lsp.buf.definition()<CR>')
+nnoremap('<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
 -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+nnoremap('<leader>ti', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+-- nnoremap('<leader>tr', '<cmd>lua vim.lsp.buf.references()<CR>')
+nnoremap('<leader>tr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>')
+nnoremap('<leader>th', '<cmd>lua vim.lsp.buf.hover()<CR>')
+	-- map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+nnoremap('<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 
-	-- map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
-	-- map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
-	-- map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
-	-- map('n','gr','<cmd>lua vim.lsp.buf.references()<CR>')
+-- nnoremap('<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+-- nnoremap('<leader>fa', '<cmd>CodeActions()<CR>')
+nnoremap('<leader>fa', '<cmd>lua require("telescope.builtin").lsp_code_actions()<CR>')
+-- nnoremap('<leader>fe', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+nnoremap('<leader>fe', '<cmd>lua require("telescope.functions").show_diagnostics()<CR>')
+
+nnoremap('<leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+
+nnoremap('<leader>rr','<cmd>lua vim.lsp.buf.rename()<CR>')
+
+
+
 	-- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
 	-- map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
 	-- map('n','gt','<cmd>lua vim.lsp.buf.type_definition()<CR>')
-	-- map('n','<leader>gw','<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-	-- map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
 	-- map('n','<leader>ah','<cmd>lua vim.lsp.buf.hover()<CR>')
 	-- map('n','<leader>af','<cmd>lua vim.lsp.buf.code_action()<CR>')
 	-- map('n','<leader>ee','<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')

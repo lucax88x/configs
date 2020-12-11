@@ -1,8 +1,7 @@
--- vim.o.guicursor=
 vim.o.showmatch = true
 -- vim.o.nohlsearch
 vim.o.hidden = true
--- vim.o.noerrorbells = true
+vim.o.errorbells = false
 
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
@@ -10,12 +9,12 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.smarttab = true
--- vim.o.nowrap = true
+vim.o.wrap = false
 
 vim.o.relativenumber = true
 vim.o.smartcase = true
--- vim.o.noswapfile = true
--- vim.o.nobackup = true
+vim.o.swapfile = false
+vim.o.backup = false
 vim.o.undodir = '~/.vim/undodir'
 vim.o.undofile = true
 vim.o.incsearch = true
@@ -48,9 +47,3 @@ vim.o.cursorcolumn = false
 
 -- -- done by status bar
 vim.o.showmode = false
-
--- Visualize diagnostics
-vim.g.diagnostic_enable_virtual_text = 1
-vim.g.diagnostic_trimmed_virtual_text = '40'
--- Don't show diagnostics while in insert mode
-vim.g.diagnostic_insert_delay = 1

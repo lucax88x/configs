@@ -6,6 +6,7 @@ local function on_attach(client)
     lsp_status.on_attach(client)
     completion.on_attach(client)
 
+    require('lsp.cosmetics')
     require('lsp.remaps')
 
     print('Attached to ' .. client.name)
@@ -21,7 +22,8 @@ for _, server in ipairs(servers) do lsp[server].setup(default_lsp_config) end
 lsp.sumneko_lua.setup {
     on_attach = on_attach,
     capabilities = lsp_status.capabilities,
-    cmd = { 'luals' },
+    -- :LspInstallInfo sumneko_lua
+    cmd = { '/home/lucatrazzi/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server' },
     settings = {
         Lua = {
             diagnostics = {
@@ -88,3 +90,22 @@ lsp.diagnosticls.setup {
         }
     }
 }
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- This will disable virtual text, like doing:
+    -- let g:diagnostic_enable_virtual_text = 0
+    virtual_text = true,
+
+    -- This is similar to:
+    -- let g:diagnostic_show_sign = 1
+    -- To configure sign display,
+    --  see: ":help vim.lsp.diagnostic.set_signs()"
+    signs = true,
+
+    -- This is similar to:
+    -- "let g:diagnostic_insert_delay = 1"
+    update_in_insert = false,
+  }
+)
+
