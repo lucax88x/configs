@@ -1,0 +1,5 @@
+require 'lt.lsp.completion'
+require 'lt.lsp.cosmetics'
+require 'lt.lsp.remaps'
+require 'lt.lsp.settings'
+require 'lt.lsp.events'

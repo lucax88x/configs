@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/lucatrazzi/repos/playfeedback'
+let g:netrw_dirhist_9='/home/lucatrazzi/.config/nvim/lua/lt/statusline/lightline'
+let g:netrw_dirhist_8='/home/lucatrazzi/.config/nvim/lua/lt/statusline'
+let g:netrw_dirhist_7='/home/lucatrazzi/.config/nvim/lua/lt'
+let g:netrw_dirhist_6='/home/lucatrazzi/.config/nvim/lua'
+let g:netrw_dirhist_5='/home/lucatrazzi/.config/nvim'
+let g:netrw_dirhist_4='/home/lucatrazzi/repos/playfeedback'
+let g:netrw_dirhist_3='/home/lucatrazzi/.config/nvim/lua/lt/statusline/lightline'
+let g:netrw_dirhist_2='/home/lucatrazzi/.config/nvim/lua/lt/statusline'
+let g:netrw_dirhist_1='/home/lucatrazzi/.config/nvim/lua/lt'

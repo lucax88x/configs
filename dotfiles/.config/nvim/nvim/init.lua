@@ -6,54 +6,52 @@
 -- |_|\__,_|\___\__,_|\__|_|  \__,_/___/___|_|
 
 
-require 'plugins'
-require 'theme'
+require 'lt.plugins'
+require 'lt.theme'
 
-require 'utils'
+require 'lt.utils.remaps'
+require 'lt.utils.events'
+require 'lt.filetypes'
 
-require 'defaults.settings'
-require 'defaults.remaps'
+require 'lt.defaults.settings'
+require 'lt.defaults.remaps'
 
-require 'lightline.settings'
+require 'lt.statusline.index'
 
-require 'window.remaps'
-require 'project.remaps'
-require 'buffer.remaps'
-require 'editor.remaps'
-require 'git.remaps'
-
--- TODO: fix
-require 'startify.settings'
-require 'startify.remaps'
-
-require 'fix-cursorhold.settings'
-
-require 'netrw.settings'
+require 'lt.window.remaps'
+require 'lt.project.remaps'
+require 'lt.buffer.remaps'
+require 'lt.editor.remaps'
+require 'lt.git.remaps'
 
 -- TODO: fix
-require 'dirvish.settings'
+require 'lt.startify.settings'
+require 'lt.startify.remaps'
 
-require 'lsp.settings'
+require 'lt.fix-cursorhold.settings'
 
-require 'treesitter.settings'
+require 'lt.netrw.settings'
 
-require 'fzf.settings'
-require 'fzf.remaps'
+require 'lt.dirvish.settings'
 
-require 'easymotion.remaps'
+require 'lt.lsp.index'
 
-require 'hexokinase.settings'
+require 'lt.treesitter.settings'
 
--- TODO: fix
-require 'peekaboo.settings'
+require 'lt.fzf.settings'
+require 'lt.fzf.remaps'
 
-require 'which-key.settings'
-require 'which-key.remaps'
+require 'lt.easymotion.remaps'
 
--- TODO: fix
-require 'ripgrep.settings'
+require 'lt.hexokinase.settings'
 
-require 'camelcasemotion.settings'
--- TODO: fix
--- require 'firenvim.settings'
+require 'lt.peekaboo.settings'
+
+require 'lt.which-key.settings'
+require 'lt.which-key.remaps'
+
+require 'lt.ripgrep.settings'
+
+require 'lt.camelcasemotion.settings'
+require 'lt.firenvim.settings'
 
