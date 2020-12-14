@@ -1,33 +1,24 @@
--- TODO: convert to lua
+if vim.g.started_by_firenvim then
+  vim.g.laststatus = 0
 
-vim.api.nvim_exec(
-[[
-  if exists('g:started_by_firenvim')
-    set laststatus=0
+  nnoremap('<Esc><Esc>', '=call firenvim#focus_page()<CR>')
+  nnoremap('<C-z>', '=write<CR>=call firenvim#hide_frame()<CR>')
 
-    nnoremap <silent> <Esc><Esc> :call firenvim#focus_page()<CR>
-    nnoremap <silent> <C-z> :write<CR>:call firenvim#hide_frame()<CR>
+  vim.g.firenvim_config = {
+      globalSettings= {
+          alt= all,
+      },
+      localSettings= {
+          [".*"] = {
+              cmdline= neovim,
+              priority= 0,
+              selector= textarea,
+              takeover= always,
+          },
+          -- ["https?=//twitter.com"] = { takeover= never, priority= 1 }
+          -- ["https?=//docs.google.com"] = { takeover= never, priority= 1 }
+      }
+  }
 
-    let g:firenvim_config = {
-        \ 'globalSettings': {
-            \ 'alt': 'all',
-        \  },
-        \ 'localSettings': {
-            \ '.*': {
-                \ 'cmdline': 'neovim',
-                \ 'priority': 0,
-                \ 'selector': 'textarea',
-                \ 'takeover': 'always',
-            \ },
-        \ }
-    \ }
-
-    let fc = g:firenvim_config['localSettings']
-    let fc['https?://twitter.com'] = { 'takeover': 'never', 'priority': 1 }
-    let fc['https?://docs.google.com'] = { 'takeover': 'never', 'priority': 1 }
-
-    au BufEnter github.com_*.txt set filetype=markdown
-  endif
-]],
-true)
-
+  vim.cmd('au BufEnter github.com_*.txt set filetype=markdown')
+end

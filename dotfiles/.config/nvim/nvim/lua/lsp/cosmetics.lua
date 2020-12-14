@@ -7,11 +7,12 @@
 -- vim.api.nvim_call_function("sign_define", {"LspDiagnosticsErrorSign",
 --     {text = "", texthl = "LspDiagnosticsError"}})
 
-vim.api.nvim_call_function("sign_define", {"LspDiagnosticsErrorSign",
-    {text = "", texthl = "LspDiagnosticsError"}})
-vim.fn.sign_define("LspDiagnosticsErrorSign",
-    {text = "", texthl = "LspDiagnosticsError"})
---
+-- vim.api.nvim_call_function("sign_define", {"LspDiagnosticsErrorSign",
+--     {text = "", texthl = "LspDiagnosticsError"}})
+-- vim.fn.sign_define("LspDiagnosticsErrorSign",
+--     {text = "", texthl = "LspDiagnosticsError"})
+
 vim.cmd [[ sign define LspDiagnosticsErrorSign text= texthl=LspDiagnosticsError linehl= numhl= ]]
+
 -- vim.cmd [[ sign define LspDiagnosticsErrorSign text= ]]
 --

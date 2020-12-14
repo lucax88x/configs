@@ -102,7 +102,7 @@ return require('packer').startup {
     use 'jceb/vim-orgmode'
 
     -- Theming
-    use 'morhetz/gruvbox'
+    use 'gruvbox-community/gruvbox'
 
     -- status line
     use 'itchyny/lightline.vim'
