@@ -13,8 +13,7 @@ require 'lt.utils.remaps'
 require 'lt.utils.events'
 require 'lt.filetypes'
 
-require 'lt.defaults.settings'
-require 'lt.defaults.remaps'
+require 'lt.defaults'
 
 require 'lt.statusline'
 

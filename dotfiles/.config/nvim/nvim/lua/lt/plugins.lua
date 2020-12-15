@@ -54,20 +54,18 @@ return require('packer').startup {
 
     use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
     use {'junegunn/fzf.vim'}
-    use {'ojroques/nvim-lspfuzzy', branch = 'dev' }
+    use 'ojroques/nvim-lspfuzzy'
 
     use {'rrethy/vim-hexokinase', run = 'make hexokinase' } -- preview hex colors
 
     use 'rrethy/vim-illuminate' -- highlight matching words when cursor on it
     use 'terryma/vim-expand-region'
 
-    use 'machakann/vim-highlightedyank' -- highlights the yank
     use 'junegunn/vim-peekaboo' -- shows register preview
     use 'numtostr/BufOnly.nvim' -- deletes all buffers except
     use 'psliwka/vim-smoothie' -- smoother scroll
     use 'liuchengxu/vim-which-key' -- shows 'emacs' preview of shortcuts
     use 'romainl/vim-cool' -- disabled search highlight until next search
-    use 'markonm/traces.vim' -- previews the :s commands
     use 'AndrewRadev/sideways.vim' -- allows to move functions parameters
     use 'AndrewRadev/splitjoin.vim' -- allows to split one liner to multi lines
     -- use 'AndrewRadev/tagalong.vim' -- changes the closing html / xml tag
@@ -87,9 +85,6 @@ return require('packer').startup {
     use 'nvim-lua/lsp-status.nvim'
     use 'tjdevries/lsp_extensions.nvim'
     use 'nvim-lua/completion-nvim'
-
-    -- use 'neoclide/coc.nvim', {'branch': 'release'}
-    -- use 'antoinemadec/coc-fzf' -- coc and fzf together
 
     -- Language packs
     use {

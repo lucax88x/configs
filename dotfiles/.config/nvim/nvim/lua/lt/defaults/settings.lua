@@ -21,6 +21,10 @@ vim.o.incsearch = true
 vim.o.termguicolors = true
 vim.o.scrolloff = 8
 
+-- live preview of substitutions
+vim.o.inccommand = 'split'
+
+
 -- Give more space for displaying messages.
 vim.o.cmdheight = 1
 
