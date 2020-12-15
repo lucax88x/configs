@@ -32,7 +32,6 @@ return require('packer').startup {
     use {'wbthomason/packer.nvim', opt = true}
 
     use 'nvim-lua/plenary.nvim'
-    use 'nvim-lua/popup.nvim'
 
     use 'mhinz/vim-startify' -- start screen
     use 'tweekmonster/startuptime.vim' -- benchmark startup
@@ -41,7 +40,7 @@ return require('packer').startup {
 
     use 'tpope/vim-fugitive' -- git
     use 'airblade/vim-rooter'
-    use 'airblade/vim-gitgutter' -- show git gutters
+    use 'airblade/vim-gitgutter' -- show git gutters */
 
     use 'vim-utils/vim-man' -- man pages
     use 'mbbill/undotree' -- undo tree
@@ -55,9 +54,7 @@ return require('packer').startup {
 
     use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
     use {'junegunn/fzf.vim'}
-    -- use 'ojroques/nvim-lspfuzzy', {'branch': 'main'}
-
-    use 'nvim-telescope/telescope.nvim'
+    use {'ojroques/nvim-lspfuzzy', branch = 'dev' }
 
     use {'rrethy/vim-hexokinase', run = 'make hexokinase' } -- preview hex colors
 

@@ -40,7 +40,7 @@ vim.cmd [[set shortmess+=c]]
 
 -- vim.o.colorcolumn=80
 
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = 'number'
 
 vim.g.loaded_matchparen = 1
 vim.g.mapleader = ' '

@@ -7,3 +7,4 @@ vim.g.fzf_layout = {
 
 vim.g.fzf_preview_window = { 'down', 'ctrl-/' }
 vim.env.FZF_DEFAULT_OPTS = '--reverse'
+

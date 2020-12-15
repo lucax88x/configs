@@ -1,2 +1,2 @@
-require('lt.statusline.lightline.index')
+require 'lt.statusline.lightline'
 -- require('lt.statusline.expressline.settings')

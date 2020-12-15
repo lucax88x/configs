@@ -16,7 +16,7 @@ require 'lt.filetypes'
 require 'lt.defaults.settings'
 require 'lt.defaults.remaps'
 
-require 'lt.statusline.index'
+require 'lt.statusline'
 
 require 'lt.window.remaps'
 require 'lt.project.remaps'
@@ -34,12 +34,12 @@ require 'lt.netrw.settings'
 
 require 'lt.dirvish.settings'
 
-require 'lt.lsp.index'
+require 'lt.lsp'
 
 require 'lt.treesitter.settings'
 
-require 'lt.fzf.settings'
-require 'lt.fzf.remaps'
+require 'lt.fzf'
+require 'lt.fzf-lsp'
 
 require 'lt.easymotion.remaps'
 
