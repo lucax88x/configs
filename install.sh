@@ -7,8 +7,8 @@ case $DISTRO in
   UBUNTU)
     echo installing for ubuntu
   ;;
-  MANJARO)
-    echo installing for manjaro
+  ARCH)
+    echo installing for arch
   ;;
   *)
     echo not supported distro
@@ -24,7 +24,6 @@ FONTAWESOME_VERSION=5.12.1
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
 
 mkdir -p $TEMP_DIR
-mkdir -p ~/.config/autostart
 cd $TEMP_DIR
 
 ## HELPERS

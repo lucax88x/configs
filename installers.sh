@@ -1,9 +1,8 @@
 ## GLOBAL SOFTWARE
 
 function installYay {
-
   case $DISTRO in
-    MANJARO)
+    ARCHLINUX)
       git clone https://aur.archlinux.org/yay.git
       cd yay && makepkg -si --noconfirm && cd ..
       rm -rf yay
@@ -33,7 +32,7 @@ function installGit {
       apt-get update > /dev/null
       apt-get -y install git-core
     ;;
-    MANJARO)
+    ARCHLINUX)
       yay -S --noconfirm git
     ;;
     *)
@@ -45,7 +44,7 @@ function installGit {
 function installGitFlow {
 
   case $DISTRO in
-    MANJARO)
+    ARCHLINUX)
       yay -S --noconfirm gitflow-avh
     ;;
     *)
@@ -126,7 +125,7 @@ function installChrome {
       apt-get update > /dev/null
       apt-get -y install google-chrome-stable
     ;;
-    MANJARO)
+    ARCHLINUX)
       yay -S --noconfirm google-chrome
     ;;
     *)
@@ -149,7 +148,7 @@ function installTelegram {
       apt-get update > /dev/null
       apt-get -y install telegram
     ;;
-    MANJARO)
+    ARCHLINUX)
       yay -S --noconfirm telegram-desktop
     ;;
     *)
@@ -170,7 +169,7 @@ function installXClip {
     UBUNTU)
       apt-get -y install xclip
     ;;
-    MANJARO)
+    ARCHLINUX)
       yay -S --noconfirm xclip
     ;;
     *)
@@ -215,12 +214,10 @@ function installTeams {
 }
 
 function installKubectl {
-  # sudo snap install kubectl --classic
   yay -Sy --noconfirm kubectl-bin
 }
 
 function installSlack {
-  # sudo snap install slack --classic
   yay -Sy --noconfirm slack-desktop
 }
 
@@ -229,16 +226,12 @@ function installNVim {
 }
 
 function installI3 {
-  yay -Sy --noconfirm i3
+  yay -Sy --noconfirm i3-wm
   yay -Sy --noconfirm i3lock
   yay -Sy --noconfirm i3-easyfocus
 
-  # used for lock
-  yay -Sy --noconfirm scrot
   # used for overall opacity
   yay -Sy --noconfirm picom
-  # used for overall system-monitor
-  yay -Sy --noconfirm conky
   # status bar
   yay -Sy --noconfirm polybar
   # launcher
