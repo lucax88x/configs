@@ -14,6 +14,7 @@ require 'lt.utils.events'
 require 'lt.filetypes'
 
 require 'lt.defaults'
+require 'lt.betterescape'
 
 require 'lt.statusline'
 

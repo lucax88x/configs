@@ -1,5 +1,6 @@
 -- alternative esc
-inoremap('jk', '<esc>')
+-- using betterescape plugin
+-- inoremap('jk', '<esc>')
 
 -- quit
 nnoremap('<leader>q', '<cmd>q<CR>')

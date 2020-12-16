@@ -45,6 +45,7 @@ return require('packer').startup {
     use 'vim-utils/vim-man' -- man pages
     use 'mbbill/undotree' -- undo tree
 
+    use 'jdhao/better-escape.vim'
     use 'easymotion/vim-easymotion'
     use 'justinmk/vim-sneak'
     use 'tpope/vim-commentary'
