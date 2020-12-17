@@ -20,28 +20,18 @@ TEMP_DIR=~/setup-temp
 EMAIL=lucax88x@gmail.com
 NERDFONT_VERSION=2.0.0
 FIRACODE_VERSION=2
-FONTAWESOME_VERSION=5.12.1
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
 
 mkdir -p $TEMP_DIR
 cd $TEMP_DIR
 
-## HELPERS
-
 echo '# GLOBAL SOFTWARE #'
 
-if ! [ -x "$(command -v yay)" ]; then
-  echo INSTALLING YAY
-  installYay
+if ! [ -x "$(command -v make)" ]; then
+  echo INSTALLING BASE-DEVEL
+  installBaseDevel
 else
-  echo YAY ALREADY INSTALLED
-fi
-
-if ! [ -x "$(command -v curl)" ]; then
-  echo INSTALLING CURL
-  installCurl
-else
-  echo CURL ALREADY INSTALLED
+  echo BASE-DEVEL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v git)" ]; then
@@ -51,11 +41,46 @@ else
   echo GIT ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v git-flow)" ]; then
-  echo INSTALLING GIT FLOW
-  # installGitFlow
+if ! [ -x "$(command -v yay)" ]; then
+  echo INSTALLING YAY
+  installYay
 else
-  echo GIT FLOW ALREADY INSTALLED
+  echo YAY ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v wget)" ]; then
+  echo INSTALLING WGET
+  installWget
+else
+  echo WGET ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v curl)" ]; then
+  echo INSTALLING CURL
+  installCurl
+else
+  echo CURL ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v ssh-keygen)" ]; then
+  echo INSTALLING SSH
+  installSsh
+else
+  echo SSH ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v unzip)" ]; then
+  echo INSTALLING UNZIP
+  installUnzip
+else
+  echo UNZIP ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v rsync)" ]; then
+  echo INSTALLING RSYNC
+  installRsync
+else
+  echo RSYNC ALREADY INSTALLED
 fi
 
 echo '# SOFTWARE #'
@@ -79,6 +104,13 @@ if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then
   installFontAwesome
 else
   echo FONTAWESOME ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v bat)" ]; then
+  echo INSTALLING BAT
+  installBat
+else
+  echo BAT ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v lsd)" ]; then
@@ -200,7 +232,7 @@ else
   echo SLACK ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v i3)" ]; then
+if [ ! -f ~/.config/i3/config ]; then
   echo INSTALLING I3
   installI3
 else
@@ -251,11 +283,11 @@ fi
 
 echo '# CONFIGURATIONS'
 
-if [ ! -f ~/.gitconfig ]; then
-  echo CONFIGURING GIT
-  configureGit
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
+  echo CONFIGURING SSH
+  configureSsh
 else
-  echo GIT ALREADY CONFIGURED
+  echo SSH ALREADY CONFIGURED
 fi
 
 rm -rf $TEMP_DIR

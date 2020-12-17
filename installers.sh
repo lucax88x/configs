@@ -1,8 +1,19 @@
 ## GLOBAL SOFTWARE
 
+function installBaseDevel {
+  case $DISTRO in
+    ARCH)
+      yay -S --noconfirm base-devel
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
+}
+
 function installYay {
   case $DISTRO in
-    ARCHLINUX)
+    ARCH)
       git clone https://aur.archlinux.org/yay.git
       cd yay && makepkg -si --noconfirm && cd ..
       rm -rf yay
@@ -19,6 +30,20 @@ function installCurl {
       apt-get update > /dev/null
       apt-get -y install curl
     ;;
+    ARCH)
+      yay -S --noconfirm curl
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
+}
+
+function installWget {
+  case $DISTRO in
+    ARCH)
+      yay -S --noconfirm wget
+    ;;
     *)
       echo NOT IMPLEMENTED!
     ;;
@@ -32,7 +57,7 @@ function installGit {
       apt-get update > /dev/null
       apt-get -y install git-core
     ;;
-    ARCHLINUX)
+    ARCH)
       yay -S --noconfirm git
     ;;
     *)
@@ -41,17 +66,42 @@ function installGit {
   esac
 }
 
-function installGitFlow {
+function installSsh {
 
   case $DISTRO in
-    ARCHLINUX)
-      yay -S --noconfirm gitflow-avh
+    ARCH)
+      yay -S --noconfirm openssh
     ;;
     *)
       echo NOT IMPLEMENTED!
     ;;
   esac
 }
+
+function installRsync {
+
+  case $DISTRO in
+    ARCH)
+      yay -S --noconfirm rsync
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
+}
+
+function installUnzip {
+
+  case $DISTRO in
+    ARCH)
+      yay -S --noconfirm unzip
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
+}
+
 
 ## SOFTWARE ##
 
@@ -81,7 +131,25 @@ function installFontAwesome {
 }
 
 function installLsd {
-  yay -S --noconfirm lsd-bin
+  case $DISTRO in
+    ARCH)
+      yay -Sy --noconfirm lsd
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
+}
+
+function installBat {
+  case $DISTRO in
+    ARCH)
+      yay -Sy --noconfirm bat
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
 }
 
 function installZsh {
@@ -93,6 +161,9 @@ function installZsh {
 
       chmod a+x /usr/bin/chsh
       chsh -s $(which zsh)
+    ;;
+    ARCH)
+      yay -Sy --noconfirm zsh
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -125,7 +196,7 @@ function installChrome {
       apt-get update > /dev/null
       apt-get -y install google-chrome-stable
     ;;
-    ARCHLINUX)
+    ARCH)
       yay -S --noconfirm google-chrome
     ;;
     *)
@@ -135,9 +206,23 @@ function installChrome {
 }
 
 function installJetbrainsToolbox {
-  wget https://download.jetbrains.com/toolbox/$JETBRAINS_TOOLBOX.tar.gz -q --show-progress
-  tar xvzf $JETBRAINS_TOOLBOX.tar.gz > /dev/null
-  ./$JETBRAINS_TOOLBOX/jetbrains-toolbox
+  case $DISTRO in
+    UBUNTU)
+      wget https://download.jetbrains.com/toolbox/$JETBRAINS_TOOLBOX.tar.gz -q --show-progress
+      tar xvzf $JETBRAINS_TOOLBOX.tar.gz > /dev/null
+      ./$JETBRAINS_TOOLBOX/jetbrains-toolbox
+    ;;
+    ARCH)
+      yay -S --noconfirm fuse 
+      
+      wget https://download.jetbrains.com/toolbox/$JETBRAINS_TOOLBOX.tar.gz -q --show-progress
+      tar xvzf $JETBRAINS_TOOLBOX.tar.gz > /dev/null
+      ./$JETBRAINS_TOOLBOX/jetbrains-toolbox
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
 }
 
 function installTelegram {
@@ -148,7 +233,7 @@ function installTelegram {
       apt-get update > /dev/null
       apt-get -y install telegram
     ;;
-    ARCHLINUX)
+    ARCH)
       yay -S --noconfirm telegram-desktop
     ;;
     *)
@@ -169,7 +254,7 @@ function installXClip {
     UBUNTU)
       apt-get -y install xclip
     ;;
-    ARCHLINUX)
+    ARCH)
       yay -S --noconfirm xclip
     ;;
     *)
@@ -198,9 +283,11 @@ function installYarn {
 
 function installDocker {
   yay -Sy --noconfirm docker
-  sudo groupadd docker
-  sudo usermod -aG docker $USER
-  newgrp docker
+  
+  $DOCKER_GROUP = docker
+  getent group $DOCKER_GROUP || sudo groupadd $DOCKER_GROUP
+  sudo usermod -aG $DOCKER_GROUP $USER
+  # newgrp docker
   sudo systemctl enable docker
   sudo systemctl start docker
 }
@@ -222,7 +309,7 @@ function installSlack {
 }
 
 function installNVim {
-  yay -Sy --noconfirm neovim
+  yay -Sy --noconfirm neovim-nightly
 }
 
 function installI3 {
@@ -268,7 +355,7 @@ function installRanger {
 }
 
 function installRg {
-  yay -Sy --noconfirm rg
+  yay -Sy --noconfirm ripgrep
 }
 
 function installFd {
@@ -277,7 +364,7 @@ function installFd {
 
 ## CONFIGURATION
 
-function configureGit {
+function configureSsh {
   ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C $EMAIL -P ""
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_rsa

@@ -5,7 +5,7 @@ very simple scripts for installing all necessary tools for developing
 how to run
 
 ```shell
-sh install.sh MANJARO/UBUNTU
+sh install.sh ARCH/UBUNTU
 ```
 
 **DO NOT RUN AS SUDO!**
