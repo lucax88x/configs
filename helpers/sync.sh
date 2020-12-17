@@ -14,23 +14,18 @@ if [ "$CONT" = "n" ]; then
 fi
 
 declare -A pairs=(
-    [~/.config/i3/config]=./dotfiles/.config/i3/config
-    [~/.config/polybar/colors]=./dotfiles/.config/polybar/colors
-    [~/.config/polybar/config]=./dotfiles/.config/polybar/config
-    [~/.config/polybar/launch.sh]=./dotfiles/.config/polybar/launch.sh
-    [~/.config/rofi]=./dotfiles/.config/rofi
+    [~/.config/rofi]=./dotfiles/.config
     [~/.config/dunst/dunstrc]=./dotfiles/.config/dunst/dunstrc
     [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
     [~/.config/picom/picom.conf]=./dotfiles/.config/picom/picom.conf
-    [~/.config/nvim]=./dotfiles/.config/nvim
+    [~/.config/nvim]=./dotfiles/.config
     [~/.config/ranger/rc.conf]=./dotfiles/.config/ranger/rc.conf
     [~/.gitconfig]=./dotfiles/.gitconfig
     [~/.Xmodmap]=./dotfiles/.Xmodmap
     [~/bin/]=./scripts/
-    [~/.doom.d]=./dotfiles/.doom.d/
     [~/.ideavimrc]=./dotfiles/.ideavimrc
     [~/.tmux.conf]=./dotfiles/.tmux.conf
-    [~/.tmuxinator]=./dotfiles/.tmuxinator
+    [~/.tmuxinator]=./dotfiles
 )
 
 function sync()
@@ -43,10 +38,10 @@ function sync()
 
     if [ -d "$FROM" ]; then
         mkdir -p $TO
-        rsync -auv $FROM $TO
+        rsync -au $FROM $TO
     else
         mkdir -p $TO_DIR
-        rsync -auv $FROM $TO
+        rsync -au $FROM $TO
     fi
 }
 

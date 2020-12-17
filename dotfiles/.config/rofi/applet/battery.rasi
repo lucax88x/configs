@@ -1,0 +1,85 @@
+configuration {
+    theme:                          "config";
+    show-icons:                     false;
+}
+
+@import "./menu.rasi"
+
+* {
+  text-font:                            "Fira Code 14";
+  icon-font:                            "Font Awesome 25";
+
+  option-6-listview-spacing:            10px;
+
+  menu-window-padding:                   25px 35px;
+  menu-inputbar-margin:                  10px 0px;
+  menu-prompt-padding:                   10px 20px 10px 20px;
+  menu-prompt-margin:                    0px 0px 0px -2px;
+  menu-element-border:                   0px;
+  menu-element-padding:                  5px;
+}
+
+/* ########### */
+
+#window {
+  width: 37.5%;
+  height: 35%;
+  anchor: center;
+  location: center;
+  x-offset: 0%;
+  y-offset: 0%;
+}
+
+/* ########### */
+
+* {
+  font: @icon-font;
+}
+
+#horibox {
+  children: [ listview ];
+}
+#listview {
+  layout: horizontal;
+}
+element {
+  width: 100px;
+  padding: @option-element-padding;
+}
+
+/* ########### */
+
+* {
+  font: @text-font;
+}
+#window {
+  padding: @menu-window-padding;
+  children: [ inputbar, horibox ];
+}
+#inputbar {
+  children: [ textbox-prompt-colon, prompt ];
+  margin: @menu-inputbar-margin;
+}
+prompt,
+textbox-prompt-colon {
+  padding: @menu-prompt-padding;
+  border: 2px;
+}
+#prompt {
+  margin: @menu-prompt-margin;
+}
+#textbox-prompt-colon {
+  expand: false;
+  str: "Battery";
+}
+#horibox {
+  padding: 0px;
+}
+#listview {
+  spacing: @option-6-listview-spacing;
+  lines: 3;
+}
+element {
+  font: @icon-font;
+  padding: @menu-element-padding;
+}
