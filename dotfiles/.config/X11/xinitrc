@@ -24,6 +24,9 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
+# needed for dunst
+systemctl --user import-environment DISPLAY &
+
 # xbindkeys &  # allow custom keybindings in the X session
 udiskie &  # allow automatic mounting of portable drives
 picom & # compositor
