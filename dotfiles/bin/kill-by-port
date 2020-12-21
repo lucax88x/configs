@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [[ -n "$1" ]]
+    then
+        PIDS=$(lsof -t -i:$1)
+        for pid in $PIDS; do 
+            kill -9 $pid
+        done
+fi

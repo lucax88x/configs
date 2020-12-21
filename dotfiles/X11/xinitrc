@@ -1,4 +1,0 @@
-
-xrdb -load ~/.config/X11/xresources &
-xmodmap ~/.config/X11/xmodmap &
-exec i3

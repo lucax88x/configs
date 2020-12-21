@@ -1,32 +1,34 @@
-TYPE=${1:-'up'}
+#!/usr/bin/zsh
 
-if [ "$TYPE" == "up" ]; then
-    echo "Uploading (PC => REPO)"
-else
-    echo "Downloading  (REPO => PC)"
-fi
+echo "Creating symlinks from repo to home directory"
 
-read -p "Are you want to continue (y/n)?" CONT
+echo -n "Are you want to continue (y/n)?"
+read CONT
 
 if [ "$CONT" = "n" ]; then
     echo "Aborting"
     exit 1
 fi
 
-declare -A pairs=(
-    [~/.config/rofi]=./dotfiles/.config
-    [~/.config/dunst/dunstrc]=./dotfiles/.config/dunst/dunstrc
-    [~/.config/kitty/kitty.conf]=./dotfiles/.config/kitty/kitty.conf
-    [~/.config/picom/picom.conf]=./dotfiles/.config/picom/picom.conf
-    [~/.config/nvim]=./dotfiles/.config
-    [~/.config/X11]=./dotfiles/.config
-    [~/.config/ranger/rc.conf]=./dotfiles/.config/ranger/rc.conf
-    [~/.gitconfig]=./dotfiles/.gitconfig
-    [~/bin/]=./scripts/
-    [~/.ideavimrc]=./dotfiles/.ideavimrc
-    [~/.zprofile]=./dotfiles/.zprofile
-    [~/.tmux.conf]=./dotfiles/.tmux.conf
-    [~/.tmuxinator]=./dotfiles
+
+HOME_DIR="$HOME"
+
+ARRAY=(
+    .config/rofi
+    .config/dunst/dunstrc
+    .config/kitty/kitty.conf
+    .config/picom/picom.conf
+    .config/nvim
+    .config/X11
+    .config/ranger/rc.conf
+    .gitconfig
+    bin
+    .ideavimrc
+    .zshrc
+    .p10k.zsh
+    .zprofile
+    .tmux.conf
+    .tmuxinator
 )
 
 function sync()
@@ -34,31 +36,41 @@ function sync()
     FROM=$1
     TO=$2
 
-    FROM_DIR=$(dirname $FROM)
-    TO_DIR=$(dirname $TO)
 
-    if [ -d "$FROM" ]; then
-        mkdir -p $TO
-        rsync -au $FROM $TO
+    echo PROCESSING $FROM to $TO
+    
+    if [ -L ${TO} ] ; then
+      if [ -e ${TO} ] ; then
+         echo "Good link, skipping"
+      else
+         echo "Broken link, stopping"
+         exit 1
+      fi
+    elif [ -e ${TO} ] ; then
+      echo "Not a link, stopping"
+      exit 1
     else
-        mkdir -p $TO_DIR
-        rsync -au $FROM $TO
+      
+      if [ -d "$TO" ]; then
+          echo "is directory $TO"
+          mkdir -p $TO
+      else
+          TO_DIR=$(dirname $TO)
+          echo $TO_DIR
+          mkdir -p $TO_DIR
+      fi
+      
+      ln -s $FROM $TO
+      
+      echo "Created!"
     fi
 }
 
-for KEY in "${!pairs[@]}"; do
-    VALUE="${pairs[$KEY]}"
+mkdir -p $HOME_DIR
 
-    KEY_DIR=$(dirname $KEY)
-    VALUE_DIR=$(dirname $VALUE)
-
-    if [ "$TYPE" == "up" ]; then
-        sync $KEY $VALUE
-    else
-        sync $VALUE $KEY
-    fi
+for ((I = 1; I < $#ARRAY + 1; I++)); do
+  VALUE=$ARRAY[$I]
+  FROM="$PWD/dotfiles/$VALUE"
+  TO="$HOME_DIR/$VALUE"
+  sync $FROM $TO
 done
-
-if [ "$TYPE" == "down" ]; then
-    chmod +x ~/bin -R
-fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+ 
+# rm /tmp/screen.png
+# IMAGE=/tmp/screen.png
+IMAGE=~/backgrounds/background.jpg
+
+i3lock -t -i $IMAGE

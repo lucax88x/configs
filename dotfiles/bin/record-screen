@@ -1,0 +1,8 @@
+printf "BEGIN CAPTURING.."
+printf "Press Q to stop"
+
+mkdir -p ~/Videos
+
+screenkey --scr 1 -t 1 & screencast -S ~/Videos/$1
+
+pkill screenkey

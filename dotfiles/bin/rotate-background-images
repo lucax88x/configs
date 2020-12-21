@@ -1,0 +1,6 @@
+#!/bin/bash
+
+feh --bg-fill --randomize ~/backgrounds ~/backgrounds ~/backgrounds
+
+# crontab -e
+# */5 * * * * export DISPLAY=:0; . $HOME/.profile; rotate-background-images

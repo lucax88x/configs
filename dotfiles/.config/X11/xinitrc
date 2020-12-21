@@ -1,0 +1,38 @@
+#!/bin/sh
+
+userresources=$HOME/.config/X11/xresources
+usermodmap=$HOME/.config/X11/xmodmap
+
+sysresources=/etc/X11/xinit/.Xresources
+sysmodmap=/etc/X11/xinit/.Xmodmap
+
+# merge in defaults and keymaps
+
+if [ -f $sysresources ]; then
+    xrdb -merge $sysresources
+fi
+
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
+fi
+
+if [ -f "$userresources" ]; then
+    xrdb -merge "$userresources"
+fi
+
+if [ -f "$usermodmap" ]; then
+    xmodmap "$usermodmap"
+fi
+
+# xbindkeys &  # allow custom keybindings in the X session
+udiskie &  # allow automatic mounting of portable drives
+picom & # compositor
+
+# start i3 and keep it running
+if [ -f /usr/bin/i3 ]; then
+    exec i3
+fi
+
+# if [ -f /usr/bin/awesome ]; then
+#     exec awesome
+# fi

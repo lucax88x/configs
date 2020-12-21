@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#!/bin/sh
+
+if [[ -n "$1" ]]
+    then
+        echo $1 | sudo tee /sys/class/backlight/nvidia_0/brightness
+    else
+        sudo cat /sys/class/backlight/nvidia_0/brightness
+fi

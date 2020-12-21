@@ -1,0 +1,43 @@
+#!/bin/sh
+
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
+
+if [ -z $1 ] ; then
+    echo "${RED}Mode needed, use docked or undocked or temp"
+    exit 1
+fi
+
+if [ "$1" = "docked" ]; then
+    xrandr \
+    --output DP-3.1 --primary --mode 2560x1440 --pos 4480x0 --rotate normal \
+    --output DP-3.2 --mode 2560x1440 --pos 7040x0 --rotate normal \
+    --output DP-4 --mode 1920x1080 --pos 0x0 --rotate normal \
+    --output DP-5 --mode 2560x1440 --pos 1920x0 --rotate normal \
+    --output DP-2 --off --output DP-3 --off \
+    --output DP-0 --off --output DP-1 --off \
+    --output DP-6 --off
+fi
+
+if [ "$1" = "undocked" ]; then
+    xrandr \
+    --output DP-4 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+    --output DP-5 --off \
+    --output DP-2 --off --output DP-3 --off \
+    --output DP-0 --off --output DP-1 --off \
+    --output DP-3.1 --off \
+    --output DP-3.2 --off \
+    --output DP-6 --off
+fi
+
+if [ "$1" = "temp" ]; then
+    xrandr \
+    --output DP-3.1 --primary --mode 2560x1440 --rate 59.95 --pos 4480x0 --rotate normal \
+    --output DP-3.2 --mode 2560x1440 --pos 7040x0 --rotate normal \
+    --output DP-4 --mode 1920x1080 --pos 0x0 --rotate normal \
+    --output DP-5 --mode 2560x1440 --pos 1920x0 --rotate normal \
+    --output DP-2 --off --output DP-3 --off \
+    --output DP-0 --off --output DP-1 --off \
+    --output DP-6 --off
+fi

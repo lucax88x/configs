@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#
+# git nuke <branch-name>
+#
+# Delete a branch (irrespective of its merged status) and
+# remove from origin.
+#
+
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+RESET=`tput sgr0`
+
+if [ -z $1 ] ; then
+    echo "${RED}Branch Needed"
+    echo "${RESET}Use one of the following";
+    git branch | xargs -L 1 echo
+    exit 1
+fi
+
+read -p "Are you want to nuke: $1 (y/n)?" CONT
+
+if [ "$CONT" = "n" ]; then
+    echo Aborting
+    exit 1
+fi
+
+if git show-branch "$1" > /dev/null 2>&1
+then
+    echo "${GREEN}Deleting local $1"
+    git branch -D "$1"
+else
+    echo "${RED}No local branch to delete"
+fi
+
+git remote prune origin
+if git show-branch "origin/$1" > /dev/null 2>&1
+then
+    echo "${GREEN}Deleting remote $1"
+    git push origin ":$1"
+else
+    echo "${RED}No remote branch to delete"
+fi

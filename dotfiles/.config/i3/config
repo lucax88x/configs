@@ -237,9 +237,9 @@ for_window [title="Microsoft Teams Notification" class="microsoft teams - previe
 for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
 
 #####################
-### Teams notification ###
+### Android Emulator ###
 ######################
-for_window [title="Android Emulator - "] floating enable
+for_window [title="Android Emulator"] floating enable
 
 # blur-background-exclude = [
 # "name *= 'rect-overlay'",
@@ -258,7 +258,6 @@ bindsym $mod+semicolon exec "i3-easyfocus -a -f -xos4-terminus-medium-r-normal--
 #####################
 ### Picom ###
 ######################
-exec_always picom -b
 
 #####################
 ### Change Language shortcuts ###
