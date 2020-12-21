@@ -3,7 +3,7 @@
 function installBaseDevel {
   case $DISTRO in
     ARCH)
-      yay -S --noconfirm base-devel
+      paru -S --noconfirm base-devel
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -12,6 +12,19 @@ function installBaseDevel {
 }
 
 function installYay {
+  case $DISTRO in
+    ARCH)
+      git clone https://aur.archlinux.org/paru.git
+      cd paru && makepkg -si --noconfirm && cd ..
+      rm -rf paru
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
+}
+
+function installParu {
   case $DISTRO in
     ARCH)
       git clone https://aur.archlinux.org/yay.git
@@ -31,7 +44,7 @@ function installCurl {
       apt-get -y install curl
     ;;
     ARCH)
-      yay -S --noconfirm curl
+      paru -S --noconfirm curl
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -42,7 +55,7 @@ function installCurl {
 function installWget {
   case $DISTRO in
     ARCH)
-      yay -S --noconfirm wget
+      paru -S --noconfirm wget
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -58,7 +71,7 @@ function installGit {
       apt-get -y install git-core
     ;;
     ARCH)
-      yay -S --noconfirm git
+      paru -S --noconfirm git
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -70,7 +83,7 @@ function installSsh {
 
   case $DISTRO in
     ARCH)
-      yay -S --noconfirm openssh
+      paru -S --noconfirm openssh
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -82,7 +95,7 @@ function installRsync {
 
   case $DISTRO in
     ARCH)
-      yay -S --noconfirm rsync
+      paru -S --noconfirm rsync
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -94,7 +107,7 @@ function installUnzip {
 
   case $DISTRO in
     ARCH)
-      yay -S --noconfirm unzip
+      paru -S --noconfirm unzip
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -133,7 +146,7 @@ function installFontAwesome {
 function installLsd {
   case $DISTRO in
     ARCH)
-      yay -Sy --noconfirm lsd
+      paru -Sy --noconfirm lsd
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -144,7 +157,7 @@ function installLsd {
 function installBat {
   case $DISTRO in
     ARCH)
-      yay -Sy --noconfirm bat
+      paru -Sy --noconfirm bat
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -163,7 +176,7 @@ function installZsh {
       chsh -s $(which zsh)
     ;;
     ARCH)
-      yay -Sy --noconfirm zsh
+      paru -Sy --noconfirm zsh
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -197,7 +210,7 @@ function installChrome {
       apt-get -y install google-chrome-stable
     ;;
     ARCH)
-      yay -S --noconfirm google-chrome
+      paru -S --noconfirm google-chrome
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -213,7 +226,7 @@ function installJetbrainsToolbox {
       ./$JETBRAINS_TOOLBOX/jetbrains-toolbox
     ;;
     ARCH)
-      yay -S --noconfirm fuse 
+      paru -S --noconfirm fuse 
       
       wget https://download.jetbrains.com/toolbox/$JETBRAINS_TOOLBOX.tar.gz -q --show-progress
       tar xvzf $JETBRAINS_TOOLBOX.tar.gz > /dev/null
@@ -234,7 +247,7 @@ function installTelegram {
       apt-get -y install telegram
     ;;
     ARCH)
-      yay -S --noconfirm telegram-desktop
+      paru -S --noconfirm telegram-desktop
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -255,7 +268,7 @@ function installXClip {
       apt-get -y install xclip
     ;;
     ARCH)
-      yay -S --noconfirm xclip
+      paru -S --noconfirm xclip
     ;;
     *)
       echo NOT IMPLEMENTED!
@@ -266,23 +279,23 @@ function installXClip {
 function installSublimeMerge {
   curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo yay-key --add sublimehq-pub.gpg && sudo yay-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
   echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/yay.conf
-  yay -Sy --noconfirm sublime-merge
+  paru -Sy --noconfirm sublime-merge
 }
 
 function installDotnetSdk {
-  yay -Sy --noconfirm dotnet-runtime
+  paru -Sy --noconfirm dotnet-runtime
 }
 
 function installNode {
-  yay -Sy --noconfirm nvm
+  paru -Sy --noconfirm nvm
 }
 
 function installYarn {
-  yay -Sy --noconfirm yarn
+  paru -Sy --noconfirm yarn
 }
 
 function installDocker {
-  yay -Sy --noconfirm docker
+  paru -Sy --noconfirm docker
   
   $DOCKER_GROUP = docker
   getent group $DOCKER_GROUP || sudo groupadd $DOCKER_GROUP
@@ -293,73 +306,79 @@ function installDocker {
 }
 
 function installDockerCompose {
-  yay -Sy --noconfirm docker-compose
+  paru -Sy --noconfirm docker-compose
 }
 
 function installTeams {
-  yay -Sy --noconfirm teams
+  paru -Sy --noconfirm teams
 }
 
 function installKubectl {
-  yay -Sy --noconfirm kubectl-bin
+  paru -Sy --noconfirm kubectl-bin
 }
 
 function installSlack {
-  yay -Sy --noconfirm slack-desktop
+  paru -Sy --noconfirm slack-desktop
 }
 
 function installNVim {
-  yay -Sy --noconfirm neovim-nightly
+  paru -Sy --noconfirm neovim-nightly
 }
 
 function installI3 {
-  yay -Sy --noconfirm i3-wm
-  yay -Sy --noconfirm i3lock
-  yay -Sy --noconfirm i3-easyfocus
+  paru -Sy --noconfirm i3-wm
+  paru -Sy --noconfirm i3lock
+  paru -Sy --noconfirm i3-easyfocus
 
   # used for overall opacity
-  yay -Sy --noconfirm picom
+  paru -Sy --noconfirm picom
   # status bar
-  yay -Sy --noconfirm polybar
+  paru -Sy --noconfirm polybar
   # launcher
-  yay -Sy --noconfirm rofi
+  paru -Sy --noconfirm rofi
   # clipboard manager
-  yay -Sy --noconfirm rofi-greenclip
+  paru -Sy --noconfirm rofi-greenclip
   systemctl --user enable greenclip.service
   # background
-  yay -Sy --noconfirm feh
-  yay -Sy --noconfirm i3-battery-popup-git
+  paru -Sy --noconfirm feh
+  paru -Sy --noconfirm i3-battery-popup-git
 }
 
 function installDunst {
-  yay -Sy --noconfirm dunst
+  paru -Sy --noconfirm dbus
+  
+  paru -Sy --noconfirm dunst
 }
 
 function installKitty {
-  yay -Sy --noconfirm kitty
+  paru -Sy --noconfirm kitty
 }
 
 function installFzf {
-  yay -Sy --noconfirm fzf
+  paru -Sy --noconfirm fzf
 
   git clone https://github.com/Aloxaf/fzf-tab ~ZSH_CUSTOM/plugins/fzf-tab
 }
 
 function installRanger {
-  yay -Sy --noconfirm ranger
+  paru -Sy --noconfirm ranger
 
   # image preview for range
-  yay -Sy --noconfirm ueberzug
+  paru -Sy --noconfirm ueberzug
 
   git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 }
 
 function installRg {
-  yay -Sy --noconfirm ripgrep
+  paru -Sy --noconfirm ripgrep
 }
 
 function installFd {
-  yay -Sy --noconfirm fd
+  paru -Sy --noconfirm fd
+}
+
+function installUdiskie {
+  paru -Sy --noconfirm udiskie
 }
 
 ## CONFIGURATION

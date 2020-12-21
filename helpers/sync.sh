@@ -24,6 +24,7 @@ declare -A pairs=(
     [~/.gitconfig]=./dotfiles/.gitconfig
     [~/bin/]=./scripts/
     [~/.ideavimrc]=./dotfiles/.ideavimrc
+    [~/.zprofile]=./dotfiles/.zprofile
     [~/.tmux.conf]=./dotfiles/.tmux.conf
     [~/.tmuxinator]=./dotfiles
 )

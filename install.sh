@@ -41,12 +41,19 @@ else
   echo GIT ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v yay)" ]; then
-  echo INSTALLING YAY
+if ! [ -x "$(command -v paru)" ]; then
+  echo INSTALLING PARU
   installYay
 else
-  echo YAY ALREADY INSTALLED
+  echo PARU ALREADY INSTALLED
 fi
+
+# if ! [ -x "$(command -v yay)" ]; then
+#   echo INSTALLING YAY
+#   installYay
+# else
+#   echo YAY ALREADY INSTALLED
+# fi
 
 if ! [ -x "$(command -v wget)" ]; then
   echo INSTALLING WGET
@@ -279,6 +286,13 @@ if ! [ -x "$(command -v ranger)" ]; then
   installRanger
 else
   echo RANGER ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v udiskie)" ]; then
+  echo INSTALLING UDISKIE
+  installUdiskie
+else
+  echo UDISKIE ALREADY INSTALLED
 fi
 
 echo '# CONFIGURATIONS'
