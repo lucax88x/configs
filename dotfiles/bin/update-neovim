@@ -1,9 +1,62 @@
 #!/bin/bash
-cd ~
-sudo rm -r neovim
-git clone https://github.com/neovim/neovim
-cd neovim
-sudo make CMAKE_BUILD_TYPE=Release
-cd ~
-sudo rm -r neovim
 
+# Colors definitions
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+BOLD=$(tput bold)
+NORMAL=$(tput sgr0)
+
+# Check if necessary applications are installed
+if [ ! command -v wget &> /dev/null ]; then
+  printf "\n${RED}wget not found in path. Please install it to continue!${NC}\n"
+  exit
+fi
+
+if [ ! command -v curl &> /dev/null ]; then
+  printf "\n${RED}curl not found in path. Please install it to continue!${NC}\n"
+  exit
+fi
+
+if [ ! command -v xmllint &> /dev/null ]; then
+  printf "\n${RED}xmllint not found in path. Please install it to continue!${NC}\n"
+  exit
+fi
+
+# Variables
+SHOW_PROMPT=0
+CURR_NVIM_VER=$(nvim --version | head -n 1)
+wget https://github.com/neovim/neovim/releases/tag/nightly -q -O - > /tmp/nvim28dce74c-4317-4006-a103-8069d573e2b2
+NEW_NVIM_VER=$(xmllint --html --xpath "//a[@href='/neovim/neovim/releases/tag/nightly']/node()" /tmp/nvim28dce74c-4317-4006-a103-8069d573e2b2 2>/dev/null)
+
+# Check if the current neovim version is the latest
+if [[ "$CURR_NVIM_VER" == "$NEW_NVIM_VER" ]]; then
+  printf "\n${RED}No new version of ${BOLD}Neovim Nightly${NORMAL}${RED} found! Aborting...${NC}\n"
+  exit
+fi
+
+# If a newer version of Neovim Nightly found show prompt
+if [[ CURR_NVIM_VER != NEW_NVIM_VER ]]; then
+  printf "\n${GREEN}New ${BOLD}Neovim Nightly${NORMAL}${RED} version found!${NC}\n"
+  SHOW_PROMPT=1
+fi
+
+# Update function
+update_neovim() {
+  printf "${RED}Updating Neovim Nightly...${NC}\n"
+  curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o /tmp/nvim;
+  chmod +x /tmp/nvim;
+  sudo mv /tmp/nvim /usr/local/bin;
+  printf "${GREEN}Neovim Nightly has been updated!${NC}\n"
+}
+
+rm /tmp/nvim28dce74c-4317-4006-a103-8069d573e2b2
+
+while [ $SHOW_PROMPT -gt 0 ]; do
+    read -p "Do you wish to update neovim? [yes/no] " yn
+    case $yn in
+        [Yy]* ) update_neovim; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done

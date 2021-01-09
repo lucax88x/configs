@@ -9,6 +9,8 @@ export VISUAL=/usr/bin/nvim
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$PATH
+# add yarn globals to path
+export PATH="$(yarn global bin):$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/lucatrazzi/.oh-my-zsh"
@@ -89,10 +91,13 @@ ex ()
   fi
 }
 
-
 # zsh-bd
 . ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source /home/lucatrazzi/.config/broot/launcher/bash/br
+source /usr/share/nvm/init-nvm.sh
+
+# zsh-bd
+. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh

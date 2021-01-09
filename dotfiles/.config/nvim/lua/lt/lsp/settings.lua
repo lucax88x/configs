@@ -2,8 +2,10 @@ local lsp = require('lspconfig')
 local lsp_completion = require('completion')
 local lsp_status  = require('lsp-status')
 local diagnostics  = require('lt.lsp.diagnostics')
+local remaps  = require('lt.lsp.remaps')
 
 local function on_attach(client)
+    remaps.set(client.server_capabilities)
     lsp_status.on_attach(client)
     lsp_completion.on_attach(client)
 end
@@ -11,50 +13,19 @@ end
 lsp_status.register_progress()
 
 local default_lsp_config = {on_attach = on_attach, capabilities = lsp_status.capabilities}
+local language_server_path = vim.fn.stdpath("cache") .. "/lspconfig"
 
--- :LspInstall needed
 local servers = {
   diagnosticls = diagnostics.options,
-  bashls = {},
-  vimls = {},
-  dockerls = {},
-  yamlls = {},
-
-  rust_analyzer = {},
-
-  jsonls = {},
-
-  tsserver = {},
-  html = {},
-  cssls = {},
-
-  sumneko_lua = {
-    -- :LspInstallInfo sumneko_lua
-    cmd = { '/home/lucatrazzi/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server' },
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = {
-                    'vim',
-                    'use',
-                    'imap',
-                    'nmap',
-                    'vmap',
-                    'tmap',
-                    'inoremap',
-                    'nnoremap',
-                    'vnoremap',
-                    'tnoremap'
-                }
-            },
-            workspace = {
-                library = {
-                    ['$VIMRUNTIME/lua'] = true,
-                }
-            }
-        }
-    }
-  },
+  bashls = require('lt.lsp.servers.bashls')(language_server_path),
+  -- dockerls = {},
+  yamlls = require('lt.lsp.servers.yamlls')(language_server_path),
+  jsonls = require('lt.lsp.servers.jsonls')(language_server_path),
+  -- rust_analyzer = {},
+  tsserver = require('lt.lsp.servers.tsserver')(language_server_path, on_attach),
+  html = require('lt.lsp.servers.htmlls')(language_server_path),
+  cssls = require('lt.lsp.servers.cssls')(language_server_path),
+  sumneko_lua = require('lt.lsp.servers.sumneko_lua')(language_server_path),
 }
 
 for server, config in pairs(servers) do

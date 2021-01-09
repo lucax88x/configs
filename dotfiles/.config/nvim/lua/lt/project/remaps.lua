@@ -1,5 +1,5 @@
 nnoremap('<leader>pv', '<cmd>wincmd v<bar> :Ex <bar> :vertical resize 30<CR>')
-nnoremap('<leader>ps', '<cmd>Rg<SPACE>')
+nnoremap('<leader>ps', '<cmd>Rg<SPACE><CR>')
 nnoremap('<leader>pt', '<cmd>Rg<SPACE>TODO|FIXME<CR>')
 
 -- to include unstaged files

@@ -1,2 +1,15 @@
-vim.g.gitgutter_sign_allow_clobber = 0
-vim.g.gitgutter_sign_priority = 10
+require('gitsigns').setup {
+  signs = {
+    add          = {hl = 'GruvboxGreen' , text = '│', numhl='GitSignsAddNr'},
+    change       = {hl = 'GruvboxAqua', text = '│', numhl='GitSignsChangeNr'},
+    delete       = {hl = 'GruvboxRed', text = '_', numhl='GitSignsDeleteNr'},
+    topdelete    = {hl = 'GruvboxRed', text = '‾', numhl='GitSignsDeleteNr'},
+    changedelete = {hl = 'GruvboxAqua', text = '~', numhl='GitSignsChangeNr'},
+  },
+  numhl = false,
+  watch_index = {
+    interval = 1000
+  },
+  sign_priority = 9,
+  status_formatter = nil, -- Use default
+}

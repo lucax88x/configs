@@ -1,2 +1,2 @@
-require 'lt.git.remaps'
 require 'lt.git.settings'
+require 'lt.git.remaps'

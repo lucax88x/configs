@@ -40,7 +40,7 @@ return require('packer').startup {
 
     use 'tpope/vim-fugitive' -- git
     use 'airblade/vim-rooter'
-    use 'airblade/vim-gitgutter' -- show git gutters */
+    use 'lewis6991/gitsigns.nvim'
 
     use 'vim-utils/vim-man' -- man pages
     use 'mbbill/undotree' -- undo tree
@@ -86,6 +86,7 @@ return require('packer').startup {
     use 'nvim-lua/lsp-status.nvim'
     use 'tjdevries/lsp_extensions.nvim'
     use 'nvim-lua/completion-nvim'
+    use 'mattn/vim-lsp-settings'
 
     -- Language packs
     use {

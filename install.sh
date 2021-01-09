@@ -19,7 +19,8 @@ esac
 TEMP_DIR=~/setup-temp
 EMAIL=lucax88x@gmail.com
 NERDFONT_VERSION=2.0.0
-FIRACODE_VERSION=2
+FIRACODE_VERSION=5.2
+JETBRAINS_MONO_VERSION=2.221
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
 
 mkdir -p $TEMP_DIR
@@ -97,6 +98,13 @@ if ! [ "$(fc-list | grep -c 'FiraCode')" -ge 1 ]; then
   installFiraCode
 else
   echo FIRACODE ALREADY INSTALLED
+fi
+
+if ! [ "$(fc-list | grep -c 'JetBrains')" -ge 1 ]; then
+  echo INSTALLING JETBRAINS MONO
+  installJetBrainsMono
+else
+  echo JETBRAINS MONO ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then

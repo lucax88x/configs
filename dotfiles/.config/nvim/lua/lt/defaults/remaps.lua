@@ -6,7 +6,7 @@
 nnoremap('<leader>q', '<cmd>q<CR>')
 
 -- reload
--- nnoremap('<leader><CR>', '<cmd>so ~/.config/nvim/init.lua<CR>')
+nnoremap('<leader><CR>', '<cmd>lua reload()<CR>')
 
 -- move upper/down on visual
 vnoremap('K', '<cmd>m "<-2<CR>gv=gv"')

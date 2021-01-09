@@ -5,6 +5,7 @@ local prettier_standard = require('lt.lsp.formatters.prettier_standard')
 local M = {}
 
 M.options = {
+    cmd = { "diagnostic-languageserver", "--stdio" },
     filetypes = {
         'javascript',
         'javascriptreact',
