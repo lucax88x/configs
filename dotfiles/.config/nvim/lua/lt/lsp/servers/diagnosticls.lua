@@ -1,6 +1,5 @@
-local eslint = require('lt.lsp.linters.eslint')
-local prettier = require('lt.lsp.formatters.prettier')
-local prettier_standard = require('lt.lsp.formatters.prettier_standard')
+local eslint = require('lt.lsp.servers.linters.eslint')
+local prettier = require('lt.lsp.servers.formatters.prettier')
 
 local M = {}
 
@@ -35,7 +34,6 @@ M.options = {
             eslint = eslint
         },
         formatters = {
-            prettier_standard = prettier_standard,
             prettier = prettier
         }
     }
@@ -43,20 +41,14 @@ M.options = {
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- This will disable virtual text, like doing:
     virtual_text = {
       spacing = 0,
-      prefix = "~"
+      prefix = "!",
     },
 
-    -- This is similar to:
-    -- let g:diagnostic_show_sign = 1
-    -- To configure sign display,
-    --  see: ":help vim.lsp.diagnostic.set_signs()"
+    -- see: ":help vim.lsp.diagnostic.set_signs()"
     signs = true,
 
-    -- This is similar to:
-    -- "let g:diagnostic_insert_delay = 1"
     update_in_insert = false,
   }
 )

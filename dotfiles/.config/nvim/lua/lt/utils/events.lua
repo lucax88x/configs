@@ -9,7 +9,10 @@ local globalListenerName = 'globallistenername' -- change this to be unique acro
 local autocmdhandlers = {}
 
 _G[globalListenerName] = function (name)
-  autocmdhandlers[name]()
+  local handler = autocmdhandlers[name]
+  if handler ~= nil then
+    handler()
+  end
 end
 
 function addEventListener (name, events, cb)

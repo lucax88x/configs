@@ -1,5 +1,7 @@
 local prettier = {
-    command = 'prettier',
+    sourceName = 'prettier',
+    command = './node_modules/.bin/prettier',
+    debounce = 100,
     args = { '--stdin', '--stdin-filepath', '%filepath' },
     rootPatterns = {
         '.prettierrc',

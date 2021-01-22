@@ -46,12 +46,12 @@ return require('packer').startup {
     use 'mbbill/undotree' -- undo tree
 
     use 'jdhao/better-escape.vim'
-    use 'easymotion/vim-easymotion'
     use 'justinmk/vim-sneak'
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround' -- Change surrounding arks
     use 'tpope/vim-repeat' -- extends . repeat, for example for make it work with vim-sneak
     use 'bkad/CamelCaseMotion' -- allows to move by camelCase with w e
+    use 'dyng/ctrlsf.vim'
 
     use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
     use {'junegunn/fzf.vim'}
@@ -81,11 +81,15 @@ return require('packer').startup {
     use 'norcalli/snippets.nvim'
 
     -- Autocomplete & Linters
-
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/lsp-status.nvim'
     use 'tjdevries/lsp_extensions.nvim'
+
     use 'nvim-lua/completion-nvim'
+    use 'steelsojka/completion-buffers'
+    use 'nvim-treesitter/completion-treesitter'
+
+    -- to download lsp servers
     use 'mattn/vim-lsp-settings'
 
     -- Language packs

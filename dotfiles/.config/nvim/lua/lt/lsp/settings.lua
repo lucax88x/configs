@@ -1,13 +1,17 @@
 local lsp = require('lspconfig')
 local lsp_completion = require('completion')
 local lsp_status  = require('lsp-status')
-local diagnostics  = require('lt.lsp.diagnostics')
+local diagnosticls  = require('lt.lsp.servers.diagnosticls')
 local remaps  = require('lt.lsp.remaps')
 
-local function on_attach(client)
-    remaps.set(client.server_capabilities)
-    lsp_status.on_attach(client)
-    lsp_completion.on_attach(client)
+-- for debugging lsp
+-- vim.lsp.set_log_level("trace")
+
+local function on_attach(client, bufnr)
+    print(client.name) 
+    remaps.set(client.server_capabilities, bufnr)
+    lsp_status.on_attach(client, bufnr)
+    lsp_completion.on_attach(client, bufnr)
 end
 
 lsp_status.register_progress()
@@ -16,7 +20,7 @@ local default_lsp_config = {on_attach = on_attach, capabilities = lsp_status.cap
 local language_server_path = vim.fn.stdpath("cache") .. "/lspconfig"
 
 local servers = {
-  diagnosticls = diagnostics.options,
+  diagnosticls = diagnosticls.options,
   bashls = require('lt.lsp.servers.bashls')(language_server_path),
   -- dockerls = {},
   yamlls = require('lt.lsp.servers.yamlls')(language_server_path),
