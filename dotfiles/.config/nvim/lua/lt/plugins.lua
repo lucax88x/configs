@@ -78,8 +78,15 @@ return require('packer').startup {
     use 'tpope/vim-abolish' -- :S to replace with smartcase
 
     -- Snippets
-    use 'norcalli/snippets.nvim'
-
+    use(
+      {
+        "norcalli/snippets.nvim",
+        config = function()
+          local snippets = require "snippets"
+          snippets.use_suggested_mappings()
+        end
+      }
+    )
     -- Autocomplete & Linters
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/lsp-status.nvim'

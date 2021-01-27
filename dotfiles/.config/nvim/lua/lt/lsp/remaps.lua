@@ -8,7 +8,7 @@ function M.set(cap, bufnr)
 
   local opts = { noremap=true, silent=true }
 
-  functions.tprint(cap)
+  -- functions.tprint(cap)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   if cap.definitionProvider then
@@ -38,7 +38,7 @@ function M.set(cap, bufnr)
   if cap.codeActionProvider then
     buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", opts)
-    buf_set_keymap('n','<leader>fo', '<cmd>lua require("lt.lsp.functions").organize_imports_sync()<CR>', opts)
+    buf_set_keymap('n','<leader>fo', '<cmd>lua require("lt.lsp.functions").organize_imports()<CR>', opts)
   end
 
   -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -58,7 +58,8 @@ function M.set(cap, bufnr)
   end
 
   buf_set_keymap('n','<leader>fcd', ':lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>', opts)
-  buf_set_keymap('n','<leader>fcl', ":lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", opts)
+  buf_set_keymap('n','<leader>fcl', ":lua print(vim.lsp.get_log_path())<CR>", opts)
+  -- buf_set_keymap('n','<leader>fcl', ":lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", opts)
   buf_set_keymap('n','<leader>fci', ':LspInfo()<CR>', opts)
 
   imap('<c-p>', '<Plug>(completion_trigger)')

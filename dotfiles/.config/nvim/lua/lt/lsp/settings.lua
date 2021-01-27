@@ -5,10 +5,12 @@ local diagnosticls  = require('lt.lsp.servers.diagnosticls')
 local remaps  = require('lt.lsp.remaps')
 
 -- for debugging lsp
--- vim.lsp.set_log_level("trace")
+-- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
+
+vim.lsp.set_log_level("debug")
 
 local function on_attach(client, bufnr)
-    print(client.name) 
+    -- print(client.name)
     remaps.set(client.server_capabilities, bufnr)
     lsp_status.on_attach(client, bufnr)
     lsp_completion.on_attach(client, bufnr)
