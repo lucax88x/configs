@@ -390,6 +390,10 @@ function installUdiskie {
   paru -Sy --noconfirm udiskie
 }
 
+function installProcs {
+  paru -Sy --noconfirm procs
+}
+
 ## CONFIGURATION
 
 function configureSsh {

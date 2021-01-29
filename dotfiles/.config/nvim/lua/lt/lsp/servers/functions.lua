@@ -1,4 +1,6 @@
-_G.LspInstallServers = function()
+local M = {}
+
+M.lsp_install_servers = function()
     local function installLanguageServer(filetype, languageServer)
         if pcall(function() vim.cmd ('set filetype=' .. filetype) end) then
           vim.cmd ('LspInstallServer ' .. languageServer)
@@ -18,6 +20,7 @@ _G.LspInstallServers = function()
     -- installLanguageServer('*', 'dockerfile-language-server-nodejs')
 
     -- must be installed globally
-    -- installLanguageServer('*', 'diagnostic-languageserver')
+    installLanguageServer('*', 'efm-langserver')
 end
 
+return M

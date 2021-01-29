@@ -1,20 +1,34 @@
 local lsp = require('lspconfig')
-local lsp_completion = require('completion')
+
+-- local lsp_completion = require('completion')
 local lsp_status  = require('lsp-status')
-local diagnosticls  = require('lt.lsp.servers.diagnosticls')
 local remaps  = require('lt.lsp.remaps')
 
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("warn")
 
 local function on_attach(client, bufnr)
     -- print(client.name)
     remaps.set(client.server_capabilities, bufnr)
     lsp_status.on_attach(client, bufnr)
-    lsp_completion.on_attach(client, bufnr)
+    -- lsp_completion.on_attach(client, bufnr)
 end
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = {
+      spacing = 0,
+      prefix = "■",
+    },
+
+    -- see: ":help vim.lsp.diagnostic.set_signs()"
+    signs = true,
+
+    update_in_insert = false,
+  }
+)
 
 lsp_status.register_progress()
 
@@ -22,7 +36,7 @@ local default_lsp_config = {on_attach = on_attach, capabilities = lsp_status.cap
 local language_server_path = vim.fn.stdpath("cache") .. "/lspconfig"
 
 local servers = {
-  diagnosticls = diagnosticls.options,
+  efm = require('lt.lsp.servers.efm')(language_server_path),
   bashls = require('lt.lsp.servers.bashls')(language_server_path),
   -- dockerls = {},
   yamlls = require('lt.lsp.servers.yamlls')(language_server_path),

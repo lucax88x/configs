@@ -54,6 +54,9 @@ alias v-='f(){ amixer -q sset Master "$@"%-;  unset -f f; }; f'
 
 alias tree='broot'
 alias grep='rg'
+alias find='fd'
+alias ps='procs'
+alias crashed='journalctl --since=today'
 
 REPOSITORIES_FOLDER=~/repos
 function prj(){

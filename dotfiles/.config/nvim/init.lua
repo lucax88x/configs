@@ -34,6 +34,7 @@ require 'lt.netrw.settings'
 
 require 'lt.dirvish.settings'
 
+require 'lt.snippets'
 require 'lt.lsp'
 
 require 'lt.treesitter.settings'
@@ -54,5 +55,6 @@ require 'lt.which-key.remaps'
 require 'lt.ripgrep.settings'
 
 require 'lt.camelcasemotion.settings'
+
 require 'lt.firenvim.settings'
 

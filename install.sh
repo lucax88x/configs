@@ -303,6 +303,13 @@ else
   echo UDISKIE ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v procs)" ]; then
+  echo INSTALLING PROCS
+  installProcs
+else
+  echo PROCS ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then

@@ -11,6 +11,8 @@ function M.set(cap, bufnr)
   -- functions.tprint(cap)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  buf_set_keymap('n','<leader>fi', '<cmd>lua require("lt.lsp.servers.functions").lsp_install_servers()<CR>', opts)
+
   if cap.definitionProvider then
     buf_set_keymap('n','<leader>td', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -62,19 +64,28 @@ function M.set(cap, bufnr)
   -- buf_set_keymap('n','<leader>fcl', ":lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", opts)
   buf_set_keymap('n','<leader>fci', ':LspInfo()<CR>', opts)
 
-  imap('<c-p>', '<Plug>(completion_trigger)')
-  imap('<Tab>', '<Plug>(completion_smart_tab)')
-  imap('<S-Tab>', '<Plug>(completion_smart_s_tab)')
-  imap('<c-j>', '<Plug>(completion_next_source)') --use <c-j> to switch to previous completion
-  imap('<c-k>', '<Plug>(completion_prev_source)') --use <c-k> to switch to next completion
+  
+  vim.api.nvim_exec(
+  [[
+  inoremap <silent><expr> <C-p> compe#complete()
+  inoremap <silent><expr> <Tab> compe#complete()
+  inoremap <silent><expr> <CR>  compe#confirm('<CR>')
+  ]],
+  true)
+  
+  -- imap('<c-p>', '<Plug>(completion_trigger)')
+  -- imap('<Tab>', '<Plug>(completion_smart_tab)')
+  -- imap('<S-Tab>', '<Plug>(completion_smart_s_tab)')
+  -- imap('<c-j>', '<Plug>(completion_next_source)') --use <c-j> to switch to previous completion
+  -- imap('<c-k>', '<Plug>(completion_prev_source)') --use <c-k> to switch to next completion
 
   -- using tab for navigating in completion
-  -- vim.api.nvim_exec(
-  -- [[
-  -- inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-  -- inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-  -- ]],
-  -- true)
+  vim.api.nvim_exec(
+  [[
+  inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  ]],
+  true)
 
 
     -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')

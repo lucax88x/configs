@@ -4,6 +4,7 @@
 
 -- quit
 nnoremap('<leader>q', '<cmd>q<CR>')
+nnoremap('<leader>Q', '<cmd>q!<CR>')
 
 -- reload
 nnoremap('<leader><CR>', '<cmd>lua reload()<CR>')

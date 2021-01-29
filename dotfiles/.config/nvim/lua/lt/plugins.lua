@@ -32,6 +32,7 @@ return require('packer').startup {
     use {'wbthomason/packer.nvim', opt = true}
 
     use 'nvim-lua/plenary.nvim'
+    use 'tjdevries/astronauta.nvim'
 
     use 'mhinz/vim-startify' -- start screen
     use 'tweekmonster/startuptime.vim' -- benchmark startup
@@ -76,27 +77,23 @@ return require('packer').startup {
     use 'kyazdani42/nvim-web-devicons'
 
     use 'tpope/vim-abolish' -- :S to replace with smartcase
-
-    -- Snippets
-    use(
-      {
-        "norcalli/snippets.nvim",
-        config = function()
-          local snippets = require "snippets"
-          snippets.use_suggested_mappings()
-        end
-      }
-    )
+    
     -- Autocomplete & Linters
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/lsp-status.nvim'
     use 'tjdevries/lsp_extensions.nvim'
 
-    use 'nvim-lua/completion-nvim'
-    use 'steelsojka/completion-buffers'
-    use 'nvim-treesitter/completion-treesitter'
+    use 'hrsh7th/nvim-compe'
+    -- use 'nvim-lua/completion-nvim'
+    -- use 'steelsojka/completion-buffers'
+    -- use 'nvim-treesitter/completion-treesitter'
+
+    -- Snippets
+    use 'hrsh7th/vim-vsnip'
+    use 'hrsh7th/vim-vsnip-integ'
 
     -- to download lsp servers
+    -- TODO: check the tjdevries library
     use 'mattn/vim-lsp-settings'
 
     -- Language packs

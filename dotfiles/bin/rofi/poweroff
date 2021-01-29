@@ -20,22 +20,22 @@ handle_option() {
             $HOME/bin/lock
             ;;
         "$SLEEP")
-            if $($HOME/bin/rofi-confirm-menu $SLEEP); then
+            if $($HOME/bin/rofi/confirm $SLEEP); then
                 systemctl suspend
             fi
             ;;
         "$LOGOUT")
-            if $($HOME/bin/rofi-confirm-menu $LOGOUT); then
+            if $($HOME/bin/rofi/confirm $LOGOUT); then
                 i3-msg exit
             fi
             ;;
         "$RESTART")
-            if $($HOME/bin/rofi-confirm-menu $RESTART); then
+            if $($HOME/bin/rofi/confirm $RESTART); then
                 reboot
             fi
             ;;
         "$SHUTDOWN")
-            if $($HOME/bin/rofi-confirm-menu $SHUTDOWN); then
+            if $($HOME/bin/rofi/confirm $SHUTDOWN); then
                 shutdown now
             fi
             ;;
