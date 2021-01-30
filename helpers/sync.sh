@@ -29,13 +29,14 @@ ARRAY=(
     .zprofile
     .tmux.conf
     .tmuxinator
+    .config/ranger/rc.conf
+    .local/share/navi/cheats/lucatrazzi__cheats
 )
 
 function sync()
 {
     FROM=$1
     TO=$2
-
 
     echo PROCESSING $FROM to $TO
     
