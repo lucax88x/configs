@@ -39,6 +39,7 @@ return function(language_server_path)
         },
         settings = {
           rootMarkers = { "package.json", ".git" },
+          lintDebounce = 500,
           languages = languages
         },
     }
