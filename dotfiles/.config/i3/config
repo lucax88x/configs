@@ -13,7 +13,7 @@ set $center_monitor DP-3.1
 set $right_monitor DP-3.2
 set $home_monitor DP-3
 
-font pango: FiraCode 6
+font pango: JetBrainsMono 6
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -48,10 +48,6 @@ bindsym $mod+t exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# start rofi
-bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
-bindsym $altMod+Tab exec "rofi -combi window -show"
 
 # change focus
 bindsym $mod+$left focus left
@@ -190,9 +186,12 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # bindsym $mod+r mode "resize"
 
 #####################
-### i3lock ###
+### rofi ###
 ######################
-bindsym $mod+q exec $HOME/bin/rofi-option-menu
+bindsym $mod+q exec $HOME/bin/rofi/poweroff
+bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
+bindsym $altMod+Tab exec "rofi -combi window -show"
+bindsym Shift+$mod+w exec $HOME/bin/rofi/wifi
 
 #####################
 ### greenclip ###
@@ -264,3 +263,18 @@ bindsym $mod+semicolon exec "i3-easyfocus -a -f -xos4-terminus-medium-r-normal--
 ######################
 bindsym $mod+Shift+i exec setxkbmap it
 bindsym $mod+Shift+u exec setxkbmap us
+
+#####################
+### Flameshot ###
+######################
+bindsym Print exec flameshot gui
+
+#####################
+### note-taker ###
+######################
+for_window [ title="notetaker_window" ] floating enable
+for_window [ title="notetaker_window" ] resize set 80 ppt 80 ppt
+for_window [ title="notetaker_window" ] move left 25 ppt
+for_window [ title="notetaker_window" ] move up 25 ppt 
+
+bindsym $mod+n exec kitty -T notetaker_window -- /home/lucatrazzi/bin/notetaker

@@ -44,7 +44,7 @@ fi
 
 if ! [ -x "$(command -v paru)" ]; then
   echo INSTALLING PARU
-  installYay
+  installParu
 else
   echo PARU ALREADY INSTALLED
 fi
@@ -93,12 +93,12 @@ fi
 
 echo '# SOFTWARE #'
 
-if ! [ "$(fc-list | grep -c 'FiraCode')" -ge 1 ]; then
-  echo INSTALLING FIRACODE
-  installFiraCode
-else
-  echo FIRACODE ALREADY INSTALLED
-fi
+# if ! [ "$(fc-list | grep -c 'FiraCode')" -ge 1 ]; then
+#  echo INSTALLING FIRACODE
+#  installFiraCode
+#else
+#  echo FIRACODE ALREADY INSTALLED
+#fi
 
 if ! [ "$(fc-list | grep -c 'JetBrains')" -ge 1 ]; then
   echo INSTALLING JETBRAINS MONO
