@@ -31,6 +31,7 @@ ARRAY=(
     .tmuxinator
     .config/ranger/rc.conf
     .local/share/navi/cheats/lucatrazzi__cheats
+    backgrounds
 )
 
 function sync()

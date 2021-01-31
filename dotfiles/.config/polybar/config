@@ -35,7 +35,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = FiraCode:pixelsize=12;1
+font-0 = JetBrainsMono:pixelsize=12;1
 font-1 = dina:pixelsize=9;1
 font-2 = "Font Awesome 5 Pro:style=Regular:pixelsize=10;0"
 font-3 = "Font Awesome 5 Pro:style=Solid:pixelsize=10;0"
@@ -67,8 +67,6 @@ underline-size = ${bar/center.overline-size}
 overline-size = ${bar/center.underline-size}
 
 wm-restack = ${bar/center.wm-restack}
-
-tray-position = none
 
 [bar/right]
 inherit = bar/center

@@ -19,7 +19,6 @@ esac
 TEMP_DIR=~/setup-temp
 EMAIL=lucax88x@gmail.com
 NERDFONT_VERSION=2.0.0
-FIRACODE_VERSION=5.2
 JETBRAINS_MONO_VERSION=2.221
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
 
@@ -84,34 +83,13 @@ else
   echo UNZIP ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v rsync)" ]; then
-  echo INSTALLING RSYNC
-  installRsync
-else
-  echo RSYNC ALREADY INSTALLED
-fi
-
 echo '# SOFTWARE #'
-
-# if ! [ "$(fc-list | grep -c 'FiraCode')" -ge 1 ]; then
-#  echo INSTALLING FIRACODE
-#  installFiraCode
-#else
-#  echo FIRACODE ALREADY INSTALLED
-#fi
 
 if ! [ "$(fc-list | grep -c 'JetBrains')" -ge 1 ]; then
   echo INSTALLING JETBRAINS MONO
   installJetBrainsMono
 else
   echo JETBRAINS MONO ALREADY INSTALLED
-fi
-
-if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
-  echo INSTALLING PATCHED FIRACODE
-  installFuraCode
-else
-  echo PATCHED FIRACODE ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then

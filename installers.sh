@@ -91,18 +91,6 @@ function installSsh {
   esac
 }
 
-function installRsync {
-
-  case $DISTRO in
-    ARCH)
-      paru -S --noconfirm rsync
-    ;;
-    *)
-      echo NOT IMPLEMENTED!
-    ;;
-  esac
-}
-
 function installUnzip {
 
   case $DISTRO in
@@ -118,16 +106,6 @@ function installUnzip {
 
 ## SOFTWARE ##
 
-function installFiraCode {
-  wget https://github.com/tonsky/FiraCode/releases/download/$FIRACODE_VERSION/Fira_Code_v$FIRACODE_VERSION.zip -O $TEMP_DIR/FiraCode.zip
-
-  unzip $TEMP_DIR/FiraCode.zip -d $TEMP_DIR/firacode
-  mkdir -p ~/.fonts/firacode
-  cp $TEMP_DIR/firacode/ttf/* ~/.fonts/firacode
-
-  fc-cache
-}
-
 function installJetBrainsMono {
   wget https://github.com/JetBrains/JetBrainsMono/releases/download/v$JETBRAINS_MONO_VERSION/JetBrainsMono-$JETBRAINS_MONO_VERSION.zip -O $TEMP_DIR/JetBrainsMono.zip
 
@@ -136,14 +114,6 @@ function installJetBrainsMono {
   cp $TEMP_DIR/jetbrains-mono/fonts/ttf/* ~/.fonts/jetbrains-mono
   # remove no ligature fonts
   rm ~/.fonts/jetbrains-mono/*NL*
-
-  fc-cache
-}
-
-function installFuraCode {
-  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip -O $TEMP_DIR/FuraCode.zip
-
-  unzip $TEMP_DIR/FuraCode.zip -d ~/.fonts/furacode
 
   fc-cache
 }
