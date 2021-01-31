@@ -20,7 +20,7 @@ TEMP_DIR=~/setup-temp
 EMAIL=lucax88x@gmail.com
 NERDFONT_VERSION=2.0.0
 JETBRAINS_MONO_VERSION=2.221
-JETBRAINS_TOOLBOX=jetbrains-toolbox-1.14.5179
+JETBRAINS_TOOLBOX=jetbrains-toolbox-1.19.7784
 
 mkdir -p $TEMP_DIR
 cd $TEMP_DIR
@@ -90,6 +90,13 @@ if ! [ "$(fc-list | grep -c 'JetBrains')" -ge 1 ]; then
   installJetBrainsMono
 else
   echo JETBRAINS MONO ALREADY INSTALLED
+fi
+
+if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
+  echo INSTALLING PATCHED FIRACODE
+  installFuraCode
+else
+  echo PATCHED FIRACODE ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then
@@ -286,6 +293,41 @@ if ! [ -x "$(command -v procs)" ]; then
   installProcs
 else
   echo PROCS ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v btm)" ]; then
+  echo INSTALLING BTM
+  installBtm
+else
+  echo BTM ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v navi)" ]; then
+  echo INSTALLING NAVI
+  installNavi
+else
+  echo NAVI ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v broot)" ]; then
+  echo INSTALLING BROOT
+  installBroot
+else
+  echo BROOT ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v openfortivpn)" ]; then
+  echo INSTALLING OPENFORTIVPN
+  installOpenfortivpn
+else
+  echo OPENFORTIVPN ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v tldr)" ]; then
+  echo INSTALLING TLDR
+  installTldr
+else
+  echo TLDR ALREADY INSTALLED
 fi
 
 echo '# CONFIGURATIONS'

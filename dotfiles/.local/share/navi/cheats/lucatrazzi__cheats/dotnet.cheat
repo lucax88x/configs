@@ -1,4 +1,4 @@
 % dotnet, c#
 
 # install a new dotnet sdk
-dotnet-install --version <version> --install-dir /usr/share/dotnet
+sudo dotnet-install --version <version> --install-dir /usr/share/dotnet

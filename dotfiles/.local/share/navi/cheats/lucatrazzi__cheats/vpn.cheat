@@ -1,0 +1,4 @@
+% vpn
+
+# connect to vpn
+sudo openfortivpn -c ~/.config/openfortivpn/config

@@ -55,7 +55,7 @@ alias v-='f(){ amixer -q sset Master "$@"%-;  unset -f f; }; f'
 alias tree='broot'
 alias grep='rg'
 alias find='fd'
-alias ps='procs'
+# alias ps='procs'
 alias crashed='journalctl --since=today'
 
 REPOSITORIES_FOLDER=~/repos
@@ -101,6 +101,12 @@ ex ()
 
 source /home/lucatrazzi/.config/broot/launcher/bash/br
 source /usr/share/nvm/init-nvm.sh
+
+# zsh-bd
+. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
+
+# zsh-bd
+. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
 
 # zsh-bd
 . ~/.oh-my-zsh/custom/plugins/bd/bd.zsh

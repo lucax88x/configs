@@ -176,7 +176,7 @@ function installOhMyZsh {
 
   git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-  git clone https://github.com/Aloxaf/fzf-tab ~ZSH_CUSTOM/plugins/fzf-tab
+  git clone https://github.com/Aloxaf/fzf-tab ~/.oh-my-zsh/custom/plugins/fzf-tab
 }
 
 function installChrome {
@@ -201,20 +201,28 @@ function installJetbrainsToolbox {
   case $DISTRO in
     UBUNTU)
       wget https://download.jetbrains.com/toolbox/$JETBRAINS_TOOLBOX.tar.gz -q --show-progress
-      tar xvzf $JETBRAINS_TOOLBOX.tar.gz > /dev/null
+      tar xvzf $JETBRAINS_TOOLBOX.tar.gz
       ./$JETBRAINS_TOOLBOX/jetbrains-toolbox
     ;;
     ARCH)
       paru -S --noconfirm fuse 
       
       wget https://download.jetbrains.com/toolbox/$JETBRAINS_TOOLBOX.tar.gz -q --show-progress
-      tar xvzf $JETBRAINS_TOOLBOX.tar.gz > /dev/null
+      tar xvzf $JETBRAINS_TOOLBOX.tar.gz
       ./$JETBRAINS_TOOLBOX/jetbrains-toolbox
     ;;
     *)
       echo NOT IMPLEMENTED!
     ;;
   esac
+}
+
+function installFuraCode {
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip -O $TEMP_DIR/FuraCode.zip
+
+  unzip $TEMP_DIR/FuraCode.zip -d ~/.fonts/furacode
+
+  fc-cache
 }
 
 function installTelegram {
@@ -362,6 +370,26 @@ function installUdiskie {
 
 function installProcs {
   paru -Sy --noconfirm procs
+}
+
+function installBtm {
+  paru -S --noconfirm btm 
+}
+
+function installNavi {
+  paru -S --noconfirm navi 
+}
+
+function installBroot {
+  paru -S --noconfirm broot 
+}
+
+function installOpenfortivpn {
+  paru -S --noconfirm openfortivpn 
+}
+
+function installTldr {
+  paru -S --noconfirm tldr 
 }
 
 ## CONFIGURATION

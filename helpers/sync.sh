@@ -21,6 +21,7 @@ ARRAY=(
     .config/nvim
     .config/X11
     .config/ranger/rc.conf
+    .config/polybar
     .gitconfig
     bin
     .ideavimrc

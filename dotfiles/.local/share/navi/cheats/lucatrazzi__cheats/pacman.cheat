@@ -1,5 +1,0 @@
-% pacman, aur, yay, paru
-
-# downgrade kernel  (https://wiki.archlinux.org/index.php/downgrading_packages#Downgrading_the_kernel)
-ls /var/cache/pacman/pkg | grep arch1-1
-pacman -U linux-{VERSION}-x86_64.pkg.tar.xz linux-headers-{VERSION}-x86_64.pkg.tar.xz virtualbox-host-modules-arch-{VERSION}-x86_64.pkg.tar.xz
