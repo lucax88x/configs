@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+grep -i upgraded /var/log/pacman.log
