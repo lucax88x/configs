@@ -34,6 +34,27 @@ else
   echo BASE-DEVEL ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v rustup)" ]; then
+  echo INSTALLING RUSTUP
+  installRust
+else
+  echo RUST ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v go)" ]; then
+  echo INSTALLING GO
+  installGo
+else
+  echo GO ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v make)" ]; then
+  echo INSTALLING BASE-DEVEL
+  installBaseDevel
+else
+  echo BASE-DEVEL ALREADY INSTALLED
+fi
+
 if ! [ -x "$(command -v git)" ]; then
   echo INSTALLING GIT
   installGit

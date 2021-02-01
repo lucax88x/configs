@@ -11,8 +11,6 @@ function M.set(cap, bufnr)
   -- functions.tprint(cap)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  buf_set_keymap('n','<leader>fi', '<cmd>lua require("lt.lsp.servers.functions").lsp_install_servers()<CR>', opts)
-
   if cap.definitionProvider then
     buf_set_keymap('n','<leader>td', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)

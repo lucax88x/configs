@@ -11,6 +11,28 @@ function installBaseDevel {
   esac
 }
 
+function installGo {
+  case $DISTRO in
+    ARCH)
+      paru -S --noconfirm go
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
+}
+
+function installRust {
+  case $DISTRO in
+    ARCH)
+      paru -S --noconfirm rustup
+    ;;
+    *)
+      echo NOT IMPLEMENTED!
+    ;;
+  esac
+}
+
 function installYay {
   case $DISTRO in
     ARCH)
