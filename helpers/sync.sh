@@ -22,6 +22,7 @@ ARRAY=(
     .config/X11
     .config/ranger/rc.conf
     .config/polybar
+    .config/fontconfig/fonts.conf
     .gitconfig
     bin
     .ideavimrc

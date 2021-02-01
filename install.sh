@@ -87,9 +87,16 @@ echo '# SOFTWARE #'
 
 if ! [ "$(fc-list | grep -c 'JetBrains')" -ge 1 ]; then
   echo INSTALLING JETBRAINS MONO
-  installJetBrainsMono
+  installJetbrainsMono
 else
   echo JETBRAINS MONO ALREADY INSTALLED
+fi
+
+if ! [ "$(fc-list | grep -c 'Roboto')" -ge 1 ]; then
+  echo INSTALLING ROBOTOJ
+  installRoboto
+else
+  echo ROBOTO ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
@@ -328,6 +335,20 @@ if ! [ -x "$(command -v tldr)" ]; then
   installTldr
 else
   echo TLDR ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v dropbox)" ]; then
+  echo INSTALLING DROPBOX
+  installDropbox
+else
+  echo DROPBOX ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v flameshot)" ]; then
+  echo INSTALLING FLAMESHOT
+  installFlameshot
+else
+  echo FLAMESHOT ALREADY INSTALLED
 fi
 
 echo '# CONFIGURATIONS'

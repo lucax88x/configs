@@ -106,7 +106,7 @@ function installUnzip {
 
 ## SOFTWARE ##
 
-function installJetBrainsMono {
+function installJetbrainsMono {
   wget https://github.com/JetBrains/JetBrainsMono/releases/download/v$JETBRAINS_MONO_VERSION/JetBrainsMono-$JETBRAINS_MONO_VERSION.zip -O $TEMP_DIR/JetBrainsMono.zip
 
   unzip $TEMP_DIR/JetBrainsMono.zip -d $TEMP_DIR/jetbrains-mono
@@ -114,6 +114,16 @@ function installJetBrainsMono {
   cp $TEMP_DIR/jetbrains-mono/fonts/ttf/* ~/.fonts/jetbrains-mono
   # remove no ligature fonts
   rm ~/.fonts/jetbrains-mono/*NL*
+
+  fc-cache
+}
+
+function installRoboto {
+  wget https://fonts.google.com/download?family=Roboto -O $TEMP_DIR/Roboto.zip
+
+  unzip $TEMP_DIR/Roboto.zip -d $TEMP_DIR/roboto
+  mkdir -p ~/.fonts/roboto
+  cp $TEMP_DIR/roboto/Roboto-* ~/.fonts/roboto
 
   fc-cache
 }
@@ -373,7 +383,7 @@ function installProcs {
 }
 
 function installBtm {
-  paru -S --noconfirm btm 
+  paru -S --noconfirm bottom 
 }
 
 function installNavi {
@@ -390,6 +400,14 @@ function installOpenfortivpn {
 
 function installTldr {
   paru -S --noconfirm tldr 
+}
+
+function installDropbox {
+  paru -S --noconfirm dropbox 
+}
+
+function installFlameshot {
+  paru -S --noconfirm flameshot 
 }
 
 ## CONFIGURATION

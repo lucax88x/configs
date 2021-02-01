@@ -1,7 +1,7 @@
 
 configuration {
     show-icons:                     false;
-    font:                           "Fira Code 20";
+    font:                           "JetBrains Mono 20";
 }
 
 @import "./colors.rasi"
