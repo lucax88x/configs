@@ -48,7 +48,10 @@ return require('packer').startup {
 
     use 'jdhao/better-escape.vim'
     use 'justinmk/vim-sneak'
-    use 'tpope/vim-commentary'
+
+    -- use 'tpope/vim-commentary'
+    use 'b3nj5m1n/kommentary'
+
     use 'tpope/vim-surround' -- Change surrounding arks
     use 'tpope/vim-repeat' -- extends . repeat, for example for make it work with vim-sneak
     use 'bkad/CamelCaseMotion' -- allows to move by camelCase with w e
@@ -73,15 +76,16 @@ return require('packer').startup {
     -- use 'AndrewRadev/tagalong.vim' -- changes the closing html / xml tag
 
     use 'justinmk/vim-dirvish' -- alternative file explorer
-    use 'ryanoasis/vim-devicons'
-    use 'kyazdani42/nvim-web-devicons'
+    -- use 'ryanoasis/vim-devicons'
+    -- use 'kyazdani42/nvim-web-devicons'
 
     use 'tpope/vim-abolish' -- :S to replace with smartcase
-    
+
     -- Autocomplete & Linters
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/lsp-status.nvim'
     use 'tjdevries/lsp_extensions.nvim'
+    use 'glepnir/lspsaga.nvim'
 
     use 'hrsh7th/nvim-compe'
     -- use 'nvim-lua/completion-nvim'

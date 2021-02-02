@@ -23,6 +23,7 @@ ARRAY=(
     .config/ranger/rc.conf
     .config/polybar
     .config/fontconfig/fonts.conf
+    .config/gitui/key_config.ron
     .gitconfig
     bin
     .ideavimrc
