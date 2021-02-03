@@ -43,9 +43,9 @@
 -- }
 
 require'compe'.setup {
-  enabled = true;
-  debug = false;
-  min_length = 3;
+  enabled = true,
+  debug = false,
+  min_length = 3,
   -- preselect = 'enable' || 'disable' || 'always';
   -- throttle_time = ... number ...;
   -- source_timeout = ... number ...;
@@ -53,9 +53,12 @@ require'compe'.setup {
   -- allow_prefix_unmatch = false;
 
   source = {
-    path = true;
-    buffer = true;
-    vsnip = true;
-    nvim_lsp = true;
+    path = true,
+    buffer = true,
+    spell = true,
+    calc = true,
+    vsnip = true,
+    nvim_lsp = true,
+    nvim_lua = true,
   };
 }

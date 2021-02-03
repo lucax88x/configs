@@ -15,8 +15,6 @@ require 'lt.filetypes'
 require 'lt.defaults'
 require 'lt.betterescape'
 
-require 'lt.statusline'
-
 require 'lt.window.remaps'
 require 'lt.project.remaps'
 require 'lt.buffer.remaps'

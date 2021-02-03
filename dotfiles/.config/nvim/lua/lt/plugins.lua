@@ -76,8 +76,11 @@ return require('packer').startup {
     -- use 'AndrewRadev/tagalong.vim' -- changes the closing html / xml tag
 
     use 'justinmk/vim-dirvish' -- alternative file explorer
+
+
+    -- icons
     -- use 'ryanoasis/vim-devicons'
-    -- use 'kyazdani42/nvim-web-devicons'
+    use 'kyazdani42/nvim-web-devicons'
 
     use 'tpope/vim-abolish' -- :S to replace with smartcase
 
@@ -111,9 +114,12 @@ return require('packer').startup {
     use 'gruvbox-community/gruvbox'
 
     -- status line
-    use 'itchyny/lightline.vim'
-    use 'shinchu/lightline-gruvbox.vim'
-    -- use 'tjdevries/express_line.nvim'
+    --[[ use 'itchyny/lightline.vim'
+    use 'shinchu/lightline-gruvbox.vim' ]]
+    use {'glepnir/galaxyline.nvim', config = require 'lt.statusline.galaxyline'}
+
+    -- tabline
+    use {'akinsho/nvim-bufferline.lua', config = require 'lt.tabline.bufferline'}
 
     use {
       'glacambre/firenvim',

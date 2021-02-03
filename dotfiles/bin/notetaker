@@ -2,7 +2,7 @@
 
 mkdir -p $HOME/repos/notes
 
-noteFilename="$HOME/repos/notes/note-$(date +%Y-%m-%d).md"
+noteFilename="$HOME/Dropbox/notes/note-$(date +%Y-%m-%d).md"
 
 if [ ! -f $noteFilename ]; then
   echo "# Notes for $(date +%Y-%m-%d)" > $noteFilename

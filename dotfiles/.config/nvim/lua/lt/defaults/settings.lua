@@ -37,7 +37,7 @@ vim.o.updatetime = 50
 -- menuone: popup even when there's only one match
 -- noinsert: Do not insert text until a selection is made
 -- noselect: Do not select, force user to select one from the menu
-vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.completeopt = 'menu,menuone,noselect'
 
 -- Don't show the dumb matching stuff.
 vim.cmd [[set shortmess+=c]]
