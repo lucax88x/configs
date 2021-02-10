@@ -31,7 +31,6 @@ return require('packer').startup {
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    use 'nvim-lua/plenary.nvim'
     use 'tjdevries/astronauta.nvim'
 
     use 'mhinz/vim-startify' -- start screen
@@ -55,12 +54,20 @@ return require('packer').startup {
     use 'tpope/vim-surround' -- Change surrounding arks
     use 'tpope/vim-repeat' -- extends . repeat, for example for make it work with vim-sneak
     use 'bkad/CamelCaseMotion' -- allows to move by camelCase with w e
-    use 'dyng/ctrlsf.vim'
+    use { 'glepnir/indent-guides.nvim', config = function() require 'lt.plugins.indent-guides' end}
+
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+      config = function() require 'lt.plugins.telescope' end
+    }
+    use 'nvim-telescope/telescope-fzy-native.nvim'
 
     use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
     use {'junegunn/fzf.vim'}
     use 'ojroques/nvim-lspfuzzy'
 
+    use { 'dyng/ctrlsf.vim', config =  function() require 'lt.plugins.ctrlsf' end}
     use {'rrethy/vim-hexokinase', run = 'make hexokinase' } -- preview hex colors
 
     use 'rrethy/vim-illuminate' -- highlight matching words when cursor on it
@@ -89,8 +96,12 @@ return require('packer').startup {
     use 'nvim-lua/lsp-status.nvim'
     use 'tjdevries/lsp_extensions.nvim'
     use 'glepnir/lspsaga.nvim'
+    use 'onsails/lspkind-nvim'
 
-    use 'hrsh7th/nvim-compe'
+    -- use 'hrsh7th/nvim-compe'
+    use {
+      'hrsh7th/nvim-compe', branch = 'master'
+    }
     -- use 'nvim-lua/completion-nvim'
     -- use 'steelsojka/completion-buffers'
     -- use 'nvim-treesitter/completion-treesitter'
@@ -114,12 +125,7 @@ return require('packer').startup {
     use 'gruvbox-community/gruvbox'
 
     -- status line
-    --[[ use 'itchyny/lightline.vim'
-    use 'shinchu/lightline-gruvbox.vim' ]]
-    use {'glepnir/galaxyline.nvim', config = require 'lt.statusline.galaxyline'}
-
-    -- tabline
-    use {'akinsho/nvim-bufferline.lua', config = require 'lt.tabline.bufferline'}
+    use {'glepnir/galaxyline.nvim', config = function() require 'lt.plugins.galaxyline' end }
 
     use {
       'glacambre/firenvim',

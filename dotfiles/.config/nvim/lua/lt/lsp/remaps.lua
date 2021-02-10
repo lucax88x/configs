@@ -15,8 +15,8 @@ function M.set(cap, bufnr)
 
   buf_set_keymap('n', '<leader>tt', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
   if cap.definitionProvider then
-    buf_set_keymap('n', '<leader>td', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
-    buf_set_keymap('n', '<leader>tD', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>tD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
+    buf_set_keymap('n', '<leader>td', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     -- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   end
   -- if cap.declarationProvider then
@@ -46,15 +46,15 @@ function M.set(cap, bufnr)
   if cap.codeActionProvider then
     buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", opts)
+    --[[ buf_set_keymap('n', '<leader>fa', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
+    buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts) ]]
     buf_set_keymap('n','<leader>fo', '<cmd>lua require("lt.lsp.functions").organize_imports()<CR>', opts)
   end
 
   -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n','<leader>fe', '<cmd>:LspDiagnostics 0<CR>', opts)
-  
   -- buf_set_keymap('n','<leader>fE', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n','<leader>fE', "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", opts)
-  
   --[[ buf_set_keymap('n','[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n',']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts) ]]
   buf_set_keymap('n', '[e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
@@ -76,7 +76,7 @@ function M.set(cap, bufnr)
   -- buf_set_keymap('n','<leader>fcl', ":lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", opts)
   buf_set_keymap('n','<leader>fci', ':LspInfo()<CR>', opts)
 
-  
+
   vim.api.nvim_exec(
   [[
   inoremap <silent><expr> <C-p> compe#complete()
@@ -84,7 +84,7 @@ function M.set(cap, bufnr)
   inoremap <silent><expr> <CR>  compe#confirm('<CR>')
   ]],
   true)
-  
+
   -- imap('<c-p>', '<Plug>(completion_trigger)')
   -- imap('<Tab>', '<Plug>(completion_smart_tab)')
   -- imap('<S-Tab>', '<Plug>(completion_smart_s_tab)')

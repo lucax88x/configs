@@ -37,31 +37,38 @@ local mode_color = function()
     n = colors.blue,
     i = colors.green,
     c = colors.orange,
+    v = colors.magenta,
     V = colors.purple,
     [''] = colors.magenta,
-    v = colors.magenta,
     R = colors.red,
+    s = colors.red,
   }
-
-  return mode_colors[vim.fn.mode()]
+  local mode = vim.fn.mode()
+  if mode_colors[mode] then
+    return mode_colors[mode];
+  else
+    print (mode .. ' not mapped')
+  end
 end
 
 local mode_alias = function()
   local mode_map = {
      n = 'N',
      i = 'I',
-     R = 'R',
+     c = 'C',
      v = 'V',
      V = 'VL',
-     ["<C-v>"]= 'VB',
-     c = 'C',
-     s = 'S',
-     S = 'SL',
-     ["<C-s>"] = 'SB',
-     t= 'T',
+     [''] = 'VB',
+     R = 'R',
+     s = 's',
   }
 
-  return mode_map[vim.fn.mode()]
+  local mode = vim.fn.mode()
+  if mode_map[mode] then
+    return mode_map[mode];
+  else
+    print (mode .. ' not mapped')
+  end
 end
 
 
@@ -180,24 +187,22 @@ gls.right= {
       condition = checkwidth,
       icon = '  ',
       highlight = {colors.red,colors.section_bg},
-      separator = ' ',
-      separator_highlight = { colors.section_bg, colors.bg },
     }
   },
   {
     FileEncode = {
       provider = 'FileEncode',
       highlight = {colors.cyan,colors.bg,'bold'},
-      separator = ' ',
-      separator_highlight = {colors.section_bg, colors.bg},
+      separator = ' ',
+      separator_highlight = { colors.section_bg, colors.bg },
     }
   },
   {
     FileFormat = {
       provider = 'FileFormat',
       highlight = {colors.cyan,colors.bg,'bold'},
-      separator_highlight = {colors.bg, colors.bg},
       separator = ' ',
+      separator_highlight = {colors.bg, colors.bg},
     }
   },
   {

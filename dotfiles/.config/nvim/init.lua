@@ -5,11 +5,11 @@
 -- | | |_| | (_| (_| | |_| | | (_| |/ / / /| |
 -- |_|\__,_|\___\__,_|\__|_|  \__,_/___/___|_|
 
+require 'lt.utils'
 
 require 'lt.plugins'
 require 'lt.theme'
 
-require 'lt.utils'
 require 'lt.filetypes'
 
 require 'lt.defaults'
@@ -20,7 +20,6 @@ require 'lt.project.remaps'
 require 'lt.buffer.remaps'
 require 'lt.editor.remaps'
 require 'lt.git'
-require 'lt.ctrlsf'
 
 -- TODO: fix
 require 'lt.startify.settings'
@@ -37,10 +36,9 @@ require 'lt.lsp'
 
 require 'lt.treesitter.settings'
 
-require 'lt.fzf'
-require 'lt.fzf-lsp'
+-- require 'lt.fzf'
+-- require 'lt.fzf-lsp'
 
-require 'lt.easymotion.remaps'
 require 'lt.sneak'
 
 require 'lt.hexokinase.settings'
