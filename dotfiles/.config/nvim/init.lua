@@ -29,15 +29,10 @@ require 'lt.fix-cursorhold.settings'
 
 require 'lt.netrw.settings'
 
-require 'lt.dirvish.settings'
-
 require 'lt.snippets'
 require 'lt.lsp'
 
 require 'lt.treesitter.settings'
-
--- require 'lt.fzf'
--- require 'lt.fzf-lsp'
 
 require 'lt.sneak'
 

@@ -1,5 +1,3 @@
-local functions = require  'lt.utils.functions'
-
 local M = {}
 
 function M.set(cap, bufnr)
@@ -8,12 +6,11 @@ function M.set(cap, bufnr)
 
   local opts = { noremap=true, silent=true }
 
-  -- functions.tprint(cap)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- gives definition & references
-
   buf_set_keymap('n', '<leader>tt', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
+
   if cap.definitionProvider then
     buf_set_keymap('n', '<leader>tD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
     buf_set_keymap('n', '<leader>td', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -26,16 +23,18 @@ function M.set(cap, bufnr)
     buf_set_keymap('n','<leader>ti', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   end
   if cap.referencesProvider then
-    buf_set_keymap('n','<leader>tr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    -- buf_set_keymap('n','<leader>tr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n','<leader>tr', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
   end
 
   -- buf_set_keymap('n','<leader>th', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<leader>th', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
 
   if cap.documentSymbolProvider then
-    buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
+    -- buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
+    buf_set_keymap('n','<leader>to', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", opts)
   end
-  
+
   buf_set_keymap('n', '<leader>ts', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
 
 
@@ -44,10 +43,10 @@ function M.set(cap, bufnr)
   -- end
 
   if cap.codeActionProvider then
-    buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", opts)
-    --[[ buf_set_keymap('n', '<leader>fa', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
-    buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts) ]]
+    -- buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n','<leader>fa', "<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
+    -- buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", opts)
+    buf_set_keymap('v', '<leader>fa', "<cmd>lua require('telescope.builtin').lsp_range_code_actions()<CR>", opts)
     buf_set_keymap('n','<leader>fo', '<cmd>lua require("lt.lsp.functions").organize_imports()<CR>', opts)
   end
 

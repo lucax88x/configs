@@ -31,12 +31,16 @@ return require('packer').startup {
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
+    use 'antoinemadec/FixCursorHold.nvim' -- Fix CursorHold Performance
+
     use 'tjdevries/astronauta.nvim'
 
     use 'mhinz/vim-startify' -- start screen
     use 'tweekmonster/startuptime.vim' -- benchmark startup
 
-    use 'antoinemadec/FixCursorHold.nvim' -- Fix CursorHold Performance
+    -- icons
+    -- use 'ryanoasis/vim-devicons'
+    use 'kyazdani42/nvim-web-devicons'
 
     use 'tpope/vim-fugitive' -- git
     use 'airblade/vim-rooter'
@@ -63,10 +67,6 @@ return require('packer').startup {
     }
     use 'nvim-telescope/telescope-fzy-native.nvim'
 
-    use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
-    use {'junegunn/fzf.vim'}
-    use 'ojroques/nvim-lspfuzzy'
-
     use { 'dyng/ctrlsf.vim', config =  function() require 'lt.plugins.ctrlsf' end}
     use {'rrethy/vim-hexokinase', run = 'make hexokinase' } -- preview hex colors
 
@@ -82,12 +82,11 @@ return require('packer').startup {
     use 'AndrewRadev/splitjoin.vim' -- allows to split one liner to multi lines
     -- use 'AndrewRadev/tagalong.vim' -- changes the closing html / xml tag
 
-    use 'justinmk/vim-dirvish' -- alternative file explorer
-
-
-    -- icons
-    -- use 'ryanoasis/vim-devicons'
-    use 'kyazdani42/nvim-web-devicons'
+    use {
+      'lambdalisue/fern.vim',
+      requires = {{'lambdalisue/nerdfont.vim'}, {'lambdalisue/fern-renderer-nerdfont.vim'}, {'lambdalisue/glyph-palette.vim'}},
+      config = function() require 'lt.plugins.fern' end
+    }
 
     use 'tpope/vim-abolish' -- :S to replace with smartcase
 
