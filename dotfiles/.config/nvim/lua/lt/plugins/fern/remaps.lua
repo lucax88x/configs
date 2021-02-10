@@ -1,1 +1,1 @@
-nnoremap('-', "<cmd>Fern . -reveal=%<CR>")
+nnoremap('-', "<cmd>Fern %:h<CR>")

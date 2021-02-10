@@ -7,7 +7,7 @@ local remaps  = require('lt.lsp.remaps')
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 
--- vim.lsp.set_log_level("warn")
+-- vim.lsp.set_log_level("info")
 
 local function on_attach(client, bufnr)
     -- print(client.name)

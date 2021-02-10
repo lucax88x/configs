@@ -84,7 +84,7 @@ return require('packer').startup {
 
     use {
       'lambdalisue/fern.vim',
-      requires = {{'lambdalisue/nerdfont.vim'}, {'lambdalisue/fern-renderer-nerdfont.vim'}, {'lambdalisue/glyph-palette.vim'}},
+      requires = {{'lambdalisue/nerdfont.vim'}, {'lambdalisue/fern-renderer-nerdfont.vim'}},
       config = function() require 'lt.plugins.fern' end
     }
 

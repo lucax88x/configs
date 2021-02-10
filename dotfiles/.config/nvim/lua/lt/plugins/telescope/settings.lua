@@ -3,6 +3,7 @@ local telescope = require('telescope')
 
 telescope.setup{
     defaults = {
+        timeoutlen = 2000,
         mappings = {i = {["<esc>"] = actions.close, }},
         vimgrep_arguments = {
             'rg',

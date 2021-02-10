@@ -1,5 +1,4 @@
 local lsp = vim.lsp
-local functions = require('lt.utils.functions')
 
 local M = {}
 
@@ -10,7 +9,12 @@ M.organize_imports = function()
     only = { 'source.organizeImports' }
   }
 
-  local responses = lsp.buf_request_sync(0, 'textDocument/codeAction', params)
+  local responses, err = lsp.buf_request_sync(0, 'textDocument/codeAction', params, 500)
+
+  if err then
+    print("ERROR: " .. err)
+    return
+  end
 
   if not responses or vim.tbl_isempty(responses) then
     return
@@ -25,6 +29,12 @@ M.organize_imports = function()
       end
     end
   end
+end
+
+M.show_diagnostics = function(opts)
+  opts = opts or {}
+  vim.lsp.diagnostic.set_loclist({open_loclist = false})
+  require'telescope.builtin'.loclist(opts)
 end
 
 return M

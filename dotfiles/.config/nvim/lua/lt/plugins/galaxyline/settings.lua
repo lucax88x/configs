@@ -42,6 +42,7 @@ local mode_color = function()
     [''] = colors.magenta,
     R = colors.red,
     s = colors.red,
+    t = colors.red,
   }
   local mode = vim.fn.mode()
   if mode_colors[mode] then
@@ -61,6 +62,7 @@ local mode_alias = function()
      [''] = 'VB',
      R = 'R',
      s = 's',
+     t = 't',
   }
 
   local mode = vim.fn.mode()
