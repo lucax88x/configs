@@ -72,7 +72,7 @@ return function(language_server_path)
         end,
         filetypes = vim.tbl_keys(languages),
         init_options = {
-          documentFormatting = true,
+          documentFormatting = true
         },
         settings = {
           rootMarkers = { "package.json", ".git" },

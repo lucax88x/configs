@@ -67,13 +67,16 @@ return require('packer').startup {
     }
     use 'nvim-telescope/telescope-fzy-native.nvim'
 
+    use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher	    use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
+    use {'junegunn/fzf.vim', config = function() require 'lt.plugins.fzf' end}
+
     use { 'dyng/ctrlsf.vim', config =  function() require 'lt.plugins.ctrlsf' end}
     use {'rrethy/vim-hexokinase', run = 'make hexokinase' } -- preview hex colors
 
     use 'rrethy/vim-illuminate' -- highlight matching words when cursor on it
     use 'terryma/vim-expand-region'
 
-    use 'junegunn/vim-peekaboo' -- shows register preview
+    use 'gennaro-tedesco/nvim-peekup' -- shows register preview
     use 'numtostr/BufOnly.nvim' -- deletes all buffers except
     use 'psliwka/vim-smoothie' -- smoother scroll
     use 'liuchengxu/vim-which-key' -- shows 'emacs' preview of shortcuts
@@ -83,9 +86,8 @@ return require('packer').startup {
     -- use 'AndrewRadev/tagalong.vim' -- changes the closing html / xml tag
 
     use {
-      'lambdalisue/fern.vim',
-      requires = {{'lambdalisue/nerdfont.vim'}, {'lambdalisue/fern-renderer-nerdfont.vim'}},
-      config = function() require 'lt.plugins.fern' end
+      'kyazdani42/nvim-tree.lua',
+      config = function() require 'lt.plugins.nvim-tree' end
     }
 
     use 'tpope/vim-abolish' -- :S to replace with smartcase
@@ -97,7 +99,6 @@ return require('packer').startup {
     use 'glepnir/lspsaga.nvim'
     use 'onsails/lspkind-nvim'
 
-    -- use 'hrsh7th/nvim-compe'
     use {
       'hrsh7th/nvim-compe', branch = 'master'
     }

@@ -1,0 +1,1 @@
+nnoremap('-', "<cmd>NvimTreeToggle<CR>")

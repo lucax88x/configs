@@ -38,8 +38,6 @@ require 'lt.sneak'
 
 require 'lt.hexokinase.settings'
 
-require 'lt.peekaboo.settings'
-
 require 'lt.which-key.settings'
 require 'lt.which-key.remaps'
 

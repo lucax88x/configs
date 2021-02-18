@@ -102,17 +102,5 @@ ex ()
 source /home/lucatrazzi/.config/broot/launcher/bash/br
 source /usr/share/nvm/init-nvm.sh
 
-# zsh-bd
-. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
-
-# zsh-bd
-. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
-
-# zsh-bd
-. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
-
-# zsh-bd
-. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
-
-# zsh-bd
-. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
+# zoxide
+eval "$(zoxide init zsh)"
