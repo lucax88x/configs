@@ -390,5 +390,4 @@ echo - update all packages and the system
 echo - register ssh public key to github
 echo - install node with nvm
 echo '- disable alt+space shortcut (https://unix.stackexchange.com/questions/44643/change-global-keyboard-shortcuts)'
-echo '- sync dotfiles'
 echo - reboot
