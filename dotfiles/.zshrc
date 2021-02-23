@@ -2,10 +2,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# sets nvim as default editor
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+# sets nvim as default editor
+export EDITOR=nvim
+export VISUAL=nvim
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$PATH

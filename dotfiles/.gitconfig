@@ -16,7 +16,7 @@
 	a = add
 	all = add -A
 
-	# tree (mauro) with branches, author, time
+	# tree  branches, author, time
 	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Creset%Cgreen(%an %cr)%Creset%Cred%d' --abbrev-commit
 	history = log --oneline --graph --decorate --all
 	last = diff-tree --no-commit-id --name-only -r HEAD
@@ -33,6 +33,7 @@
 	cp = cherry-pick
 	cm = commit
 	ap = add -p
+	cp = checkout -p
 	fetch = fetch --prune
 	f = fetch --prune
 	cam = commit --amend --no-edit
@@ -69,17 +70,13 @@
 	snapshot = !git stash savesnapshot: $(date)&& git stash applystash@{0}
 	rup = remote update
 	sthcom = commit -a -mSTASH
-	amend = commit --amend
 	pf = push -f
 	last = log -1 --stat
-	cp = cherry-pick
 	co = checkout
 	cob = checkout -b
 	cl = clone
 	ci = commit
 	br = branch
-	unstage = reset HEAD --
-	discard = checkout -- .
 	dt = difftool
 	dtd = difftool -d
 	d = diff
@@ -90,7 +87,6 @@
 	wdc = diff --color-words --cached
 	root = !sh -c \"cd $(git rev-parse --show-toplevel)\"
 	wip = commit -am WIP
-	undo = reset --soft HEAD^
 	standup = "!git log --since yesterday  --author `git config user.email` --pretty=oneline"
 	hash = rev-parse HEAD
 
@@ -105,12 +101,19 @@
 	root = !pwd
 	lgp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p -M
 
-  fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && GIT_SEQUENCE_EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
-
 	# flow
 	feature = "!f() { feature=${1}; git flow feature start $feature;  }; f"
 	bugfix = "!f() { bugfix=${1}; git flow bugfix start $bugfix;  }; f"
     hotfix = "!f() { hotfix=${1}; git flow hotfix start $hotfix;  }; f"
 	release = "!f() { release=${1}; git flow release start $release;  }; f"
+	
+        # fixup
+	fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && GIT_SEQUENCE_EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+	
+	# undo
+	undop = git restore --staged -p # to unstage hunks
+	undo = reset --soft HEAD^
+	unstage = reset HEAD --
+	discard = checkout -- .
 [pull]
 	rebase = true
