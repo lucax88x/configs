@@ -8,4 +8,4 @@ nnoremap('<leader>/r', "<cmd>lua require('telescope.builtin').registers()<CR>")
 nnoremap('<leader>/m', "<cmd>lua require('telescope.builtin').marks()<CR>")
 nnoremap('<leader>/t', "<cmd>lua require('telescope.builtin').treesitter()<CR>")
 
-nnoremap('<leader>bl', "<cmd>lua require('telescope.builtin').buffers()<CR>")
+nnoremap('<leader>bL', "<cmd>lua require('telescope.builtin').buffers()<CR>")

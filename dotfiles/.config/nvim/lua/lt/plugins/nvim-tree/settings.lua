@@ -1,4 +1,4 @@
-vim.g.nvim_tree_width = 50
+vim.g.nvim_tree_width = 90
 vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_follow  = 1
