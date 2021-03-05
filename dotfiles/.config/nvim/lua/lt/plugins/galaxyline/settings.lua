@@ -144,6 +144,13 @@ gls.left = {
       provider = 'DiagnosticInfo',
       icon = ' ',
       highlight = {colors.blue,colors.section_bg},
+    }
+  },
+  {
+    ShowLspClient = {
+      icon = ':',
+      provider = function() return require('galaxyline.provider_lsp').get_lsp_client('') end,
+      highlight = {colors.section_fg,colors.section_bg},
       separator = ' ',
       separator_highlight = { colors.section_bg, colors.bg },
     }
