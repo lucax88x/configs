@@ -2,7 +2,7 @@ local lsp = vim.lsp
 
 local M = {}
 
-M.organize_imports = function()
+--[[ M.organize_imports = function()
   local params = lsp.util.make_range_params()
   params.context = {
     diagnostics = {},
@@ -29,6 +29,15 @@ M.organize_imports = function()
       end
     end
   end
+end ]]
+
+M.organize_imports = function()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = {vim.api.nvim_buf_get_name(0)},
+    title = ""
+  }
+  vim.lsp.buf.execute_command(params)
 end
 
 M.show_diagnostics = function(opts)
