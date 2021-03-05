@@ -57,7 +57,6 @@ vim.o.cursorcolumn = false
 -- done by status bar
 vim.o.showmode = false
 
-
 -- fold
 vim.wo.foldcolumn = '0' -- defines 1 col at window left, to indicate folding
 vim.o.foldlevelstart = 99 -- start file with all folds opened
@@ -65,3 +64,7 @@ vim.o.foldlevelstart = 99 -- start file with all folds opened
 -- using treesitter for folding
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- shows spaces
+vim.o.list = true
+vim.o.listchars= 'eol:¬,tab:>·,trail:~,extends:>,precedes:<'
