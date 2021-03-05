@@ -281,6 +281,13 @@ else
   echo KITTY ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v gnome-keyring)" ]; then
+  echo INSTALLING KEYRING
+  installGnomeKeyring
+else
+  echo KEYRING ALREADY INSTALLED
+fi
+
 if ! [ -x "$(command -v fzf)" ]; then
   echo INSTALLING FZF
   installFzf
@@ -390,4 +397,5 @@ echo - update all packages and the system
 echo - register ssh public key to github
 echo - install node with nvm
 echo '- disable alt+space shortcut (https://unix.stackexchange.com/questions/44643/change-global-keyboard-shortcuts)'
+echo '-remember to configure keyring (https://wiki.archlinux.org/index.php/GNOME/Keyring#PAM_method)'
 echo - reboot

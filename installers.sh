@@ -373,6 +373,11 @@ function installKitty {
   paru -Sy --noconfirm kitty
 }
 
+function installGnomeKeyring {
+  paru -Sy --noconfirm gnome-keyring
+  paru -Sy --noconfirm libsecret
+}
+
 function installFzf {
   paru -Sy --noconfirm fzf
 

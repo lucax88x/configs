@@ -31,6 +31,10 @@ systemctl --user import-environment DISPLAY &
 udiskie &  # allow automatic mounting of portable drives
 picom & # compositor
 
+# start keyring
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
 # start i3 and keep it running
 if [ -f /usr/bin/i3 ]; then
     exec i3

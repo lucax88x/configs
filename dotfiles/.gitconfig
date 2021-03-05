@@ -117,3 +117,5 @@
 	discard = checkout -- .
 [pull]
 	rebase = true
+[credential]
+	helper = libsecret
