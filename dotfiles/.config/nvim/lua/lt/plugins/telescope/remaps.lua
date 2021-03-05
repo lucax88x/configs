@@ -1,6 +1,7 @@
 nnoremap('<leader>ps', "<cmd>lua require('telescope.builtin').live_grep()<CR>")
 nnoremap('<leader>pF', "<cmd>lua require('telescope.builtin').find_files()<CR>")
 nnoremap('<leader>pG', "<cmd>lua require('telescope.builtin').git_files()<CR>")
+nnoremap('<leader>cc', "<cmd>lua require('lt.plugins.telescope.functions').search_config()<CR>")
 
 nnoremap('<leader>/h', "<cmd>lua require('telescope.builtin').command_history()<CR>")
 nnoremap('<leader>/c', "<cmd>lua require('telescope.builtin').commands()<CR>")
