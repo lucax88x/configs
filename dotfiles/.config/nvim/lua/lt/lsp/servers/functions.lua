@@ -1,5 +1,6 @@
 local M = {}
 
+-- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 M.lsp_install_servers = function()
     local function installLanguageServer(filetype, languageServer)
         if pcall(function() vim.cmd ('set filetype=' .. filetype) end) then
@@ -16,8 +17,9 @@ M.lsp_install_servers = function()
     installLanguageServer('yaml', 'yaml-language-server')
     installLanguageServer('html', 'html-languageserver')
     installLanguageServer('css', 'css-languageserver')
+    installLanguageServer('cs', 'omnisharp-lsp')
 
-    -- installLanguageServer('*', 'dockerfile-language-server-nodejs')
+    -- installLanguageServer('Dockerfile')
 
     -- must be installed globally
     installLanguageServer('*', 'efm-langserver')

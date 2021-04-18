@@ -1,3 +1,5 @@
+-- Use s instead of <C-w> to handle windows
+nnoremap('s', '<C-w>')
 nnoremap('<leader>wh', '<cmd>wincmd h<CR>')
 nnoremap('<leader>wj', '<cmd>wincmd j<CR>')
 nnoremap('<leader>wk', '<cmd>wincmd k<CR>')

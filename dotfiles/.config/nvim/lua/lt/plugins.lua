@@ -36,7 +36,6 @@ return require('packer').startup {
     use 'tjdevries/astronauta.nvim'
 
     use 'mhinz/vim-startify' -- start screen
-    use 'tweekmonster/startuptime.vim' -- benchmark startup
 
     -- icons
     -- use 'ryanoasis/vim-devicons'
@@ -119,7 +118,6 @@ return require('packer').startup {
       'nvim-treesitter/nvim-treesitter',
       run = function() vim.cmd [[TSUpdate]] end
     }
-    use 'jceb/vim-orgmode'
 
     -- Theming
     use 'gruvbox-community/gruvbox'

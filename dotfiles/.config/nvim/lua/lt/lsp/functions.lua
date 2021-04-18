@@ -1,4 +1,4 @@
-local lsp = vim.lsp
+-- local lsp = vim.lsp
 
 local M = {}
 

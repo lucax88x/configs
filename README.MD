@@ -1,3 +1,4 @@
+#
 # Linux software installer scripts
 
 very simple scripts for installing all necessary tools for developing
@@ -12,4 +13,6 @@ sh install.sh ARCH/UBUNTU
 
 # Gallery
 
+
 ![https://imgur.com/Dzse3aV](https://i.imgur.com/Dzse3aV.png)
+

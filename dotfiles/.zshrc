@@ -37,6 +37,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
+
+alias k='kubectl'
 alias c='xclip -selection clipboard'
 alias v='nvim'
 
@@ -101,6 +104,3 @@ ex ()
 
 source /home/lucatrazzi/.config/broot/launcher/bash/br
 source /usr/share/nvm/init-nvm.sh
-
-# zoxide
-eval "$(zoxide init zsh)"

@@ -3,25 +3,32 @@ local functions = require "lt.utils.functions"
 
 -- local luafmt = require "lt.lsp.servers.efm.formatters.luafmt"
 local prettier = require "lt.lsp.servers.formatters.prettier"
+-- local prettier_d = require "lt.lsp.servers.formatters.prettier_d"
 local eslint_d = require "lt.lsp.servers.linters.eslint_d"
+
+local formatter = prettier
+local linter = eslint_d
 
 local languages = {
   --lua = {luafmt},
-  typescript = {prettier, eslint_d},
-  javascript = {prettier, eslint_d},
-  typescriptreact = {prettier, eslint_d},
-  ['typescript.tsx'] = {prettier, eslint_d},
-  javascriptreact = {prettier, eslint_d},
-  ['javascript.jsx'] = {prettier, eslint_d},
-  yaml = {prettier},
-  json = {prettier},
-  html = {prettier},
-  scss = {prettier},
-  css = {prettier},
-  markdown = {prettier},
+  typescript = {formatter, linter},
+  javascript = {formatter, linter},
+  typescriptreact = {formatter, linter},
+  ['typescript.tsx'] = {formatter, linter},
+  javascriptreact = {formatter, linter},
+  ['javascript.jsx'] = {formatter, linter},
+  yaml = {formatter},
+  json = {formatter},
+  html = {formatter},
+  scss = {formatter},
+  css = {formatter},
+  markdown = {formatter},
 }
 
-local function eslint_config_exists()
+local efm_config = os.getenv('HOME') ..
+                         '/.config/efm-langserver/config.yaml'
+
+--[[ local function eslint_config_exists()
   local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
   local test = vim.fn.glob("package.json*")
 
@@ -49,26 +56,35 @@ local function eslint_config_exists()
 
   print ('not in json')
   return false
-end
+end ]]
 
 return function(language_server_path)
     local bin_path = language_server_path .. "/efm-langserver/efm-langserver"
     return {
         cmd = {
           bin_path,
+          "-c",
+          efm_config,
           --[[ "-loglevel",
           "10",
           "-logfile",
           "/home/lucatrazzi/efm.log" ]]
         },
-        root_dir = function()
+        root_dir = function(fname)
           --[[ if not eslint_config_exists() then
             print 'eslint configuration not found'
             return nil
           end]]
           -- check if eslint_d installed globally!
           -- return lsp.util.root_pattern("package.json", ".git", vim.fn.getcwd())
-          return vim.fn.getcwd()
+          -- return vim.fn.return lspconfig.util
+          -- return getcwd()
+             return lsp.util
+                       .root_pattern("tsconfig.json")(fname) or
+                       lsp.util
+                           .root_pattern(".eslintrc.json", ".git")(fname) or
+                       lsp.util.root_pattern("package.json", ".git/",
+                                                   ".zshrc")(fname);
         end,
         filetypes = vim.tbl_keys(languages),
         init_options = {

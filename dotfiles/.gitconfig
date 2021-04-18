@@ -114,6 +114,8 @@
 	undop = git restore --staged -p # to unstage hunks
 	undo = reset --soft HEAD^
 	unstage = reset HEAD --
+	# unstage = reset -fd 
+	# unstage = reset -fdx
 	discard = checkout -- .
 [pull]
 	rebase = true

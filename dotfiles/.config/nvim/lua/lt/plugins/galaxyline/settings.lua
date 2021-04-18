@@ -215,6 +215,14 @@ gls.right= {
     }
   },
   {
+    BufferType = {
+      provider = 'FileTypeName',
+      highlight = {colors.cyan,colors.bg,'bold'},
+      separator = ' ',
+      separator_highlight = {colors.bg, colors.bg},
+    },
+  },
+  {
     LineInfo = {
       provider = 'LineColumn',
       highlight = {colors.fg,colors.bg},
@@ -226,7 +234,7 @@ gls.right= {
 
 
 
---[[ gls.short_line_left[1] = {
+gls.short_line_left[1] = {
   BufferType = {
     provider = 'FileTypeName',
     separator = ' ',
@@ -257,4 +265,4 @@ gls.short_line_right[1] = {
     provider= 'BufferIcon',
     highlight = {colors.fg,colors.bg}
   }
-}  ]]
+} 

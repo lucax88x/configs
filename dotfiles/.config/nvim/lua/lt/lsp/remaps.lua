@@ -14,6 +14,8 @@ function M.set(cap, bufnr)
   if cap.definitionProvider then
     buf_set_keymap('n', '<leader>tD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
     buf_set_keymap('n', '<leader>td', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'gD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     -- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   end
   -- if cap.declarationProvider then
