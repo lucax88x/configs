@@ -1,6 +1,25 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+source /usr/share/zsh/share/antigen.zsh
+
+antigen bundle git
+antigen bundle command-not-found
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle Aloxaf/fzf-tab
+antigen bundle Tarrasch/zsh-bd
+
+antigen theme romkatv/powerlevel10k
+if [ `tput colors` != "256" ]; then  
+	antigen theme robbyrussell
+fi 
+
+antigen apply
 
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 # sets nvim as default editor
@@ -12,33 +31,25 @@ export PATH=$HOME/bin:$PATH
 # add yarn globals to path
 export PATH="$(yarn global bin):$PATH"
 
-# Path to your oh-my-zsh installation.
-export ZSH="/home/lucatrazzi/.oh-my-zsh"
+# # change zsh vim escape to jk
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# plugins=(
+# 	command-not-found
+# 	zsh-vi-mode
+# 	git 
+# 	colored-man-pages 
+# 	history
+# 	npm 
+# 	yarn 
+# 	docker 
+# 	dotnet 
+# 	zsh-autosuggestions 
+# 	zsh-syntax-highlighting 
+# 	fzf-tab	
+# )
 
-if [ `tput colors` != "256" ]; then  
-  ZSH_THEME="robbyrussell"  
-fi 
-
-plugins=(
-	command-not-found
-	git 
-	colored-man-pages 
-	history
-	npm 
-	yarn 
-	docker 
-	dotnet 
-	zsh-autosuggestions 
-	zsh-syntax-highlighting 
-	fzf-tab	
-)
-
-source $ZSH/oh-my-zsh.sh
-
-source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
-
+# ALIASES
 alias k='kubectl'
 alias c='xclip -selection clipboard'
 alias v='nvim'
@@ -60,47 +71,24 @@ alias grep='rg'
 alias find='fd'
 # alias ps='procs'
 alias crashed='journalctl --since=today'
+# END ALIASES
 
+
+# SOURCES
 REPOSITORIES_FOLDER=~/repos
 function prj(){
   cd $REPOSITORIES_FOLDER/$1
 }
 compctl -W $REPOSITORIES_FOLDER -/ prj
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-### ARCHIVE EXTRACTION
-# usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;      
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-# zsh-bd
-. ~/.oh-my-zsh/custom/plugins/bd/bd.zsh
-
+# bd to do
+# [ -f ~/.bd.zsh ] && source ~/.bd.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source /home/lucatrazzi/.config/broot/launcher/bash/br
 source /usr/share/nvm/init-nvm.sh
+source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
+#END SOURCES
+
+# To customize prompt, run p10k configure or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

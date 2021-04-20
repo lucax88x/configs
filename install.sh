@@ -155,13 +155,6 @@ else
   echo ZSH ALREADY INSTALLED
 fi
 
-if [ ! -d ~/.oh-my-zsh ]; then
-  echo INSTALLING OH-MY-ZSH
-  installOhMyZsh
-else
-  echo OH-MY-ZSH ALREADY INSTALLED
-fi
-
 if ! [ -x "$(command -v google-chrome-stable)" ]; then
   echo INSTALLING CHROME
   installChrome
@@ -386,6 +379,13 @@ if [ ! -f ~/.ssh/id_rsa.pub ]; then
   configureSsh
 else
   echo SSH ALREADY CONFIGURED
+fi
+
+if [ ! -f ~/.zshrc ]; then
+  echo CONFIGURING ZSH
+  configureZsh
+else
+  echo ZSH ALREADY CONFIGURED
 fi
 
 rm -rf $TEMP_DIR
