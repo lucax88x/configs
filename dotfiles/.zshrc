@@ -39,9 +39,8 @@ zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
 zinit snippet OMZ::plugins/npm/npm.plugin.zsh
 zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 
-# zinit load Aloxaf/fzf-tab
+zinit load Aloxaf/fzf-tab
 # zinit load Tarrasch/zsh-bd
-# zinit load lukechilds/zsh-better-npm-completion
 zinit load jeffreytse/zsh-vi-mode
 
 if [ `tput colors` = "256" ]; then  
@@ -85,21 +84,21 @@ alias find='fd'
 alias crashed='journalctl --since=today'
 # END ALIASES
 
-
-# SOURCES
+# FUNCTIONS
 REPOSITORIES_FOLDER=~/repos
 function prj(){
   cd $REPOSITORIES_FOLDER/$1
 }
 compctl -W $REPOSITORIES_FOLDER -/ prj
+# END FUNCTIONS
 
-
-source $HOME/.config/broot/launcher/bash/br
+# SOURCES
+zinit snippet $HOME/.config/broot/launcher/bash/br
 source /usr/share/nvm/init-nvm.sh
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
-source $HOME/.fzf.zsh
+zinit snippet $HOME/.fzf.zsh
 
 #END SOURCES
 
 # To customize prompt, run p10k configure or edit ~/.p10k.zsh.
-[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+[[ ! -f $HOME/.p10k.zsh ]] || zinit snippet $HOME/.p10k.zsh
