@@ -435,6 +435,5 @@ function configureSsh {
 }
 
 function configureZsh {
-  paru -S --noconfirm antigen-git 
-}
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"}
 
