@@ -64,7 +64,7 @@ return require('packer').startup {
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
       config = function() require 'lt.plugins.telescope' end
     }
-    use 'nvim-telescope/telescope-fzy-native.nvim'
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher	    use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
     use {'junegunn/fzf.vim', config = function() require 'lt.plugins.fzf' end}

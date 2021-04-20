@@ -2,11 +2,11 @@ local lsp = require('lspconfig')
 local functions = require "lt.utils.functions"
 
 -- local luafmt = require "lt.lsp.servers.efm.formatters.luafmt"
-local prettier = require "lt.lsp.servers.formatters.prettier"
--- local prettier_d = require "lt.lsp.servers.formatters.prettier_d"
+-- local prettier = require "lt.lsp.servers.formatters.prettier"
+local prettier_d = require "lt.lsp.servers.formatters.prettier_d"
 local eslint_d = require "lt.lsp.servers.linters.eslint_d"
 
-local formatter = prettier
+local formatter = prettier_d
 local linter = eslint_d
 
 local languages = {
@@ -64,11 +64,11 @@ return function(language_server_path)
         cmd = {
           bin_path,
           "-c",
-          efm_config,
-          --[[ "-loglevel",
+           efm_config,
+           --[[ "-loglevel",
           "10",
           "-logfile",
-          "/home/lucatrazzi/efm.log" ]]
+          "/tmp/efm.log" ]]
         },
         root_dir = function(fname)
           --[[ if not eslint_config_exists() then
@@ -77,15 +77,15 @@ return function(language_server_path)
           end]]
           -- check if eslint_d installed globally!
           -- return lsp.util.root_pattern("package.json", ".git", vim.fn.getcwd())
-          -- return vim.fn.return lspconfig.util
           -- return getcwd()
-             return lsp.util
-                       .root_pattern("tsconfig.json")(fname) or
-                       lsp.util
-                           .root_pattern(".eslintrc.json", ".git")(fname) or
-                       lsp.util.root_pattern("package.json", ".git/",
-                                                   ".zshrc")(fname);
-        end,
+         local cwd = lsp.util
+                   .root_pattern("tsconfig.json")(fname) or
+                   lsp.util
+                       .root_pattern(".eslintrc.json", ".git")(fname) or
+                   lsp.util.root_pattern("package.json", ".git/",
+                                               ".zshrc")(fname);
+         return cwd
+      end,
         filetypes = vim.tbl_keys(languages),
         init_options = {
           documentFormatting = true
