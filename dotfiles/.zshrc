@@ -1,3 +1,11 @@
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ### ZINIT
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -21,43 +29,48 @@ zinit light-mode for \
 
 ### END ZINIT
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# PLUGINS
+zinit light zsh-users/zsh-completions
+zinit light zdharma/history-search-multi-word
 
-zinit load zsh-users/zsh-autosuggestions
-zinit load zdharma/fast-syntax-highlighting
-zinit load zdharma/history-search-multi-word
+zinit snippet OMZ::lib/key-bindings.zsh 
+zinit snippet OMZ::lib/history.zsh 
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
-zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
-zinit snippet OMZ::plugins/history/history.plugin.zsh
 zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
 zinit snippet OMZ::plugins/npm/npm.plugin.zsh
-zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 
-zinit load Aloxaf/fzf-tab
-# zinit load Tarrasch/zsh-bd
-zinit load jeffreytse/zsh-vi-mode
+zinit light Aloxaf/fzf-tab
+zinit light Tarrasch/zsh-bd
+zinit light jeffreytse/zsh-vi-mode
+
+# those should stay last
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma/fast-syntax-highlighting
+ 
+zinit snippet $HOME/.config/broot/launcher/bash/br
+source /usr/share/nvm/init-nvm.sh
+source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
+zinit snippet $HOME/.fzf.zsh
+
+
+# END PLUGINS
 
 if [ `tput colors` = "256" ]; then  
-	zinit load romkatv/powerlevel10k
+	zinit light romkatv/powerlevel10k
 fi 
 
+# ENV VAR
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-# sets nvim as default editor
 export EDITOR=nvim
 export VISUAL=nvim
 
-# If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$PATH
 # add yarn globals to path
 export PATH="$(yarn global bin):$PATH"
+# END ENV VAR
 
-# change zsh vim escape to jk
+# # change zsh vim escape to jk
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 # ALIASES
@@ -92,13 +105,4 @@ function prj(){
 compctl -W $REPOSITORIES_FOLDER -/ prj
 # END FUNCTIONS
 
-# SOURCES
-zinit snippet $HOME/.config/broot/launcher/bash/br
-source /usr/share/nvm/init-nvm.sh
-source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
-zinit snippet $HOME/.fzf.zsh
-
-#END SOURCES
-
-# To customize prompt, run p10k configure or edit ~/.p10k.zsh.
 [[ ! -f $HOME/.p10k.zsh ]] || zinit snippet $HOME/.p10k.zsh
