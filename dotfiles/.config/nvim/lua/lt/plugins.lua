@@ -45,13 +45,12 @@ return require('packer').startup {
     use 'airblade/vim-rooter'
     use 'lewis6991/gitsigns.nvim'
 
-    use 'vim-utils/vim-man' -- man pages
     use 'mbbill/undotree' -- undo tree
+    use { 'kevinhwang91/nvim-bqf', config = function() require 'lt.plugins.nvim-bqf' end}
 
     use 'jdhao/better-escape.vim'
     use 'justinmk/vim-sneak'
 
-    -- use 'tpope/vim-commentary'
     use 'b3nj5m1n/kommentary'
 
     use 'tpope/vim-surround' -- Change surrounding arks
@@ -124,12 +123,5 @@ return require('packer').startup {
 
     -- status line
     use {'glepnir/galaxyline.nvim', config = function() require 'lt.plugins.galaxyline' end }
-
-    use {
-      'glacambre/firenvim',
-      run = function()
-        vim.fn['firenvim#install'](0)
-      end
-    }
   end
 }

@@ -45,5 +45,3 @@ require 'lt.ripgrep.settings'
 
 require 'lt.camelcasemotion.settings'
 
-require 'lt.firenvim.settings'
-
