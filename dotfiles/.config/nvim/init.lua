@@ -16,7 +16,8 @@ require 'lt.defaults'
 require 'lt.betterescape'
 
 require 'lt.window.remaps'
-require 'lt.project.remaps'
+require 'lt.project'
+require 'lt.quickfix'
 require 'lt.buffer.remaps'
 require 'lt.editor.remaps'
 require 'lt.git'
@@ -37,9 +38,6 @@ require 'lt.treesitter.settings'
 require 'lt.sneak'
 
 require 'lt.hexokinase.settings'
-
-require 'lt.which-key.settings'
-require 'lt.which-key.remaps'
 
 require 'lt.ripgrep.settings'
 

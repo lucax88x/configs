@@ -77,8 +77,8 @@ return require('packer').startup {
     use 'gennaro-tedesco/nvim-peekup' -- shows register preview
     use 'numtostr/BufOnly.nvim' -- deletes all buffers except
     use 'psliwka/vim-smoothie' -- smoother scroll
-    use 'liuchengxu/vim-which-key' -- shows 'emacs' preview of shortcuts
     use 'romainl/vim-cool' -- disabled search highlight until next search
+    use {'folke/which-key.nvim', config = function() require 'lt.plugins.which-key' end}
     use 'AndrewRadev/sideways.vim' -- allows to move functions parameters
     use 'AndrewRadev/splitjoin.vim' -- allows to split one liner to multi lines
     -- use 'AndrewRadev/tagalong.vim' -- changes the closing html / xml tag
@@ -96,6 +96,7 @@ return require('packer').startup {
     use 'tjdevries/lsp_extensions.nvim'
     use 'glepnir/lspsaga.nvim'
     use 'onsails/lspkind-nvim'
+    use 'ray-x/lsp_signature.nvim'
 
     use {
       'hrsh7th/nvim-compe', branch = 'master'
@@ -117,6 +118,8 @@ return require('packer').startup {
       'nvim-treesitter/nvim-treesitter',
       run = function() vim.cmd [[TSUpdate]] end
     }
+
+    use 'haringsrob/nvim_context_vt' -- shows treesitter context in end of parenthesis
 
     -- Theming
     use 'gruvbox-community/gruvbox'

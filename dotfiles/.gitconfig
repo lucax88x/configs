@@ -121,3 +121,5 @@
 	rebase = true
 [credential]
 	helper = libsecret
+[init]
+	defaultBranch = main
