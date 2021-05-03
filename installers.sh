@@ -413,6 +413,11 @@ function installFlameshot {
   paru -S --noconfirm flameshot 
 }
 
+function installSteam {
+  paru -S --noconfirm steam steam-fonts
+  paru -S --noconfirm nvidia nvidia-utils lib32-nvidia-utils
+}
+
 ## CONFIGURATION
 
 function configureSsh {

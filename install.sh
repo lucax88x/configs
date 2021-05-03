@@ -366,6 +366,13 @@ else
   echo FLAMESHOT ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v steam)" ]; then
+  echo INSTALLING STEAM
+  installSteam
+else
+  echo STEAM ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
