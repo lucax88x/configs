@@ -33,25 +33,12 @@ function installRust {
   esac
 }
 
-function installYay {
+function installParu {
   case $DISTRO in
     ARCH)
       git clone https://aur.archlinux.org/paru.git
       cd paru && makepkg -si --noconfirm && cd ..
       rm -rf paru
-    ;;
-    *)
-      echo NOT IMPLEMENTED!
-    ;;
-  esac
-}
-
-function installParu {
-  case $DISTRO in
-    ARCH)
-      git clone https://aur.archlinux.org/yay.git
-      cd yay && makepkg -si --noconfirm && cd ..
-      rm -rf yay
     ;;
     *)
       echo NOT IMPLEMENTED!

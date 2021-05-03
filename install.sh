@@ -34,6 +34,14 @@ else
   echo BASE-DEVEL ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v make)" ]; then
+  echo INSTALLING BASE-DEVEL
+  installBaseDevel
+else
+  echo BASE-DEVEL ALREADY INSTALLED
+fi
+
+
 if ! [ -x "$(command -v rustup)" ]; then
   echo INSTALLING RUSTUP
   installRust
@@ -46,13 +54,6 @@ if ! [ -x "$(command -v go)" ]; then
   installGo
 else
   echo GO ALREADY INSTALLED
-fi
-
-if ! [ -x "$(command -v make)" ]; then
-  echo INSTALLING BASE-DEVEL
-  installBaseDevel
-else
-  echo BASE-DEVEL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v git)" ]; then
@@ -68,13 +69,6 @@ if ! [ -x "$(command -v paru)" ]; then
 else
   echo PARU ALREADY INSTALLED
 fi
-
-# if ! [ -x "$(command -v yay)" ]; then
-#   echo INSTALLING YAY
-#   installYay
-# else
-#   echo YAY ALREADY INSTALLED
-# fi
 
 if ! [ -x "$(command -v wget)" ]; then
   echo INSTALLING WGET
