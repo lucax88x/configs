@@ -1,0 +1,4 @@
+% pacman, reflector
+
+# update pacman italian mirror list
+sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist --country Italy
