@@ -92,6 +92,10 @@ monitor = DP-5
 inherit = bar/center
 monitor = DP-3
 
+[bar/home_desktop]
+inherit = bar/center
+monitor = HDMI-0
+
 [module/i3]
 type = internal/i3
 index-sort = true

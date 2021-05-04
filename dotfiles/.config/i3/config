@@ -12,6 +12,7 @@ set $left_monitor DP-5
 set $center_monitor DP-3.1
 set $right_monitor DP-3.2
 set $home_monitor DP-3
+set $home_desktop_monitor HDMI-0
 
 font pango: JetBrainsMono 6
 
@@ -120,11 +121,11 @@ set $ws6 "6 "
 # devtools
 set $ws7 "7 "
 
-workspace $ws1 output $left_monitor $home_monitor
-workspace $ws2 output $center_monitor $home_monitor
-workspace $ws3 output $left_monitor $home_monitor
-workspace $ws4 output $right_monitor $home_monitor
-workspace $ws5 output $center_monitor $home_monitor
+workspace $ws1 output $left_monitor $home_monitor $home_desktop_monitor
+workspace $ws2 output $center_monitor $home_monitor $home_desktop_monitor
+workspace $ws3 output $left_monitor $home_monitor $home_desktop_monitor
+workspace $ws4 output $right_monitor $home_monitor $home_desktop_monitor
+workspace $ws5 output $center_monitor $home_monitor $home_desktop_monitor
 workspace $ws6 output $home_monitor
 workspace $ws7 output $right_monitor $home_monitor
 
