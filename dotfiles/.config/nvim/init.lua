@@ -37,8 +37,6 @@ require 'lt.treesitter.settings'
 
 require 'lt.sneak'
 
-require 'lt.hexokinase.settings'
-
 require 'lt.ripgrep.settings'
 
 require 'lt.camelcasemotion.settings'

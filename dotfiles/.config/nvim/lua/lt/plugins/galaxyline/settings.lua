@@ -171,6 +171,7 @@ gls.right= {
     GitBranch = {
       provider = 'GitBranch',
       condition = require('galaxyline.provider_vcs').check_git_workspace,
+      separator = ' ',
       highlight = {colors.fg,colors.section_bg},
     }
   },
@@ -265,4 +266,4 @@ gls.short_line_right[1] = {
     provider= 'BufferIcon',
     highlight = {colors.fg,colors.bg}
   }
-} 
+}

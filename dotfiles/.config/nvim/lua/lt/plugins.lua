@@ -2,11 +2,11 @@
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 
 if not packer_exists then
-  -- TODO: Maybe handle windows better?
   if vim.fn.input("Download Packer? (y for yes)") ~= "y" then
     return
   end
 
+  print("Downloading packer.nvim...")
   local directory = string.format(
     '%s/site/pack/packer/opt/',
     vim.fn.stdpath('data')
@@ -21,7 +21,9 @@ if not packer_exists then
   ))
 
   print(out)
-  print("Downloading packer.nvim...")
+  print("Downloaded packer.nvim")
+
+  print("Reopen NVIM and run :PackerSync twice")
 
   return
 end
@@ -38,7 +40,6 @@ return require('packer').startup {
     use 'mhinz/vim-startify' -- start screen
 
     -- icons
-    -- use 'ryanoasis/vim-devicons'
     use 'kyazdani42/nvim-web-devicons'
 
     use 'tpope/vim-fugitive' -- git
@@ -65,11 +66,11 @@ return require('packer').startup {
     }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-    use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher	    use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
+    use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
     use {'junegunn/fzf.vim', config = function() require 'lt.plugins.fzf' end}
 
     use { 'dyng/ctrlsf.vim', config =  function() require 'lt.plugins.ctrlsf' end}
-    use {'rrethy/vim-hexokinase', run = 'make hexokinase' } -- preview hex colors
+    use { 'norcalli/nvim-colorizer.lua', config = function() require 'lt.plugins.nvim-colorizer' end} -- preview hex colors
 
     use 'rrethy/vim-illuminate' -- highlight matching words when cursor on it
     use 'terryma/vim-expand-region'

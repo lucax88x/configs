@@ -5,7 +5,7 @@ nmap('<leader>gj', '<cmd>diffget //3<CR>')
 nmap('<leader>gd', '<cmd>Gdiffsplit<CR>')
 nmap('<leader>gb', '<cmd>Git blame<CR>')
 nmap('<leader>gc', '<cmd>GCheckout<CR>')
-nmap('<leader>gs', '<cmd>BCommits!<CR>')
+-- nmap('<leader>gs', '<cmd>BCommits!<CR>')
 nmap('<leader>gh', '<cmd>0Gclog!<CR>')
 
 nnoremap(']h', "&diff ? ']h' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'")
