@@ -50,7 +50,6 @@ zinit snippet OMZ::plugins/npm/npm.plugin.zsh
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
  
-zinit snippet $HOME/.config/broot/launcher/bash/br
 source /usr/share/nvm/init-nvm.sh
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 
@@ -97,7 +96,6 @@ alias v+='f(){ amixer -q sset Master "$@"%+;  unset -f f; }; f'
 alias v-='f(){ amixer -q sset Master "$@"%-;  unset -f f; }; f'
 # alias v='f(){ amixer -q sset Master toggle;  unset -f f; }; f'
 
-alias tree='broot'
 alias grep='rg'
 alias find='fd'
 # alias ps='procs'

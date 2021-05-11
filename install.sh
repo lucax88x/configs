@@ -331,13 +331,6 @@ else
   echo NAVI ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v broot)" ]; then
-  echo INSTALLING BROOT
-  installBroot
-else
-  echo BROOT ALREADY INSTALLED
-fi
-
 if ! [ -x "$(command -v openfortivpn)" ]; then
   echo INSTALLING OPENFORTIVPN
   installOpenfortivpn

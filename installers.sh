@@ -393,10 +393,6 @@ function installNavi {
   paru -S --noconfirm navi 
 }
 
-function installBroot {
-  paru -S --noconfirm broot 
-}
-
 function installOpenfortivpn {
   paru -S --noconfirm openfortivpn 
 }
