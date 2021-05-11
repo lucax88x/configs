@@ -94,7 +94,7 @@ monitor = DP-3
 
 [bar/home_desktop]
 inherit = bar/center
-monitor = HDMI-0
+monitor = DP-2
 
 [module/i3]
 type = internal/i3

@@ -12,7 +12,7 @@ set $left_monitor DP-5
 set $center_monitor DP-3.1
 set $right_monitor DP-3.2
 set $home_monitor DP-3
-set $home_desktop_monitor HDMI-0
+set $home_desktop_monitor DP-2
 
 font pango: JetBrainsMono 6
 
