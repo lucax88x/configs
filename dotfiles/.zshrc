@@ -42,7 +42,6 @@ zinit snippet OMZ::plugins/npm/npm.plugin.zsh
 
 zinit light Aloxaf/fzf-tab
 zinit light Tarrasch/zsh-bd
-zinit light jeffreytse/zsh-vi-mode
 
 # those should stay last
 zinit light zsh-users/zsh-autosuggestions
@@ -52,7 +51,6 @@ zinit snippet $HOME/.config/broot/launcher/bash/br
 source /usr/share/nvm/init-nvm.sh
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 zinit snippet $HOME/.fzf.zsh
-
 
 # END PLUGINS
 
@@ -69,9 +67,6 @@ export PATH=$HOME/bin:$PATH
 # add yarn globals to path
 export PATH="$(yarn global bin):$PATH"
 # END ENV VAR
-
-# # change zsh vim escape to jk
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 # ALIASES
 alias k='kubectl'
@@ -95,6 +90,8 @@ alias grep='rg'
 alias find='fd'
 # alias ps='procs'
 alias crashed='journalctl --since=today'
+alias ssk="kitty +kitten ssh"
+
 # END ALIASES
 
 # FUNCTIONS
