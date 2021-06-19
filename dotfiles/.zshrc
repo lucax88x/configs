@@ -1,4 +1,3 @@
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -18,6 +17,7 @@ fi
 source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+zpcompinit; zpcdreplay
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -29,19 +29,22 @@ zinit light-mode for \
 
 ### END ZINIT
 
-# PLUGINS
-zinit light zsh-users/zsh-completions
-zinit light zdharma/history-search-multi-word
+if [ `tput colors` = "256" ]; then  
+	zinit light romkatv/powerlevel10k
+fi 
 
-zinit snippet OMZ::lib/key-bindings.zsh 
+# PLUGINS
+# zinit ice depth=1
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# zinit light jeffreytse/zsh-vi-mode
+
+zinit light zsh-users/zsh-completions
+# zinit light zdharma/history-search-multi-word
 zinit snippet OMZ::lib/history.zsh 
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
 zinit snippet OMZ::plugins/npm/npm.plugin.zsh
-
-zinit light Aloxaf/fzf-tab
-zinit light Tarrasch/zsh-bd
 
 # those should stay last
 zinit light zsh-users/zsh-autosuggestions
@@ -50,13 +53,22 @@ zinit light zdharma/fast-syntax-highlighting
 zinit snippet $HOME/.config/broot/launcher/bash/br
 source /usr/share/nvm/init-nvm.sh
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
-zinit snippet $HOME/.fzf.zsh
+
+# awaits, necessary for vi mode
+zinit ice lucid wait
+zinit snippet OMZP::fzf
+zinit light Aloxaf/fzf-tab
+# zinit light Tarrasch/zsh-bd
+# zinit snippet $HOME/.fzf.zsh
+
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=true
+zinit light zsh-users/zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# zinit snippet OMZ::lib/key-bindings.zsh 
 
 # END PLUGINS
-
-if [ `tput colors` = "256" ]; then  
-	zinit light romkatv/powerlevel10k
-fi 
 
 # ENV VAR
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"

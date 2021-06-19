@@ -11,13 +11,14 @@ M.lsp_install_servers = function()
     end
 
     installLanguageServer('typescript', 'typescript-language-server')
+    installLanguageServer('vue', 'vls')
     installLanguageServer('lua', 'sumneko-lua-language-server')
     installLanguageServer('sh', 'bash-language-server')
     installLanguageServer('json', 'json-languageserver')
     installLanguageServer('yaml', 'yaml-language-server')
     installLanguageServer('html', 'html-languageserver')
     installLanguageServer('css', 'css-languageserver')
-    installLanguageServer('cs', 'omnisharp-lsp')
+    installLanguageServer('cs', 'omnisharp')
 
     -- installLanguageServer('Dockerfile')
 

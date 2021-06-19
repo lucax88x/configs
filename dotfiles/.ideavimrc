@@ -3,6 +3,7 @@
 set ideajoin
 let mapleader = " "
 set surround
+set commentary
 set multiple-cursors
 set history=1000
 set visualbell

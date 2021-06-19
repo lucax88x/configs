@@ -122,6 +122,11 @@ return require('packer').startup {
 
     use 'haringsrob/nvim_context_vt' -- shows treesitter context in end of parenthesis
 
+    use {
+      'folke/todo-comments.nvim',
+      config = function() require 'lt.plugins.todo-comments' end
+    }
+
     -- Theming
     use 'gruvbox-community/gruvbox'
 

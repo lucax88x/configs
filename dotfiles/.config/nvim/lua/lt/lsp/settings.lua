@@ -52,6 +52,7 @@ local servers = {
   sumneko_lua = require('lt.lsp.servers.sumneko_lua')(language_server_path),
   dockerls = require('lt.lsp.servers.dockerls')(language_server_path),
   omnisharp = require('lt.lsp.servers.omnisharp')(language_server_path),
+  vuels = require('lt.lsp.servers.vuels')(language_server_path, on_attach),
 }
 
 for server, config in pairs(servers) do

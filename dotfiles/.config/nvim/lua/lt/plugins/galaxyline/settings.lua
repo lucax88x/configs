@@ -148,7 +148,6 @@ gls.left = {
   },
   {
     ShowLspClient = {
-      icon = ':',
       provider = function() return require('galaxyline.provider_lsp').get_lsp_client('') end,
       highlight = {colors.section_fg,colors.section_bg},
       separator = ' ',
@@ -171,7 +170,6 @@ gls.right= {
     GitBranch = {
       provider = 'GitBranch',
       condition = require('galaxyline.provider_vcs').check_git_workspace,
-      separator = ' ',
       highlight = {colors.fg,colors.section_bg},
     }
   },
@@ -179,7 +177,7 @@ gls.right= {
     DiffAdd = {
       provider = 'DiffAdd',
       condition = checkwidth,
-      icon = '  ',
+      icon = '',
       highlight = {colors.green,colors.section_bg},
     }
   },
@@ -187,7 +185,7 @@ gls.right= {
     DiffModified = {
       provider = 'DiffModified',
       condition = checkwidth,
-      icon = ' 柳',
+      icon = '柳',
       highlight= {colors.orange,colors.section_bg},
     }
   },
@@ -195,7 +193,7 @@ gls.right= {
     DiffRemove = {
       provider = 'DiffRemove',
       condition = checkwidth,
-      icon = '  ',
+      icon = '',
       highlight = {colors.red,colors.section_bg},
     }
   },

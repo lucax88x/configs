@@ -1,4 +1,7 @@
-% pacman, reflector
+% pacman, reflector, paru
 
 # update pacman italian mirror list
 sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist --country Italy
+
+# list installed packages
+paru -Qe

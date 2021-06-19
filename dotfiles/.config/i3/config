@@ -8,9 +8,17 @@
 set $mod Mod4
 set $altMod Mod1
 set $laptop_monitor DP-4
-set $left_monitor DP-5
-set $center_monitor DP-3.1
-set $right_monitor DP-3.2
+
+# laptop monitor monitor monitor
+# set $left_monitor DP-5
+# set $center_monitor DP-3.1
+# set $right_monitor DP-3.2
+#
+# laptop monitor monitor
+set $left_monitor DP-4 # same as laptop
+set $center_monitor DP-1
+set $right_monitor DP-6
+
 set $home_monitor DP-3
 set $home_desktop_monitor DP-2
 

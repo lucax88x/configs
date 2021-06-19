@@ -14,7 +14,6 @@ margin-bottom = 0
 
 [bar/center]
 enable-ipc = true
-monitor = DP-3.1
 bottom = true
 width = 100%
 height = 24
@@ -59,8 +58,9 @@ scroll-down = i3-desknext
 [bar/laptop]
 inherit = bar/center
 
-enable-ipc = true
 monitor = DP-4
+
+enable-ipc = true
 bottom = true
 
 underline-size = ${bar/center.overline-size}
@@ -72,7 +72,6 @@ wm-restack = ${bar/center.wm-restack}
 inherit = bar/center
 
 enable-ipc = true
-monitor = DP-3.2
 bottom = true
 
 underline-size = ${bar/center.overline-size}
@@ -86,15 +85,30 @@ tray-position = none
 
 [bar/left]
 inherit = bar/center
+
+[bar/left-home]
+inherit = bar/left
 monitor = DP-5
 
-[bar/home]
-inherit = bar/center
-monitor = DP-3
+[bar/left-work]
+inherit = bar/left
+monitor = DP-4
 
-[bar/home_desktop]
+[bar/center-home]
 inherit = bar/center
-monitor = DP-2
+monitor = DP-3.1
+
+[bar/center-work]
+inherit = bar/center
+monitor = DP-1
+
+[bar/right-home]
+inherit = bar/right
+monitor = DP-3.2
+
+[bar/right-work]
+inherit = bar/right
+monitor = DP-4
 
 [module/i3]
 type = internal/i3
