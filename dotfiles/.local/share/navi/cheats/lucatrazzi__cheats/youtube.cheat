@@ -1,0 +1,4 @@
+% youtube
+
+# download an audio track
+youtube-dl <youtube-id> --extract-audio -f m4a

@@ -14,24 +14,20 @@ telescope.setup{
             '--column',
             '--smart-case'
         },
-        prompt_position = "top",
         prompt_prefix = ">",
         initial_mode = "insert",
         selection_strategy = "reset",
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
-        layout_defaults = {
-            -- TODO add builtin options.
+        layout_config = {
+          prompt_position = "top",
+          width = 0.75,
+          preview_cutoff = 120,
         },
         file_sorter =  require'telescope.sorters'.get_fuzzy_file,
         file_ignore_patterns = {".backup",".swap",".langservers",".session",".undo","*.git","node_modules","vendor",".cache",".vscode-server",".Desktop",".Documents","classes"},
         generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-        shorten_path = true,
         winblend = 0,
-        width = 0.75,
-        preview_cutoff = 120,
-        results_height = 1,
-        results_width = 0.8,
         border = {},
         borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
         color_devicons = true,

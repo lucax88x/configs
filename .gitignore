@@ -1,3 +1,4 @@
 dotfiles/.config/nvim/nvim/session
+dotfiles/.config/nvim/plugin/packer_compiled.lua
 dotfiles/.config/nvim/plugin/packer_compiled.vim
 dotfiles/.config/nvim/.netrwhist
