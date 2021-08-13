@@ -113,11 +113,11 @@
 	fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && GIT_SEQUENCE_EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
 	
 	# undo
-	undop = git restore --staged -p # to unstage hunks
+	undop = restore --staged -p # to unstage hunks
 	undo = reset --soft HEAD^
 	unstage = reset HEAD --
-	# unstage = reset -fd 
-	# unstage = reset -fdx
+	# unstage = clean -fd 
+	# unstage = clean -fdx
 	discard = checkout -- .
 
 [pull]

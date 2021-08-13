@@ -1,7 +1,3 @@
--- alternative esc
--- using betterescape plugin
--- inoremap('jk', '<esc>')
-
 -- quit
 nnoremap('<leader>q', '<cmd>q<CR>')
 nnoremap('<leader>Q', '<cmd>q!<CR>')
@@ -18,3 +14,7 @@ vnoremap('X', '"_d')
 
 -- undo
 nnoremap('<leader>u', '<cmd>UndotreeToggle<CR>')
+
+-- when going to next search, we center screen
+nnoremap('n', 'nzzzv')
+nnoremap('N', 'Nzzzv')

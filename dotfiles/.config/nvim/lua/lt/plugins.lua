@@ -43,8 +43,10 @@ return require('packer').startup {
     use 'kyazdani42/nvim-web-devicons'
 
     use 'tpope/vim-fugitive' -- git
-    use 'airblade/vim-rooter'
     use 'lewis6991/gitsigns.nvim'
+    
+    -- use 'airblade/vim-rooter'
+    use { 'ahmedkhalf/project.nvim', config = function() require 'lt.plugins.project' end}
 
     use 'mbbill/undotree' -- undo tree
     use { 'kevinhwang91/nvim-bqf', config = function() require 'lt.plugins.nvim-bqf' end}
@@ -126,6 +128,12 @@ return require('packer').startup {
       'folke/todo-comments.nvim',
       config = function() require 'lt.plugins.todo-comments' end
     }
+
+    use {
+      "vuki656/package-info.nvim",
+      config = function() require 'lt.plugins.package-info' end
+  } -- shows latest version on package.json files
+
 
     -- Theming
     use 'gruvbox-community/gruvbox'
