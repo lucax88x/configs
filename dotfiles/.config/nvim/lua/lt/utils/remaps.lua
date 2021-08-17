@@ -11,6 +11,11 @@ local function noremap(type, input, output, category, unique_identifier, descrip
   Mapper.map(type, input, output, { noremap = true }, category, unique_identifier, description)
 end
 
+function bufnoremap(bufnr, type, input, output, category, unique_identifier, description)
+  -- vim.api.nvim_buf_set_keymap(bufnr, type, input, output, {noremap = true, silent = true})
+  Mapper.map_buf(bufnr, type, input, output, { noremap = true, silent = true }, category, unique_identifier, description)
+end
+
 function nnoremap(input, output, category, unique_identifier, description)
   noremap('n', input, output, category, unique_identifier, description)
 end

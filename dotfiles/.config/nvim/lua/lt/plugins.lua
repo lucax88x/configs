@@ -84,6 +84,15 @@ return require('packer').startup {
       config = function() require 'lt.plugins.nvim-mapper' end,
       before = "telescope.nvim"
     }
+
+    use {
+        "ThePrimeagen/refactoring.nvim",
+        config = function() require 'lt.plugins.refactoring' end,
+        requires = {
+            {"nvim-lua/plenary.nvim"},
+            {"nvim-treesitter/nvim-treesitter"}
+        }
+    }
     use { 'AndrewRadev/sideways.vim', config = function() require 'lt.plugins.sideways' end} -- allows to move functions parameter
     use { 'AndrewRadev/splitjoin.vim', config = function() require 'lt.plugins.splitjoin' end} -- allows to split one liner to multi lines
 
@@ -108,7 +117,7 @@ return require('packer').startup {
 
     -- Snippets
     use { 'hrsh7th/vim-vsnip', config = function() require 'lt.plugins.snippets' end}  -- Fix CursorHold Performance
-    use { 'hrsh7th/vim-vsnip-integ', before = "vim-vsnip" }
+    use 'hrsh7th/vim-vsnip-integ'
 
     -- to download lsp servers
     -- TODO: check the tjdevries library
