@@ -33,32 +33,30 @@ return require('packer').startup {
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    use 'antoinemadec/FixCursorHold.nvim' -- Fix CursorHold Performance
+    use { 'antoinemadec/FixCursorHold.nvim', config = function() require 'lt.plugins.fix-cursorhold' end}  -- Fix CursorHold Performance
 
     use 'tjdevries/astronauta.nvim'
-
-    use 'mhinz/vim-startify' -- start screen
 
     -- icons
     use 'kyazdani42/nvim-web-devicons'
 
-    use 'tpope/vim-fugitive' -- git
-    use 'lewis6991/gitsigns.nvim'
-    
+    use { 'tpope/vim-fugitive', config = function() require 'lt.plugins.fugitive' end}
+    use { 'lewis6991/gitsigns.nvim', config = function() require 'lt.plugins.gitsigns' end}
+
     -- use 'airblade/vim-rooter'
     use { 'ahmedkhalf/project.nvim', config = function() require 'lt.plugins.project' end}
 
     use 'mbbill/undotree' -- undo tree
     use { 'kevinhwang91/nvim-bqf', config = function() require 'lt.plugins.nvim-bqf' end}
 
-    use 'jdhao/better-escape.vim'
-    use 'justinmk/vim-sneak'
+    use { 'jdhao/better-escape.vim', config = function() require 'lt.plugins.better-escape' end}
+    use { 'justinmk/vim-sneak', config = function() require 'lt.plugins.sneak' end}
 
     use 'b3nj5m1n/kommentary'
 
     use 'tpope/vim-surround' -- Change surrounding arks
     use 'tpope/vim-repeat' -- extends . repeat, for example for make it work with vim-sneak
-    use 'bkad/CamelCaseMotion' -- allows to move by camelCase with w e
+    use { 'bkad/CamelCaseMotion', config = function() require 'lt.plugins.camelcasemotion' end}  -- allows to move by camelCase with w e
     use { 'glepnir/indent-guides.nvim', config = function() require 'lt.plugins.indent-guides' end}
 
     use {
@@ -81,10 +79,13 @@ return require('packer').startup {
     use 'numtostr/BufOnly.nvim' -- deletes all buffers except
     use 'psliwka/vim-smoothie' -- smoother scroll
     use 'romainl/vim-cool' -- disabled search highlight until next search
-    use {'folke/which-key.nvim', config = function() require 'lt.plugins.which-key' end}
-    use 'AndrewRadev/sideways.vim' -- allows to move functions parameters
-    use 'AndrewRadev/splitjoin.vim' -- allows to split one liner to multi lines
-    -- use 'AndrewRadev/tagalong.vim' -- changes the closing html / xml tag
+    use {
+      'lazytanuki/nvim-mapper',
+      config = function() require 'lt.plugins.nvim-mapper' end,
+      before = "telescope.nvim"
+    }
+    use { 'AndrewRadev/sideways.vim', config = function() require 'lt.plugins.sideways' end} -- allows to move functions parameter
+    use { 'AndrewRadev/splitjoin.vim', config = function() require 'lt.plugins.splitjoin' end} -- allows to split one liner to multi lines
 
     use {
       'kyazdani42/nvim-tree.lua',
@@ -104,13 +105,10 @@ return require('packer').startup {
     use {
       'hrsh7th/nvim-compe', branch = 'master'
     }
-    -- use 'nvim-lua/completion-nvim'
-    -- use 'steelsojka/completion-buffers'
-    -- use 'nvim-treesitter/completion-treesitter'
 
     -- Snippets
-    use 'hrsh7th/vim-vsnip'
-    use 'hrsh7th/vim-vsnip-integ'
+    use { 'hrsh7th/vim-vsnip', config = function() require 'lt.plugins.snippets' end}  -- Fix CursorHold Performance
+    use { 'hrsh7th/vim-vsnip-integ', before = "vim-vsnip" }
 
     -- to download lsp servers
     -- TODO: check the tjdevries library
@@ -119,6 +117,7 @@ return require('packer').startup {
     -- Language packs
     use {
       'nvim-treesitter/nvim-treesitter',
+      config = function() require 'lt.plugins.treesitter' end,
       run = function() vim.cmd [[TSUpdate]] end
     }
 

@@ -1,57 +1,60 @@
-local vim = vim
+-- The same using nvim-mapper
+Mapper = require("nvim-mapper")
 
-local function map(type, input, output)
-  vim.api.nvim_set_keymap(type, input, output, {})
+local function map(type, input, output, category, unique_identifier, description)
+  -- vim.api.nvim_set_keymap(type, input, output, {}, category, unique_identifier, description)
+  Mapper.map(type, input, output, {}, category, unique_identifier, description)
 end
 
-local function noremap(type, input, output)
-  vim.api.nvim_set_keymap(type, input, output, { noremap = true })
+local function noremap(type, input, output, category, unique_identifier, description)
+  -- vim.api.nvim_set_keymap(type, input, output, { noremap = true })
+  Mapper.map(type, input, output, { noremap = true }, category, unique_identifier, description)
 end
 
-function nnoremap(input, output)
-  noremap('n', input, output)
+function nnoremap(input, output, category, unique_identifier, description)
+  noremap('n', input, output, category, unique_identifier, description)
 end
 
-function inoremap(input, output)
-  noremap('i', input, output)
+function inoremap(input, output, category, unique_identifier, description)
+  noremap('i', input, output, category, unique_identifier, description)
 end
 
-function vnoremap(input, output)
-  noremap('v', input, output)
+function vnoremap(input, output, category, unique_identifier, description)
+  noremap('v', input, output, category, unique_identifier, description)
 end
 
-function xnoremap(input, output)
-  noremap('x', input, output)
+function xnoremap(input, output, category, unique_identifier, description)
+  noremap('x', input, output, category, unique_identifier, description)
 end
 
-function onoremap(input, output)
-  noremap('o', input, output)
+function onoremap(input, output, category, unique_identifier, description)
+  noremap('o', input, output, category, unique_identifier, description)
 end
 
-function tnoremap(input, output)
-    noremap('t', input, output)
+function tnoremap(input, output, category, unique_identifier, description)
+    noremap('t', input, output, category, unique_identifier, description)
 end
 
-function nmap(input, output)
-	map('n', input, output)
+function nmap(input, output, category, unique_identifier, description)
+	map('n', input, output, category, unique_identifier, description)
 end
 
-function imap(input, output)
-	map('i', input, output)
+function imap(input, output, category, unique_identifier, description)
+	map('i', input, output, category, unique_identifier, description)
 end
 
-function vmap(input, output)
-	map('v', input, output)
+function vmap(input, output, category, unique_identifier, description)
+	map('v', input, output, category, unique_identifier, description)
 end
 
-function xmap(input, output)
-	map('x', input, output)
+function xmap(input, output, category, unique_identifier, description)
+	map('x', input, output, category, unique_identifier, description)
 end
 
-function omap(input, output)
-	map('o', input, output)
+function omap(input, output, category, unique_identifier, description)
+	map('o', input, output, category, unique_identifier, description)
 end
 
-function tmap(input, output)
-	map('t', input, output)
+function tmap(input, output, category, unique_identifier, description)
+	map('t', input, output, category, unique_identifier, description)
 end

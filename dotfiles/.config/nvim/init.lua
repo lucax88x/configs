@@ -13,31 +13,9 @@ require 'lt.theme'
 require 'lt.filetypes'
 
 require 'lt.defaults'
-require 'lt.betterescape'
 
 require 'lt.window.remaps'
-require 'lt.project'
-require 'lt.quickfix'
 require 'lt.buffer.remaps'
-require 'lt.editor.remaps'
-require 'lt.git'
 
--- TODO: fix
-require 'lt.startify.settings'
-require 'lt.startify.remaps'
-
-require 'lt.fix-cursorhold.settings'
-
-require 'lt.netrw.settings'
-
-require 'lt.snippets'
 require 'lt.lsp'
-
-require 'lt.treesitter.settings'
-
-require 'lt.sneak'
-
-require 'lt.ripgrep.settings'
-
-require 'lt.camelcasemotion.settings'
 
