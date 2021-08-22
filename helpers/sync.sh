@@ -26,6 +26,7 @@ ARRAY=(
     .config/gitui/key_config.ron
     .config/efm-langserver
     .config/i3/config
+    .config/chrome-flags.conf
     .gitconfig
     bin
     .ideavimrc
