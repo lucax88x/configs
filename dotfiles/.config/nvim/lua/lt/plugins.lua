@@ -133,6 +133,11 @@ return require('packer').startup {
     use 'haringsrob/nvim_context_vt' -- shows treesitter context in end of parenthesis
 
     use {
+      'andymass/vim-matchup', -- enhances %
+      config = function() require 'lt.plugins.vim-matchup' end
+    }
+
+    use {
       'folke/todo-comments.nvim',
       config = function() require 'lt.plugins.todo-comments' end
     }
@@ -140,7 +145,13 @@ return require('packer').startup {
     use {
       "vuki656/package-info.nvim",
       config = function() require 'lt.plugins.package-info' end
-  } -- shows latest version on package.json files
+    } -- shows latest version on package.json files
+
+    use {
+      "vhyrro/neorg",
+      config = function() require 'lt.plugins.neorg' end,
+      requires = "nvim-lua/plenary.nvim"
+  }
 
 
     -- Theming

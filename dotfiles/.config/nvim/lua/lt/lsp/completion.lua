@@ -7,7 +7,7 @@ require'compe'.setup {
   -- source_timeout = ... number ...;
   -- incomplete_delay = ... number ...;
   -- allow_prefix_unmatch = false;
-
+  neorg = true,
   source = {
     vsnip = {
       filetypes = {'markdown', 'json', 'yaml', 'css', 'scss', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'typescript.tsx'},

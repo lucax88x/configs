@@ -366,6 +366,13 @@ else
   echo STEAM ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v pipewire)" ]; then
+  echo INSTALLING PIPEWIRE
+  installPipewire
+else
+  echo PIPEWIRE ALREADY INSTALLED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then

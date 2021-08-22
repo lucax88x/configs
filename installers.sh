@@ -432,6 +432,12 @@ function installSteam {
   protonup -d "~/.steam/root/compatibilitytools.d/"
 }
 
+function installPipewire {
+  paru -S --noconfirm bluez bluez-utils
+  paru -S --noconfirm pipewire pipewire-pulse pipewire-alsa
+  sudo systemctl status bluetooth.service
+}
+
 ## CONFIGURATION
 
 function configureSsh {

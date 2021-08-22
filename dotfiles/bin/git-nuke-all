@@ -7,11 +7,17 @@
 # remove from origin.
 #
 
-read -p "Are you want to nuke all branches:  (y/n)?" CONT
+filter="master\|develop\|main"
+
+to_nuke_branches=$(git branch | grep -v $filter)
+
+echo $to_nuke_branches  
+
+read -p "Are you want to nuke these branches:  (y/n)?" CONT
 
 if [ "$CONT" = "n" ]; then
     echo Aborting
     exit 1
 fi
 
-git branch | grep -v "master\|develop" | xargs -L 1 git-nuke
+git branch | grep -v $filter | xargs -L 1 git-nuke
