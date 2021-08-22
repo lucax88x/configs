@@ -1,0 +1,1 @@
+ watch -n 0 grep \"cpu MHz\" /proc/cpuinfo

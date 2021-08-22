@@ -51,3 +51,9 @@ if [ "$1" = "gym" ]; then
     --output DP-0 --off --output DP-1 --off \
     --output DP-6 --off
 fi
+
+
+if [ "$1" = "desktop" ]; then
+    xrandr \
+    --output DP-2 --primary --mode 2560x1440 --rate 144.00 --rotate normal
+fi
