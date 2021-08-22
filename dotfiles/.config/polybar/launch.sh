@@ -7,6 +7,7 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 polybar laptop & \
-  polybar left-home & polybar center-home & polybar right-home 
+  polybar left-home & polybar center-home & polybar right-home & \
+  polybar desktop
   # polybar left-work & polybar center-work & polybar right-work
   # polybar left-home &  polybar center-home & polybar right-home

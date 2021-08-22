@@ -433,9 +433,12 @@ function installSteam {
 }
 
 function installPipewire {
-  paru -S --noconfirm bluez bluez-utils
   paru -S --noconfirm pipewire pipewire-pulse pipewire-alsa
   sudo systemctl status bluetooth.service
+ 
+  # bluetooth
+  paru -S --noconfirm bluez bluez-utils
+  paru -S --noconfirm rofi-bluetooth-git
 }
 
 ## CONFIGURATION

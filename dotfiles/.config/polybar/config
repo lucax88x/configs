@@ -98,6 +98,10 @@ monitor = DP-4
 inherit = bar/center
 monitor = DP-3.1
 
+[bar/desktop]
+inherit = bar/center
+monitor = DP-2
+
 [bar/center-work]
 inherit = bar/center
 monitor = DP-1
