@@ -44,7 +44,7 @@ font-6 = unifont:size=6;1
 
 modules-left = i3 wifi wired
 modules-center = xwindow
-modules-right = pulseaudio cpu memory battery date
+modules-right = pulseaudio bluetooth cpu memory battery date
 
 tray-position = right
 tray-padding = 4
@@ -268,3 +268,9 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground}
+
+[module/bluetooth]
+type = custom/script
+exec = rofi-bluetooth --status
+interval = 1
+click-left = rofi-bluetooth &
