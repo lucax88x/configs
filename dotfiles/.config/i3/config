@@ -5,24 +5,24 @@
 # mod1 = ALT
 # mod4 = SUPER (WIN)
 
+font pango: JetBrainsMono 6
+
 set $mod Mod4
 set $altMod Mod1
+set $mehMod ctrl+Mod1+shift
+
 set $laptop_monitor DP-4
 
-# laptop monitor monitor monitor
-# set $left_monitor DP-5
-# set $center_monitor DP-3.1
-# set $right_monitor DP-3.2
-#
-# laptop monitor monitor
-set $left_monitor DP-4 # same as laptop
-set $center_monitor DP-1
-set $right_monitor DP-6
+# work
+set $left_work_monitor DP-4 # same as laptop in work configuration
+set $center_work_monitor DP-1
+set $right_work_monitor DP-3
 
-set $home_monitor DP-3
-set $home_desktop_monitor DP-2
+# home
+set $left_home_monitor DP-5
+set $center_home_monitor DP-3.1
+set $right_home_monitor DP-3.2
 
-font pango: JetBrainsMono 6
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -129,18 +129,18 @@ set $ws6 "6 "
 # devtools
 set $ws7 "7 "
 
-workspace $ws1 output $left_monitor $home_monitor $home_desktop_monitor
-workspace $ws2 output $center_monitor $home_monitor $home_desktop_monitor
-workspace $ws3 output $left_monitor $home_monitor $home_desktop_monitor
-workspace $ws4 output $right_monitor $home_monitor $home_desktop_monitor
-workspace $ws5 output $center_monitor $home_monitor $home_desktop_monitor
-workspace $ws6 output $home_monitor
-workspace $ws7 output $right_monitor $home_monitor
+workspace $ws1 output $left_home_monitor $left_work_monitor
+workspace $ws2 output $center_home_monitor $center_work_monitor
+workspace $ws3 output $left_home_monitor $left_work_monitor
+workspace $ws4 output $right_home_monitor $right_work_monitor
+workspace $ws5 output $center_home_monitor $center_work_monitor
+workspace $ws6 output $laptop_monitor
+workspace $ws7 output $laptop_monitor
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
+bindsm $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
@@ -155,6 +155,8 @@ bindsym $mod+Shift+5 move container to workspace number $ws5
 bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 
+bindsym $mehMod+h move workspace to output left
+bindsym $mehMod+l move workspace to output right
 
 #####################
 ### helpers ###
@@ -201,6 +203,8 @@ bindsym $mod+q exec $HOME/bin/rofi/poweroff
 bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
 bindsym $altMod+Tab exec "rofi -combi window -show"
 bindsym Shift+$mod+w exec $HOME/bin/rofi/wifi
+bindsym $shift+$mod+b exec --no-startup-id rofi-bluetooth
+
 
 #####################
 ### greenclip ###
@@ -287,3 +291,4 @@ for_window [ title="notetaker_window" ] move left 25 ppt
 for_window [ title="notetaker_window" ] move up 25 ppt 
 
 bindsym $mod+n exec kitty -T notetaker_window -- /home/lucatrazzi/bin/notetaker
+y
