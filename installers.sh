@@ -427,7 +427,6 @@ function installSteam {
   ## for battlenet!
   paru -S --noconfirm lutris-git
   
-  
   paru -S --noconfirm protonup-git
   protonup -d "~/.steam/root/compatibilitytools.d/"
 }

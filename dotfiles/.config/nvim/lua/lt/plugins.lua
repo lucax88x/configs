@@ -57,7 +57,7 @@ return require('packer').startup {
     use 'tpope/vim-surround' -- Change surrounding arks
     use 'tpope/vim-repeat' -- extends . repeat, for example for make it work with vim-sneak
     use { 'bkad/CamelCaseMotion', config = function() require 'lt.plugins.camelcasemotion' end}  -- allows to move by camelCase with w e
-    use { 'glepnir/indent-guides.nvim', config = function() require 'lt.plugins.indent-guides' end}
+    use { 'lukas-reineke/indent-blankline.nvim', config = function() require 'lt.plugins.indent-blankline' end}
 
     use {
       'nvim-telescope/telescope.nvim',
@@ -73,11 +73,13 @@ return require('packer').startup {
     use { 'norcalli/nvim-colorizer.lua', config = function() require 'lt.plugins.nvim-colorizer' end} -- preview hex colors
 
     use 'rrethy/vim-illuminate' -- highlight matching words when cursor on it
-    use 'terryma/vim-expand-region'
 
     use 'gennaro-tedesco/nvim-peekup' -- shows register preview
     use 'numtostr/BufOnly.nvim' -- deletes all buffers except
-    use 'psliwka/vim-smoothie' -- smoother scroll
+    use {
+      'karb94/neoscroll.nvim',
+      config = function() require 'lt.plugins.neoscroll' end
+    }
     use 'romainl/vim-cool' -- disabled search highlight until next search
     use {
       'lazytanuki/nvim-mapper',
@@ -93,8 +95,6 @@ return require('packer').startup {
             {"nvim-treesitter/nvim-treesitter"}
         }
     }
-    use { 'AndrewRadev/sideways.vim', config = function() require 'lt.plugins.sideways' end} -- allows to move functions parameter
-    use { 'AndrewRadev/splitjoin.vim', config = function() require 'lt.plugins.splitjoin' end} -- allows to split one liner to multi lines
 
     use {
       'kyazdani42/nvim-tree.lua',
@@ -136,6 +136,10 @@ return require('packer').startup {
       'andymass/vim-matchup', -- enhances %
       config = function() require 'lt.plugins.vim-matchup' end
     }
+    use {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      config = function() require 'lt.plugins.treesitter-textobjects' end
+    }
 
     use {
       'folke/todo-comments.nvim',
@@ -151,8 +155,17 @@ return require('packer').startup {
       "vhyrro/neorg",
       config = function() require 'lt.plugins.neorg' end,
       requires = "nvim-lua/plenary.nvim"
-  }
+    }
 
+    use {
+      'folke/twilight.nvim',
+      config = function() require 'lt.plugins.twilight' end
+    }
+
+    use {
+      'Pocco81/TrueZen.nvim',
+      config = function() require 'lt.plugins.truezen' end
+    }
 
     -- Theming
     use 'gruvbox-community/gruvbox'

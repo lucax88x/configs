@@ -8,11 +8,11 @@ function M.set(cap, bufnr)
 
   -- gives definition & references
   buf_set_keymap('n', '<leader>tt', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", 'lsp', 'lsp_definitions_references', 'Find definitions and references')
+    -- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
   if cap.definitionProvider then
     buf_set_keymap('n', 'gD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", 'lsp', 'lsp_preview_definition', 'Preview definition')
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', 'lsp', 'lsp_preview_definition_saga', 'Preview definition')
-    -- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   end
   -- if cap.declarationProvider then
   -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
