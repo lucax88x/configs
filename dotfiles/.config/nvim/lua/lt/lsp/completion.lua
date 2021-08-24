@@ -10,12 +10,12 @@ require'compe'.setup {
   neorg = true,
   source = {
     vsnip = {
-      filetypes = {'markdown', 'json', 'yaml', 'css', 'scss', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'typescript.tsx'},
+      filetypes = {'markdown', 'json', 'yaml', 'css', 'scss', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'typescript.tsx', 'shell'},
       sticky_char = '0'
     },
     nvim_lua = { 'lua' },
     nvim_lsp = {
-      filetypes = {'markdown', 'json', 'yaml', 'css', 'scss', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' ,'typescript.tsx'}
+      filetypes = {'markdown', 'json', 'yaml', 'css', 'scss', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' ,'typescript.tsx', 'shell'}
     },
     path = true,
     buffer =  true,

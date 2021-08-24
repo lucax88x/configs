@@ -118,6 +118,7 @@ return require('packer').startup {
     -- Snippets
     use { 'hrsh7th/vim-vsnip', config = function() require 'lt.plugins.snippets' end}  -- Fix CursorHold Performance
     use 'hrsh7th/vim-vsnip-integ'
+    use 'rafamadriz/friendly-snippets'
 
     -- to download lsp servers
     -- TODO: check the tjdevries library
