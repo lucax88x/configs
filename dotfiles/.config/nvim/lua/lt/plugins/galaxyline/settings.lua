@@ -1,4 +1,7 @@
 local gl = require('galaxyline')
+local condition = require('galaxyline.condition')
+local gps = require("nvim-gps")
+
 local gls = gl.section
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
@@ -14,23 +17,10 @@ local colors = {
   magenta = '#d3869b',
   blue = '#83a598';
   red = '#fb4934';
-
 }
 
-local buffer_not_empty = function()
-  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
-    return true
-  end
-  return false
-end
-
-local checkwidth = function()
-  local squeeze_width  = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
-end
+-- workaround to fill mid
+vim.cmd[[:hi StatusLine guifg=#282828]]
 
 local mode_color = function()
   local mode_colors = {
@@ -73,7 +63,6 @@ local mode_alias = function()
   end
 end
 
-
 gls.left = {
   {
     Start = {
@@ -89,30 +78,31 @@ gls.left = {
       end,
       icon = '',
       highlight = { colors.bg, colors.bg },
-      separator = "  ",
+      separator = " ",
       separator_highlight = {colors.bg, colors.section_bg},
     },
   },
   {
     FileIcon = {
       provider = 'FileIcon',
-      condition = buffer_not_empty,
+      condition = condition.buffer_not_empty,
       highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.section_bg},
     },
   },
   {
      FileName = {
       provider = 'FileName',
-      condition = buffer_not_empty,
+      condition = condition.buffer_not_empty,
       highlight = { colors.fg, colors.section_bg },
       separator = " ",
       separator_highlight = {colors.section_bg, colors.bg},
     }
   },
+  
   {
      FileSize = {
       provider = 'FileSize',
-      condition = buffer_not_empty,
+      condition = condition.buffer_not_empty,
       highlight = { colors.fg, colors.bg },
       separator = " ",
       separator_highlight = {colors.bg, colors.section_bg},
@@ -156,11 +146,24 @@ gls.left = {
   },
 }
 
-gls.right= {
+gls.mid = {
+  {
+    NvimGps = {
+      provider = function()
+        return gps.get_location()
+      end,
+      condition = function()
+        return gps.is_available()
+      end
+    }
+  }
+}
+
+gls.right = {
   {
     GitIcon = {
       provider = function() return ' ' end,
-      condition = require('galaxyline.provider_vcs').check_git_workspace,
+      condition = condition.check_git_workspace,
       highlight = {colors.red,colors.section_bg},
       separator = '',
       separator_highlight = { colors.section_bg,colors.bg },
@@ -169,31 +172,31 @@ gls.right= {
   {
     GitBranch = {
       provider = 'GitBranch',
-      condition = require('galaxyline.provider_vcs').check_git_workspace,
+      condition = condition.check_git_workspace,
       highlight = {colors.fg,colors.section_bg},
     }
   },
   {
     DiffAdd = {
       provider = 'DiffAdd',
-      condition = checkwidth,
-      icon = '',
+      condition = condition.check_git_workspace,
+      icon = '   ',
       highlight = {colors.green,colors.section_bg},
     }
   },
   {
     DiffModified = {
       provider = 'DiffModified',
-      condition = checkwidth,
-      icon = '柳',
-      highlight= {colors.orange,colors.section_bg},
+      condition = condition.checkwidth,
+      icon = ' 柳',
+      highlight= {colors.orange, colors.section_bg},
     }
   },
   {
     DiffRemove = {
       provider = 'DiffRemove',
-      condition = checkwidth,
-      icon = '',
+      condition = condition.checkwidth,
+      icon = '  ',
       highlight = {colors.red,colors.section_bg},
     }
   },
@@ -201,7 +204,7 @@ gls.right= {
     FileEncode = {
       provider = 'FileEncode',
       highlight = {colors.cyan,colors.bg,'bold'},
-      separator = ' ',
+      separator = '',
       separator_highlight = { colors.section_bg, colors.bg },
     }
   },
@@ -225,13 +228,11 @@ gls.right= {
     LineInfo = {
       provider = 'LineColumn',
       highlight = {colors.fg,colors.bg},
-      separator_highlight = {colors.bg, colors.bg},
       separator = ' ',
+      separator_highlight = {colors.bg, colors.bg},
     },
   }
 }
-
-
 
 gls.short_line_left[1] = {
   BufferType = {
@@ -254,7 +255,7 @@ gls.short_line_left[2] = {
       end
       return fname
     end,
-    condition = buffer_not_empty,
+    condition = condition.buffer_not_empty,
     highlight = {colors.white,colors.bg,'bold'}
   }
 }

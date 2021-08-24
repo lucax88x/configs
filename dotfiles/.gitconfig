@@ -75,7 +75,6 @@
 	co = checkout
 	cob = checkout -b
   track = "!git branch --set-upstream-to origin/\"$(git rev-parse --abbrev-ref HEAD)\""
-	; track = "!f() { feature=`git rev-parse --abbrev-ref HEAD`; echo $feature }; f"
 	cl = clone
 	ci = commit
 	br = branch

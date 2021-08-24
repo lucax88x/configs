@@ -132,6 +132,11 @@ return require('packer').startup {
     }
 
     use 'haringsrob/nvim_context_vt' -- shows treesitter context in end of parenthesis
+    use {
+      "SmiteshP/nvim-gps",
+      requires = "nvim-treesitter/nvim-treesitter",
+      config = function() require 'lt.plugins.nvim-gps' end
+    }
 
     use {
       'andymass/vim-matchup', -- enhances %
@@ -172,6 +177,10 @@ return require('packer').startup {
     use 'gruvbox-community/gruvbox'
 
     -- status line
-    use {'glepnir/galaxyline.nvim', config = function() require 'lt.plugins.galaxyline' end }
+    use {
+      'glepnir/galaxyline.nvim',
+      requires = "SmiteshP/nvim-gps",
+      config = function() require 'lt.plugins.galaxyline' end
+     }
   end
 }
