@@ -1,3 +1,4 @@
+nnoremap('<leader>pp', "<cmd>Telescope projects<CR>", 'telescope', 'telescope_projects', 'Projects')
 nnoremap('<leader>ps', "<cmd>lua require('telescope.builtin').live_grep()<CR>", 'telescope', 'telescope_live_grep', 'Live grep')
 nnoremap('<leader>pf', "<cmd>lua require('telescope.builtin').find_files()<CR>", 'telescope', 'telescope_files', 'Find files')
 nnoremap('<leader>pg', "<cmd>lua require('telescope.builtin').git_files()<CR>", 'telescope', 'telescope_git_files', 'Find git files')

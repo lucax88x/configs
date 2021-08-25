@@ -55,4 +55,6 @@ vim.cmd[[highlight link TelescopeResultsBorder  GruvboxBg2]]
 vim.cmd[[highlight link TelescopePreviewBorder  GruvboxBg2]]
 
 telescope.load_extension("mapper")
-telescope.load_extension('fzf')
+telescope.load_extension("fzf")
+telescope.load_extension("projects")
+
