@@ -1,7 +1,6 @@
 return function(language_server_path)
-    local pid = vim.fn.getpid();
-    local bin_path = language_server_path .. "omnisharp-rosylin/run"
+    local bin_path = language_server_path .. "/docker-langserver/docker-langserver"
     return {
-        cmd = {bin_path, "--languageserver", "--hostPID", tostring(pid) },
+        cmd = {bin_path, "--stdio"},
     }
 end

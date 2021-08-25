@@ -1,8 +1,11 @@
 local M = {}
+    -- defaults
 
-function M.set(cap, bufnr)
+
+function M.set_default(client, bufnr)
   local function buf_set_keymap(...) bufnoremap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local cap = client.server_capabilities
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -46,8 +49,6 @@ function M.set(cap, bufnr)
     buf_set_keymap('v', '<leader>fa', "<cmd>lua require('telescope.builtin').lsp_range_code_actions({ timeout = 1000 })<CR>", 'lsp', 'lsp_code_actions_in_visual', 'Code actions (visual)')
     --[[ buf_set_keymap('n', '<leader>fa', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
     buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts) ]]
-
-    buf_set_keymap('n', '<leader>fo', '<cmd>lua require("lt.lsp.functions").organize_imports()<CR>', 'lsp', 'lsp_organize_imports', 'Organize imports')
   end
 
   -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -71,10 +72,10 @@ function M.set(cap, bufnr)
     buf_set_keymap('n','<leader>rr', "<cmd>lua require('lspsaga.rename').rename()<CR>", 'lsp', 'lsp_rename', 'Rename')
   end
 
-  buf_set_keymap('n','<leader>fcd', ':lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>', 'lsp', 'lsp_debug_clients', '[DEBUG] LSP clients')
-  buf_set_keymap('n','<leader>fcl', ":lua print(vim.lsp.get_log_path())<CR>", 'lsp', 'lsp_debug_logs', '[DEBUG] LSP show log path')
-  -- buf_set_keymap('n','<leader>fcl', ":lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", opts)
-  buf_set_keymap('n','<leader>fci', ':LspInfo()<CR>', 'lsp', 'lsp_info', '[DEBUG] LSP Info')
+  buf_set_keymap('n','<leader>flc', ':lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>', 'lsp', 'lsp_debug_clients', '[DEBUG] LSP clients')
+  buf_set_keymap('n','<leader>fll', ":lua print(vim.lsp.get_log_path())<CR>", 'lsp', 'lsp_debug_logs', '[DEBUG] LSP show log path')
+  -- buf_set_keymap('n','<leader>fll', ":lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", opts)
+  buf_set_keymap('n','<leader>fli', ':LspInfo()<CR>', 'lsp', 'lsp_info', '[DEBUG] LSP Info')
 
 
   vim.api.nvim_exec(
@@ -110,4 +111,20 @@ function M.set(cap, bufnr)
     -- map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 end
 
+function M.set_typescript(client, bufnr)
+  local function buf_set_keymap(...) bufnoremap(bufnr, ...) end
+  local ts_utils = require("nvim-lsp-ts-utils")
+
+  -- defaults
+  ts_utils.setup {
+  }
+
+  -- required to fix code action ranges and filter diagnostics
+  ts_utils.setup_client(client)
+
+  buf_set_keymap("n", "<leader>fo", ":TSLspOrganize<CR>", 'lsp', 'lsp_typescript_organize', 'Organize imports')
+  buf_set_keymap("n", "<leader>fc", ":TSLspFixCurrent<CR>", 'lsp', 'lsp_typescript_fix_current', 'Fix current')
+  -- buf_set_keymap("n", "gr", ":TSLspRenameFile<CR>", 'lsp', 'lsp_', '')
+  buf_set_keymap("n", "<leader>fi", ":TSLspImportAll<CR>", 'lsp', 'lsp_typescript_import_all', 'Import all')
+end
 return M

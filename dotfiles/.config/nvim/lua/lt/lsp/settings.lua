@@ -1,19 +1,17 @@
 local lsp = require('lspconfig')
 
--- local lsp_completion = require('completion')
 local lsp_status  = require('lsp-status')
 local remaps  = require('lt.lsp.remaps')
 
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 
-vim.lsp.set_log_level("warn")
+vim.lsp.set_log_level('error')
 
 local function on_attach(client, bufnr)
     -- print(client.name)
-    remaps.set(client.server_capabilities, bufnr)
+    remaps.set_default(client, bufnr)
     lsp_status.on_attach(client, bufnr)
-    -- lsp_completion.on_attach(client, bufnr)
 
     -- adds beatiful icon to completion
     require'lspkind'.init()
