@@ -9,5 +9,8 @@ nnoremap('<leader>/c', "<cmd>lua require('telescope.builtin').commands()<CR>", '
 nnoremap('<leader>/r', "<cmd>lua require('telescope.builtin').registers()<CR>", 'telescope', 'telescope_registers', 'Search registers')
 nnoremap('<leader>/m', "<cmd>lua require('telescope.builtin').marks()<CR>", 'telescope', 'telescope_marks', 'Search marks')
 nnoremap('<leader>/t', "<cmd>lua require('telescope.builtin').treesitter()<CR>", 'telescope', 'telescope_treesitter', 'Search treesitter')
+nnoremap('<leader>/gb', "<cmd>lua require('telescope.builtin').git_branches()<CR>", 'telescope', 'telescope_git_branches', 'Search git branches')
+nnoremap('<leader>/gc', "<cmd>lua require('telescope.builtin').git_commits()<CR>", 'telescope', 'telescope_git_commits', 'Search git commits')
 
 nnoremap('<leader>bl', "<cmd>lua require('telescope.builtin').buffers()<CR>", 'telescope', 'telescope_buffers', 'Search buffers')
+nnoremap('<leader>bc', "<cmd>lua require('telescope.builtin').git_bcommits()<CR>", 'telescope', 'telescope_git_bcommits', 'Search buffer git commits')

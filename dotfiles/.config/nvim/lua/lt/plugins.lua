@@ -111,6 +111,7 @@ return require('packer').startup {
     use 'onsails/lspkind-nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+    use 'folke/lua-dev.nvim'
 
     use {
       'hrsh7th/nvim-compe', branch = 'master'
