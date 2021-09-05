@@ -40,6 +40,10 @@ function tnoremap(input, output, category, unique_identifier, description)
     noremap('t', input, output, category, unique_identifier, description)
 end
 
+function cnoremap(input, output, category, unique_identifier, description)
+    noremap('c', input, output, category, unique_identifier, description)
+end
+
 function nmap(input, output, category, unique_identifier, description)
 	map('n', input, output, category, unique_identifier, description)
 end

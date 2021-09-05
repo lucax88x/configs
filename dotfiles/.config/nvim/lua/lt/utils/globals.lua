@@ -10,5 +10,10 @@ _G.reload = function()
         counter = counter + 1
       end
     end
+
+    -- clear nvim-mapper keys
+    vim.g.mapper_records  = nil  
+
     print('Reloaded '.. counter ..' modules!')
 end
+

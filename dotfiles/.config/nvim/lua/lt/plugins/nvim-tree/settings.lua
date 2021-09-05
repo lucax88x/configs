@@ -1,9 +1,14 @@
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
-vim.g.nvim_tree_width = 90
+vim.g.nvim_tree_width = '100%'
 vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_follow  = 1
+vim.g.nvim_tree_auto_open = 0
+vim.g.nvim_tree_auto_close = 0
+vim.g.nvim_tree_highlight_opened_files = 1
+vim.g.nvim_tree_group_empty = 1
+vim.g.nvim_tree_lsp_diagnostics = 0
 
 vim.g.nvim_tree_show_icons = {
    git = 0,
@@ -17,6 +22,7 @@ vim.g.nvim_tree_bindings = {
       { key = "c",                            cb = tree_cb("copy") },
       { key = "p",                            cb = tree_cb("paste") },
       { key = "q",                            cb = tree_cb("close") },
+      { key = "-",                            cb = tree_cb("close") },
       { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
       { key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
       { key = "<C-v>",                        cb = tree_cb("vsplit") },
@@ -40,6 +46,5 @@ vim.g.nvim_tree_bindings = {
       { key = "gy",                           cb = tree_cb("copy_absolute_path") },
       { key = "[c",                           cb = tree_cb("prev_git_item") },
       { key = "]c",                           cb = tree_cb("next_git_item") },
-      { key = "-",                            cb = tree_cb("dir_up") },
       { key = "g?",                           cb = tree_cb("toggle_help") },
     }

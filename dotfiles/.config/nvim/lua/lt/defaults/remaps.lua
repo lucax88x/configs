@@ -22,3 +22,10 @@ nnoremap('N', 'Nzzzv', 'remap', 'remap_go_previous_serach', 'When going to previ
 -- navigate quick fix
 nnoremap(']q', ':cnext<CR>', 'remap', 'remap_next_quickfix', 'Navigate to next quickfix')
 nnoremap('[q', ':cprev<CR>', 'remap', 'remap_previous_quickfix', 'Navigate to previous quickfix')
+
+-- maps c-n / c-t to navigate while searching with /
+vim.api.nvim_exec(
+[[
+cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
+cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
+]], false)

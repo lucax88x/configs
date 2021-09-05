@@ -82,7 +82,7 @@ export PATH="$(yarn global bin):$PATH"
 # ALIASES
 alias k='kubectl'
 alias c='xclip -selection clipboard'
-alias v='nvim'
+alias v='nvim --startuptime /tmp/nvim-startuptime'
 
 alias ls='lsd'
 alias l='ls -l'

@@ -33,9 +33,9 @@ return require('packer').startup {
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    use { 'antoinemadec/FixCursorHold.nvim', config = function() require 'lt.plugins.fix-cursorhold' end}  -- Fix CursorHold Performance
+    use { 'henriquehbr/nvim-startup.lua', config = function() require 'lt.plugins.nvim-startup' end}  -- Fix CursorHold Performance
 
-    use 'tjdevries/astronauta.nvim'
+    use { 'antoinemadec/FixCursorHold.nvim', config = function() require 'lt.plugins.fix-cursorhold' end}  -- Fix CursorHold Performance
 
     -- icons
     use 'kyazdani42/nvim-web-devicons'

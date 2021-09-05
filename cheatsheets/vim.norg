@@ -15,3 +15,7 @@
 ** visual mode
   - change edge
    - o
+   
+** search mode
+  - after using / search without pressing enter
+   - c-g / c-t
