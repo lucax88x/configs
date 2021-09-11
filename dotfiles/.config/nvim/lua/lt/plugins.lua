@@ -32,8 +32,7 @@ return require('packer').startup {
   function(use)
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
-
-    use { 'henriquehbr/nvim-startup.lua', config = function() require 'lt.plugins.nvim-startup' end}  -- Fix CursorHold Performance
+    use 'lewis6991/impatient.nvim'
 
     use { 'antoinemadec/FixCursorHold.nvim', config = function() require 'lt.plugins.fix-cursorhold' end}  -- Fix CursorHold Performance
 
@@ -65,9 +64,6 @@ return require('packer').startup {
       config = function() require 'lt.plugins.telescope' end
     }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-
-    use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
-    use {'junegunn/fzf.vim', config = function() require 'lt.plugins.fzf' end}
 
     use { 'dyng/ctrlsf.vim', config =  function() require 'lt.plugins.ctrlsf' end}
     use { 'norcalli/nvim-colorizer.lua', config = function() require 'lt.plugins.nvim-colorizer' end} -- preview hex colors

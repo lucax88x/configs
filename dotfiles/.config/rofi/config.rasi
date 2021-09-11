@@ -9,45 +9,63 @@ configuration {
 window {
     height:                         80%;
     width:                          80%;
-    transparency:                   "real";
-    background-color:               @background;
-    
 }
 
 mainbox {
     children:                       [ entry, listview, message ];
-    border:                         1px;
 }
 
 entry {
     expand:                         false;
-    margin:                         12px 36px;
     background-color:               @background-alt;
     padding:                        8px;
-    border:                         8px;
-    border-color:                   @background-alt;
-    border-radius:                  5px;
 }
 
 element {
+    border:                         0px;
     padding:                        8px;
     orientation:                    horizontal;
 }
 
-element normal.urgent, element alternate.urgent {
-    background-color:               @urgent;
-}
-
-element normal.active, element alternate.active {
-    background-color:               @background-alt;
-    border:                         0px 0px solid 4px 0px;
-    border-radius:                  0;
-    border-color:                   transparent;
-}
-
 element selected {
     background-color:               @selected-color;
-    color:                          @background-alt;
+    text-color:                     @background-alt;
+}
+element normal.normal {
+    background-color: 				@bg;
+    text-color:       				@fg;
+}
+element normal.urgent {
+    background-color: 				@bg;
+    text-color:       				@urgent;
+}
+element normal.active {
+    background-color: 				@bg;
+    text-color:       				@green;
+}
+element selected.normal {
+    background-color: 				@bg;
+    text-color:       				@ac;
+}
+element selected.urgent {
+    background-color: 				@bg;
+    text-color:       				@urgent;
+}
+element selected.active {
+    background-color: 				@bg;
+    text-color:       				@ac;
+}
+element alternate.normal {
+    background-color: 				@bg;
+    text-color:       				@fg;
+}
+element alternate.urgent {
+    background-color: 				@bg;
+    text-color:       				@fg;
+}
+element alternate.active {
+    background-color: 				@bg;
+    text-color:       				@fg;
 }
 
 element selected.urgent {
@@ -56,12 +74,9 @@ element selected.urgent {
 
 element selected.active {
     background-color:               @background-alt;
-    color:                          @selected-color;
+    text-color:                          @selected-color;
 }
 
 element-icon {
-    border:                         1px;
-    border-color:                   @border-color;
-    border-radius:                  5;
     padding:                        6px;
 }

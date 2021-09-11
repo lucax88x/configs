@@ -5,6 +5,8 @@
 -- | | |_| | (_| (_| | |_| | | (_| |/ / / /| |
 -- |_|\__,_|\___\__,_|\__|_|  \__,_/___/___|_|
 
+require 'impatient'.enable_profile()
+
 require 'lt.plugins'
 
 require 'lt.utils'

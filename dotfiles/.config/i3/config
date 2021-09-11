@@ -202,9 +202,6 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+q exec $HOME/bin/rofi/poweroff
 bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
 bindsym $altMod+Tab exec "rofi -combi window -show"
-bindsym Shift+$mod+w exec $HOME/bin/rofi/wifi
-bindsym $shift+$mod+b exec --no-startup-id rofi-bluetooth
-
 
 #####################
 ### greenclip ###

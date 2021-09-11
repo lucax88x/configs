@@ -30,17 +30,43 @@ telescope.setup{
         borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
         color_devicons = true,
         use_less = true,
-        path_display  = { 'absolute' },
+        path_display  = { 'shorten' },
         set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-        file_previewer = require'telescope.previewers'.cat.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_cat.new`
-        grep_previewer = require'telescope.previewers'.vimgrep.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_vimgrep.new`
-        qflist_previewer = require'telescope.previewers'.qflist.new, -- For buffer previewer use `require'telescope.previewers'.vim_buffer_qflist.new`
+        file_previewer = require'telescope.previewers'.cat.new,
+        grep_previewer = require'telescope.previewers'.vimgrep.new,
+        qflist_previewer = require'telescope.previewers'.qflist.new,
 
         -- Developer configurations: Not meant for general override
         -- buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
     },
+    pickers = {
+    -- Your special builtin config goes in here
+      buffers = {
+        sort_lastused = true,
+        previewer = false,
+        theme = "dropdown",
+      },
+      find_files = {
+        previewer = false,
+        theme = "dropdown",
+      },
+      git_files = {
+        previewer = false,
+        theme = "dropdown",
+      },
+      registers = {
+        theme = "dropdown",
+      },
+      lsp_code_actions = {
+        theme = "cursor",
+      },
+      lsp_range_code_actions = {
+        theme = "cursor",
+      },
+    },
     extensions = {
         fzf = {
+          fuzzy = true,
           override_generic_sorter = false, -- override the generic sorter
           override_file_sorter = true,     -- override the file sorter
           case_mode = "smart_case",        -- or "ignore_case" or "respect_case"

@@ -254,6 +254,13 @@ else
   echo I3 ALREADY INSTALLED
 fi
 
+if ! [ -x "$(command -v rofi)" ]; then
+  echo INSTALLING ROFI
+  installRofi
+else
+  echo ROFI ALREADY INSTALLED
+fi
+
 if ! [ -x "$(command -v dunst)" ]; then
   echo INSTALLING DUNST
   installDunst

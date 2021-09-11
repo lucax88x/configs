@@ -332,14 +332,21 @@ function installI3 {
   paru -Sy --noconfirm picom
   # status bar
   paru -Sy --noconfirm polybar
-  # launcher
-  paru -Sy --noconfirm rofi
-  # clipboard manager
-  paru -Sy --noconfirm rofi-greenclip
-  systemctl --user enable greenclip.service
   # background
   paru -Sy --noconfirm feh
   paru -Sy --noconfirm i3-battery-popup-git
+}
+
+function installRofi {
+  # launcher
+  paru -Sy --noconfirm rofi
+ 
+  # clipboard manager
+  paru -Sy --noconfirm rofi-greenclip
+  systemctl --user enable greenclip.service
+  
+  # bluetooth
+  paru -S --noconfirm rofi-bluetooth-git
 }
 
 function installDunst {
@@ -437,7 +444,6 @@ function installPipewire {
  
   # bluetooth
   paru -S --noconfirm bluez bluez-utils
-  paru -S --noconfirm rofi-bluetooth-git
 }
 
 ## CONFIGURATION

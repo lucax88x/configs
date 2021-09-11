@@ -4,6 +4,8 @@ configuration {
     font:                           "Font Awesome 5 Pro 45";
 }
 
+@import "./config.rasi"
+
 window {
     height:                         110px;
     width:                          521px;
@@ -28,5 +30,4 @@ element {
     
 element {
     width:                          100px;
-    background-color:               @background-alt;
 }

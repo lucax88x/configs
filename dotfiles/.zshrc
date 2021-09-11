@@ -113,5 +113,3 @@ compctl -W $REPOSITORIES_FOLDER -/ prj
 # END FUNCTIONS
 
 [[ ! -f $HOME/.p10k.zsh ]] || zinit snippet $HOME/.p10k.zsh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
