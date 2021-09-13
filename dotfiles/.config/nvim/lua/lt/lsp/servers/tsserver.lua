@@ -1,9 +1,7 @@
-local remaps  = require('lt.lsp.remaps')
+local remaps  = require'lt.lsp.remaps'
 
-return function(language_server_path, on_attach)
-    local bin_path = language_server_path .. "/typescript-language-server/typescript-language-server"
+return function(on_attach)
     return {
-        cmd = {bin_path, "--stdio" },
         on_attach = function(client, bufnr)
             on_attach(client, bufnr)
 

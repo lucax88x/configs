@@ -39,6 +39,8 @@ return require('packer').startup {
     -- icons
     use 'kyazdani42/nvim-web-devicons'
 
+    use { 'goolord/alpha-nvim', config = function() require 'lt.plugins.alpha' end}
+
     use { 'tpope/vim-fugitive', config = function() require 'lt.plugins.fugitive' end}
     use { 'lewis6991/gitsigns.nvim', config = function() require 'lt.plugins.gitsigns' end}
 
@@ -107,20 +109,25 @@ return require('packer').startup {
     use 'onsails/lspkind-nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'jose-elias-alvarez/nvim-lsp-ts-utils'
-    use 'folke/lua-dev.nvim'
-
-    use {
-      'hrsh7th/nvim-compe', branch = 'master'
-    }
+    use 'williamboman/nvim-lsp-installer'
 
     -- Snippets
-    use { 'hrsh7th/vim-vsnip', config = function() require 'lt.plugins.snippets' end}  -- Fix CursorHold Performance
-    use 'hrsh7th/vim-vsnip-integ'
     use 'rafamadriz/friendly-snippets'
+    use { 'hrsh7th/vim-vsnip', config = function() require 'lt.plugins.snippets' end}
+    -- use 'hrsh7th/vim-vsnip-integ'
 
-    -- to download lsp servers
-    -- TODO: check the tjdevries library
-    use 'mattn/vim-lsp-settings'
+    use {
+      'hrsh7th/nvim-cmp',
+      config = function() require 'lt.plugins.nvim-cmp' end,
+      requires = {
+        "hrsh7th/vim-vsnip",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-vsnip",
+        "hrsh7th/cmp-nvim-lsp"
+      }
+    }
 
     -- Language packs
     use {

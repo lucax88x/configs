@@ -13,7 +13,7 @@ parser_configs.norg = {
 local treesitter = require'nvim-treesitter.configs'
 
 treesitter.setup {
-  ensure_installed = {"typescript", "html", "tsx", "lua", "json", "rust", "css", "javascript", "c_sharp", "norg"},
+  ensure_installed = {"typescript", "html", "tsx", "lua", "json", "rust", "css", "javascript", "c_sharp", "norg", "graphql"},
   highlight = {
     enable = true,
   },

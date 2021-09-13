@@ -26,8 +26,18 @@ local languages = {
   markdown = {formatter},
 }
 
-local efm_config = os.getenv('HOME') ..
+--[[ local efm_config = os.getenv('HOME') ..
                          '/.config/efm-langserver/config.yaml'
+                         
+        cmd = {
+          bin_path,
+          "-c",
+           efm_config,
+          "-loglevel",
+          "10",
+          "-logfile",
+          "/tmp/efm.log" 
+        }, ]]
 
 --[[ local function eslint_config_exists()
   local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
@@ -59,18 +69,8 @@ local efm_config = os.getenv('HOME') ..
   return false
 end ]]
 
-return function(language_server_path)
-    local bin_path = language_server_path .. "/efm-langserver/efm-langserver"
+return function()
     return {
-        cmd = {
-          bin_path,
-          "-c",
-           efm_config,
-           --[[ "-loglevel",
-          "10",
-          "-logfile",
-          "/tmp/efm.log" ]]
-        },
         root_dir = function(fname)
           --[[ if not eslint_config_exists() then
             print 'eslint configuration not found'

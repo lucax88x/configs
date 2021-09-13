@@ -78,28 +78,6 @@ function M.set_default(client, bufnr)
   buf_set_keymap('n','<leader>fli', ':LspInfo()<CR>', 'lsp', 'lsp_info', '[DEBUG] LSP Info')
 
 
-  vim.api.nvim_exec(
-  [[
-  inoremap <silent><expr> <C-p> compe#complete()
-  inoremap <silent><expr> <Tab> compe#complete()
-  inoremap <silent><expr> <CR>  compe#confirm('<CR>')
-  ]],
-  true)
-
-  -- imap('<c-p>', '<Plug>(completion_trigger)')
-  -- imap('<Tab>', '<Plug>(completion_smart_tab)')
-  -- imap('<S-Tab>', '<Plug>(completion_smart_s_tab)')
-  -- imap('<c-j>', '<Plug>(completion_next_source)') --use <c-j> to switch to previous completion
-  -- imap('<c-k>', '<Plug>(completion_prev_source)') --use <c-k> to switch to next completion
-
-  -- using tab for navigating in completion
-  vim.api.nvim_exec(
-  [[
-  inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-  ]],
-  true)
-
 
     -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
     -- map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')

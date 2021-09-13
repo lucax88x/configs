@@ -25,8 +25,8 @@ fi
 
 # Variables
 SHOW_PROMPT=0
-# TAG=stable
-TAG=nightly
+TAG=stable
+# TAG=nightly
 CURR_NVIM_VER=$(nvim --version | head -n 1)
 wget https://github.com/neovim/neovim/releases/tag/$TAG -q -O - > /tmp/nvim28dce74c-4317-4006-a103-8069d573e2b2
 NEW_NVIM_VER=$(xmllint --html --xpath "//a[@href='/neovim/neovim/releases/tag/$TAG']/node()" /tmp/nvim28dce74c-4317-4006-a103-8069d573e2b2 2>/dev/null)
