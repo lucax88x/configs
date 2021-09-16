@@ -459,4 +459,9 @@ function configureZsh {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"}
 }
 
+function configureFonts {
+  mkdir -p ~/.config/fontconfig/conf.d
+  ln -s /etc/fonts/conf.avail/11-lcdfilter-default.conf ~/.config/fontconfig/conf.d/
+}
+
 

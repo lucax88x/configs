@@ -396,6 +396,13 @@ else
   echo ZSH ALREADY CONFIGURED
 fi
 
+if [ ! -d ~/.config/fontconfig/conf.d ]; then
+  echo CONFIGURING FONTS
+  configureFonts
+else
+  echo FONTS ALREADY CONFIGURED
+fi
+
 rm -rf $TEMP_DIR
 
 echo Purged temp folder
