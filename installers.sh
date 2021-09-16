@@ -344,6 +344,7 @@ function installRofi {
   # clipboard manager
   paru -Sy --noconfirm rofi-greenclip
   systemctl --user enable greenclip.service
+  systemctl --user start greenclip.service
   
   # bluetooth
   paru -S --noconfirm rofi-bluetooth-git

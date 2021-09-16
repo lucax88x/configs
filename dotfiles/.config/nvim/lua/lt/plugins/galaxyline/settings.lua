@@ -6,9 +6,9 @@ local gls = gl.section
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
 local colors = {
-  bg = '#282828',
-  fg = '#a89984',
-  section_bg = '#38393f',
+  bg = '#282828', -- gruvbox bg
+  fg = '#ebdbb2', -- gruvbox fg
+  section_bg = '#1d2021', -- gruvbox bg0_h
   yellow = '#d79921',
   cyan = '#83a598',
   green = '#b8bb26',

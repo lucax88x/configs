@@ -1,4 +1,4 @@
 vim.g.vsnip_filetypes = {
-  javascriptreact = {'typescript', 'html', 'react'},
-  typescriptreact = {'typescript', 'html', 'react'},
+  javascriptreact = {'javascript', 'typescript', 'html', 'react'},
+  typescriptreact = {'javascript', 'typescript', 'html', 'react'},
 }

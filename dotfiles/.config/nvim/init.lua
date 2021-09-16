@@ -13,8 +13,6 @@ require 'lt.utils'
 
 require 'lt.theme'
 
-require 'lt.filetypes'
-
 require 'lt.defaults'
 
 require 'lt.window.remaps'

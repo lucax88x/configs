@@ -16,8 +16,12 @@ local function on_attach(client, bufnr)
 
     -- adds beatiful icon to completion
     require'lspkind'.init()
+
     -- add signature autocompletion while typing
-    require'lsp_signature'.on_attach()
+    require'lsp_signature'.on_attach({
+      floating_window = false,
+      timer_interval = 500
+    })
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

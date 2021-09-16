@@ -1,5 +1,6 @@
-local actions = require('telescope.actions')
-local telescope = require('telescope')
+local actions = require 'telescope.actions'
+local telescope = require 'telescope'
+local functions = require 'lt.utils.functions'
 
 telescope.setup{
     defaults = {
@@ -75,12 +76,14 @@ telescope.setup{
     }
 }
 
-vim.cmd[[highlight link TelescopeBorder         GruvboxBg2]]
-vim.cmd[[highlight link TelescopePromptBorder   GruvboxBg2]]
-vim.cmd[[highlight link TelescopeResultsBorder  GruvboxBg2]]
-vim.cmd[[highlight link TelescopePreviewBorder  GruvboxBg2]]
+functions.link_highlight('TelescopeBorder', 'GruvboxBg2', true)
+functions.link_highlight('TelescopePromptBorder', 'GruvboxBg2', true)
+functions.link_highlight('TelescopeResultsBorder', 'GruvboxBg2', true)
+functions.link_highlight('TelescopePreviewBorder', 'GruvboxBg2', true)
 
+if functions.is_linux() then
+  telescope.load_extension("fzf")
+end
 telescope.load_extension("mapper")
-telescope.load_extension("fzf")
 telescope.load_extension("projects")
 
