@@ -1,45 +1,32 @@
--- Only required if you have packer in your `opt` pack
-local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
+local present, packer = pcall(require, 'lt.packer_init')
 
-if not packer_exists then
-  if vim.fn.input("Download Packer? (y for yes)") ~= "y" then
-    return
-  end
-
-  print("Downloading packer.nvim...")
-  local directory = string.format(
-    '%s/site/pack/packer/opt/',
-    vim.fn.stdpath('data')
-  )
-
-  vim.fn.mkdir(directory, 'p')
-
-  local out = vim.fn.system(string.format(
-    'git clone %s %s',
-    'https://github.com/wbthomason/packer.nvim',
-    directory .. '/packer.nvim'
-  ))
-
-  print(out)
-  print("Downloaded packer.nvim")
-
-  print("Reopen NVIM and run :PackerSync twice")
-
-  return
+if not present then
+	return false
 end
 
-return require('packer').startup {
+local presentImpatient, impatient = pcall(require, 'impatient')
+
+if presentImpatient then
+  impatient.enable_profile()
+end
+
+return packer.startup {
   function(use)
-    -- Packer can manage itself as an optional plugin
-    use {'wbthomason/packer.nvim', opt = true}
     use 'lewis6991/impatient.nvim'
 
+    use({ 'wbthomason/packer.nvim', event = 'VimEnter' })
+
     use { 'antoinemadec/FixCursorHold.nvim', config = function() require 'lt.plugins.fix-cursorhold' end}  -- Fix CursorHold Performance
+    use 'MunifTanjim/nui.nvim'  -- ui library
 
     -- icons
     use 'kyazdani42/nvim-web-devicons'
 
-    use { 'goolord/alpha-nvim', config = function() require 'lt.plugins.alpha' end}
+    use {
+      'goolord/alpha-nvim',
+    	event = "BufWinEnter",
+      config = function() require 'lt.plugins.alpha' end
+    }
 
     use { 'tpope/vim-fugitive', config = function() require 'lt.plugins.fugitive' end}
     use { 'lewis6991/gitsigns.nvim', config = function() require 'lt.plugins.gitsigns' end}
@@ -86,12 +73,12 @@ return require('packer').startup {
     }
 
     use {
-        "ThePrimeagen/refactoring.nvim",
-        config = function() require 'lt.plugins.refactoring' end,
-        requires = {
-            {"nvim-lua/plenary.nvim"},
-            {"nvim-treesitter/nvim-treesitter"}
-        }
+      "ThePrimeagen/refactoring.nvim",
+      config = function() require 'lt.plugins.refactoring' end,
+      requires = {
+          {"nvim-lua/plenary.nvim"},
+          {"nvim-treesitter/nvim-treesitter"}
+      }
     }
 
     use {
@@ -112,22 +99,52 @@ return require('packer').startup {
     use 'williamboman/nvim-lsp-installer'
 
     -- Snippets
-    use 'rafamadriz/friendly-snippets'
-    use { 'hrsh7th/vim-vsnip', config = function() require 'lt.plugins.snippets' end}
-    -- use 'hrsh7th/vim-vsnip-integ'
+    use({
+      'L3MON4D3/LuaSnip',
+      requires = { 'rafamadriz/friendly-snippets' },
+      config = function()
+        require('lt.plugins.snippets' )
+      end
+    })
 
     use {
       'hrsh7th/nvim-cmp',
       config = function() require 'lt.plugins.nvim-cmp' end,
-      requires = {
-        "hrsh7th/vim-vsnip",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-vsnip",
-        "hrsh7th/cmp-nvim-lsp"
-      }
+      event = "InsertEnter",
     }
+
+    use({
+      'hrsh7th/cmp-nvim-lsp',
+      after = 'nvim-cmp',
+    })
+
+    use({
+      'saadparwaiz1/cmp_luasnip',
+      after = 'nvim-cmp',
+    })
+
+    use({
+      'hrsh7th/cmp-buffer',
+      after = 'nvim-cmp',
+    })
+
+    use({
+      'hrsh7th/cmp-path',
+      after = 'nvim-cmp',
+    })
+
+    use({
+      'hrsh7th/cmp-nvim-lua',
+      after = 'nvim-cmp',
+    })
+
+    use({
+      'windwp/nvim-autopairs',
+      after = "nvim-cmp",
+      config = function()
+        require('lt.plugins.nvim-autopairs')
+      end,
+    })
 
     -- Language packs
     use {
