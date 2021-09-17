@@ -463,7 +463,7 @@ function installImwheel {
   [Service]
   Type=simple
   Environment=XAUTHORITY=%h/.Xauthority
-  ExecStart=/usr/bin/imwheel -d
+  ExecStart=/usr/bin/imwheel -d -b 45
   ExecStop=/usr/bin/pkill imwheel
   RemainAfterExit=yes
 

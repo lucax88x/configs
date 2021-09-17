@@ -1,7 +1,7 @@
 local lsp = require('lspconfig')
 local functions = require "lt.utils.functions"
 
--- local luafmt = require "lt.lsp.servers.efm.formatters.luafmt"
+local luaformat = require "lt.lsp.servers.formatters.lua-format"
 -- local prettier = require "lt.lsp.servers.formatters.prettier"
 local prettier_d = require "lt.lsp.servers.formatters.prettier_d"
 local eslint_d = require "lt.lsp.servers.linters.eslint_d"
@@ -10,7 +10,7 @@ local formatter = prettier_d
 local linter = eslint_d
 
 local languages = {
-  --lua = {luafmt},
+  lua = {luaformat},
   typescript = {formatter, linter},
   javascript = {formatter, linter},
   typescriptreact = {formatter, linter},
