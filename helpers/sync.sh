@@ -26,6 +26,7 @@ ARRAY=(
     .config/efm-langserver
     .config/i3/config
     .config/chrome-flags.conf
+    .config/ranger/rc.conf
     .gitconfig
     bin
     .ideavimrc
@@ -34,7 +35,7 @@ ARRAY=(
     .zprofile
     .tmux.conf
     .tmuxinator
-    .config/ranger/rc.conf
+    .imwheelrc
     .local/share/navi/cheats/lucatrazzi__cheats
     backgrounds
 )

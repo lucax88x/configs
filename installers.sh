@@ -137,6 +137,10 @@ function installRoboto {
   fc-cache
 }
 
+function installFreeType {
+  paru -Sy --noconfirm freetype2-ultimate5
+}
+
 function installFontAwesome {
   # wget https://github.com/FortAwesome/Font-Awesome/releases/download/$FONTAWESOME_VERSION/fontawesome-free-$FONTAWESOME_VERSION-desktop.zip -O $TEMP_DIR/FontAwesome.zip
 
@@ -447,6 +451,32 @@ function installPipewire {
   paru -S --noconfirm bluez bluez-utils
 }
 
+function installImwheel {
+  paru -S --noconfirm imwheel
+ 
+  sudo tee ~/.config/systemd/user/imwheel.service > /dev/null << EOT
+  [Unit]
+  Description=IMWheel
+  Wants=display-manager.service
+  After=display-manager.service
+
+  [Service]
+  Type=simple
+  Environment=XAUTHORITY=%h/.Xauthority
+  ExecStart=/usr/bin/imwheel -d
+  ExecStop=/usr/bin/pkill imwheel
+  RemainAfterExit=yes
+
+  [Install]
+  WantedBy=graphical-session.target
+EOT
+ 
+  systemctl --user daemon-reload
+  systemctl --user enable --now imwheel.service
+  systemctl --user start --now imwheel.service
+  journalctl --user --unit imwheel.service
+}
+
 ## CONFIGURATION
 
 function configureSsh {
@@ -463,5 +493,3 @@ function configureFonts {
   mkdir -p ~/.config/fontconfig/conf.d
   ln -s /etc/fonts/conf.avail/11-lcdfilter-default.conf ~/.config/fontconfig/conf.d/
 }
-
-

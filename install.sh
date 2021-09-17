@@ -128,6 +128,15 @@ else
   echo FONTAWESOME ALREADY INSTALLED
 fi
 
+if ! [ "pacman -Qs freetype2-ultimate5 > /dev/null" ]; then
+  echo INSTALLING FREETYPE PATCHED
+  installFreeType
+else
+  echo PATCHED FREETYPE ALREADY INSTALLED
+fi
+
+exit
+
 if ! [ -x "$(command -v bat)" ]; then
   echo INSTALLING BAT
   installBat
@@ -380,6 +389,13 @@ else
   echo PIPEWIRE ALREADY INSTALLED
 fi
 
+if [ ! -f ~/.config/systemd/user/imwheel.service ]; then
+  echo INSTALLING IMWHEEL
+  installImwheel
+else
+  echo IMWHEEL ALREADY CONFIGURED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
@@ -397,10 +413,10 @@ else
 fi
 
 if [ ! -d ~/.config/fontconfig/conf.d ]; then
-  echo CONFIGURING FONTS
+  echo CONFIGURING SHARP FONTS
   configureFonts
 else
-  echo FONTS ALREADY CONFIGURED
+  echo SHARP FONTS ALREADY CONFIGURED
 fi
 
 rm -rf $TEMP_DIR
