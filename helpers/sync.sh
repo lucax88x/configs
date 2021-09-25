@@ -27,6 +27,7 @@ ARRAY=(
     .config/i3/config
     .config/chrome-flags.conf
     .config/ranger/rc.conf
+    .config/gtk-3.0/settings.ini
     .gitconfig
     bin
     .ideavimrc
