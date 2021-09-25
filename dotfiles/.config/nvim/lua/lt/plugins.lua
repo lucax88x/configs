@@ -2,14 +2,8 @@ local present, packer = pcall(require, 'lt.packer_init')
 
 if not present then return false end
 
-local presentImpatient, impatient = pcall(require, 'impatient')
-
-if presentImpatient then impatient.enable_profile() end
-
 return packer.startup {
     function(use)
-        use 'lewis6991/impatient.nvim'
-
         use({'wbthomason/packer.nvim', event = 'VimEnter'})
 
         use {
@@ -211,7 +205,7 @@ return packer.startup {
 
         -- status line
         use {
-            'glepnir/galaxyline.nvim',
+            'NTBBloodbath/galaxyline.nvim',
             requires = 'SmiteshP/nvim-gps',
             config = function() require 'lt.plugins.galaxyline' end
         }
