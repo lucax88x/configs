@@ -7,7 +7,7 @@ require('gitsigns').setup {
     changedelete = {hl = 'GruvboxAqua', text = '~', numhl='GitSignsChangeNr'},
   },
   numhl = false,
-  watch_index = {
+  watch_gitdir = {
     interval = 1000
   },
   sign_priority = 9,

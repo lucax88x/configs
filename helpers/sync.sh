@@ -38,6 +38,7 @@ ARRAY=(
     .tmuxinator
     .imwheelrc
     .local/share/navi/cheats/lucatrazzi__cheats
+    .ssh/config
     backgrounds
 )
 

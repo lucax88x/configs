@@ -125,3 +125,5 @@
 	helper = libsecret
 [init]
 	defaultBranch = main
+[rebase]
+	autoStash = true

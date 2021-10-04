@@ -107,11 +107,11 @@ else
   echo JETBRAINS MONO ALREADY INSTALLED
 fi
 
-if ! [ "$(fc-list | grep -c 'Roboto')" -ge 1 ]; then
-  echo INSTALLING ROBOTOJ
-  installRoboto
+if ! [ "$(fc-list | grep -c 'Open Sans')" -ge 1 ]; then
+  echo INSTALLING OPEN SANS
+  installOpenSans
 else
-  echo ROBOTO ALREADY INSTALLED
+  echo OPEN SANS ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then

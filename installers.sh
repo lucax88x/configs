@@ -127,12 +127,12 @@ function installJetbrainsMono {
   fc-cache
 }
 
-function installRoboto {
-  wget https://fonts.google.com/download?family=Roboto -O $TEMP_DIR/Roboto.zip
+function installOpenSans {
+  wget https://fonts.google.com/download?family=Open+Sans -O $TEMP_DIR/OpenSans.zip
 
-  unzip $TEMP_DIR/Roboto.zip -d $TEMP_DIR/roboto
-  mkdir -p ~/.fonts/roboto
-  cp $TEMP_DIR/roboto/Roboto-* ~/.fonts/roboto
+  unzip $TEMP_DIR/OpenSans.zip -d $TEMP_DIR/open-sans
+  mkdir -p ~/.fonts/open-sans
+  cp $TEMP_DIR/roboto/OpenSans-* ~/.fonts/open-sans
 
   fc-cache
 }
