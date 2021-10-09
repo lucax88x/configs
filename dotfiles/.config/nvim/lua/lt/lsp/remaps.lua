@@ -14,8 +14,8 @@ function M.set_default(client, bufnr)
     -- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
   if cap.definitionProvider then
-    buf_set_keymap('n', 'gD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", 'lsp', 'lsp_preview_definition', 'Preview definition')
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', 'lsp', 'lsp_preview_definition_saga', 'Preview definition')
+    buf_set_keymap('n', 'gD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", 'lsp', 'lsp_preview_definition_saga', 'Preview definition')
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', 'lsp', 'lsp_preview_definition', 'Preview definition')
   end
   -- if cap.declarationProvider then
   -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -51,15 +51,15 @@ function M.set_default(client, bufnr)
     buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts) ]]
   end
 
-  -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
   -- buf_set_keymap('n','<leader>fe', '<cmd>:LspDiagnostics 0<CR>', opts)
    buf_set_keymap('n','<leader>fe', "<cmd>lua require('lt.lsp.functions').show_diagnostics()<CR>", 'lsp', 'lsp_show_diagnostics', 'Show diagnostics')
-  -- buf_set_keymap('n','<leader>fE', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  -- buf_set_keymap('n','<leader>fE', '<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n','<leader>fE', "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", 'lsp', 'lsp_show_line_diagnostics', 'Show line diagnostics')
-  --[[ buf_set_keymap('n','[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n',']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts) ]]
-  buf_set_keymap('n', '[e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", 'lsp', 'lsp_previous_diagnostic', 'Previous diagnostic')
-  buf_set_keymap('n', ']e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", 'lsp', 'lsp_next_diagnostic', 'Next diagnostic');
+  buf_set_keymap('n','[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'lsp', 'lsp_previous_diagnostic', 'Previous diagnostic')
+  buf_set_keymap('n',']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', 'lsp', 'lsp_next_diagnostic', 'next diagnostic')
+  --[[ buf_set_keymap('n', '[e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", 'lsp', 'lsp_previous_diagnostic', 'Previous diagnostic')
+  buf_set_keymap('n', ']e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", 'lsp', 'lsp_next_diagnostic', 'Next diagnostic'); ]]
 
   if cap.documentFormattingProvider then
     buf_set_keymap('n','<leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>', 'lsp', 'lsp_format', 'Format')
