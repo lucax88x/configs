@@ -5,3 +5,6 @@ sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist 
 
 # list installed packages
 paru -Qe
+
+# clear cache
+paru -Sc

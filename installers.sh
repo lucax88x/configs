@@ -477,6 +477,10 @@ EOT
   journalctl --user --unit imwheel.service
 }
 
+function installZathura {
+  paru -S --noconfirm zathura-git zathura-pdf-poppler-git
+}
+
 ## CONFIGURATION
 
 function configureSsh {

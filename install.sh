@@ -396,6 +396,13 @@ else
   echo IMWHEEL ALREADY CONFIGURED
 fi
 
+if ! [ -x "$(command -v zathura)" ]; then
+  echo INSTALLING ZATHURA
+  installZathura
+else
+  echo ZATHURA ALREADY CONFIGURED
+fi
+
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
