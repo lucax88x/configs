@@ -1,2 +1,9 @@
-pulseaudio -k && pactl load-module module-detect
+#!/bin/bash
+
+if ! [ -x "$(command -v pulseaudio)" ]; then
+  echo restarting pulseaudio
+  pulseaudio -k && pactl load-module module-detect
+fi
+
+# systemctl --user restart pipewire.service pipewire-pulse.socket
 

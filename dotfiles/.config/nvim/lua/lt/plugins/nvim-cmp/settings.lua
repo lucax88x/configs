@@ -7,8 +7,6 @@ cmp.setup({
         expand = function(args) require('luasnip').lsp_expand(args.body) end
     },
     mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -17,7 +15,7 @@ cmp.setup({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true
         }),
-        ['<Tab>'] = function(fallback)
+        ['<C-n>'] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
             elseif require('luasnip').expand_or_jumpable() then
@@ -25,10 +23,14 @@ cmp.setup({
                                     '<Plug>luasnip-expand-or-jump', true, true,
                                     true), '')
             else
-                fallback()
-            end
+                local copilot_keys = vim.fn["copilot#Accept"]()
+                if copilot_keys ~= "" then
+                    vim.api.nvim_feedkeys(copilot_keys, "i", true)
+                else
+                    fallback()
+                end            end
         end,
-        ['<S-Tab>'] = function(fallback)
+        ['<C-p>'] = function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif require('luasnip').jumpable(-1) then
@@ -64,3 +66,8 @@ cmp.setup({
         {name = 'path'}, {name = 'buffer'}
     }
 })
+
+local presentAutopairs, cmp_autopairs = pcall(require, 'nvim-autopairs.completion.cmp')
+if not presentAutopairs then return end
+
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))

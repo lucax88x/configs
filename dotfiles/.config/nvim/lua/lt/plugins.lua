@@ -10,6 +10,7 @@ return packer.startup {
             'antoinemadec/FixCursorHold.nvim',
             config = function() require 'lt.plugins.fix-cursorhold' end
         } -- Fix CursorHold Performance
+
         use 'MunifTanjim/nui.nvim' -- ui library
 
         -- icons
@@ -114,18 +115,26 @@ return packer.startup {
         use 'neovim/nvim-lspconfig'
         use 'nvim-lua/lsp-status.nvim'
         use 'tjdevries/lsp_extensions.nvim'
-        use 'glepnir/lspsaga.nvim'
+        use 'tami5/lspsaga.nvim'
+        use {
+          'filipdutescu/renamer.nvim',
+          config = function() require('lt.plugins.renamer-nvim') end
+        }
         use 'onsails/lspkind-nvim'
         use 'ray-x/lsp_signature.nvim'
         use 'jose-elias-alvarez/nvim-lsp-ts-utils'
         use 'williamboman/nvim-lsp-installer'
+        use {
+          'github/copilot.vim',
+          config = function() require('lt.plugins.copilot') end
+        }
 
         -- Snippets
-        use({
-            'L3MON4D3/LuaSnip',
-            requires = {'rafamadriz/friendly-snippets'},
-            config = function() require('lt.plugins.snippets') end
-        })
+        use {
+          'L3MON4D3/LuaSnip',
+          requires = {'rafamadriz/friendly-snippets'},
+          config = function() require('lt.plugins.snippets') end
+        }
 
         use {
             'hrsh7th/nvim-cmp',
