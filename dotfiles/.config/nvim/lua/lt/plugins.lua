@@ -13,6 +13,11 @@ return packer.startup {
 
         use 'MunifTanjim/nui.nvim' -- ui library
 
+        use {
+            'rcarriga/nvim-notify', -- notifications
+            config = function() require 'lt.plugins.nvim-notify' end
+        }
+
         -- icons
         use 'kyazdani42/nvim-web-devicons'
 
@@ -128,6 +133,10 @@ return packer.startup {
           'github/copilot.vim',
           config = function() require('lt.plugins.copilot') end
         }
+        use {
+          'stevearc/aerial.nvim',
+          config = function() require('lt.plugins.aerial-nvim') end
+        }
 
         -- Snippets
         use {
@@ -171,11 +180,7 @@ return packer.startup {
             requires = 'nvim-treesitter/nvim-treesitter',
             config = function() require 'lt.plugins.nvim-gps' end
         }
-
-        use {
-            'andymass/vim-matchup', -- enhances %
-            config = function() require 'lt.plugins.vim-matchup' end
-        }
+        use 'RRethy/nvim-treesitter-textsubjects'
         use {
             'nvim-treesitter/nvim-treesitter-textobjects',
             config = function()
@@ -183,6 +188,10 @@ return packer.startup {
             end
         }
 
+        use {
+            'andymass/vim-matchup', -- enhances %
+            config = function() require 'lt.plugins.vim-matchup' end
+        }
         use {
             'folke/todo-comments.nvim',
             config = function() require 'lt.plugins.todo-comments' end

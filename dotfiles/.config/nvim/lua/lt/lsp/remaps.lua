@@ -32,7 +32,8 @@ function M.set_default(client, bufnr)
 
   if cap.documentSymbolProvider then
     -- buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-    buf_set_keymap('n','<leader>to', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", 'lsp', 'lsp_document_symbols', 'Document symbols')
+    -- buf_set_keymap('n','<leader>to', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", 'lsp', 'lsp_document_symbols', 'Document symbols')
+    buf_set_keymap('n','<leader>to', "<cmd>AerialToggle!<CR>", 'lsp', 'lsp_document_symbols', 'Document symbols')
   end
 
   buf_set_keymap('n', '<leader>ts', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", 'lsp', 'lsp_signature_help', 'Show signature')
@@ -69,7 +70,8 @@ function M.set_default(client, bufnr)
   if cap.renameProvider then
     -- buf_set_keymap('n','<leader>rr','<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     -- buf_set_keymap('n','<leader>rr', "<cmd>lua require('lspsaga.rename').rename()<CR>", 'lsp', 'lsp_rename', 'Rename')
-    buf_set_keymap('n','<leader>rr', "<cmd>lua require('renamer').rename()<cr>", 'lsp', 'lsp_rename', 'Rename')
+    buf_set_keymap('n','<leader>rr', "<cmd>lua require('renamer').rename({ empty = true })<cr>", 'lsp', 'lsp_rename_empty', 'Rename')
+    buf_set_keymap('n','<leader>rR', "<cmd>lua require('renamer').rename({ empty = false })<cr>", 'lsp', 'lsp_rename', 'Rename with existing value')
   end
 
   buf_set_keymap('n','<leader>flc', ':lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>', 'lsp', 'lsp_debug_clients', '[DEBUG] LSP clients')

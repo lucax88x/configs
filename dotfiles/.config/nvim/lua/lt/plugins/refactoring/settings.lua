@@ -1,2 +1,2 @@
 local refactor = require("refactoring")
-refactor.setup()
+refactor.setup({})

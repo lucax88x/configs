@@ -2,6 +2,7 @@ local lsp_status = require('lsp-status')
 local lsp_installer_servers = require 'nvim-lsp-installer.servers'
 local remaps = require('lt.lsp.remaps')
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
+local presentAerial, aerial = pcall(require, 'aerial')
 
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
@@ -12,6 +13,10 @@ local function on_attach(client, bufnr)
     -- print(client.name)
     remaps.set_default(client, bufnr)
     lsp_status.on_attach(client, bufnr)
+
+    if presentAerial then
+      aerial.on_attach(client, bufnr);
+    end
 
     -- adds beatiful icon to completion
     require'lspkind'.init()

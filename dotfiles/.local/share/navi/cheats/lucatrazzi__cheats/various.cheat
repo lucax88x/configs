@@ -1,4 +1,4 @@
 % screen video record
 
 # record mp4 video
-sudo record-screen <name>.mp4
+record-screen <name>.mp4

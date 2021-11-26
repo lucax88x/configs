@@ -1,6 +1,6 @@
 vim.fn.sign_define("DiagnosticSignError",
     {text = "", texthl = "GruvboxRed"})
-vim.fn.sign_define("DiagnosticSignWarning",
+vim.fn.sign_define("DiagnosticSignWarn",
     {text = "", texthl = "GruvboxYellow"})
 vim.fn.sign_define("DiagnosticSignInformation",
     {text = "", texthl = "GruvboxBlue"})
