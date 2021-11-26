@@ -9,7 +9,7 @@ function M.set_default(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- gives definition & references
-  buf_set_keymap('n', '<leader>tt', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", 'lsp', 'lsp_definitions_references', 'Find definitions and references')
+  -- buf_set_keymap('n', '<leader>tt', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", 'lsp', 'lsp_definitions_references', 'Find definitions and references')
     -- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
   if cap.definitionProvider then

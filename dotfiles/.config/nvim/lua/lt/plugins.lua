@@ -173,6 +173,7 @@ return packer.startup {
             config = function() require 'lt.plugins.treesitter' end,
             run = function() vim.cmd [[TSUpdate]] end
         }
+        use 'nvim-treesitter/playground'
 
         use 'haringsrob/nvim_context_vt' -- shows treesitter context in end of parenthesis
         use {

@@ -77,6 +77,7 @@ export VISUAL=nvim
 export PATH=$HOME/bin:$PATH
 # add yarn globals to path
 export PATH="$(yarn global bin):$PATH"
+export PATH=$HOME/.dotnet:$PATH
 # END ENV VAR
 
 # ALIASES
