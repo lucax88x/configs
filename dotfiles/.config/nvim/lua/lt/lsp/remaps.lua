@@ -93,14 +93,16 @@ end
 
 function M.set_typescript(client, bufnr)
   local function buf_set_keymap(...) bufnoremap(bufnr, ...) end
-  local ts_utils = require("nvim-lsp-ts-utils")
+  local presentTsUtils, tsUtils = pcall(require, 'nvim-lsp-ts-utils')
+ 
+  if presentTsUtils then
+    -- defaults
+    tsUtils.setup {
+    }
 
-  -- defaults
-  ts_utils.setup {
-  }
-
-  -- required to fix code action ranges and filter diagnostics
-  ts_utils.setup_client(client)
+    -- required to fix code action ranges and filter diagnostics
+    tsUtils.setup_client(client)
+  end
 
   buf_set_keymap("n", "<leader>fo", ":TSLspOrganize<CR>", 'lsp', 'lsp_typescript_organize', 'Organize imports')
   buf_set_keymap("n", "<leader>fc", ":TSLspFixCurrent<CR>", 'lsp', 'lsp_typescript_fix_current', 'Fix current')

@@ -1,8 +1,10 @@
-local lsp_status = require('lsp-status')
 local lsp_installer_servers = require 'nvim-lsp-installer.servers'
 local remaps = require('lt.lsp.remaps')
+local presentLspKind, lspKind = pcall(require, 'lspkind')
+local presentLspStatus, lspStatus = pcall(require, 'lsp-status')
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
 local presentAerial, aerial = pcall(require, 'aerial')
+local presentLspSignature, lspSignature = pcall(require, 'lsp_signature')
 
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
@@ -12,20 +14,25 @@ vim.lsp.set_log_level('error')
 local function on_attach(client, bufnr)
     -- print(client.name)
     remaps.set_default(client, bufnr)
-    lsp_status.on_attach(client, bufnr)
+
+    if presentLspStatus then
+      lspStatus.on_attach(client, bufnr)
+    end
 
     if presentAerial then
       aerial.on_attach(client, bufnr);
     end
 
-    -- adds beatiful icon to completion
-    require'lspkind'.init()
+    if presentLspKind then
+      lspKind.init()
+    end
 
-    -- add signature autocompletion while typing
-    require'lsp_signature'.on_attach({
-        floating_window = false,
-        timer_interval = 500
-    })
+    if presentLspSignature then
+      lspSignature.on_attach({
+          floating_window = false,
+          timer_interval = 500
+      })
+    end
 end
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
@@ -38,11 +45,13 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] =
         update_in_insert = false
     })
 
-lsp_status.register_progress()
 
 local capabilities = {};
 
-capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
+if presentLspStatus then
+    lspStatus.register_progress()
+    capabilities = vim.tbl_extend('keep', capabilities, lspStatus.capabilities)
+end
 
 if presentCmpNvimLsp then
     capabilities = vim.tbl_extend('keep', capabilities,
@@ -67,9 +76,6 @@ local servers = {
     vuels = {},
     graphql = {}
 }
-
---[[ lsp_installer.on_server_ready(function(server)
-end) ]]
 
 for serverName, config in pairs(servers) do
     local ok, server = lsp_installer_servers.get_server(serverName)
