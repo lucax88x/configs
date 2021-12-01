@@ -39,10 +39,10 @@ if functions.is_linux() then telescope.load_extension('fzf') end
 if (pcall(require, 'nvim-mapper')) then
   telescope.load_extension('mapper')
 end
-if (pcall(require, 'project.nvim')) then
+if (pcall(require, 'project_nvim')) then
   telescope.load_extension('projects')
 end
-if (pcall(require, 'neovim-session-manager')) then
+if (pcall(require, 'session-manager')) then
   telescope.load_extension('sessions')
 end
 

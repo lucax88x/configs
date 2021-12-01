@@ -9,7 +9,7 @@ return packer.startup {
         use {
             'antoinemadec/FixCursorHold.nvim',
             config = function() require 'lt.plugins.fix-cursorhold' end
-        } -- Fix CursorHold Performance 
+        } -- Fix CursorHold Performance
 
         use 'nvim-lua/plenary.nvim'
 
@@ -77,10 +77,10 @@ return packer.startup {
             'bkad/CamelCaseMotion',
             config = function() require 'lt.plugins.camelcasemotion' end
         } -- allows to move by camelCase with w e
-        --[[ use {
+        use {
             'lukas-reineke/indent-blankline.nvim',
             config = function() require 'lt.plugins.indent-blankline' end
-        } ]]
+        }
 
         use {
             'nvim-telescope/telescope.nvim',
@@ -137,14 +137,14 @@ return packer.startup {
         use 'ray-x/lsp_signature.nvim'
         use 'jose-elias-alvarez/nvim-lsp-ts-utils'
         use 'williamboman/nvim-lsp-installer'
-        --[[ use {
+        use {
           'github/copilot.vim',
           config = function() require('lt.plugins.copilot') end
         }
         use {
           'stevearc/aerial.nvim',
           config = function() require('lt.plugins.aerial-nvim') end
-        } ]]
+        }
 
         -- Snippets
         use {
@@ -173,7 +173,7 @@ return packer.startup {
             'windwp/nvim-autopairs',
             after = 'nvim-cmp',
             config = function() require('lt.plugins.nvim-autopairs') end
-        }) 
+        })
 
         use {
             'nvim-treesitter/nvim-treesitter',
