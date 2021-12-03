@@ -1,5 +1,5 @@
 -- Use s instead of <C-w> to handle windows
-nnoremap('s', '<C-w>', 'remap', 'remap_s', 'Remaps s to handle windows')
+-- nnoremap('s', '<C-w>', 'remap', 'remap_s', 'Remaps s to handle windows')
 
 nnoremap('<leader>wh', '<cmd>wincmd h<CR>', 'window', 'window_move_left',
          'Move window left')

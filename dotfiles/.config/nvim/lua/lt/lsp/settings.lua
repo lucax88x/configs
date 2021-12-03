@@ -1,6 +1,5 @@
 local lsp_installer_servers = require 'nvim-lsp-installer.servers'
 local remaps = require('lt.lsp.remaps')
-local presentLspKind, lspKind = pcall(require, 'lspkind')
 local presentLspStatus, lspStatus = pcall(require, 'lsp-status')
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
 local presentAerial, aerial = pcall(require, 'aerial')
@@ -18,8 +17,6 @@ local function on_attach(client, bufnr)
   if presentLspStatus then lspStatus.on_attach(client, bufnr) end
 
   if presentAerial then aerial.on_attach(client, bufnr); end
-
-  if presentLspKind then lspKind.init() end
 
   if presentLspSignature then
     lspSignature.on_attach({floating_window = false, timer_interval = 500})
@@ -57,7 +54,7 @@ local servers = {
   cssls = {},
   sumneko_lua = require('lt.lsp.servers.sumneko_lua')(),
   dockerls = {},
-  omnisharp = {},
+  csharp_ls = {},
   vuels = {},
   graphql = {}
 }

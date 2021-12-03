@@ -24,7 +24,7 @@ dashboard.section.buttons.val = {
     dashboard.button( "p", " Projects", ":Telescope projects<CR>"),
     dashboard.button( "r", " Recent files"   , ":Telescope oldfiles<CR>"),
 
-    dashboard.button( "n", " Config" , ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+    dashboard.button( "c", " Config" , ":e $MYVIMRC | pwd<CR>"),
     dashboard.button( "u p", " Update plugins", ":PackerSync<CR>"),
     dashboard.button( "u l", " Update LSP", '<cmd>lua require("lt.lsp.servers.functions").lsp_install_servers()<CR>'),
 
