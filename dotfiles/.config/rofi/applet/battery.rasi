@@ -1,8 +1,8 @@
 configuration {
-    theme:                          "config";
     show-icons:                     false;
 }
 
+@theme "config"
 @import "./menu.rasi"
 
 * {

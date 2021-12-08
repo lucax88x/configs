@@ -10,8 +10,8 @@ telescope.setup {
   },
   pickers = {
     buffers = {sort_lastused = true, previewer = false, theme = 'dropdown'},
-    find_files = {theme = 'dropdown'},
-    git_files = {theme = 'dropdown'},
+    find_files = {theme = 'dropdown', previewer = false},
+    git_files = {theme = 'dropdown', previewer = false},
     registers = {theme = 'dropdown'},
     lsp_references = {previewer = false},
     lsp_code_actions = {theme = 'cursor'},
@@ -39,4 +39,6 @@ if functions.is_linux() then telescope.load_extension('fzf') end
 if (pcall(require, 'nvim-mapper')) then telescope.load_extension('mapper') end
 if (pcall(require, 'project_nvim')) then telescope.load_extension('projects') end
 if (pcall(require, 'session_manager')) then telescope.load_extension('sessions') end
+if (pcall(require, 'harpoon')) then telescope.load_extension('harpoon') end
+
 

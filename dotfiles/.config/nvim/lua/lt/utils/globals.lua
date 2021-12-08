@@ -16,4 +16,3 @@ _G.reload = function()
 
     print('Reloaded ' .. counter .. ' modules!')
 end
-

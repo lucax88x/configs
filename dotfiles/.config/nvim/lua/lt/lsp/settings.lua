@@ -42,7 +42,11 @@ if presentCmpNvimLsp then
                                     vim.lsp.protocol.make_client_capabilities()))
 end
 
-local default_lsp_config = {on_attach = on_attach, capabilities}
+local default_lsp_config = {
+  on_attach = on_attach,
+  capabilities,
+  flags = {debounce_text_changes = 200}
+}
 
 local servers = {
   efm = require('lt.lsp.servers.efm')(),
@@ -56,7 +60,8 @@ local servers = {
   dockerls = {},
   csharp_ls = {},
   vuels = {},
-  graphql = {}
+  graphql = {},
+  rust_analyzer = {},
 }
 
 for serverName, config in pairs(servers) do

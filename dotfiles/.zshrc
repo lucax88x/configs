@@ -101,7 +101,10 @@ alias grep='rg'
 alias find='fd'
 # alias ps='procs'
 alias crashed='journalctl --since=today'
+
 alias ssk="kitty +kitten ssh"
+alias br="broot"
+alias lg="lazygit"
 
 # END ALIASES
 

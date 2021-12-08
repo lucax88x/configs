@@ -18,6 +18,7 @@ M.lsp_install_servers = function()
     installLanguageServer('dockerls')
     installLanguageServer('graphql')
     installLanguageServer('efm')
+    installLanguageServer('rust_analyzer')
 end
 
 return M

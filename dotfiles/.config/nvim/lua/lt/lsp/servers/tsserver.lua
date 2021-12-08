@@ -10,6 +10,5 @@ return function(on_attach)
       -- tsserver, stop messing with prettier da fuck!
       client.resolved_capabilities.document_formatting = false
     end,
-    flags = {debounce_text_changes = 200}
   }
 end

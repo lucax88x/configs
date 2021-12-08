@@ -69,7 +69,10 @@ return packer.startup {
       config = function() require 'lt.plugins.lightspeed-nvim' end
     }
 
-    use 'b3nj5m1n/kommentary'
+    use {
+      'numToStr/Comment.nvim',
+      config = function() require 'lt.plugins.comment-nvim' end
+    }
 
     use 'tpope/vim-surround' -- Change surrounding arks
     use 'tpope/vim-repeat' -- extends . repeat, for example for make it work with vim-sneak
@@ -194,7 +197,7 @@ return packer.startup {
 
     use {
       'ThePrimeagen/harpoon',
-      config = function() require 'lt.plugins.harpoon-nvim' end,
+      config = function() require 'lt.plugins.harpoon' end,
       requires = 'nvim-lua/plenary.nvim'
     }
 

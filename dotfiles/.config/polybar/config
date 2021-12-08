@@ -44,7 +44,7 @@ font-6 = unifont:size=6;1
 
 modules-left = i3 wifi wired
 modules-center = xwindow
-modules-right = pulseaudio bluetooth cpu memory battery date
+modules-right = pulseaudio bluetooth battery date
 
 tray-position = right
 tray-padding = 4
@@ -144,22 +144,6 @@ label-urgent-padding = 2
 label-visible = %name%
 label-visible-padding = 2
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-label = %percentage%%
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.underline}
-
-[module/memory]
-type = internal/memory
-interval = 2
-label = %percentage_used%%
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.underline}
-
 [module/wifi]
 type = internal/network
 ;get your network by using "ip addr | sed '/^[0-9]/!d;s/: <.*$//'"
@@ -170,7 +154,7 @@ format-connected = <ramp-signal> <label-connected>
 format-connected-prefix = 
 format-connected-prefix-foreground = ${colors.foreground}
 format-connected-underline = ${colors.underline}
-label-connected = %essid:8% %local_ip% %upspeed:2% %downspeed:2%
+label-connected = %essid:0:10:..% %upspeed:2% %downspeed:2%
 
 format-disconnected = 
 format-disconnected-underline = ${colors.underline}
@@ -203,7 +187,7 @@ label-disconnected-foreground = ${colors.urgent}
 
 [module/date]
 type = internal/date
-label = %{F${colors.foreground}%{F-} %date%  %{F#${colors.foreground}%{F-} %time%
+label = %{F${colors.foreground}%{F-} %date% %time%
 date = %m-%d
 time = %H:%M
 interval = 5
@@ -239,7 +223,7 @@ animation-charging-framerate = 750
 [module/xwindow]
 type = internal/xwindow
 format = <label>
-label-maxlen = 75
+label-maxlen = 25 
 
 [module/pulseaudio]
 type = internal/pulseaudio

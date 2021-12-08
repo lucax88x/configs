@@ -1,5 +1,4 @@
 configuration {
-    theme:                          "config";
     show-icons:                     false;
     font:                           "Font Awesome 5 Pro 45";
 }

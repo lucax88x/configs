@@ -1,9 +1,9 @@
 configuration {
-    theme:                          "config";
     show-icons:                     false;
     font:                           "Font Awesome 50";
 }
 
+@theme "config"
 @import "./options_menu.rasi"
 
 window {
