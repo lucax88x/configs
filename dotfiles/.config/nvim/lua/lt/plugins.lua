@@ -137,6 +137,7 @@ return packer.startup {
     use 'ray-x/lsp_signature.nvim'
     use 'jose-elias-alvarez/nvim-lsp-ts-utils'
     use 'williamboman/nvim-lsp-installer'
+    use 'b0o/schemastore.nvim'
     use {
       'github/copilot.vim',
       config = function() require('lt.plugins.copilot') end

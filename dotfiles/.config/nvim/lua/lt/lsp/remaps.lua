@@ -13,8 +13,8 @@ function M.set_default(client, bufnr)
     -- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
   if cap.definitionProvider then
-    buf_set_keymap('n', 'gD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", 'lsp', 'lsp_preview_definition_saga', 'Preview definition')
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', 'lsp', 'lsp_preview_definition', 'Preview definition')
+    buf_set_keymap('n', 'gd', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", 'lsp', 'lsp_preview_definition_saga', 'Preview definition')
+    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.definition()<CR>', 'lsp', 'lsp_preview_definition', 'Preview definition')
   end
   -- if cap.declarationProvider then
   -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -32,8 +32,8 @@ function M.set_default(client, bufnr)
 
   if cap.documentSymbolProvider then
     -- buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-    -- buf_set_keymap('n','<leader>to', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", 'lsp', 'lsp_document_symbols', 'Document symbols')
-    buf_set_keymap('n','<leader>to', "<cmd>AerialToggle!<CR>", 'lsp', 'lsp_document_symbols', 'Document symbols')
+    buf_set_keymap('n','<leader>tO', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", 'lsp', 'lsp_document_symbols', 'Document symbols')
+    buf_set_keymap('n','<leader>to', "<cmd>AerialToggle!<CR>", 'lsp', 'lsp_aerial_document_symbols', '(Aerial) Document symbols')
   end
 
   buf_set_keymap('n', '<leader>ts', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", 'lsp', 'lsp_signature_help', 'Show signature')

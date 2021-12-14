@@ -47,9 +47,8 @@ cmp.setup({
   formatting = {
     format = function(entry, vim_item)
       -- fancy icons and a name of kind
-      vim_item.kind =
-          lspKind.presets.default[vim_item.kind] .. ' ' ..
-              vim_item.kind
+      vim_item.kind = lspKind.presets.default[vim_item.kind] .. ' ' ..
+                          vim_item.kind
 
       -- set a name for each source
       vim_item.menu = ({
@@ -66,7 +65,7 @@ cmp.setup({
   sources = {
     {name = 'luasnip', max_item_count = 10},
     {name = 'nvim_lsp', max_item_count = 10}, {name = 'nvim_lua'},
-    {name = 'path'}, {name = 'buffer', keyword_length = 3}
+    {name = 'path'}, {name = 'buffer', keyword_length = 3, max_item_count = 10}
   }
 })
 
@@ -86,5 +85,4 @@ local presentAutopairs, cmp_autopairs = pcall(require,
 if not presentAutopairs then return end
 
 cmp.event:on('confirm_done',
-
              cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))

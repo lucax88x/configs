@@ -1,5 +1,5 @@
 local lsp_installer_servers = require 'nvim-lsp-installer.servers'
-local remaps = require('lt.lsp.remaps')
+local remaps = require 'lt.lsp.remaps'
 local presentLspStatus, lspStatus = pcall(require, 'lsp-status')
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
 local presentAerial, aerial = pcall(require, 'aerial')
@@ -8,7 +8,7 @@ local presentLspSignature, lspSignature = pcall(require, 'lsp_signature')
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 
-vim.lsp.set_log_level('error')
+vim.lsp.set_log_level('info')
 
 local function on_attach(client, bufnr)
   -- print(client.name)
@@ -29,7 +29,8 @@ vim.diagnostic.config({
   update_in_insert = false
 })
 
-local capabilities = {};
+local capabilities = vim.lsp.protocol.make_client_capabilities();
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 if presentLspStatus then
   lspStatus.register_progress()
@@ -38,8 +39,7 @@ end
 
 if presentCmpNvimLsp then
   capabilities = vim.tbl_extend('keep', capabilities,
-                                cmpNvimLsp.update_capabilities(
-                                    vim.lsp.protocol.make_client_capabilities()))
+                                cmpNvimLsp.update_capabilities(capabilities))
 end
 
 local default_lsp_config = {
@@ -52,7 +52,7 @@ local servers = {
   efm = require('lt.lsp.servers.efm')(),
   bashls = {},
   yamlls = {},
-  jsonls = {},
+  jsonls = require('lt.lsp.servers.jsonls')(),
   tsserver = require('lt.lsp.servers.tsserver')(on_attach),
   html = {},
   cssls = {},
@@ -61,7 +61,7 @@ local servers = {
   csharp_ls = {},
   vuels = {},
   graphql = {},
-  rust_analyzer = {},
+  rust_analyzer = {}
 }
 
 for serverName, config in pairs(servers) do

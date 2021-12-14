@@ -1,8 +1,6 @@
-local lsp = require('lspconfig')
-local functions = require 'lt.utils.functions'
+local lsp = require 'lspconfig'
 
 local luaformat = require 'lt.lsp.servers.formatters.lua-format'
--- local prettier = require "lt.lsp.servers.formatters.prettier"
 local prettier_d = require 'lt.lsp.servers.formatters.prettier_d'
 local eslint_d = require 'lt.lsp.servers.linters.eslint_d'
 
@@ -19,7 +17,6 @@ local languages = {
   ['javascript.jsx'] = {formatter, linter},
   vue = {formatter, linter},
   yaml = {formatter},
-  json = {formatter},
   html = {formatter},
   scss = {formatter},
   css = {formatter},
@@ -91,6 +88,6 @@ return function()
       rootMarkers = {'package.json', '.git'},
       lintDebounce = 500,
       languages = languages
-    },
+    }
   }
 end
