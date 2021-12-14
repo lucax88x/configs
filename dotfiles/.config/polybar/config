@@ -44,7 +44,7 @@ font-6 = unifont:size=6;1
 
 modules-left = i3 wifi wired
 modules-center = xwindow
-modules-right = pulseaudio bluetooth battery date
+modules-right = pulseaudio bluetooth backlight battery cpu date
 
 tray-position = right
 tray-padding = 4
@@ -252,6 +252,14 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label = %percentage%%
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.underline}
 
 [module/bluetooth]
 type = custom/script

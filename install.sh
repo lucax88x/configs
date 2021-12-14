@@ -436,4 +436,5 @@ echo - register ssh public key to github
 echo - install node with nvm
 echo '- disable alt+space shortcut (https://unix.stackexchange.com/questions/44643/change-global-keyboard-shortcuts)'
 echo '-remember to configure keyring (https://wiki.archlinux.org/index.php/GNOME/Keyring#PAM_method)'
+echo '-remember to configure nvidia hook (https://wiki.archlinux.org/title/NVIDIA#pacman_hook)'
 echo - reboot
