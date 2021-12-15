@@ -1,10 +1,5 @@
-return function()
-  return {
-    settings = {
-      json = {
-        trace = {server = 'messages'},
-        schemas = require('schemastore').json.schemas()
-      }
-    }
-  }
+return function(capabilities)
+  capabilities.textDocument.completion.completionItem.snippetSupport = true;
+
+  return {settings = {json = {schemas = require('schemastore').json.schemas()}}}
 end

@@ -468,7 +468,7 @@ function installImwheel {
   RemainAfterExit=yes
 
   [Install]
-  WantedBy=graphical-session.target
+  WantedBy=default.target
 EOT
  
   systemctl --user daemon-reload
@@ -479,6 +479,14 @@ EOT
 
 function installZathura {
   paru -S --noconfirm zathura-git zathura-pdf-poppler-git
+}
+
+function installCups {
+  paru -S --noconfirm cups cups-pdf system-config-printer
+  paru -S --noconfirm samsung-unified-driver
+  
+  systemctl enable --now cups.service
+  systemctl start --now cups.service
 }
 
 ## CONFIGURATION
