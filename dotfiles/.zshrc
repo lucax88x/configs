@@ -74,16 +74,22 @@ export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export EDITOR=nvim
 export VISUAL=nvim
 
-export PATH=$HOME/bin:$PATH
+export PATH="$HOME/bin:$PATH"
 # add yarn globals to path
 export PATH="$(yarn global bin):$PATH"
-export PATH=$HOME/.dotnet:$PATH
+
+# add dotnet globals to path
+export PATH="$HOME/.dotnet:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
+
+# export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
+export DOTNET_ROOT="$HOME/.dotnet"
 # END ENV VAR
 
 # ALIASES
 alias k='kubectl'
 alias c='xclip -selection clipboard'
-alias v='nvim --startuptime /tmp/nvim-startuptime'
+alias v='nvim'
 
 alias ls='lsd'
 alias l='ls -l'

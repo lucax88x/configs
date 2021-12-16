@@ -69,6 +69,8 @@ return packer.startup {
       config = function() require 'lt.plugins.lightspeed-nvim' end
     }
 
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
+
     use {
       'numToStr/Comment.nvim',
       config = function() require 'lt.plugins.comment-nvim' end
