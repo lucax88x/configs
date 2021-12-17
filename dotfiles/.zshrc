@@ -79,11 +79,11 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$(yarn global bin):$PATH"
 
 # add dotnet globals to path
-export PATH="$HOME/.dotnet:$PATH"
+export PATH="/usr/share/dotnet:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
 
 # export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
-export DOTNET_ROOT="$HOME/.dotnet"
+# export DOTNET_ROOT="$HOME/.dotnet"
 # END ENV VAR
 
 # ALIASES

@@ -3,11 +3,9 @@ return function(capabilities)
 
   return {
     settings = {
-      json = {
+      yaml = {
         schemas = require('schemastore').json.schemas {
-          select = {
-            'package.json', '.eslintrc', 'GitHub Action', 'prettierrc.json"'
-          }
+          select = {'docker-compose.yml'}
         }
       }
     }

@@ -1,7 +1,7 @@
 #!/bin/sh
 
-userresources=$HOME/.config/X11/xresources
-usermodmap=$HOME/.config/X11/xmodmap
+userresources=/home/lucatrazzi/.config/X11/xresources
+usermodmap=/home/lucatrazzi/.config/X11/xmodmap
 
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
@@ -28,7 +28,7 @@ systemctl --user import-environment DISPLAY &
 
 # xbindkeys &  # allow custom keybindings in the X session
 udiskie &  # allow automatic mounting of portable drives
-picom & # compositor
+# picom & # compositor
 
 # start keyring
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)

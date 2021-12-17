@@ -46,7 +46,7 @@ end
 local servers = {
   efm = require('lt.lsp.servers.efm')(),
   bashls = {},
-  yamlls = {},
+  yamlls = require('lt.lsp.servers.yamlls')(capabilities),
   jsonls = require('lt.lsp.servers.jsonls')(capabilities),
   tsserver = require('lt.lsp.servers.tsserver')(on_attach),
   html = {},

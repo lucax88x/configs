@@ -3,24 +3,22 @@ local lsp = require 'lspconfig'
 local luaformat = require 'lt.lsp.servers.formatters.lua-format'
 local prettier_d = require 'lt.lsp.servers.formatters.prettier_d'
 local eslint_d = require 'lt.lsp.servers.linters.eslint_d'
-
-local formatter = prettier_d
-local linter = eslint_d
+local yaml_lint = require 'lt.lsp.servers.linters.yaml_lint'
 
 local languages = {
   lua = {luaformat},
-  typescript = {formatter, linter},
-  javascript = {formatter, linter},
-  typescriptreact = {formatter, linter},
-  ['typescript.tsx'] = {formatter, linter},
-  javascriptreact = {formatter, linter},
-  ['javascript.jsx'] = {formatter, linter},
-  vue = {formatter, linter},
-  yaml = {formatter},
-  html = {formatter},
-  scss = {formatter},
-  css = {formatter},
-  markdown = {formatter}
+  typescript = {prettier_d, eslint_d},
+  javascript = {prettier_d, eslint_d},
+  typescriptreact = {prettier_d, eslint_d},
+  ['typescript.tsx'] = {prettier_d, eslint_d},
+  javascriptreact = {prettier_d, eslint_d},
+  ['javascript.jsx'] = {prettier_d, eslint_d},
+  vue = {prettier_d, eslint_d},
+  yaml = {prettier_d, yaml_lint},
+  html = {prettier_d},
+  scss = {prettier_d},
+  css = {prettier_d},
+  markdown = {prettier_d}
 }
 
 --[[ local efm_config = os.getenv('HOME') ..
