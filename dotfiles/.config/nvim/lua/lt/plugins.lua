@@ -132,6 +132,10 @@ return packer.startup {
       config = function() require('lt.plugins.lspsaga') end
     }
     use {
+      'folke/trouble.nvim',
+      config = function() require('lt.plugins.trouble-nvim') end
+    }
+    use {
       'filipdutescu/renamer.nvim',
       config = function() require('lt.plugins.renamer-nvim') end
     }
@@ -147,6 +151,10 @@ return packer.startup {
     use {
       'stevearc/aerial.nvim',
       config = function() require('lt.plugins.aerial-nvim') end
+    }
+    use {
+      'simrat39/rust-tools.nvim',
+      requires = 'nvim-lua/plenary.nvim'
     }
 
     -- Snippets

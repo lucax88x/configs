@@ -19,6 +19,7 @@ M.lsp_install_servers = function()
     installLanguageServer('graphql')
     installLanguageServer('efm')
     installLanguageServer('rust_analyzer')
+    installLanguageServer('eslint')
 end
 
 return M

@@ -1,12 +1,12 @@
 local lsp = require 'lspconfig'
 
-local luaformat = require 'lt.lsp.servers.formatters.lua-format'
+local stylua = require 'lt.lsp.servers.formatters.stylua'
 local prettier_d = require 'lt.lsp.servers.formatters.prettier_d'
 local eslint_d = require 'lt.lsp.servers.linters.eslint_d'
 local yaml_lint = require 'lt.lsp.servers.linters.yaml_lint'
 
 local languages = {
-  lua = {luaformat},
+  lua = {stylua},
   typescript = {prettier_d, eslint_d},
   javascript = {prettier_d, eslint_d},
   typescriptreact = {prettier_d, eslint_d},
