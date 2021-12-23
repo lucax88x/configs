@@ -2,3 +2,6 @@
 
 # record mp4 video
 record-screen <name>.mp4
+
+# disable sleep
+xset s off -dpms

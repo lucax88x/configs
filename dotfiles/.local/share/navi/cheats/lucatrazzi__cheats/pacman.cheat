@@ -8,3 +8,6 @@ paru -Qe
 
 # clear cache
 paru -Sc
+
+# clear unused dependencies
+paru -c

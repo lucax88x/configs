@@ -154,7 +154,7 @@ format-connected = <ramp-signal> <label-connected>
 format-connected-prefix = 
 format-connected-prefix-foreground = ${colors.foreground}
 format-connected-underline = ${colors.underline}
-label-connected = %essid:0:10:..% %upspeed:2% %downspeed:2%
+label-connected = %essid:0:8% %local_ip% %upspeed:2% %downspeed:2%
 
 format-disconnected = 
 format-disconnected-underline = ${colors.underline}

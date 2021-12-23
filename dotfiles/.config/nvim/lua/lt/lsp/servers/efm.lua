@@ -1,91 +1,60 @@
-local lsp = require 'lspconfig'
+local lsp = require("lspconfig")
 
-local stylua = require 'lt.lsp.servers.formatters.stylua'
-local prettier_d = require 'lt.lsp.servers.formatters.prettier_d'
-local eslint_d = require 'lt.lsp.servers.linters.eslint_d'
-local yaml_lint = require 'lt.lsp.servers.linters.yaml_lint'
+-- npm install -g eslint_d
+-- npm install -g @fsouza/prettierd
+-- npm install -g stylelint
+-- npm install -g alex
+-- paru -S stylua
+-- paru -S luacheck
+-- paru -S shfmt-bin
+-- paru -S shellcheck-bin
+--
+-- https://github.com/creativenull/efmls-configs-nvim/blob/main/supported-linters-and-formatters.md
+local alex = require("efmls-configs.linters.alex")
+-- local eslint_d = require("efmls-configs.linters.eslint_d")
+local prettier_d = require("efmls-configs.formatters.prettier_d")
+local luacheck = require("efmls-configs.linters.luacheck")
+local stylua = require("efmls-configs.formatters.stylua")
+local stylelint = require("efmls-configs.linters.stylelint")
+local shellcheck = require("efmls-configs.linters.shellcheck")
+local shfmt = require("efmls-configs.formatters.shfmt")
+local yamllint = require("efmls-configs.linters.yamllint")
 
 local languages = {
-  lua = {stylua},
-  typescript = {prettier_d, eslint_d},
-  javascript = {prettier_d, eslint_d},
-  typescriptreact = {prettier_d, eslint_d},
-  ['typescript.tsx'] = {prettier_d, eslint_d},
-  javascriptreact = {prettier_d, eslint_d},
-  ['javascript.jsx'] = {prettier_d, eslint_d},
-  vue = {prettier_d, eslint_d},
-  yaml = {prettier_d, yaml_lint},
-  html = {prettier_d},
-  scss = {prettier_d},
-  css = {prettier_d},
-  markdown = {prettier_d}
+	lua = { stylua, luacheck },
+	typescript = { prettier_d },
+	javascript = { prettier_d },
+	typescriptreact = { prettier_d },
+	["typescript.tsx"] = { prettier_d },
+	javascriptreact = { prettier_d },
+	["javascript.jsx"] = { prettier_d },
+	vue = { prettier_d, stylelint },
+	yaml = { prettier_d, yamllint },
+	html = { prettier_d, alex },
+	less = { prettier_d, stylelint },
+	sass = { prettier_d, stylelint },
+	scss = { prettier_d, stylelint },
+	css = { prettier_d, stylelint },
+	markdown = { prettier_d, alex },
+	zsh = { shfmt, shellcheck },
+	bash = { shfmt, shellcheck },
+	sh = { shfmt, shellcheck },
 }
 
---[[ local efm_config = os.getenv('HOME') ..
-                         '/.config/efm-langserver/config.yaml'
-                         
-        cmd = {
-          bin_path,
-          "-c",
-           efm_config,
-          "-loglevel",
-          "10",
-          "-logfile",
-          "/tmp/efm.log" 
-        }, ]]
-
---[[ local function eslint_config_exists()
-  local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
-  local test = vim.fn.glob("package.json*")
-
-  functions.tprint(eslintrc)
-  functions.tprint(test)
-  if not vim.tbl_isempty(eslintrc) then
-    return true
-  end
-  -- print (vim.fn.getcwd())
-  -- functions.tprint (lsp.util.root_pattern("package.json", ".git", vim.fn.getcwd()))
-  local r = lsp.util.root_pattern(".eslintrc*")
-
-  -- print(lsp.util.find_git_root())
-  -- print(lsp.util.find_node_modules_root())
-  -- print(lsp.util.find_package_json_root())
-  functions.tprint (r)
-
-  print ('no rc found')
-
-  if vim.fn.filereadable("package.json") then
-    if vim.fn.json_decode(vim.fn.readfile("package.json"))["eslintConfig"] then
-      return true
-    end
-  end
-
-  print ('not in json')
-  return false
-end ]]
-
 return function()
-  return {
-    root_dir = function(fname)
-      --[[ if not eslint_config_exists() then
-            print 'eslint configuration not found'
-            return nil
-          end]]
-      -- check if eslint_d installed globally!
-      -- return lsp.util.root_pattern("package.json", ".git", vim.fn.getcwd())
-      -- return getcwd()
-      local cwd = lsp.util.root_pattern('tsconfig.json')(fname) or
-                      lsp.util.root_pattern('.eslintrc.json', '.git')(fname) or
-                      lsp.util
-                          .root_pattern('package.json', '.git/', '.zshrc')(fname);
-      return cwd
-    end,
-    filetypes = vim.tbl_keys(languages),
-    init_options = {documentFormatting = true},
-    settings = {
-      rootMarkers = {'package.json', '.git'},
-      lintDebounce = 500,
-      languages = languages
-    }
-  }
+	return {
+		root_dir = function(fname)
+			local cwd = lsp.util.root_pattern("tsconfig.json")(fname)
+				or lsp.util.root_pattern(".eslintrc.json", ".git")(fname)
+				or lsp.util.root_pattern("package.json", ".git/", ".zshrc")(fname)
+			return cwd
+		end,
+		filetypes = vim.tbl_keys(languages),
+		init_options = { documentFormatting = true },
+		settings = {
+			rootMarkers = { "package.json", ".git" },
+			lintDebounce = 500,
+			languages = languages,
+		},
+	}
 end
