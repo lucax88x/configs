@@ -1,1 +1,1 @@
-require 'lt.plugins.camelcasemotion.settings'
+vim.g.camelcasemotion_key = '<leader>'

@@ -1,1 +1,1 @@
-require 'lt.plugins.better-escape.settings'
+vim.g.better_escape_shortcut = 'jk'

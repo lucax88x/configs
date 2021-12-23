@@ -285,14 +285,6 @@ return packer.startup({
 		})
 
 		use({
-			'vhyrro/neorg',
-			config = function()
-				require('lt.plugins.neorg')
-			end,
-			requires = 'nvim-lua/plenary.nvim',
-		})
-
-		use({
 			'kdav5758/TrueZen.nvim',
 			config = function()
 				require('lt.plugins.truezen')

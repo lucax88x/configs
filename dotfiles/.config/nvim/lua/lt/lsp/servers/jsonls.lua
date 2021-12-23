@@ -6,7 +6,7 @@ return function(capabilities)
       json = {
         schemas = require('schemastore').json.schemas {
           select = {
-            'package.json', '.eslintrc', 'GitHub Action', 'prettierrc.json"'
+            'package.json', '.eslintrc', 'GitHub Action', 'prettierrc.json'
           }
         }
       }

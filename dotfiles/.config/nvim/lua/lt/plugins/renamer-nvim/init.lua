@@ -1,9 +1,9 @@
-local present, renamer = pcall(require, 'renamer')
+local present, renamer = pcall(require, "renamer")
 
-if not (present) then
+if not present then
 	return
 end
 
-renamer.setup {
-  title = '',
-};
+renamer.setup({
+	title = "",
+})

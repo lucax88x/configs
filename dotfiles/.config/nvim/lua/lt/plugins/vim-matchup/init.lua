@@ -1,1 +1,1 @@
-require 'lt.plugins.vim-matchup.settings'
+vim.g.matchup_matchparen_offscreen = {}

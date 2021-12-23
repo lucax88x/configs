@@ -1,4 +1,9 @@
-local gl = require("galaxyline")
+local present, gl = pcall(require, "galaxyline")
+
+if not present then
+	return
+end
+
 local condition = require("galaxyline.condition")
 local gps = require("nvim-gps")
 local fileinfo = require("galaxyline.providers.fileinfo")

@@ -1,5 +1,5 @@
 -- disable netrw
-vim.g.loaded_netrw       = 1
+vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.o.showmatch = true
@@ -19,15 +19,14 @@ vim.o.relativenumber = true
 vim.o.smartcase = true
 vim.o.swapfile = false
 vim.o.backup = false
-vim.o.undodir = '/home/lucatrazzi/.nvim/undodir'
+vim.o.undodir = "/home/lucatrazzi/.nvim/undodir"
 vim.o.undofile = true
 vim.o.incsearch = true
 vim.o.termguicolors = true
 vim.o.scrolloff = 8
 
 -- live preview of substitutions
-vim.o.inccommand = 'split'
-
+vim.o.inccommand = "split"
 
 -- Give more space for displaying messages.
 vim.o.cmdheight = 1
@@ -41,19 +40,19 @@ vim.o.updatetime = 50
 -- menuone: popup even when there's only one match
 -- noinsert: Do not insert text until a selection is made
 -- noselect: Do not select, force user to select one from the menu
-vim.o.completeopt = 'menu,menuone,noselect'
+vim.o.completeopt = "menu,menuone,noselect"
 
 -- Don't show the dumb matching stuff.
-vim.cmd [[set shortmess+=c]]
+vim.cmd([[set shortmess+=c]])
 
 -- vim.o.colorcolumn=80
 
 -- lsp column & git column
-vim.o.signcolumn = 'yes:2'
+vim.o.signcolumn = "yes:2"
 -- vim.o.signcolumn = 'number'
 
 vim.g.loaded_matchparen = 1
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 vim.o.cursorline = false
 vim.o.cursorcolumn = false
@@ -62,13 +61,14 @@ vim.o.cursorcolumn = false
 vim.o.showmode = false
 
 -- fold
-vim.wo.foldcolumn = '0' -- defines 1 col at window left, to indicate folding
+vim.wo.foldcolumn = "0" -- defines 1 col at window left, to indicate folding
 vim.o.foldlevelstart = 99 -- start file with all folds opened
 
 -- using treesitter for folding
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- shows spaces
 vim.o.list = true
-vim.o.listchars= 'eol:¬,tab:>·,trail:~,extends:>,precedes:<'
+
+vim.o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<"

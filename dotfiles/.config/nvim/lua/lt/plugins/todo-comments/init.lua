@@ -1,1 +1,7 @@
-require 'lt.plugins.todo-comments.settings'
+local present, todo_comments = pcall(require, "todo-comments")
+
+if not present then
+	return
+end
+
+todo_comments.setup({})
