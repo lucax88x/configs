@@ -45,21 +45,21 @@ function M.set_default_on_buffer(client, bufnr)
 		-- buf_set_keymap('n','<leader>tr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 		buf_set_keymap(
 			"n",
-			"gR",
+			"gr",
 			"<cmd>lua require('telescope.builtin').lsp_references()<CR>",
 			"lsp",
 			"lsp_references",
 			"Show references"
 		)
-		-- buf_set_keymap('n', 'gR', '<cmd>Trouble lsp_references<cr>', 'lsp',
+		-- buf_set_keymap('n', 'gr', '<cmd>Trouble lsp_references<cr>', 'lsp',
 		--                'lsp_references', 'Show references')
 	end
 
 	if cap.hoverProvider then
-		-- buf_set_keymap('n','<leader>th', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+		-- buf_set_keymap('n','K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 		buf_set_keymap(
 			"n",
-			"<leader>th",
+			"K",
 			"<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>",
 			"lsp",
 			"lsp_hover_docs",

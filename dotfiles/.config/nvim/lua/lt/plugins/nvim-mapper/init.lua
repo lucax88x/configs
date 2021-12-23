@@ -4,6 +4,6 @@ if not present then
 	return
 end
 
---  <leader>MM
-nvim_mapper.setup({})
-
+nvim_mapper.setup({
+	no_map = false,
+})

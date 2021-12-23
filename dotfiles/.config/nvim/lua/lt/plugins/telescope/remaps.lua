@@ -105,3 +105,5 @@ r.nnoremap(
 	"telescope_git_bcommits",
 	"Search buffer git commits"
 )
+
+r.nnoremap("<leader>/M", "<cmd>Telescope mapper<CR>", "telescope", "telescope_mapper", "Search mappings")

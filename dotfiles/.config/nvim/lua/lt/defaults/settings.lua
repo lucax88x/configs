@@ -2,63 +2,71 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.o.showmatch = true
--- vim.o.nohlsearch
-vim.o.hidden = true
-vim.o.errorbells = false
+local options = {
+	showmatch = true,
+	-- vim.o.nohlsearch
+	hidden = true,
+	errorbells = false,
 
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
-vim.o.smartindent = true
-vim.o.smarttab = true
-vim.o.wrap = false
+	tabstop = 2,
+	softtabstop = 2,
+	shiftwidth = 2,
+	expandtab = true,
+	smartindent = true,
+	smarttab = true,
+	wrap = false,
 
-vim.o.relativenumber = true
-vim.o.smartcase = true
-vim.o.swapfile = false
-vim.o.backup = false
-vim.o.undodir = "/home/lucatrazzi/.nvim/undodir"
-vim.o.undofile = true
-vim.o.incsearch = true
-vim.o.termguicolors = true
-vim.o.scrolloff = 8
+	relativenumber = true,
+	smartcase = true,
+	swapfile = false,
+	backup = false,
+	undodir = "/home/lucatrazzi/.nvim/undodir",
+	undofile = true,
+	incsearch = true,
+	termguicolors = true,
+	scrolloff = 8,
 
--- live preview of substitutions
-vim.o.inccommand = "split"
+	-- live preview of substitutions
+	inccommand = "split",
+	-- Give more space for displaying messages.
+	cmdheight = 1,
 
--- Give more space for displaying messages.
-vim.o.cmdheight = 1
+	timeoutlen = 300, -- time to wait for a mapped sequence to complete (in milliseconds)
 
--- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
--- delays and poor user experience.
-vim.o.updatetime = 50
+	-- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+	-- delays and poor user experience.
+	updatetime = 50,
 
--- Set completeopt to have a better completion experience
--- :help completeopt
--- menuone: popup even when there's only one match
--- noinsert: Do not insert text until a selection is made
--- noselect: Do not select, force user to select one from the menu
-vim.o.completeopt = "menu,menuone,noselect"
+	-- Set completeopt to have a better completion experience
+	-- :help completeopt
+	-- menuone: popup even when there's only one match
+	-- noinsert: Do not insert text until a selection is made
+	-- noselect: Do not select, force user to select one from the menu
+	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
 
--- Don't show the dumb matching stuff.
-vim.cmd([[set shortmess+=c]])
+	-- column & git column
+	signcolumn = "yes:2",
 
--- vim.o.colorcolumn=80
+	cursorline = false,
+	cursorcolumn = false,
 
--- lsp column & git column
-vim.o.signcolumn = "yes:2"
--- vim.o.signcolumn = 'number'
+	-- done by status bar
+	showmode = false,
+
+	-- show spaces
+	list = true,
+
+	listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<",
+}
+
+for k, v in pairs(options) do
+	vim.opt[k] = v
+end
+
+vim.opt.shortmess:append("c")
 
 vim.g.loaded_matchparen = 1
 vim.g.mapleader = " "
-
-vim.o.cursorline = false
-vim.o.cursorcolumn = false
-
--- done by status bar
-vim.o.showmode = false
 
 -- fold
 vim.wo.foldcolumn = "0" -- defines 1 col at window left, to indicate folding
@@ -67,8 +75,3 @@ vim.o.foldlevelstart = 99 -- start file with all folds opened
 -- using treesitter for folding
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
-
--- shows spaces
-vim.o.list = true
-
-vim.o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<"

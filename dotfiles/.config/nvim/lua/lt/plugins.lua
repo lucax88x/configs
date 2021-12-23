@@ -74,6 +74,13 @@ return packer.startup({
 			before = "telescope.nvim",
 		})
 
+		use({
+			"folke/which-key.nvim",
+			config = function()
+				require("lt.plugins.which-key")
+			end
+		})
+
 		use("MunifTanjim/nui.nvim") -- ui library
 
 		use({
@@ -190,7 +197,6 @@ return packer.startup({
 
 		use("rrethy/vim-illuminate") -- highlight matching words when cursor on it
 
-		use("gennaro-tedesco/nvim-peekup") -- shows register preview
 		use("numtostr/BufOnly.nvim") -- deletes all buffers except
 		use({
 			"karb94/neoscroll.nvim",
@@ -342,7 +348,12 @@ return packer.startup({
 		})
 
 		-- Theming
-		use("gruvbox-community/gruvbox")
+		use({
+			"gruvbox-community/gruvbox",
+			config = function()
+				require("lt.plugins.gruvbox")
+			end,
+		})
 
 		-- status line
 		use({

@@ -1,23 +1,38 @@
-local present, Mapper = pcall(require, "mapper")
+local present_mapper, mapper = pcall(require, "nvim-mapper")
+local present_which_key, which_key = pcall(require, "which-key")
 
 local M = {}
 
-if present then
-	-- The same using nvim-mapper
+if present_mapper then
+	local function try_add_to_whick_key(input, description)
+		if present_which_key then
+			local leader_index = string.find(input, "<leader>")
+			-- print(input)
+			if leader_index then
+				which_key.register({
+					[input] = description,
+				})
+			end
+		end
+	end
 
 	local function map(type, input, output, category, unique_identifier, description)
 		-- vim.api.nvim_set_keymap(type, input, output, {}, category, unique_identifier, description)
-		Mapper.map(type, input, output, {}, category, unique_identifier, description)
+		mapper.map(type, input, output, {}, category, unique_identifier, description)
+
+		try_add_to_whick_key(input, description)
 	end
 
 	local function noremap(type, input, output, category, unique_identifier, description)
 		-- vim.api.nvim_set_keymap(type, input, output, { noremap = true })
-		Mapper.map(type, input, output, { noremap = true }, category, unique_identifier, description)
+		mapper.map(type, input, output, { noremap = true }, category, unique_identifier, description)
+
+		try_add_to_whick_key(input, description)
 	end
 
 	function M.bufnoremap(bufnr, type, input, output, category, unique_identifier, description)
 		-- vim.api.nvim_buf_set_keymap(bufnr, type, input, output, {noremap = true, silent = true})
-		Mapper.map_buf(
+		mapper.map_buf(
 			bufnr,
 			type,
 			input,
@@ -27,6 +42,8 @@ if present then
 			unique_identifier,
 			description
 		)
+
+		try_add_to_whick_key(input, description)
 	end
 
 	function M.nnoremap(input, output, category, unique_identifier, description)
@@ -90,9 +107,9 @@ else
 	local function noremap(type, input, output)
 		vim.api.nvim_set_keymap(type, input, output, { noremap = true })
 	end
-  
+
 	function M.bufnoremap(bufnr, type, input, output)
-		vim.api.nvim_buf_set_keymap(bufnr, type, input, output, {noremap = true, silent = true})
+		vim.api.nvim_buf_set_keymap(bufnr, type, input, output, { noremap = true, silent = true })
 	end
 
 	function M.nnoremap(input, output)

@@ -42,20 +42,25 @@ local list = {
 	{ key = "g?", cb = tree_cb("toggle_help") },
 }
 
-vim.g.nvim_tree_show_icons = { git = 0, folders = 1, files = 1 }
-
-vim.g.nvim_tree_git_hl = 0
-vim.g.nvim_tree_quit_on_open = 1
-vim.g.nvim_tree_highlight_opened_files = 1
-vim.g.nvim_tree_group_empty = 1
-
-nvim_tree.setup({
+require("nvim-tree").setup({
 	open_on_setup = false,
 	open_on_tab = false,
 	update_cwd = false,
 	auto_close = false,
 	follow = 1,
+	update_to_buf_dir = {
+		enable = true,
+		auto_open = true,
+	},
+	diagnostics = {
+		enable = false,
+	},
 	update_focused_file = { enable = true, update_cwd = false, ignore_list = {} },
+	git = {
+		enable = false,
+		ignore = true,
+		timeout = 500,
+	},
 	view = {
 		-- width of the window, can be either a number (columns) or a string in `%`
 		width = 50,
@@ -70,8 +75,4 @@ nvim_tree.setup({
 			list = list,
 		},
 	},
-	show_icons = { git = false, folders = true, files = true },
 })
-
-local r = require("lt.utils.remaps")
-r.nnoremap("-", "<cmd>NvimTreeToggle<CR>", "explorer", "explorer_toggle", "Toggle explorer")
