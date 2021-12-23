@@ -13,7 +13,7 @@ require('lt.theme')
 
 require('lt.defaults')
 
-require('lt.window.remaps')
-require('lt.buffer.remaps')
+require('lt.window')
+require('lt.buffer')
 
 require('lt.lsp')
