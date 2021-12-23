@@ -10,7 +10,7 @@ telescope.setup({
 	defaults = {
 		sorting_strategy = "descending",
 		layout_strategy = "horizontal",
-		layout_config = { prompt_position = "bottom" },
+		-- layout_config = { prompt_position = "bottom" },
 	},
 	pickers = {
 		buffers = { sort_lastused = true, previewer = false, theme = "dropdown" },

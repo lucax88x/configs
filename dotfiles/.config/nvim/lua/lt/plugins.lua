@@ -78,7 +78,7 @@ return packer.startup({
 			"folke/which-key.nvim",
 			config = function()
 				require("lt.plugins.which-key")
-			end
+			end,
 		})
 
 		use("MunifTanjim/nui.nvim") -- ui library
@@ -347,7 +347,6 @@ return packer.startup({
 			end,
 		})
 
-		-- Theming
 		use({
 			"gruvbox-community/gruvbox",
 			config = function()

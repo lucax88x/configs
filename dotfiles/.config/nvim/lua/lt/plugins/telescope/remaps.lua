@@ -19,6 +19,14 @@ r.nnoremap(
 )
 
 r.nnoremap(
+	"<leader>po",
+	"<cmd>lua require('telescope.builtin').oldfiles()<CR>",
+	"telescope",
+	"telescope_files",
+	"Find files"
+)
+
+r.nnoremap(
 	"<leader>pg",
 	"<cmd>lua require('telescope.builtin').git_files()<CR>",
 	"telescope",
@@ -36,6 +44,15 @@ r.nnoremap(
 
 r.nnoremap(
 	"<leader>/h",
+	"<cmd>lua require('telescope.builtin').highlights()<CR>",
+	"telescope",
+	"telescope_highlights",
+	"Search highlights"
+)
+
+
+r.nnoremap(
+	"<leader>/C",
 	"<cmd>lua require('telescope.builtin').command_history()<CR>",
 	"telescope",
 	"telescope_command_history",

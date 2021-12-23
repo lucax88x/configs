@@ -42,7 +42,7 @@ local list = {
 	{ key = "g?", cb = tree_cb("toggle_help") },
 }
 
-require("nvim-tree").setup({
+nvim_tree.setup({
 	open_on_setup = false,
 	open_on_tab = false,
 	update_cwd = false,
@@ -76,3 +76,6 @@ require("nvim-tree").setup({
 		},
 	},
 })
+
+local r = require("lt.utils.remaps")
+r.nnoremap("-", "<cmd>NvimTreeToggle<CR>", "explorer", "explorer_toggle", "Toggle explorer")
