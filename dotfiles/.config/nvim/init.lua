@@ -8,13 +8,8 @@
 pcall(require, "impatient")
 
 require("lt.plugins")
-
 require("lt.utils")
-
 require("lt.defaults")
-
 require("lt.window")
-
 require("lt.buffer")
-
 require("lt.lsp")

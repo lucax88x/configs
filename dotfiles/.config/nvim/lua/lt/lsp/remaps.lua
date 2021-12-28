@@ -82,7 +82,7 @@ function M.set_default_on_buffer(client, bufnr)
 		buf_set_keymap(
 			"n",
 			"<leader>to",
-			"<cmd>Aerial!<CR>",
+			"<cmd>AerialToggle!<CR>",
 			"lsp",
 			"lsp_aerial_document_symbols",
 			"(Aerial) Document symbols"
@@ -170,15 +170,15 @@ function M.set_default_on_buffer(client, bufnr)
 	if cap.documentFormattingProvider then
 		buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", "lsp", "lsp_format", "Format")
 	elseif cap.documentRangeFormattingProvider then
-		buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", "lsp", "lsp_format_2", "Format")
+		buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", "lsp", "lsp_range_format", "Format")
 	end
 
 	if cap.renameProvider then
-		-- buf_set_keymap('n','<leader>rr','<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-		-- buf_set_keymap('n','<leader>rr', "<cmd>lua require('lspsaga.rename').rename()<CR>", 'lsp', 'lsp_rename', 'Rename')
+		-- buf_set_keymap('n','<leader>tr','<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+		-- buf_set_keymap('n','<leader>tr', "<cmd>lua require('lspsaga.rename').rename()<CR>", 'lsp', 'lsp_rename', 'Rename')
 		buf_set_keymap(
 			"n",
-			"<leader>rr",
+			"<leader>fr",
 			"<cmd>lua require('renamer').rename({ empty = true })<cr>",
 			"lsp",
 			"lsp_rename_empty",
@@ -186,7 +186,7 @@ function M.set_default_on_buffer(client, bufnr)
 		)
 		buf_set_keymap(
 			"n",
-			"<leader>rR",
+			"<leader>fR",
 			"<cmd>lua require('renamer').rename({ empty = false })<cr>",
 			"lsp",
 			"lsp_rename",
@@ -196,31 +196,21 @@ function M.set_default_on_buffer(client, bufnr)
 
 	buf_set_keymap(
 		"n",
-		"<leader>flc",
+		"<leader>lsc",
 		":lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>",
 		"lsp",
 		"lsp_debug_clients",
-		"[DEBUG] LSP clients"
+		"LSP clients"
 	)
 	buf_set_keymap(
 		"n",
-		"<leader>fll",
+		"<leader>lsl",
 		":lua print(vim.lsp.get_log_path())<CR>",
 		"lsp",
 		"lsp_debug_logs",
-		"[DEBUG] LSP show log path"
+		"Show log path"
 	)
-	-- buf_set_keymap('n','<leader>fll', ":lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", opts)
-	buf_set_keymap("n", "<leader>fli", ":LspInfo()<CR>", "lsp", "lsp_info", "[DEBUG] LSP Info")
-
-	-- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
-	-- map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
-	-- map('n','gt','<cmd>lua vim.lsp.buf.type_definition()<CR>')
-	-- map('n','<leader>ah','<cmd>lua vim.lsp.buf.hover()<CR>')
-	-- map('n','<leader>af','<cmd>lua vim.lsp.buf.code_action()<CR>')
-	-- map('n','<leader>ee','<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
-	-- map('n','<leader>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
-	-- map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+	buf_set_keymap("n", "<leader>fsi", ":LspInfo()<CR>", "lsp", "lsp_info", "LSP Info")
 end
 
 function M.set_typescript(client, bufnr)
@@ -243,14 +233,16 @@ function M.set_typescript(client, bufnr)
 	buf_set_keymap("n", "<leader>fi", ":TSLspImportAll<CR>", "lsp", "lsp_typescript_import_all", "Import all")
 end
 
+r.whick_key("<leader>ls", "servers")
+
 r.nnoremap(
-	"<leader>flu",
+	"<leader>lsu",
 	'<cmd>lua require("lt.lsp.servers.functions").lsp_install_servers()<CR>',
 	"lsp",
 	"lsp_install_server",
 	"Installer LSP servers"
 )
 
-r.nnoremap("<leader>fll", "<cmd>LspInstallInfo<CR>", "lsp", "lsp_install_server_info", "LSP servers install info")
+r.nnoremap("<leader>lsl", "<cmd>LspInstallInfo<CR>", "lsp", "lsp_install_server_info", "LSP servers install info")
 
 return M

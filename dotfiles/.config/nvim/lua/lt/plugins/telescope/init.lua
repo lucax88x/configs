@@ -65,3 +65,7 @@ end
 if pcall(require, "harpoon") then
 	telescope.load_extension("harpoon")
 end
+
+if pcall(require, "dap") then
+	telescope.load_extension("dap")
+end

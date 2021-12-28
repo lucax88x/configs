@@ -5,8 +5,8 @@ _G.reload = function()
 
 	for moduleName in pairs(package.loaded) do
 		if functions.starts_with(moduleName, "lt.") then
-			package.loaded[moduleName] = nil
-			require(moduleName)
+			require("plenary.reload").reload_module(moduleName)
+
 			counter = counter + 1
 		end
 	end
@@ -14,5 +14,5 @@ _G.reload = function()
 	-- clear nvim-mapper keys
 	vim.g.mapper_records = nil
 
-	print("Reloaded " .. counter .. " modules!")
+	vim.notify("Reloaded " .. counter .. " modules!")
 end

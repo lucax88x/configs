@@ -22,6 +22,8 @@ gitsigns.setup({
 
 local r = require("lt.utils.remaps")
 
+r.whick_key("<leader>gh", "hunks")
+
 r.nnoremap(
 	"]h",
 	"&diff ? ']h' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'",

@@ -354,6 +354,36 @@ return packer.startup({
 			end,
 		})
 
+		-- debugging
+		use({
+			"mfussenegger/nvim-dap",
+			config = function()
+				require("lt.plugins.nvim-dap")
+			end,
+		})
+		use({ "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } })
+		use({
+			"theHamsta/nvim-dap-virtual-text",
+			requires = { "mfussenegger/nvim-dap" },
+			config = function()
+				require("lt.plugins.nvim-dap-virtual-text")
+			end,
+		})
+		use({
+			"rcarriga/nvim-dap-ui",
+			requires = { "mfussenegger/nvim-dap" },
+			config = function()
+				require("lt.plugins.nvim-dap-ui")
+			end,
+		})
+		use({
+			"Pocco81/DAPInstall.nvim",
+			requires = { "mfussenegger/nvim-dap" },
+			config = function()
+				require("lt.plugins.dap-install")
+			end,
+		})
+
 		-- status line
 		use({
 			"SmiteshP/nvim-gps",

@@ -4,7 +4,7 @@ local present_which_key, which_key = pcall(require, "which-key")
 local M = {}
 
 if present_mapper then
-	local function try_add_to_whick_key(input, description)
+	local function try_add_to_whick_key_by_input(input, description)
 		if present_which_key then
 			local leader_index = string.find(input, "<leader>")
 			-- print(input)
@@ -20,14 +20,14 @@ if present_mapper then
 		-- vim.api.nvim_set_keymap(type, input, output, {}, category, unique_identifier, description)
 		mapper.map(type, input, output, {}, category, unique_identifier, description)
 
-		try_add_to_whick_key(input, description)
+		try_add_to_whick_key_by_input(input, description)
 	end
 
 	local function noremap(type, input, output, category, unique_identifier, description)
 		-- vim.api.nvim_set_keymap(type, input, output, { noremap = true })
 		mapper.map(type, input, output, { noremap = true }, category, unique_identifier, description)
 
-		try_add_to_whick_key(input, description)
+		try_add_to_whick_key_by_input(input, description)
 	end
 
 	function M.bufnoremap(bufnr, type, input, output, category, unique_identifier, description)
@@ -43,7 +43,7 @@ if present_mapper then
 			description
 		)
 
-		try_add_to_whick_key(input, description)
+		try_add_to_whick_key_by_input(input, description)
 	end
 
 	function M.nnoremap(input, output, category, unique_identifier, description)
@@ -101,9 +101,15 @@ if present_mapper then
 	function M.map_virtual(type, input, output, category, unique_identifier, description)
 		mapper.map_virtual(type, input, output, category, unique_identifier, description)
 	end
-else
-	local vim = vim
 
+	function M.whick_key(input, description)
+		if present_which_key then
+			which_key.register({
+				[input] = description,
+			})
+		end
+	end
+else
 	local function map(type, input, output)
 		vim.api.nvim_set_keymap(type, input, output, {})
 	end
@@ -164,7 +170,9 @@ else
 		map("t", input, output)
 	end
 
-	function M.map_virtual() end
+	function M.map_virtual(_, _, _, _, _, _) end
+
+	function M.whick_key(_, _) end
 end
 
 return M

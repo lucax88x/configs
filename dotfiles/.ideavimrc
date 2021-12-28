@@ -42,7 +42,7 @@ nnoremap <leader>fc :action CopyElement<CR>
 nnoremap <leader>ff :action ReformatCode<CR>
 nnoremap <leader>fo :action OptimizeImports<CR>
 
-nnoremap <leader>rr :action RenameElement<CR>
+nnoremap <leader>tr :action RenameElement<CR>
 nnoremap <leader>rf :action RenameFile<CR>
 
 " Comment
