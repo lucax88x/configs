@@ -13,7 +13,13 @@ telescope.setup({
 		-- layout_config = { prompt_position = "bottom" },
 	},
 	pickers = {
-		buffers = { sort_lastused = true, previewer = false, theme = "dropdown" },
+		buffers = {
+			sort_lastused = true,
+			sort_mru = true,
+			previewer = false,
+			theme = "dropdown",
+			ignore_current_buffer = true,
+		},
 		find_files = { theme = "dropdown", previewer = false },
 		git_files = { theme = "dropdown", previewer = false },
 		registers = { theme = "dropdown" },

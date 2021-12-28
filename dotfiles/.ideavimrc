@@ -29,9 +29,9 @@ nnoremap <leader>bl :action Switcher<CR>
 nnoremap <c-6> :action Switcher<CR>
 nnoremap <leader>pg :action SearchEverywhere<CR>
 
-nnoremap <leader>td :action GotoDeclaration<CR>
-nnoremap <leader>tr :action FindUsages<CR>
-nnoremap <leader>ti :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gr :action FindUsages<CR>
+nnoremap gi :action GotoImplementation<CR>
 
 nnoremap <leader>fa :action Refactorings.QuickListPopupAction<CR>
 vmap <leader>fa :action Refactorings.QuickListPopupAction<CR>

@@ -126,29 +126,22 @@ r.nnoremap(
 	"treesitter-highlight-under-cursor",
 	"Shows highlight colors under cursor (theme)"
 )
+r.map_virtual("o", "af", "", {}, "Navigation", "treesitter_function_outer", "Function outer motion")
+r.map_virtual("o", "if", "", {}, "Navigation", "treesitter_function_inner", "Function inner motion")
+r.map_virtual("o", "ac", "", {}, "Navigation", "treesitter_class_outer", "Class outer motion")
+r.map_virtual("o", "ic", "", {}, "Navigation", "treesitter_class_inner", "Class inner motion")
 
-local presentMapper, mapper = pcall(require, "nvim-mapper")
+r.map_virtual("o", "ax", "", {}, "Navigation", "treesitter_attribute_outer", "Attribute (html, xml) outer motion")
+r.map_virtual("o", "ix", "", {}, "Navigation", "treesitter_attribute_inner", "Attribute (html, xml) inner motion")
 
-if not presentMapper then
-	return
-end
+r.map_virtual("o", "ak", "", {}, "Navigation", "treesitter_key_outer", "Json key outer motion")
+r.map_virtual("o", "ik", "", {}, "Navigation", "treesitter_key_inner", "Json key inner motion")
 
-mapper.map_virtual("o", "af", "", {}, "Navigation", "treesitter_function_outer", "Function outer motion")
-mapper.map_virtual("o", "if", "", {}, "Navigation", "treesitter_function_inner", "Function inner motion")
-mapper.map_virtual("o", "ac", "", {}, "Navigation", "treesitter_class_outer", "Class outer motion")
-mapper.map_virtual("o", "ic", "", {}, "Navigation", "treesitter_class_inner", "Class inner motion")
+r.map_virtual("o", "av", "", {}, "Navigation", "treesitter_value_outer", "Json value outer motion")
+r.map_virtual("o", "iv", "", {}, "Navigation", "treesitter_value_inner", "Json value inner motion")
 
-mapper.map_virtual("o", "ax", "", {}, "Navigation", "treesitter_attribute_outer", "Attribute (html, xml) outer motion")
-mapper.map_virtual("o", "ix", "", {}, "Navigation", "treesitter_attribute_inner", "Attribute (html, xml) inner motion")
-
-mapper.map_virtual("o", "ak", "", {}, "Navigation", "treesitter_key_outer", "Json key outer motion")
-mapper.map_virtual("o", "ik", "", {}, "Navigation", "treesitter_key_inner", "Json key inner motion")
-
-mapper.map_virtual("o", "av", "", {}, "Navigation", "treesitter_value_outer", "Json value outer motion")
-mapper.map_virtual("o", "iv", "", {}, "Navigation", "treesitter_value_inner", "Json value inner motion")
-
-mapper.map_virtual("o", "<leader>rp", "", {}, "Navigation", "treesitter_swap_parameter_next", "Swap parameter to next")
-mapper.map_virtual(
+r.map_virtual("o", "<leader>rp", "", {}, "Navigation", "treesitter_swap_parameter_next", "Swap parameter to next")
+r.map_virtual(
 	"o",
 	"<leader>rP",
 	"",
@@ -158,27 +151,19 @@ mapper.map_virtual(
 	"Swap parameter to previous"
 )
 
-mapper.map_virtual("o", "]m", "", {}, "Navigation", "treesitter_next_function_start", "Go to next function (start)")
-mapper.map_virtual("o", "]M", "", {}, "Navigation", "treesitter_next_function_end", "Go to next function (end)")
+r.map_virtual("o", "]m", "", {}, "Navigation", "treesitter_next_function_start", "Go to next function (start)")
+r.map_virtual("o", "]M", "", {}, "Navigation", "treesitter_next_function_end", "Go to next function (end)")
 
-mapper.map_virtual("o", "]]", "", {}, "Navigation", "treesitter_next_class_start", "Go to next class (start)")
-mapper.map_virtual("o", "][", "", {}, "Navigation", "treesitter_next_class_end", "Go to next class (end)")
+r.map_virtual("o", "]]", "", {}, "Navigation", "treesitter_next_class_start", "Go to next class (start)")
+r.map_virtual("o", "][", "", {}, "Navigation", "treesitter_next_class_end", "Go to next class (end)")
 
-mapper.map_virtual(
-	"o",
-	"[m",
-	"",
-	{},
-	"Navigation",
-	"treesitter_previous_function_start",
-	"Go to previous function (start)"
-)
-mapper.map_virtual("o", "[M", "", {}, "Navigation", "treesitter_previous_function_end", "Go to previous function (end)")
+r.map_virtual("o", "[m", "", {}, "Navigation", "treesitter_previous_function_start", "Go to previous function (start)")
+r.map_virtual("o", "[M", "", {}, "Navigation", "treesitter_previous_function_end", "Go to previous function (end)")
 
-mapper.map_virtual("o", "[[", "", {}, "Navigation", "treesitter_previous_class_start", "Go to previous class (start)")
-mapper.map_virtual("o", "[]", "", {}, "Navigation", "treesitter_previous_class_end", "Go to previous class (end)")
+r.map_virtual("o", "[[", "", {}, "Navigation", "treesitter_previous_class_start", "Go to previous class (start)")
+r.map_virtual("o", "[]", "", {}, "Navigation", "treesitter_previous_class_end", "Go to previous class (end)")
 
-mapper.map_virtual("o", "zi", "", {}, "Navigation", "treesitter_init_selection", "Init selection")
-mapper.map_virtual("o", "zi", "", {}, "Navigation", "treesitter_increment_node", "Expand node")
-mapper.map_virtual("o", "zo", "", {}, "Navigation", "treesitter_increment_scope", "Expand scope")
-mapper.map_virtual("o", "zI", "", {}, "Navigation", "treesitter_decrement_node", "Decrement scope")
+r.map_virtual("o", "zi", "", {}, "Navigation", "treesitter_init_selection", "Init selection")
+r.map_virtual("o", "zi", "", {}, "Navigation", "treesitter_increment_node", "Expand node")
+r.map_virtual("o", "zo", "", {}, "Navigation", "treesitter_increment_scope", "Expand scope")
+r.map_virtual("o", "zI", "", {}, "Navigation", "treesitter_decrement_node", "Decrement scope")

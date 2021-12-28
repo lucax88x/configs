@@ -57,7 +57,7 @@ source <(kubectl completion zsh)  # setup autocomplete in zsh into the current s
 zinit ice lucid wait
 zinit snippet OMZP::fzf
 zinit light Aloxaf/fzf-tab
-# zinit light Tarrasch/zsh-bd
+zinit light Tarrasch/zsh-bd
 # zinit snippet $HOME/.fzf.zsh
 
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=true

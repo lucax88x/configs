@@ -1,4 +1,7 @@
 % dotnet, c#
 
-# install a new dotnet sdk
+# install a new dotnet sdk (3.1.416 example)
 sudo dotnet-install --version <version> --install-dir /usr/share/dotnet
+
+# install a new dotnet runtime (3.1 example)
+sudo dotnet-install -c <version> --runtime aspnetcore --install-dir /usr/share/dotnet

@@ -40,6 +40,7 @@ ARRAY=(
     .local/share/navi/cheats/lucatrazzi__cheats
     .ssh/config
     backgrounds
+    .i3/i3-resurrect
 )
 
 function sync()

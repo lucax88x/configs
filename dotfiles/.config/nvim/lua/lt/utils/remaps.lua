@@ -97,6 +97,10 @@ if present_mapper then
 	function M.tmap(input, output, category, unique_identifier, description)
 		map("t", input, output, category, unique_identifier, description)
 	end
+
+	function M.map_virtual(type, input, output, category, unique_identifier, description)
+		mapper.map_virtual(type, input, output, category, unique_identifier, description)
+	end
 else
 	local vim = vim
 
@@ -159,6 +163,8 @@ else
 	function M.tmap(input, output)
 		map("t", input, output)
 	end
+
+	function M.map_virtual() end
 end
 
 return M

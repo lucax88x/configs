@@ -46,7 +46,7 @@ nvim_tree.setup({
 	open_on_setup = false,
 	open_on_tab = false,
 	update_cwd = false,
-	auto_close = false,
+	auto_close = true,
 	follow = 1,
 	update_to_buf_dir = {
 		enable = true,
@@ -79,3 +79,8 @@ nvim_tree.setup({
 
 local r = require("lt.utils.remaps")
 r.nnoremap("-", "<cmd>NvimTreeToggle<CR>", "explorer", "explorer_toggle", "Toggle explorer")
+
+r.map_virtual("o", "<BS>", "", {}, "explorer", "explorer_close_directory", "Closes directory")
+r.map_virtual("o", "a", "", {}, "explorer", "explorer_create", "Create file/dir")
+r.map_virtual("o", "d", "", {}, "explorer", "explorer_remove", "Remove file/dir")
+r.map_virtual("o", "r", "", {}, "explorer", "explorer_rename", "Rename file/dir")

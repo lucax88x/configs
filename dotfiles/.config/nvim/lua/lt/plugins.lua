@@ -228,7 +228,7 @@ return packer.startup({
 		-- Autocomplete & Linters
 		use("neovim/nvim-lspconfig")
 		use("nvim-lua/lsp-status.nvim")
-		use("jose-elias-alvarez/null-ls.nvim")
+		-- use("jose-elias-alvarez/null-ls.nvim")
 		use({
 			"tami5/lspsaga.nvim",
 			config = function()

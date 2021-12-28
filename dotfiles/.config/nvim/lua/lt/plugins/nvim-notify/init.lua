@@ -4,4 +4,8 @@ if not present then
 	return
 end
 
+notify.setup({
+	stages = "fade",
+})
+
 vim.notify = notify

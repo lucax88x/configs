@@ -86,11 +86,9 @@ if presentCmpNvimLsp then
 end
 
 local servers = {
-	efm = require("lt.lsp.servers.efm")(),
 	bashls = {},
 	yamlls = require("lt.lsp.servers.yamlls")(capabilities),
 	jsonls = require("lt.lsp.servers.jsonls")(capabilities),
-	tsserver = require("lt.lsp.servers.tsserver")(on_attach),
 	html = {},
 	cssls = {},
 	sumneko_lua = require("lt.lsp.servers.sumneko_lua")(),
@@ -99,7 +97,9 @@ local servers = {
 	vuels = {},
 	graphql = {},
 	rust_analyzer = {},
+	efm = require("lt.lsp.servers.efm")(),
 	eslint = {},
+	tsserver = require("lt.lsp.servers.tsserver")(on_attach),
 }
 
 local default_lsp_config = {

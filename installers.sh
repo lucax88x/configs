@@ -285,7 +285,8 @@ function installSublimeMerge {
 }
 
 function installDotnetSdk {
-  paru -Sy --noconfirm dotnet-runtime
+  paru -Sy --noconfirm dotnet-sdk-bin
+  paru -Sy --noconfirm aspnet-runtime-bin
 }
 
 function installNode {

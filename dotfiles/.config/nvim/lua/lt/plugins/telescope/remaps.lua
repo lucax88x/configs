@@ -22,7 +22,7 @@ r.nnoremap(
 	"<leader>po",
 	"<cmd>lua require('telescope.builtin').oldfiles()<CR>",
 	"telescope",
-	"telescope_files",
+	"telescope_old_files",
 	"Find files"
 )
 
