@@ -199,7 +199,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #####################
 ### rofi ###
 ######################
-bindsym $mod+q exec $HOME/bin/rofi/poweroff
+bindsym $mod+q exec $HOME/.config/rofi/bin/menu_powermenu
+# bindsym $altMod+space exec $HOME/.config/rofi/bin/launcher_misc
 bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
 bindsym $altMod+Tab exec "rofi -combi window -show"
 bindsym $mod+$altMod+w exec $HOME/bin/rofi/i3-resurrect

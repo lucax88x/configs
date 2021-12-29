@@ -1,6 +1,85 @@
 /** Basic config file **/
 
 configuration {
+    show-icons:                     false;
+    font:                           "JetBrains Mono 18";
+}
+
+@import "./colors.rasi"
+
+window {
+    height:                         80%;
+    width:                          80%;
+}
+
+mainbox {
+    children:                       [ entry, listview, message ];
+}
+
+entry {
+    expand:                         false;
+    background-color:               @background-alt;
+    padding:                        8px;
+}
+
+element {
+    border:                         0px;
+    padding:                        8px;
+    orientation:                    horizontal;
+}
+
+element selected {
+    background-color:               @selected-color;
+    text-color:                     @background-alt;
+}
+element normal.normal {
+    background-color: 				@bg;
+    text-color:       				@fg;
+}
+element normal.urgent {
+    background-color: 				@bg;
+    text-color:       				@urgent;
+}
+element normal.active {
+    background-color: 				@bg;
+    text-color:       				@green;
+}
+element selected.normal {
+    background-color: 				@bg;
+    text-color:       				@ac;
+}
+element selected.urgent {
+    background-color: 				@bg;
+    text-color:       				@urgent;
+}
+element selected.active {
+    background-color: 				@bg;
+    text-color:       				@ac;
+}
+element alternate.normal {
+    background-color: 				@bg;
+    text-color:       				@fg;
+}
+element alternate.urgent {
+    background-color: 				@bg;
+    text-color:       				@fg;
+}
+element alternate.active {
+    background-color: 				@bg;
+    text-color:       				@fg;
+}
+
+element selected.urgent {
+    background-color:               @urgent;
+}
+
+element selected.active {
+    background-color:               @background-alt;
+    text-color:                          @selected-color;
+}
+
+element-icon {
+  padding:                        6px;
   show-icons:         true;
   icon-theme:         "Papirus";
 }

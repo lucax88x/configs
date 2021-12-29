@@ -22,12 +22,12 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-color = ${colors.linecolor}
-underline-size = 1
-overline-size = 2
+underline-size = 0
+overline-size = 0
 line-size = 10
 
-border-bottom-size = 2
-border-bottom-color = ${colors.bordercolor}
+border-top-size = 1
+border-top-color = ${colors.bordercolor}
 
 padding-left = 0
 padding-right = 2
@@ -168,6 +168,8 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground}
 
+click-left = ~/.config/rofi/bin/applet_network &
+
 [module/wired]
 type = internal/network
 ;get your network by using "ip addr | sed '/^[0-9]/!d;s/: <.*$//'"
@@ -185,6 +187,8 @@ format-disconnected-underline = ${colors.underline}
 label-disconnected = 
 label-disconnected-foreground = ${colors.urgent}
 
+click-left = ~/.config/rofi/bin/applet_network &
+
 [module/date]
 type = internal/date
 label = %{F${colors.foreground}%{F-} %date% %time%
@@ -192,6 +196,8 @@ date = %m-%d
 time = %H:%M
 interval = 5
 format-underline = ${colors.underline}
+
+click-left = ~/.config/rofi/bin/applet_time &
 
 [module/battery]
 type = internal/battery
@@ -220,6 +226,8 @@ animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
+click-left = ~/.config/rofi/bin/applet_battery &
+
 [module/xwindow]
 type = internal/xwindow
 format = <label>
@@ -231,7 +239,7 @@ type = internal/pulseaudio
 format-volume = <label-volume>
 format-volume-underline = ${colors.underline}
 label-volume =  %percentage%%
-label-volume-foreground = ${root.foreground}
+label-volume-foreground = ${colors.foreground}
 
 label-muted = 
 label-muted-foreground = ${colors.foreground}
@@ -253,6 +261,9 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground}
 
+click-middle = pavucontrol &
+click-right = ~/.config/rofi/bin/applet_volume &
+
 [module/cpu]
 type = internal/cpu
 interval = 2
@@ -268,10 +279,10 @@ interval = 1
 click-left = rofi-bluetooth &
 
 [module/backlight]
-type = custom/text
-content = 
+type = internal/xbacklight
+card = nvidia_0
+format = <label>
 
-content-background = ${color.bg}
-content-foreground = ${color.green}
+label =  %percentage%%
 
-click-left = $HOME/.config/rofi/applet_backlight
+click-left = ~/.config/rofi/bin/applet_backlight &

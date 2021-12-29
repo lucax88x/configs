@@ -9,7 +9,8 @@
 
 configuration {
     show-icons:                     false;
-	font:                      		"Comfortaa 12";
+	text-font:                      		"JetBrains Mono 14";
+  icon-font:                            "Font Awesome 25";
     disable-history:                false;
 	sidebar-mode: 					false;
 }
@@ -88,7 +89,6 @@ element {
 element-text {
     background-color: 				inherit;
     text-color:       				inherit;
-	font:							"Hurmit Nerd Font Mono 32";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

@@ -1,0 +1,13 @@
+
+* {
+    background-color:               transparent;
+    background:                     #202020;
+    background-alt:                 #2f2f2f;
+    text-color:                     #c0b18b;
+    foreground:                     #c0b18b;
+    border-color:                   #c0b18b;
+    selected-color:                 #c0b18b;
+    primary:                        #268BD2;
+    urgent:                         #bd2c40;
+}
+
