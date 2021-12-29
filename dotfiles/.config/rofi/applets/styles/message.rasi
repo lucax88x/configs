@@ -5,8 +5,6 @@
 * {
     background-color:       @background;
     text-color:             @foreground;
-	text-font:                      		"JetBrains Mono 14";
-  icon-font:                            "Font Awesome 25";
 }
 
 window {

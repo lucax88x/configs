@@ -2,7 +2,7 @@
 
 configuration {
     show-icons:                     false;
-    font:                           "JetBrains Mono 18";
+    font:                           "JetBrains Mono 14";
 }
 
 @import "./colors.rasi"

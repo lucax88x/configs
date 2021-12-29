@@ -9,8 +9,7 @@
 
 configuration {
     show-icons:                     false;
-	text-font:                      		"JetBrains Mono 14";
-  icon-font:                            "Font Awesome 25";
+	font:                      		"JetBrains Mono 14";
     disable-history:                false;
 	sidebar-mode: 					false;
 }
