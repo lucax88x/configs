@@ -4,6 +4,18 @@ local present_which_key, which_key = pcall(require, "which-key")
 local M = {}
 
 if present_mapper then
+	local conflicts = {}
+
+	local function check_conflicts(type, input, unique_identifier)
+		local key = type .. input
+
+		if conflicts[key] ~= nil then
+			print("[t]" .. type .. " [i]" .. input .. " conflicts! [" .. unique_identifier .. "]")
+		end
+
+		conflicts[key] = true
+	end
+
 	local function try_add_to_whick_key_by_input(input, description)
 		if present_which_key then
 			local leader_index = string.find(input, "<leader>")
@@ -20,12 +32,16 @@ if present_mapper then
 		-- vim.api.nvim_set_keymap(type, input, output, {}, category, unique_identifier, description)
 		mapper.map(type, input, output, {}, category, unique_identifier, description)
 
+		check_conflicts(type, input, unique_identifier)
+
 		try_add_to_whick_key_by_input(input, description)
 	end
 
 	local function noremap(type, input, output, category, unique_identifier, description)
 		-- vim.api.nvim_set_keymap(type, input, output, { noremap = true })
 		mapper.map(type, input, output, { noremap = true }, category, unique_identifier, description)
+
+		check_conflicts(type, input, unique_identifier)
 
 		try_add_to_whick_key_by_input(input, description)
 	end
@@ -42,6 +58,8 @@ if present_mapper then
 			unique_identifier,
 			description
 		)
+
+		check_conflicts(type, input, unique_identifier)
 
 		try_add_to_whick_key_by_input(input, description)
 	end

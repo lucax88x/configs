@@ -6,6 +6,7 @@ M.dap_install_servers = function()
 	end
 
 	installDebugServer("chrome")
+	installDebugServer("ccppr_vsc")
 end
 
 return M
