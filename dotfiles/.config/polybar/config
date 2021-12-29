@@ -266,3 +266,12 @@ type = custom/script
 exec = rofi-bluetooth --status
 interval = 1
 click-left = rofi-bluetooth &
+
+[module/backlight]
+type = custom/text
+content = 
+
+content-background = ${color.bg}
+content-foreground = ${color.green}
+
+click-left = $HOME/.config/rofi/applet_backlight

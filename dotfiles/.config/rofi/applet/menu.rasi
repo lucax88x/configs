@@ -1,6 +1,0 @@
-configuration {
-    show-icons:                     false;
-    font:                           "Font Awesome 50";
-}
-
-@theme "options_menu"
