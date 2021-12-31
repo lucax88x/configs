@@ -59,8 +59,6 @@ if present_mapper then
 			description
 		)
 
-		check_conflicts(type, input, unique_identifier)
-
 		try_add_to_whick_key_by_input(input, description)
 	end
 
