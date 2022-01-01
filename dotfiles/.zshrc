@@ -43,8 +43,6 @@ zinit light zsh-users/zsh-completions
 zinit snippet OMZ::lib/history.zsh 
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
-zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
-zinit snippet OMZ::plugins/npm/npm.plugin.zsh
 
 # those should stay last
 zinit light zsh-users/zsh-autosuggestions
@@ -59,6 +57,10 @@ zinit snippet OMZP::fzf
 zinit light Aloxaf/fzf-tab
 zinit light Tarrasch/zsh-bd
 # zinit snippet $HOME/.fzf.zsh
+
+zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
+zinit light g-plane/zsh-yarn-autocompletions
+zinit light lukechilds/zsh-better-npm-completion
 
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=true
 zinit light zsh-users/zsh-history-substring-search
