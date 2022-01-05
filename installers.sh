@@ -490,6 +490,18 @@ function installCups {
   systemctl start --now cups.service
 }
 
+function installTplinkWifi {
+  paru -S --noconfirm rtl88x2bu-dkms-git
+  sudo modprobe 88x2bu
+}
+
+function installNordvpn {
+  paru -S --noconfirm nordvpn-bin  
+  sudo systemctl enable nordvpnd.service
+  sudo systemctl start nordvpnd.service
+  sudo usermod -aG nordvpn $USER
+}
+
 ## CONFIGURATION
 
 function configureSsh {
