@@ -1,6 +1,5 @@
 local fn = vim.fn
 
-
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 
@@ -18,7 +17,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 		install_path,
 	})
 	print("Installing packer close and reopen Neovim...")
-	
 end
 
 vim.cmd([[packadd packer.nvim]])
@@ -67,15 +65,6 @@ return packer.startup({
 		}) -- Fix CursorHold Performance
 
 		use("nvim-lua/plenary.nvim")
-
-		use({
-			"lazytanuki/nvim-mapper",
-			config = function()
-				require("lt.plugins.nvim-mapper")
-			end,
-			before = "telescope.nvim",
-		})
-
 		use({
 			"folke/which-key.nvim",
 			config = function()
@@ -134,6 +123,13 @@ return packer.startup({
 			"kevinhwang91/nvim-bqf",
 			config = function()
 				require("lt.plugins.nvim-bqf")
+			end,
+		})
+		use({
+			"sindrets/diffview.nvim",
+			requires = "nvim-lua/plenary.nvim",
+			config = function()
+				require("lt.plugins.diffview-nvim")
 			end,
 		})
 
@@ -231,12 +227,6 @@ return packer.startup({
 		use("neovim/nvim-lspconfig")
 		use("nvim-lua/lsp-status.nvim")
 		-- use("jose-elias-alvarez/null-ls.nvim")
-		use({
-			"tami5/lspsaga.nvim",
-			config = function()
-				require("lt.plugins.lspsaga")
-			end,
-		})
 		use({
 			"folke/trouble.nvim",
 			config = function()
@@ -346,6 +336,13 @@ return packer.startup({
 			"kdav5758/TrueZen.nvim",
 			config = function()
 				require("lt.plugins.truezen")
+			end,
+		})
+
+		use({
+			"anuvyklack/pretty-fold.nvim",
+			config = function()
+				require("lt.plugins.pretty-fold")
 			end,
 		})
 

@@ -11,3 +11,12 @@ paru -Sc
 
 # clear unused dependencies
 paru -c
+
+# rebuild all python packages
+paru -S --rebuildall --noconfirm $(paru -Qqo /usr/lib/python<version>/)
+
+# list explicitly installed AUR pacakges
+pacman -Qem
+
+# list all installed AUR pacakges
+pacman -Qm

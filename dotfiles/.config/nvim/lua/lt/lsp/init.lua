@@ -55,6 +55,7 @@ local config = {
 	underline = true,
 	severity_sort = true,
 	float = {
+		focus = false,
 		focusable = false,
 		style = "minimal",
 		border = "rounded",

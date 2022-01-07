@@ -160,6 +160,7 @@ gls.left = {
 gls.mid = {
 	{
 		NvimGps = {
+			highlight = { colors.section_fg, colors.section_bg },
 			provider = function()
 				return gps.get_location()
 			end,
@@ -233,7 +234,15 @@ gls.right = {
 	},
 	{
 		BufferType = {
-			provider = "FileTypeName",
+			provider = function()
+				local fname = fileinfo.get_current_file_name()
+				for _, v in ipairs(gl.short_line_list) do
+					if v == vim.bo.filetype then
+						return ""
+					end
+				end
+				return fname
+			end,
 			condition = condition.buffer_not_empty,
 			highlight = { colors.cyan, colors.bg, "bold" },
 			separator = " ",

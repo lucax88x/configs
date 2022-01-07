@@ -264,6 +264,10 @@ for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
 for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
+
+#####################
+### Origin ###
+######################
 for_window [title="^Origin$"] floating enable
 for_window [instance="origin.exe"] floating enable
 

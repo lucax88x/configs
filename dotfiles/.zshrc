@@ -39,6 +39,7 @@ fi
 # zinit light jeffreytse/zsh-vi-mode
 
 zinit light zsh-users/zsh-completions
+zinit light MichaelAquilina/zsh-auto-notify
 # zinit light zdharma/history-search-multi-word
 zinit snippet OMZ::lib/history.zsh 
 
@@ -57,7 +58,7 @@ zinit snippet OMZP::fzf
 zinit light Aloxaf/fzf-tab
 zinit light Tarrasch/zsh-bd
 # zinit snippet $HOME/.fzf.zsh
-
+#
 zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
 zinit light g-plane/zsh-yarn-autocompletions
 zinit light lukechilds/zsh-better-npm-completion
