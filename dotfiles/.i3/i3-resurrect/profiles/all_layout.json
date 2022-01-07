@@ -13,11 +13,11 @@
   "marks": [],
   "name": "3 \uf120",
   "orientation": "horizontal",
-  "percent": 0.5,
+  "percent": 1.0,
   "scratchpad_state": "none",
   "sticky": false,
   "type": "workspace",
-  "workspace_layout": "default",
+  "workspace_layout": "tabbed",
   "nodes": [
     {
       "border": "normal",
@@ -32,7 +32,7 @@
       },
       "layout": "tabbed",
       "marks": [],
-      "name": null,
+      "name": "pfb",
       "orientation": "horizontal",
       "percent": 1.0,
       "scratchpad_state": "none",
@@ -51,11 +51,11 @@
             "width": 0,
             "height": 0
           },
-          "layout": "splitv",
+          "layout": "tabbed",
           "marks": [],
           "name": null,
-          "orientation": "vertical",
-          "percent": 0.5,
+          "orientation": "horizontal",
+          "percent": 0.3333333333333333,
           "scratchpad_state": "none",
           "sticky": false,
           "type": "con",
@@ -130,7 +130,7 @@
               },
               "layout": "splith",
               "marks": [],
-              "name": "zsh",
+              "name": "pfb/storage",
               "orientation": "none",
               "percent": 0.25,
               "scratchpad_state": "none",
@@ -186,11 +186,90 @@
             "width": 0,
             "height": 0
           },
-          "layout": "splitv",
+          "layout": "tabbed",
           "marks": [],
           "name": null,
-          "orientation": "vertical",
-          "percent": 0.5,
+          "orientation": "horizontal",
+          "percent": 0.3333333333333333,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "nodes": [
+            {
+              "border": "pixel",
+              "current_border_width": 2,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 640,
+                "height": 400
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "~",
+              "orientation": "none",
+              "percent": 0.5,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "^kitty$",
+                  "instance": "^kitty$",
+                  "title": "^cvtool/fe$"
+                }
+              ]
+            },
+            {
+              "border": "pixel",
+              "current_border_width": 2,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 640,
+                "height": 400
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "~",
+              "orientation": "none",
+              "percent": 0.5,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "^kitty$",
+                  "instance": "^kitty$",
+                  "title": "^cvtool/ be$"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "border": "normal",
+          "current_border_width": -1,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "layout": "tabbed",
+          "marks": [],
+          "name": null,
+          "orientation": "horizontal",
+          "percent": 0.3333333333333333,
           "scratchpad_state": "none",
           "sticky": false,
           "type": "con",
@@ -220,7 +299,7 @@
                 {
                   "class": "^kitty$",
                   "instance": "^kitty$",
-                  "title": "^ag/be$"
+                  "title": "^agropolis/be$"
                 }
               ]
             },
@@ -248,7 +327,7 @@
                 {
                   "class": "^kitty$",
                   "instance": "^kitty$",
-                  "title": "^ag/fe$"
+                  "title": "^agropolis/fe$"
                 }
               ]
             }

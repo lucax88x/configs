@@ -80,10 +80,10 @@ treesitter.setup({
 		swap = {
 			enable = true,
 			swap_next = {
-				["<leader>rp"] = "@parameter.inner",
+				["<leader>fpp"] = "@parameter.inner",
 			},
 			swap_previous = {
-				["<leader>rP"] = "@parameter.inner",
+				["<leader>fpP"] = "@parameter.inner",
 			},
 		},
 		move = {
@@ -140,8 +140,10 @@ r.map_virtual("o", "ik", "Json key inner motion")
 r.map_virtual("o", "av", "Json value outer motion")
 r.map_virtual("o", "iv", "Json value inner motion")
 
-r.map_virtual("o", "<leader>rp", "Swap parameter to next")
-r.map_virtual("o", "<leader>rP", "Swap parameter to previous")
+r.whick_key("fp", "parameters")
+
+r.map_virtual("o", "<leader>fpp", "Swap parameter to next")
+r.map_virtual("o", "<leader>fpP", "Swap parameter to previous")
 
 r.map_virtual("o", "]m", "Go to next function (start)")
 r.map_virtual("o", "]M", "Go to next function (end)")
