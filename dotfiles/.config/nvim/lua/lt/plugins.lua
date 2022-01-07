@@ -202,6 +202,18 @@ return packer.startup({
 				require("lt.plugins.neoscroll")
 			end,
 		})
+		use({
+			"petertriho/nvim-scrollbar",
+			config = function()
+				require("lt.plugins.nvim-scrollbar")
+			end,
+		})
+		use({
+			"kevinhwang91/nvim-hlslens",
+			config = function()
+				require("lt.plugins.nvim-hlslens")
+			end,
+		})
 		use("romainl/vim-cool") -- disabled search highlight until next search
 		use({
 			"ThePrimeagen/refactoring.nvim",
@@ -347,10 +359,11 @@ return packer.startup({
 		})
 
 		use({
-			"gruvbox-community/gruvbox",
+			"ellisonleao/gruvbox.nvim",
 			config = function()
 				require("lt.plugins.gruvbox")
 			end,
+			requires = { "rktjmp/lush.nvim" },
 		})
 
 		-- debugging
