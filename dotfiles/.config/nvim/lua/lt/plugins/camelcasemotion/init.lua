@@ -1,1 +1,1 @@
-vim.g.camelcasemotion_key = '<leader>'
+vim.g.camelcasemotion_key = "<leader>"

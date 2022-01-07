@@ -15,6 +15,23 @@ function M.link_highlight(from, to, override)
 	end
 end
 
+M.reload = function()
+	local counter = 0
+
+	for moduleName in pairs(package.loaded) do
+		if M.starts_with(moduleName, "lt.") then
+			require("plenary.reload").reload_module(moduleName)
+
+			counter = counter + 1
+		end
+	end
+
+	-- clear nvim-mapper keys
+	vim.g.mapper_records = nil
+
+	vim.notify("Reloaded " .. counter .. " modules!")
+end
+
 function M.is_linux()
 	return vim.loop.os_uname().sysname == "Linux"
 end

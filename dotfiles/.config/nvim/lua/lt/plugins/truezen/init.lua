@@ -12,4 +12,4 @@ true_zen.setup({
 
 local r = require("lt.utils.remaps")
 
-r.nnoremap("<leader>zz", "<cmd>:TZAtaraxis<CR>", "zen", "zen", "Zen")
+r.noremap("n", "<leader>zz", "<cmd>:TZAtaraxis<CR>", "zen", "Zen")

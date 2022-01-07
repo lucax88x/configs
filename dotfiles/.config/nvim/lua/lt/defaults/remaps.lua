@@ -1,29 +1,30 @@
 local r = require("lt.utils.remaps")
+local functions = require("lt.utils.functions")
 
 -- quit
-r.nnoremap("<leader>q", "<cmd>q<CR>", "editor", "quit", "Quits editor")
-r.nnoremap("<leader>Q", "<cmd>q!<CR>", "editor", "quit_force", "Force quits editor")
+r.noremap("n", "<leader>q", "<cmd>q<CR>", "quit", "Quits editor")
+r.noremap("n", "Q", "<cmd>q!<CR>", "quit_force", "Force quits editor")
 
 -- reload
-r.nnoremap("<leader><CR>", "<cmd>lua reload()<CR>", "editor", "reload", "Reloads configuration")
+r.noremap("n", "<leader><CR>", functions.reload, "reload", "Reloads configuration")
 
 -- undo
-r.nnoremap("<leader>u", "<cmd>UndotreeToggle<CR>", "undo", "undo", "Toggle undo history")
+r.noremap("n", "<leader>u", "<cmd>UndotreeToggle<CR>", "undo", "Toggle undo history")
 
 -- move upper/down on visual
-r.vnoremap("K", '<cmd>m "<-2<CR>gv=gv"', "remap", "remap_move_upper_on_visual", "Move upper on visual")
-r.vnoremap("J", '<cmd>m ">+1<CR>gv=gv"', "remap", "remap_move_down_on_visual", "Move down on visual")
+r.noremap("v", "K", '<cmd>m "<-2<CR>gv=gv"', "remap_move_upper_on_visual", "Move upper on visual")
+r.noremap("v", "J", '<cmd>m ">+1<CR>gv=gv"', "remap_move_down_on_visual", "Move down on visual")
 
 -- deletes in visual
-r.vnoremap("X", '"_d', "remap", "remap_deletes_on_visual", "Deletes on visual")
+r.noremap("v", "X", '"_d', "remap_deletes_on_visual", "Deletes on visual")
 
 -- when going to next search, we center screen
-r.nnoremap("n", "nzzzv", "remap", "remap_go_next_search", "When going to next search, we center screen")
-r.nnoremap("N", "Nzzzv", "remap", "remap_go_previous_serach", "When going to previous search, we center screen")
+r.noremap("n", "n", "nzzzv", "remap_go_next_search", "When going to next search, we center screen")
+r.noremap("n", "N", "Nzzzv", "remap_go_previous_serach", "When going to previous search, we center screen")
 
 -- navigate quick fix
-r.nnoremap("]q", ":cnext<CR>", "remap", "remap_next_quickfix", "Navigate to next quickfix")
-r.nnoremap("[q", ":cprev<CR>", "remap", "remap_previous_quickfix", "Navigate to previous quickfix")
+r.noremap("n", "]q", ":cnext<CR>", "remap_next_quickfix", "Navigate to next quickfix")
+r.noremap("n", "[q", ":cprev<CR>", "remap_previous_quickfix", "Navigate to previous quickfix")
 
 -- maps c-n / c-t to navigate while searching with /
 vim.api.nvim_exec(

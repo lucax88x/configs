@@ -16,4 +16,3 @@ vim.cmd([[highlight ColorColumn ctermbg=0 guibg=lightgrey]])
 vim.cmd([[highlight SignColumn guibg=#282828]])
 vim.cmd([[highlight PMenu guibg=#3c3836 guifg=#bdae93]])
 vim.cmd([[highlight NormalFloat guibg=#282828 guifg=#bdae93]])
-
