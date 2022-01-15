@@ -65,12 +65,6 @@ return packer.startup({
 		}) -- Fix CursorHold Performance
 
 		use("nvim-lua/plenary.nvim")
-		use({
-			"folke/which-key.nvim",
-			config = function()
-				require("lt.plugins.which-key")
-			end,
-		})
 
 		use("MunifTanjim/nui.nvim") -- ui library
 
@@ -83,6 +77,13 @@ return packer.startup({
 
 		-- icons
 		use("kyazdani42/nvim-web-devicons")
+
+		use({
+			"folke/which-key.nvim",
+			config = function()
+				require("lt.plugins.which-key")
+			end,
+		})
 
 		use({
 			"goolord/alpha-nvim",
@@ -179,6 +180,7 @@ return packer.startup({
 			end,
 		})
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+		use({ "nvim-telescope/telescope-ui-select.nvim" })
 
 		use({
 			"dyng/ctrlsf.vim",

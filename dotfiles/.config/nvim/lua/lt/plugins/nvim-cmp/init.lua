@@ -73,15 +73,19 @@ cmp.setup({
 	},
 })
 
-vim.cmd("highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080")
-vim.cmd("highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6")
-vim.cmd("highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6")
-vim.cmd("highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE")
-vim.cmd("highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE")
-vim.cmd("highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE")
-vim.cmd("highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0")
-vim.cmd("highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0")
-vim.cmd("highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4")
+local colors = require("gruvbox.colors")
+
+vim.cmd("highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=" .. colors.neutral_red)
+vim.cmd("highlight! CmpItemAbbrMatch guibg=NONE guifg=" .. colors.neutral_blue)
+vim.cmd("highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=" .. colors.neutral_blue)
+vim.cmd("highlight! CmpItemKindVariable guibg=NONE guifg=" .. colors.neutral_aqua)
+vim.cmd("highlight! CmpItemKindInterface guibg=NONE guifg=" .. colors.neutral_aqua)
+vim.cmd("highlight! CmpItemKindText guibg=NONE guifg=" .. colors.neutral_aqua)
+vim.cmd("highlight! CmpItemKindFunction guibg=NONE guifg=" .. colors.neutral_purple)
+vim.cmd("highlight! CmpItemKindMethod guibg=NONE guifg=" .. colors.neutral_purple)
+vim.cmd("highlight! CmpItemKindKeyword guibg=NONE guifg=" .. colors.neutral_green)
+vim.cmd("highlight! CmpItemKindProperty guibg=NONE guifg=" .. colors.neutral_green)
+vim.cmd("highlight! CmpItemKindUnit guibg=NONE guifg=" .. colors.neutral_green)
 
 local presentAutopairs, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
 if not presentAutopairs then

@@ -32,7 +32,7 @@
       },
       "layout": "tabbed",
       "marks": [],
-      "name": "pfb",
+      "name": "playfeedback",
       "orientation": "horizontal",
       "percent": 1.0,
       "scratchpad_state": "none",
@@ -74,7 +74,7 @@
               },
               "layout": "splith",
               "marks": [],
-              "name": "pfb/api",
+              "name": "pfb/be:api",
               "orientation": "none",
               "percent": 0.25,
               "scratchpad_state": "none",
@@ -85,7 +85,7 @@
                 {
                   "class": "^kitty$",
                   "instance": "^kitty$",
-                  "title": "^pfb/api$"
+                  "title": "^pfb/be:api$"
                 }
               ]
             },
@@ -102,7 +102,7 @@
               },
               "layout": "splith",
               "marks": [],
-              "name": "pfb/auth",
+              "name": "pfb/be:auth",
               "orientation": "none",
               "percent": 0.25,
               "scratchpad_state": "none",
@@ -113,7 +113,7 @@
                 {
                   "class": "^kitty$",
                   "instance": "^kitty$",
-                  "title": "^pfb/auth$"
+                  "title": "^pfb/be:auth$"
                 }
               ]
             },
@@ -130,7 +130,7 @@
               },
               "layout": "splith",
               "marks": [],
-              "name": "pfb/storage",
+              "name": "pfb/be:storage",
               "orientation": "none",
               "percent": 0.25,
               "scratchpad_state": "none",
@@ -141,7 +141,7 @@
                 {
                   "class": "^kitty$",
                   "instance": "^kitty$",
-                  "title": "^pfb/storage$"
+                  "title": "^pfb/be:storage$"
                 }
               ]
             },
@@ -158,7 +158,7 @@
               },
               "layout": "splith",
               "marks": [],
-              "name": "pfb/app",
+              "name": "pfb/frontend",
               "orientation": "none",
               "percent": 0.25,
               "scratchpad_state": "none",
@@ -169,7 +169,7 @@
                 {
                   "class": "^kitty$",
                   "instance": "^kitty$",
-                  "title": "^pfb/app$"
+                  "title": "^pfb/frontend$"
                 }
               ]
             }
@@ -209,7 +209,7 @@
               },
               "layout": "splith",
               "marks": [],
-              "name": "~",
+              "name": "cvtool/frontend",
               "orientation": "none",
               "percent": 0.5,
               "scratchpad_state": "none",
@@ -220,7 +220,7 @@
                 {
                   "class": "^kitty$",
                   "instance": "^kitty$",
-                  "title": "^cvtool/fe$"
+                  "title": "^cvtool/frontend$"
                 }
               ]
             },
@@ -237,7 +237,7 @@
               },
               "layout": "splith",
               "marks": [],
-              "name": "~",
+              "name": "cvtool/functions",
               "orientation": "none",
               "percent": 0.5,
               "scratchpad_state": "none",
@@ -248,7 +248,7 @@
                 {
                   "class": "^kitty$",
                   "instance": "^kitty$",
-                  "title": "^cvtool/ be$"
+                  "title": "^cvtool/functions$"
                 }
               ]
             }
@@ -288,7 +288,7 @@
               },
               "layout": "splith",
               "marks": [],
-              "name": "ag/be",
+              "name": "agropolis/be",
               "orientation": "none",
               "percent": 0.5,
               "scratchpad_state": "none",
@@ -316,7 +316,7 @@
               },
               "layout": "splith",
               "marks": [],
-              "name": "ag/fe",
+              "name": "agropolis/frontend",
               "orientation": "none",
               "percent": 0.5,
               "scratchpad_state": "none",
@@ -327,7 +327,7 @@
                 {
                   "class": "^kitty$",
                   "instance": "^kitty$",
-                  "title": "^agropolis/fe$"
+                  "title": "^agropolis/frontend$"
                 }
               ]
             }

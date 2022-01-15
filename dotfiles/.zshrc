@@ -102,8 +102,8 @@ alias lt='ls --tree'
 
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
-alias v+='f(){ amixer -q sset Master "$@"%+;  unset -f f; }; f'
-alias v-='f(){ amixer -q sset Master "$@"%-;  unset -f f; }; f'
+# alias v+='f(){ amixer -q sset Master "$@"%+;  unset -f f; }; f'
+# alias v-='f(){ amixer -q sset Master "$@"%-;  unset -f f; }; f'
 # alias v='f(){ amixer -q sset Master toggle;  unset -f f; }; f'
 
 alias grep='rg'

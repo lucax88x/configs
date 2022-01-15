@@ -7,7 +7,7 @@ set commentary
 set multiple-cursors
 set history=1000
 set visualbell
-set noerrorbells
+" set noerrorbells
 set incsearch " Highlight search results when typing
 set hlsearch " Highlight search results
 set relativenumber " relative numbers
@@ -42,8 +42,8 @@ nnoremap <leader>fc :action CopyElement<CR>
 nnoremap <leader>ff :action ReformatCode<CR>
 nnoremap <leader>fo :action OptimizeImports<CR>
 
-nnoremap <leader>tr :action RenameElement<CR>
-nnoremap <leader>rf :action RenameFile<CR>
+nnoremap <leader>fr :action RenameElement<CR>
+" nnoremap <leader>rf :action RenameFile<CR>
 
 " Comment
 nnoremap <leader>cc :action CommentByLineComment<CR>

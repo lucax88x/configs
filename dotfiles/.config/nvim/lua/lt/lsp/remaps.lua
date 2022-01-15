@@ -197,7 +197,7 @@ r.whick_key("<leader>ls", "servers")
 r.noremap(
 	"n",
 	"<leader>lsu",
-	'<cmd>lua require("lt.lsp.servers.functions").lsp_install_servers()<CR>',
+	 require("lt.lsp.functions").lsp_install_servers,
 	"lsp_install_server",
 	"Installer LSP servers"
 )

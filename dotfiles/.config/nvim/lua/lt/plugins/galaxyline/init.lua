@@ -4,6 +4,8 @@ if not present then
 	return
 end
 
+local gruvbox = require("gruvbox.colors")
+
 local condition = require("galaxyline.condition")
 local gps = require("nvim-gps")
 local fileinfo = require("galaxyline.providers.fileinfo")
@@ -13,21 +15,18 @@ local gls = gl.section
 gl.short_line_list = { "NvimTree", "vista", "dbui" }
 
 local colors = {
-	bg = "#282828", -- gruvbox bg
-	fg = "#ebdbb2", -- gruvbox fg
-	section_bg = "#1d2021", -- gruvbox bg0_h
-	yellow = "#d79921",
-	cyan = "#83a598",
-	green = "#b8bb26",
-	orange = "#fe8019",
-	purple = "#b16286",
-	magenta = "#d3869b",
-	blue = "#83a598",
-	red = "#fb4934",
+	bg = gruvbox.dark0,
+	fg = gruvbox.light1,
+	section_bg = gruvbox.dark0_hard,
+	yellow = gruvbox.neutral_yellow,
+	cyan = gruvbox.neutral_aqua,
+	green = gruvbox.neutral_green,
+	orange = gruvbox.neutral_orange,
+	purple = gruvbox.neutral_purple,
+	magenta = gruvbox.bright_purple,
+	blue = gruvbox.neutral_blue,
+	red = gruvbox.neutral_red,
 }
-
--- workaround to fill mid
-vim.cmd([[:hi StatusLine guifg=#282828]])
 
 local mode_color = function()
 	local mode_colors = {
@@ -160,7 +159,7 @@ gls.left = {
 gls.mid = {
 	{
 		NvimGps = {
-			highlight = { colors.section_fg, colors.section_bg },
+			highlight = { colors.fg, colors.bg },
 			provider = function()
 				return gps.get_location()
 			end,

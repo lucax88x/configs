@@ -4,16 +4,16 @@
 DISTRO=${1^^}
 
 case $DISTRO in
-  UBUNTU)
-    echo installing for ubuntu
-  ;;
-  ARCH)
-    echo installing for arch
-  ;;
-  *)
-    echo not supported distro
-    exit 1
-  ;;
+UBUNTU)
+	echo installing for ubuntu
+	;;
+ARCH)
+	echo installing for arch
+	;;
+*)
+	echo not supported distro
+	exit 1
+	;;
 esac
 
 TEMP_DIR=~/setup-temp
@@ -28,409 +28,415 @@ cd $TEMP_DIR
 echo '# GLOBAL SOFTWARE #'
 
 if ! [ -x "$(command -v make)" ]; then
-  echo INSTALLING BASE-DEVEL
-  installBaseDevel
+	echo INSTALLING BASE-DEVEL
+	installBaseDevel
 else
-  echo BASE-DEVEL ALREADY INSTALLED
+	echo BASE-DEVEL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v make)" ]; then
-  echo INSTALLING BASE-DEVEL
-  installBaseDevel
+	echo INSTALLING BASE-DEVEL
+	installBaseDevel
 else
-  echo BASE-DEVEL ALREADY INSTALLED
+	echo BASE-DEVEL ALREADY INSTALLED
 fi
 
-
 if ! [ -x "$(command -v rustup)" ]; then
-  echo INSTALLING RUSTUP
-  installRust
+	echo INSTALLING RUSTUP
+	installRust
 else
-  echo RUST ALREADY INSTALLED
+	echo RUST ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v go)" ]; then
-  echo INSTALLING GO
-  installGo
+	echo INSTALLING GO
+	installGo
 else
-  echo GO ALREADY INSTALLED
+	echo GO ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v git)" ]; then
-  echo INSTALLING GIT
-  installGit
+	echo INSTALLING GIT
+	installGit
 else
-  echo GIT ALREADY INSTALLED
+	echo GIT ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v paru)" ]; then
-  echo INSTALLING PARU
-  installParu
+	echo INSTALLING PARU
+	installParu
 else
-  echo PARU ALREADY INSTALLED
+	echo PARU ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v wget)" ]; then
-  echo INSTALLING WGET
-  installWget
+	echo INSTALLING WGET
+	installWget
 else
-  echo WGET ALREADY INSTALLED
+	echo WGET ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v curl)" ]; then
-  echo INSTALLING CURL
-  installCurl
+	echo INSTALLING CURL
+	installCurl
 else
-  echo CURL ALREADY INSTALLED
+	echo CURL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v ssh-keygen)" ]; then
-  echo INSTALLING SSH
-  installSsh
+	echo INSTALLING SSH
+	installSsh
 else
-  echo SSH ALREADY INSTALLED
+	echo SSH ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v unzip)" ]; then
-  echo INSTALLING UNZIP
-  installUnzip
+	echo INSTALLING UNZIP
+	installUnzip
 else
-  echo UNZIP ALREADY INSTALLED
+	echo UNZIP ALREADY INSTALLED
 fi
 
 echo '# SOFTWARE #'
 
 if ! [ "$(fc-list | grep -c 'JetBrains')" -ge 1 ]; then
-  echo INSTALLING JETBRAINS MONO
-  installJetbrainsMono
+	echo INSTALLING JETBRAINS MONO
+	installJetbrainsMono
 else
-  echo JETBRAINS MONO ALREADY INSTALLED
+	echo JETBRAINS MONO ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Open Sans')" -ge 1 ]; then
-  echo INSTALLING OPEN SANS
-  installOpenSans
+	echo INSTALLING OPEN SANS
+	installOpenSans
 else
-  echo OPEN SANS ALREADY INSTALLED
+	echo OPEN SANS ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
-  echo INSTALLING PATCHED FIRACODE
-  installFuraCode
+	echo INSTALLING PATCHED FIRACODE
+	installFuraCode
 else
-  echo PATCHED FIRACODE ALREADY INSTALLED
+	echo PATCHED FIRACODE ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then
-  echo INSTALLING FONTAWESOME
-  installFontAwesome
+	echo INSTALLING FONTAWESOME
+	installFontAwesome
 else
-  echo FONTAWESOME ALREADY INSTALLED
+	echo FONTAWESOME ALREADY INSTALLED
 fi
 
 if ! [ "pacman -Qs freetype2-ultimate5 > /dev/null" ]; then
-  echo INSTALLING FREETYPE PATCHED
-  installFreeType
+	echo INSTALLING FREETYPE PATCHED
+	installFreeType
 else
-  echo PATCHED FREETYPE ALREADY INSTALLED
+	echo PATCHED FREETYPE ALREADY INSTALLED
 fi
 
 exit
 
 if ! [ -x "$(command -v bat)" ]; then
-  echo INSTALLING BAT
-  installBat
+	echo INSTALLING BAT
+	installBat
 else
-  echo BAT ALREADY INSTALLED
+	echo BAT ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v lsd)" ]; then
-  echo INSTALLING LSD
-  installLsd
+	echo INSTALLING LSD
+	installLsd
 else
-  echo LSD ALREADY INSTALLED
+	echo LSD ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v zsh)" ]; then
-  echo INSTALLING ZSH
-  installZsh
+	echo INSTALLING ZSH
+	installZsh
 else
-  echo ZSH ALREADY INSTALLED
+	echo ZSH ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v google-chrome-stable)" ]; then
-  echo INSTALLING CHROME
-  installChrome
+	echo INSTALLING CHROME
+	installChrome
 else
-  echo CHROME ALREADY INSTALLED
+	echo CHROME ALREADY INSTALLED
 fi
 
 if ! [ -f ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox ]; then
-  echo INSTALLING JETBRAINS TOOLBOX
-  installJetbrainsToolbox
+	echo INSTALLING JETBRAINS TOOLBOX
+	installJetbrainsToolbox
 else
-  echo JETBRAINS TOOLBOX ALREADY INSTALLED
+	echo JETBRAINS TOOLBOX ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v telegram-desktop)" ]; then
-  echo INSTALLING TELEGRAM
-  installTelegram
+	echo INSTALLING TELEGRAM
+	installTelegram
 else
-  echo TELEGRAM ALREADY INSTALLED
+	echo TELEGRAM ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v bd)" ]; then
-  echo INSTALLING BD
-  installBd
+	echo INSTALLING BD
+	installBd
 else
-  echo BD ALREADY INSTALLED
+	echo BD ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v xclip)" ]; then
-  echo INSTALLING XCLIP
-  installXClip
+	echo INSTALLING XCLIP
+	installXClip
 else
-  echo XCLIP ALREADY INSTALLED
+	echo XCLIP ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v smerge)" ]; then
-  echo INSTALLING SUBLIME MERGE
-  installSublimeMerge
+	echo INSTALLING SUBLIME MERGE
+	installSublimeMerge
 else
-  echo SUBLIME MERGE ALREADY INSTALLED
+	echo SUBLIME MERGE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v dotnet)" ]; then
-  echo INSTALLING DOTNETCORE SDK
-  installDotnetSdk
+	echo INSTALLING DOTNETCORE SDK
+	installDotnetSdk
 else
-  echo DOTNETCORE SDK ALREADY INSTALLED
+	echo DOTNETCORE SDK ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v node)" ]; then
-  echo INSTALLING NODE
-  installNode
+	echo INSTALLING NODE
+	installNode
 else
-  echo NODE ALREADY INSTALLED
+	echo NODE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v yarn)" ]; then
-  echo INSTALLING YARN
-  installYarn
+	echo INSTALLING YARN
+	installYarn
 else
-  echo YARN ALREADY INSTALLED
+	echo YARN ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v docker)" ]; then
-  echo INSTALLING DOCKER
-  installDocker
+	echo INSTALLING DOCKER
+	installDocker
 else
-  echo DOCKER ALREADY INSTALLED
+	echo DOCKER ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v docker-compose)" ]; then
-  echo INSTALLING DOCKER-COMPOSE
-  installDockerCompose
+	echo INSTALLING DOCKER-COMPOSE
+	installDockerCompose
 else
-  echo DOCKER-COMPOSE ALREADY INSTALLED
+	echo DOCKER-COMPOSE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v teams)" ]; then
-  echo INSTALLING TEAMS
-  installTeams
+	echo INSTALLING TEAMS
+	installTeams
 else
-  echo TEAMS ALREADY INSTALLED
+	echo TEAMS ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v kubectl)" ]; then
-  echo INSTALLING KUBECTL
-  installKubectl
+	echo INSTALLING KUBECTL
+	installKubectl
 else
-  echo KUBECTL ALREADY INSTALLED
+	echo KUBECTL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v slack)" ]; then
-  echo INSTALLING SLACK
-  installSlack
+	echo INSTALLING SLACK
+	installSlack
 else
-  echo SLACK ALREADY INSTALLED
+	echo SLACK ALREADY INSTALLED
 fi
 
 if [ ! -f ~/.config/i3/config ]; then
-  echo INSTALLING I3
-  installI3
+	echo INSTALLING I3
+	installI3
 else
-  echo I3 ALREADY INSTALLED
+	echo I3 ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v rofi)" ]; then
-  echo INSTALLING ROFI
-  installRofi
+	echo INSTALLING ROFI
+	installRofi
 else
-  echo ROFI ALREADY INSTALLED
+	echo ROFI ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v dunst)" ]; then
-  echo INSTALLING DUNST
-  installDunst
+	echo INSTALLING DUNST
+	installDunst
 else
-  echo DUNST ALREADY INSTALLED
+	echo DUNST ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v kitty)" ]; then
-  echo INSTALLING KITTY
-  installKitty
+	echo INSTALLING KITTY
+	installKitty
 else
-  echo KITTY ALREADY INSTALLED
+	echo KITTY ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v gnome-keyring)" ]; then
-  echo INSTALLING KEYRING
-  installGnomeKeyring
+	echo INSTALLING KEYRING
+	installGnomeKeyring
 else
-  echo KEYRING ALREADY INSTALLED
+	echo KEYRING ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v fzf)" ]; then
-  echo INSTALLING FZF
-  installFzf
+	echo INSTALLING FZF
+	installFzf
 else
-  echo FZF ALREADY INSTALLED
+	echo FZF ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v rg)" ]; then
-  echo INSTALLING RG
-  installRg
+	echo INSTALLING RG
+	installRg
 else
-  echo RG ALREADY INSTALLED
+	echo RG ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v fd)" ]; then
-  echo INSTALLING FD
-  installFd
+	echo INSTALLING FD
+	installFd
 else
-  echo FD ALREADY INSTALLED
+	echo FD ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v ranger)" ]; then
-  echo INSTALLING RANGER
-  installRanger
+	echo INSTALLING RANGER
+	installRanger
 else
-  echo RANGER ALREADY INSTALLED
+	echo RANGER ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v udiskie)" ]; then
-  echo INSTALLING UDISKIE
-  installUdiskie
+	echo INSTALLING UDISKIE
+	installUdiskie
 else
-  echo UDISKIE ALREADY INSTALLED
+	echo UDISKIE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v procs)" ]; then
-  echo INSTALLING PROCS
-  installProcs
+	echo INSTALLING PROCS
+	installProcs
 else
-  echo PROCS ALREADY INSTALLED
+	echo PROCS ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v btm)" ]; then
-  echo INSTALLING BTM
-  installBtm
+	echo INSTALLING BTM
+	installBtm
 else
-  echo BTM ALREADY INSTALLED
+	echo BTM ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v navi)" ]; then
-  echo INSTALLING NAVI
-  installNavi
+	echo INSTALLING NAVI
+	installNavi
 else
-  echo NAVI ALREADY INSTALLED
+	echo NAVI ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v openfortivpn)" ]; then
-  echo INSTALLING OPENFORTIVPN
-  installOpenfortivpn
+	echo INSTALLING OPENFORTIVPN
+	installOpenfortivpn
 else
-  echo OPENFORTIVPN ALREADY INSTALLED
+	echo OPENFORTIVPN ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v tldr)" ]; then
-  echo INSTALLING TLDR
-  installTldr
+	echo INSTALLING TLDR
+	installTldr
 else
-  echo TLDR ALREADY INSTALLED
+	echo TLDR ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v dropbox)" ]; then
-  echo INSTALLING DROPBOX
-  installDropbox
+	echo INSTALLING DROPBOX
+	installDropbox
 else
-  echo DROPBOX ALREADY INSTALLED
+	echo DROPBOX ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v flameshot)" ]; then
-  echo INSTALLING FLAMESHOT
-  installFlameshot
+	echo INSTALLING FLAMESHOT
+	installFlameshot
 else
-  echo FLAMESHOT ALREADY INSTALLED
+	echo FLAMESHOT ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v steam)" ]; then
-  echo INSTALLING STEAM
-  installSteam
+	echo INSTALLING STEAM
+	installSteam
 else
-  echo STEAM ALREADY INSTALLED
+	echo STEAM ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v pipewire)" ]; then
-  echo INSTALLING PIPEWIRE
-  installPipewire
+	echo INSTALLING PIPEWIRE
+	installPipewire
 else
-  echo PIPEWIRE ALREADY INSTALLED
+	echo PIPEWIRE ALREADY INSTALLED
 fi
 
 if [ ! -f ~/.config/systemd/user/imwheel.service ]; then
-  echo INSTALLING IMWHEEL
-  installImwheel
+	echo INSTALLING IMWHEEL
+	installImwheel
 else
-  echo IMWHEEL ALREADY CONFIGURED
+	echo IMWHEEL ALREADY CONFIGURED
 fi
 
 if ! [ -x "$(command -v zathura)" ]; then
-  echo INSTALLING ZATHURA
-  installZathura
+	echo INSTALLING ZATHURA
+	installZathura
 else
-  echo ZATHURA ALREADY CONFIGURED
+	echo ZATHURA ALREADY CONFIGURED
 fi
 
 if ! [ -x "$(command -v cups)" ]; then
-  echo "INSTALLING CUPS (printer driver)"
-  installCups
+	echo "INSTALLING CUPS (printer driver)"
+	installCups
 else
-  echo CUPS ALREADY CONFIGURED
+	echo CUPS ALREADY CONFIGURED
+fi
+
+if ! [ -x "$(command -v thermald)" ]; then
+	echo "INSTALLING THERMALD"
+	installThermald
+else
+	echo THERMALD ALREADY CONFIGURED
 fi
 
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
-  echo CONFIGURING SSH
-  configureSsh
+	echo CONFIGURING SSH
+	configureSsh
 else
-  echo SSH ALREADY CONFIGURED
+	echo SSH ALREADY CONFIGURED
 fi
 
 if [ ! -f ~/.zshrc ]; then
-  echo CONFIGURING ZSH
-  configureZsh
+	echo CONFIGURING ZSH
+	configureZsh
 else
-  echo ZSH ALREADY CONFIGURED
+	echo ZSH ALREADY CONFIGURED
 fi
 
 if [ ! -d ~/.config/fontconfig/conf.d ]; then
-  echo CONFIGURING SHARP FONTS
-  configureFonts
+	echo CONFIGURING SHARP FONTS
+	configureFonts
 else
-  echo SHARP FONTS ALREADY CONFIGURED
+	echo SHARP FONTS ALREADY CONFIGURED
 fi
 
 rm -rf $TEMP_DIR
