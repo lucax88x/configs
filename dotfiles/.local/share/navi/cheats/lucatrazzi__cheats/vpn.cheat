@@ -1,4 +1,9 @@
 % vpn
 
-# connect to vpn
+# connect to vpn by openfortivpn
 sudo openfortivpn -c ~/.config/openfortivpn/<name>.config
+
+% vpn
+
+# connect to vpn by openconnect
+sudo openconnect --config ~/.config/openconnect/<name>.config

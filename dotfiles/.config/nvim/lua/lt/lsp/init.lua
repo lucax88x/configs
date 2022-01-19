@@ -106,7 +106,10 @@ local servers = {
 local default_lsp_config = {
 	on_attach = on_attach,
 	capabilities = capabilities,
-	flags = { debounce_text_changes = 200 },
+	flags = {
+		debounce_text_changes = 200,
+		allow_incremental_sync = true,
+	},
 }
 
 for server_name, server_config in pairs(servers) do
@@ -119,9 +122,9 @@ for server_name, server_config in pairs(servers) do
 				local default_server_lsp_config = server:get_default_options()
 				merged_config = vim.tbl_deep_extend("force", default_server_lsp_config, merged_config)
 
-				local present, rust_tools = pcall(require, "rust-tools")
+				local present_rust_tools, rust_tools = pcall(require, "rust-tools")
 
-				if present then
+				if present_rust_tools then
 					rust_tools.setup({ server = merged_config })
 					server:attach_buffers()
 				else
