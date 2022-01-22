@@ -2,6 +2,15 @@
 	email = luca.trazzi@garaio.com
 	name = lucatrazzi
 
+[pull]
+	rebase = true
+[credential]
+	helper = libsecret
+[init]
+	defaultBranch = main
+[rebase]
+	autoStash = true
+
 [alias]
 	aliases = config --get-regexp ^alias
 
@@ -118,12 +127,3 @@
 	# unstage = clean -fd 
 	# unstage = clean -fdx
 	discard = checkout -- .
-
-[pull]
-	rebase = true
-[credential]
-	helper = libsecret
-[init]
-	defaultBranch = main
-[rebase]
-	autoStash = true

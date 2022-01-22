@@ -142,9 +142,9 @@ return packer.startup({
 		})
 
 		use({
-			"ggandor/lightspeed.nvim",
+			"phaazon/hop.nvim",
 			config = function()
-				require("lt.plugins.lightspeed-nvim")
+				require("lt.plugins.hop-nvim")
 			end,
 		})
 

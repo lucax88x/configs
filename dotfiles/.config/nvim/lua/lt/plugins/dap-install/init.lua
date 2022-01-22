@@ -9,7 +9,7 @@ dap_install.config("chrome", {})
 
 local r = require("lt.utils.remaps")
 
-r.whick_key("<leader>ds", "servers")
+r.which_key("<leader>ds", "servers")
 
 r.noremap("n", "<leader>dsi", function()
 	require("lt.plugins.dap-install.functions").dap_install_servers()

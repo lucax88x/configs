@@ -6,7 +6,7 @@ end
 
 local r = require("lt.utils.remaps")
 
-r.whick_key("<leader>gd", "diffview")
+r.which_key("<leader>gd", "diffview")
 
 r.noremap("n", "<leader>gdo", "<cmd>DiffviewOpen<CR>", "diffview_open", "Open diffview")
 r.noremap("n", "<leader>gdc", "<cmd>DiffviewClose<CR>", "diffview_close", "Close diffview")

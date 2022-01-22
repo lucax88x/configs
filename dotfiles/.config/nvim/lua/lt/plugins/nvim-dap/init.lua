@@ -8,13 +8,13 @@ end
 
 local r = require("lt.utils.remaps")
 
-r.whick_key("<leader>dd", "debugger")
-r.whick_key("<leader>dds", "step")
-r.whick_key("<leader>db", "breakpoints")
-r.whick_key("<leader>dv", "variables")
-r.whick_key("<leader>dw", "widgets")
-r.whick_key("<leader>dr", "repl")
-r.whick_key("<leader>/d", "dap")
+r.which_key("<leader>dd", "debugger")
+r.which_key("<leader>dds", "step")
+r.which_key("<leader>db", "breakpoints")
+r.which_key("<leader>dv", "variables")
+r.which_key("<leader>dw", "widgets")
+r.which_key("<leader>dr", "repl")
+r.which_key("<leader>/d", "dap")
 
 r.noremap("n", "<leader>ddc", dap.continue, "dap_start_continue", "Start/Continue")
 r.noremap("n", "<leader>ddsv", dap.step_over, "dap_step_over", "Step over")

@@ -118,13 +118,15 @@ treesitter.setup({
 
 local r = require("lt.utils.remaps")
 
-r.noremap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", "treesitter-playground", "Treesitter playground")
+r.which_key('<leader>dt', 'Treesitter')
+
+r.noremap("n", "<leader>dtp", "<cmd>TSPlaygroundToggle<CR>", "treesitter-playground", "Treesitter playground")
 r.noremap(
 	"n",
-	"<leader>tt",
+	"<leader>dtt",
 	"<cmd>TSHighlightCapturesUnderCursor<CR>",
 	"treesitter-highlight-under-cursor",
-	"Shows highlight colors under cursor (theme)"
+	"Shows highlight colors under cursor"
 )
 r.map_virtual("o", "af", "Function outer motion")
 r.map_virtual("o", "if", "Function inner motion")
@@ -140,7 +142,7 @@ r.map_virtual("o", "ik", "Json key inner motion")
 r.map_virtual("o", "av", "Json value outer motion")
 r.map_virtual("o", "iv", "Json value inner motion")
 
-r.whick_key("fp", "parameters")
+r.which_key("fp", "parameters")
 
 r.map_virtual("o", "<leader>fpp", "Swap parameter to next")
 r.map_virtual("o", "<leader>fpP", "Swap parameter to previous")

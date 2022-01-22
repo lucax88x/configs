@@ -16,7 +16,7 @@ local function check_conflicts(type, input, unique_identifier)
 	-- conflicts[conflict_key] = true
 end
 
-local function try_add_to_whick_key_by_input(input, description)
+local function try_add_to_which_key_by_input(input, description)
 	if present_which_key then
 		local leader_index = string.find(input, "<leader>")
 		-- print(input)
@@ -40,7 +40,7 @@ function M.map(type, input, output, unique_identifier, description, additional_o
 		check_conflicts(type, input, unique_identifier)
 	end
 
-	try_add_to_whick_key_by_input(input, description)
+	try_add_to_which_key_by_input(input, description)
 end
 
 function M.noremap(type, input, output, unique_identifier, description, additional_options)
@@ -53,10 +53,10 @@ function M.noremap(type, input, output, unique_identifier, description, addition
 end
 
 function M.map_virtual(type, input, description)
-	try_add_to_whick_key_by_input(input, description)
+	try_add_to_which_key_by_input(input, description)
 end
 
-function M.whick_key(input, description)
+function M.which_key(input, description)
 	if present_which_key then
 		which_key.register({
 			[input] = description,

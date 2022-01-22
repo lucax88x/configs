@@ -22,7 +22,7 @@ gitsigns.setup({
 
 local r = require("lt.utils.remaps")
 
-r.whick_key("<leader>gh", "hunks")
+r.which_key("<leader>gh", "hunks")
 
 r.noremap(
 	"n",

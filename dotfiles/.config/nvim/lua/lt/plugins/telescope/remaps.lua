@@ -14,6 +14,7 @@ r.noremap("n", "<leader>/C", builtin.command_history, "telescope_command_history
 r.noremap("n", "<leader>/c", builtin.commands, "telescope_commands", "Search commands")
 r.noremap("n", "<leader>/r", builtin.registers, "telescope_registers", "Search registers")
 r.noremap("n", "<leader>/m", builtin.marks, "telescope_marks", "Search marks")
+r.noremap("n", "<leader>/M", builtin.keymaps, "telescope_keymaps", "Search keymaps")
 r.noremap("n", "<leader>/t", builtin.treesitter, "telescope_treesitter", "Search treesitter")
 r.noremap("n", "<leader>/gb", builtin.git_branches, "telescope_git_branches", "Search git branches")
 r.noremap("n", "<leader>/gc", builtin.git_commits, "telescope_git_commits", "Search git commits")

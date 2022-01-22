@@ -8,8 +8,8 @@ refactoring.setup({})
 
 local r = require("lt.utils.remaps")
 
-r.whick_key("<leader>te", "extract")
-r.whick_key("<leader>ti", "inline")
+r.which_key("<leader>te", "extract")
+r.which_key("<leader>ti", "inline")
 
 r.noremap("v", "<leader>tef", function()
 	refactoring.refactor("Extract Function")
