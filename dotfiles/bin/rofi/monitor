@@ -1,0 +1,11 @@
+#!/bin/bash
+
+chosen_monitor=$(printf 'work\nhome\nundocked\ngym' | rofi -dmenu -i -p "Monitors" -no-custom)
+
+if [[ -z $chosen_monitor ]]; then
+	# If we have not chosen a network, the previous command will return an empty string
+	# and we can exit right away
+	exit 1
+fi
+
+"$HOME"/bin/monitor "$chosen_monitor"

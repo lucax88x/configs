@@ -169,32 +169,32 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+r mode "$resize"
 # resize window (you can also use the mouse for that)
-# mode "resize" {
-        # # These bindings trigger as soon as you enter the resize mode
+set $resize resize (h, j, k, l)
+mode "$resize" {
+   # These bindings trigger as soon as you enter the resize mode
 
-        # # Pressing left will shrink the window’s width.
-        # # Pressing right will grow the window’s width.
-        # # Pressing up will shrink the window’s height.
-        # # Pressing down will grow the window’s height.
-        # bindsym $left resize shrink width 10 px or 10 ppt
-        # bindsym $right resize grow height 10 px or 10 ppt
-        # bindsym $up resize shrink height 10 px or 10 ppt
-        # bindsym $down resize grow width 10 px or 10 ppt
+   # Pressing left will shrink the window’s width.
+   # Pressing right will grow the window’s width.
+   # Pressing up will shrink the window’s height.
+   # Pressing down will grow the window’s height.
+   bindsym $left resize shrink width 10 px or 10 ppt
+   bindsym $right resize grow height 10 px or 10 ppt
+   bindsym $up resize shrink height 10 px or 10 ppt
+   bindsym $down resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        # bindsym Left resize shrink width 10 px or 10 ppt
-        # bindsym Down resize grow height 10 px or 10 ppt
-        # bindsym Up resize shrink height 10 px or 10 ppt
-        # bindsym Right resize grow width 10 px or 10 ppt
+   # same bindings, but for the arrow keys
+   bindsym Left resize shrink width 10 px or 10 ppt
+   bindsym Down resize grow height 10 px or 10 ppt
+   bindsym Up resize shrink height 10 px or 10 ppt
+   bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        # bindsym Return mode "default"
-        # bindsym Escape mode "default"
-        # bindsym $mod+r mode "default"
-# }
-
-# bindsym $mod+r mode "resize"
+   # back to normal: Enter or Escape or $mod+r
+   bindsym Return mode "default"
+   bindsym Escape mode "default"
+   bindsym $mod+r mode "default"
+}
 
 #####################
 ### rofi ###
@@ -204,6 +204,7 @@ bindsym $mod+q exec $HOME/.config/rofi/bin/menu_powermenu
 bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
 bindsym $altMod+Tab exec "rofi -combi window -show"
 bindsym $mod+$altMod+w exec $HOME/bin/rofi/i3-resurrect
+bindsym $mod+m exec $HOME/bin/rofi/monitor
 
 #####################
 ### greenclip ###
@@ -270,6 +271,11 @@ for_window [title="^Steam Keyboard$"] floating enable
 ######################
 for_window [title="^Origin$"] floating enable
 for_window [instance="origin.exe"] floating enable
+
+#####################
+### Chrome ###
+######################
+for_window [title="^DevTools$" class="google-chrome"] floating enable
 
 # blur-background-exclude = [
 # "name *= 'rect-overlay'",

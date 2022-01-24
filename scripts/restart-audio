@@ -1,2 +1,0 @@
-pulseaudio -k && pactl load-module module-detect
-

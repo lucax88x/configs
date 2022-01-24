@@ -1,13 +1,13 @@
 #!/bin/sh
 
-RED=`tput setaf 1`
-GREEN=`tput setaf 2`
-RESET=`tput sgr0`
+RED=$(tput setaf 1)
 
-if [ -z $1 ] ; then
+if [ -z "$1" ] ; then
     echo "${RED}Mode needed, use docked or undocked or temp"
     exit 1
 fi
+
+notify-send "monitor" "switching to $1"
 
 if [ "$1" = "work" ]; then
     xrandr \
@@ -52,18 +52,7 @@ if [ "$1" = "gym" ]; then
     --output DP-6 --off
 fi
 
-
 if [ "$1" = "desktop" ]; then
     xrandr \
     --output DP-2 --primary --mode 2560x1440 --rate 144.00 --rotate normal
-fi
-
-if [ "$1" = "temp" ]; then
-    xrandr \
-    --output DP-5 --primary --mode 3840x2160 --pos 1920x0 --rotate normal \
-    --output DP-4 --mode 1920x1080 --pos 0x0 --rotate normal \
-    --output DP-3 --off \
-    --output DP-2 --off --output DP-3 --off \
-    --output DP-0 --off --output DP-1 --off \
-    --output DP-6 --off
 fi

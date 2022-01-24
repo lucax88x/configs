@@ -6,6 +6,7 @@ end
 
 hop.setup({
 	jump_on_sole_occurrence = true,
+  uppercase_labels = true
 })
 
 local colors = require("gruvbox.colors")

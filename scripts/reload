@@ -1,5 +1,0 @@
-#!/bin/sh
-
-. ~/.zshrc 
-
-echo 'ZSH config reloaded from ~/.zshrc'

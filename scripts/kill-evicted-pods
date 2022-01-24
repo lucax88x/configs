@@ -1,3 +1,0 @@
-#!/bin/sh
-
-kubectl delete pods --namespace $1 $(kubectl get pods --namespace $1 | awk '/Evicted/ {print $1}')

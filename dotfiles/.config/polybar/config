@@ -125,7 +125,7 @@ format = <label-state> <label-mode>
 
 label-mode = %mode%
 label-mode-padding = 2
-label-mode-background = ${colors.primary}
+label-mode-background = ${colors.urgent}
 
 label-focused = %name%
 label-focused-background = ${colors.background-alt}
