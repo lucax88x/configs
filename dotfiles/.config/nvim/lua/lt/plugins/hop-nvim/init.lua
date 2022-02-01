@@ -28,21 +28,21 @@ r.map("n", "S", function()
 end, "hop", "Search")
 
 r.map("n", "f", function()
-	hop.hint_char1({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = false })
+	hop.hint_char1({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = true })
 end, "hop", "Search")
 
 r.map("n", "f", function()
-	hop.hint_char1({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = false })
+	hop.hint_char1({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = true })
 end, "hop", "Search")
 
 r.map("n", "F", function()
-	hop.hint_char1({ direction = hint.HintDirection.BEFORE_CURSOR, current_line_only = false })
+	hop.hint_char1({ direction = hint.HintDirection.BEFORE_CURSOR, current_line_only = true })
 end, "hop", "Search")
 
 r.map("o", "f", function()
 	hop.hint_char1({
 		direction = hint.HintDirection.AFTER_CURSOR,
-		current_line_only = false,
+		current_line_only = true,
 		inclusive_jump = true,
 	})
 end, "hop", "Search")
@@ -50,15 +50,15 @@ end, "hop", "Search")
 r.map("o", "F", function()
 	hop.int_char1({
 		direction = hint.HintDirection.BEFORE_CURSOR,
-		current_line_only = false,
+		current_line_only = true,
 		inclusive_jump = true,
 	})
 end, "hop", "Search")
 
 r.map("", "t", function()
-	hop.hint_char1({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = false })
+	hop.hint_char1({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = true })
 end, "hop", "Search")
 
 r.map("", "T", function()
-	hop.hint_char1({ direction = hint.HintDirection.BEFORE_CURSOR, current_line_only = false })
+	hop.hint_char1({ direction = hint.HintDirection.BEFORE_CURSOR, current_line_only = true })
 end, "hop", "Search")

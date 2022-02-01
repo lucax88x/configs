@@ -1,0 +1,22 @@
+#!/bin/env sh
+
+echo 'calculating the percentage of commits per contributor'
+
+team_total=$(git shortlog -s -n | sed 's/\t/,/g' | cut -f1 -d, | bc -l | awk '{sum+=$1}END{print sum}')
+tmp_counter='/tmp/counter.txt'
+tmp_user='/tmp/users.txt'
+tmp_percentage='/tmp/counters_users'
+# if you are running this again it make the file empty or you can rm it
+rm $tmp_percentage $tmp_user $tmp_counter
+git shortlog -s -n | sed 's/\t/,/g' | cut -f2 -d, >>$tmp_user
+git shortlog -s -n | sed 's/\t/,/g' | cut -f1 -d, >>$tmp_counter
+
+cat $tmp_counter | while read -r LINE; do
+	printf '%.2f %%  \n' $(echo \("$LINE/$team_total"\)\*100 | bc -l) >>$tmp_percentage
+done
+echo 'commits %      | contributor     | # of commits'
+paste $tmp_percentage $tmp_user $tmp_counter
+
+echo 'calculating lines of code per contributor'
+# git ls-tree -r -z --name-only HEAD -- */*  | sed 's/^/.\//' | xargs -0 -n1 git blame --line-porcelain HEAD | grep -ae "^author "|sort|uniq -c|sort -nr
+git ls-tree -r HEAD | sed -re 's/^.{53}//' | while read filename; do file "$filename"; done | grep -E ': .*text' | sed -r -e 's/: .*//' | while read filename; do git blame -w "$filename"; done | sed -r -e 's/.*\((.*)[0-9]{4}-[0-9]{2}-[0-9]{2} .*/\1/' -e 's/ +$//' | sort | uniq -c

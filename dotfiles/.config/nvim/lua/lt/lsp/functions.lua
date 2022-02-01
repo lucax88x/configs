@@ -26,6 +26,7 @@ M.lsp_install_servers = function()
 	installLanguageServer("efm")
 	installLanguageServer("rust_analyzer")
 	installLanguageServer("eslint")
+	installLanguageServer("svelte")
 end
 
 return M

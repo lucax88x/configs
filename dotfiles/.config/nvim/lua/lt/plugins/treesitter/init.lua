@@ -16,6 +16,8 @@ treesitter.setup({
 		"javascript",
 		"c_sharp",
 		"graphql",
+    "vue",
+    "svelte",
 	},
 	highlight = {
 		enable = true,

@@ -101,6 +101,7 @@ local servers = {
 	efm = require("lt.lsp.servers.efm")(),
 	eslint = {},
 	tsserver = require("lt.lsp.servers.tsserver")(on_attach),
+	svelte = {},
 }
 
 local default_lsp_config = {

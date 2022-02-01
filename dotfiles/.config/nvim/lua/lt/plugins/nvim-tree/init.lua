@@ -89,3 +89,4 @@ r.noremap("n", "-", "<cmd>NvimTreeToggle<CR>", "explorer_toggle", "Toggle explor
 -- r.map_virtual("a", "Create file/dir")
 -- r.map_virtual("d", "Remove file/dir")
 -- r.map_virtual("r", "Rename file/dir")
+

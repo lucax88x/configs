@@ -240,7 +240,6 @@ return packer.startup({
 		-- Autocomplete & Linters
 		use("neovim/nvim-lspconfig")
 		use("nvim-lua/lsp-status.nvim")
-		-- use("jose-elias-alvarez/null-ls.nvim")
 		use({
 			"folke/trouble.nvim",
 			config = function()
@@ -248,9 +247,9 @@ return packer.startup({
 			end,
 		})
 		use({
-			"filipdutescu/renamer.nvim",
+			"stevearc/dressing.nvim",
 			config = function()
-				require("lt.plugins.renamer-nvim")
+				require("lt.plugins.dressing-nvim")
 			end,
 		})
 		use("onsails/lspkind-nvim")
@@ -262,6 +261,14 @@ return packer.startup({
 			"creativenull/efmls-configs-nvim",
 			requires = { "neovim/nvim-lspconfig" },
 		})
+
+		use({
+			"j-hui/fidget.nvim",
+			config = function()
+				require("lt.plugins.fidget-nvim")
+			end,
+		})
+
 		use({
 			"github/copilot.vim",
 			config = function()
