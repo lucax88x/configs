@@ -6,7 +6,7 @@ end
 
 local r = require("lt.utils.remaps")
 
-r.which("<leader>h", "harpoon")
+r.which_key("<leader>h", "harpoon")
 
 harpoon.setup({})
 
