@@ -32,20 +32,20 @@ end
 function M.link_highlight(from, to, override)
 	local hl_exists, _ = pcall(vim.api.nvim_get_hl_by_name, from, false)
 	if override or not hl_exists then
-		vim.cmd(("highlight link %s %s"):format(from, to))
+		-- vim.cmd(("highlight link %s %s"):format(from, to))
+		vim.api.nvim_set_hl(0, from, { link = to })
 	end
 end
 
-
 M.highlight_bg = function(group, col)
-	vim.cmd("hi " .. group .. " guibg=" .. col)
+	vim.api.nvim_set_hl(0, group, { bg = col })
 end
 
 -- Define fg color
 -- @param group Group
 -- @param color Color
 M.highlight_fg = function(group, col)
-	vim.cmd("hi " .. group .. " guifg=" .. col)
+	vim.api.nvim_set_hl(0, group, { fg = col })
 end
 
 -- Define bg and fg color
@@ -53,7 +53,7 @@ end
 -- @param fgcol Fg Color
 -- @param bgcol Bg Color
 M.highlight_fg_bg = function(group, fgcol, bgcol)
-	vim.cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
+	vim.api.nvim_set_hl(0, group, { bg = bgcol, fg = fgcol })
 end
 
 return M

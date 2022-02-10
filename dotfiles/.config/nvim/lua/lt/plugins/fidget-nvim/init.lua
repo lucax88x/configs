@@ -4,4 +4,8 @@ if not present then
 	return
 end
 
-fidget.setup({})
+fidget.setup({
+	text = {
+		spinner = "dots",
+	},
+})

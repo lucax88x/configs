@@ -6,8 +6,6 @@ end
 
 local r = require("lt.utils.remaps")
 
-r.which("<leader>h", "harpoon")
-
 harpoon.setup({})
 
 r.noremap("n", "<leader>ha", function()

@@ -57,3 +57,18 @@ if pcall(require, "nvim-tree") then
 	highlight_fg_bg("NvimTreeVertSplit", colors.dark0_hard, colors.dark0_hard)
 	-- highlight_fg_bg("NvimTreeWindowPicker", red, black2)
 end
+
+if pcall(require, "cmp") then
+  vim.cmd("highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=" .. colors.neutral_red)
+	-- highlight_fg("CmpItemAbbrDeprecated", colors.neutral_red)
+	highlight_fg("CmpItemAbbrMatch", colors.neutral_blue)
+	highlight_fg("CmpItemAbbrMatchFuzzy", colors.neutral_blue)
+	highlight_fg("CmpItemKindVariable", colors.neutral_aqua)
+	highlight_fg("CmpItemKindInterface", colors.neutral_aqua)
+	highlight_fg("CmpItemKindText", colors.neutral_aqua)
+	highlight_fg("CmpItemKindFunction", colors.neutral_purple)
+	highlight_fg("CmpItemKindMethod", colors.neutral_purple)
+	highlight_fg("CmpItemKindKeyword", colors.neutral_green)
+	highlight_fg("CmpItemKindProperty", colors.neutral_green)
+	highlight_fg("CmpItemKindUnit", colors.neutral_green)
+end

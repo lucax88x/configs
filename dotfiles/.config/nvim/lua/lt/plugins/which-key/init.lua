@@ -81,8 +81,6 @@ local groups = {
 	t = { name = "types" },
 	f = { name = "refactor" },
 	l = { name = "lsp" },
-	h = { name = "harpoon" },
-	z = { name = "zen" },
 	d = { name = "debug" },
 	["'"] = { name = "marks" },
 	['"'] = { name = "registers" },

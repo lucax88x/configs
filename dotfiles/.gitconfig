@@ -10,7 +10,52 @@
 	defaultBranch = main
 [rebase]
 	autoStash = true
+  
+[core]
+  pager = delta --theme='gruvbox' --plus-color="#98971a" --minus-color="#9d0006"
 
+[interactive]
+  diffFilter = delta --theme='gruvbox' --plus-color="#98971a" --minus-color="#9d0006" --color-only
+
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  features = decorations
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta "decorations"]
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = blue box
+  hunk-header-file-style = red
+  hunk-header-line-number-style = "#98971a"
+  hunk-header-style = file line-number syntax   
+    
+[diff]
+  tool = delta --theme='gruvbox' --plus-color="#98971a" --minus-color="#9d0006"
+  colorMoved = default
+  
+; [merge]
+;   tool = delta
+;   conflictstyle = diff3
+  
+; [mergetool "delta"]
+;   path = /usr/bin/delta
+;   trustExitCode = false
+
+[merge]
+  tool = smerge
+
+[mergetool]
+  keepBackup = false
+  prompt = false
+ 
+[mergetool "smerge"]
+  cmd = smerge mergetool "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
+  trustExitCode = true
+    
 [alias]
 	aliases = config --get-regexp ^alias
 
@@ -33,6 +78,7 @@
 	lo = log --oneline
 	ls = log --pretty=format:\"%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]\" --decorate
 	po = !git push --set-upstream origin $(git symbolic-ref --short HEAD)
+	pof = !git push --set-upstream origin $(git symbolic-ref --short HEAD) --force
 	pl = !git pull --no-edit
 
 	# PERSO
@@ -89,6 +135,7 @@
 	br = branch
 	dt = difftool
 	dtd = difftool -d
+	mt = mergetool
 	d = diff
 	dc = diff --cached
 	wdiff = diff --color-words

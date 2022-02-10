@@ -8,6 +8,7 @@ local lsp = require("lspconfig")
 -- paru -S luacheck
 -- paru -S shfmt-bin
 -- paru -S shellcheck-bin
+-- paru -S yamllint
 --
 -- https://github.com/creativenull/efmls-configs-nvim/blob/main/supported-linters-and-formatters.md
 local alex = require("efmls-configs.linters.alex")

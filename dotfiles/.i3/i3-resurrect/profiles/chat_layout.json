@@ -1,0 +1,158 @@
+{
+  "border": "normal",
+  "current_border_width": -1,
+  "floating": "auto_off",
+  "fullscreen_mode": 1,
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "layout": "splith",
+  "marks": [],
+  "name": "1 \uf3fe",
+  "orientation": "horizontal",
+  "percent": 1.0,
+  "scratchpad_state": "none",
+  "sticky": false,
+  "type": "workspace",
+  "workspace_layout": "default",
+  "nodes": [
+    {
+      "border": "normal",
+      "current_border_width": -1,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "layout": "tabbed",
+      "marks": [],
+      "name": null,
+      "orientation": "horizontal",
+      "percent": null,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": 2,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 50,
+            "y": 50,
+            "width": 1920,
+            "height": 1033
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Edoardo Arlati | Microsoft Teams",
+          "orientation": "none",
+          "percent": 0.25,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^Microsoft\\ Teams\\ \\-\\ Preview$",
+              "instance": "^microsoft\\ teams\\ \\-\\ preview$",
+              "title": "^Edoardo\\ Arlati\\ \\|\\ Microsoft\\ Teams$"
+            }
+          ]
+        },
+        {
+          "border": "pixel",
+          "current_border_width": 2,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 0,
+            "y": 22,
+            "width": 1920,
+            "height": 1033
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Telegram",
+          "orientation": "none",
+          "percent": 0.25,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^TelegramDesktop$",
+              "instance": "^telegram\\-desktop$",
+              "title": "^Telegram$"
+            }
+          ]
+        },
+        {
+          "border": "pixel",
+          "current_border_width": 2,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 0,
+            "y": 22,
+            "width": 1920,
+            "height": 1033
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Mailspring",
+          "orientation": "none",
+          "percent": 0.25,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^Mailspring$",
+              "instance": "^mailspring$",
+              "title": "^Mailspring$"
+            }
+          ]
+        },
+        {
+          "border": "pixel",
+          "current_border_width": 2,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 0,
+            "y": 22,
+            "width": 1920,
+            "height": 1033
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Slack | triman | Triman",
+          "orientation": "none",
+          "percent": 0.25,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^Slack$",
+              "instance": "^slack$",
+              "title": "^Slack\\ \\|\\ triman\\ \\|\\ Triman$"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -20,3 +20,6 @@ pacman -Qem
 
 # list all installed AUR pacakges
 pacman -Qm
+
+# how to downgrade func?
+echo "download PKGBUILD (https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=azure-functions-core-tools-bin) and then modify the version, then makepkg -si"

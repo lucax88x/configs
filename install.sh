@@ -332,11 +332,11 @@ else
 	echo PROCS ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v btm)" ]; then
-	echo INSTALLING BTM
-	installBtm
+if ! [ -x "$(command -v btop)" ]; then
+	echo INSTALLING BTOP
+	installBtop
 else
-	echo BTM ALREADY INSTALLED
+	echo BTOP ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v navi)" ]; then

@@ -122,7 +122,7 @@ set $ws2 "2 "
 set $ws3 "3 "
 # browser
 set $ws4 "4 "
-# virtualbox
+# virtualization
 set $ws5 "5 "
 # emails
 set $ws6 "6 "
@@ -135,7 +135,7 @@ workspace $ws3 output $left_home_monitor $left_work_monitor
 workspace $ws4 output $right_home_monitor $right_work_monitor
 workspace $ws5 output $center_home_monitor $center_work_monitor
 workspace $ws6 output $laptop_monitor
-workspace $ws7 output $laptop_monitor
+workspace $ws7 output $right_home_monitor $right_work_monitor
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1

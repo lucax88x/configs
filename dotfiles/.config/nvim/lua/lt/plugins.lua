@@ -241,25 +241,26 @@ return packer.startup({
 		use("neovim/nvim-lspconfig")
 		use("nvim-lua/lsp-status.nvim")
 		use({
-			"folke/trouble.nvim",
-			config = function()
-				require("lt.plugins.trouble-nvim")
-			end,
-		})
-		use({
 			"stevearc/dressing.nvim",
 			config = function()
 				require("lt.plugins.dressing-nvim")
 			end,
 		})
 		use("onsails/lspkind-nvim")
-		use("ray-x/lsp_signature.nvim")
 		use("jose-elias-alvarez/nvim-lsp-ts-utils")
 		use("williamboman/nvim-lsp-installer")
 		use("b0o/schemastore.nvim")
 		use({
 			"creativenull/efmls-configs-nvim",
 			requires = { "neovim/nvim-lspconfig" },
+		})
+
+		use({
+			"danymat/neogen",
+			config = function()
+				require("lt.plugins.neogen")
+			end,
+			requires = "nvim-treesitter/nvim-treesitter",
 		})
 
 		use({
@@ -303,6 +304,7 @@ return packer.startup({
 			event = "InsertEnter",
 		})
 
+		use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
 		use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
@@ -351,6 +353,12 @@ return packer.startup({
 				require("lt.plugins.harpoon")
 			end,
 			requires = "nvim-lua/plenary.nvim",
+		})
+		use({
+			"Everduin94/nvim-quick-switcher",
+			config = function()
+				require("lt.plugins.quick-switcher")
+			end,
 		})
 
 		use({

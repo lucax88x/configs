@@ -400,8 +400,8 @@ function installProcs {
 	paru -Sy --noconfirm procs
 }
 
-function installBtm {
-	paru -S --noconfirm bottom
+function installBtop {
+	paru -S --noconfirm btop
 }
 
 function installNavi {
@@ -501,6 +501,12 @@ function installNordvpn {
 	sudo usermod -aG nordvpn "$USER"
 }
 
+function installForticlient {
+	paru -S --noconfirm forticlient-vpn
+  sudo systemctl enable forticlient-scheduler
+  sudo systemctl start forticlient-scheduler
+}
+
 function installVirtualization {
 	paru -S --noconfirm qemu virt-manager qemu-arch-extra ovmf vde2 ebtables dnsmasq bridge-utils openbsd-netcat dmidecode
 	sudo systemctl enable libvirtd.service
@@ -511,6 +517,7 @@ function installVirtualization {
 
 	sudo usermod -aG libvirt "$USER"
 	# sudo usermod -aG libvirt-qemu "$USER"
+  # https://leduccc.medium.com/improving-the-performance-of-a-windows-10-guest-on-qemu-a5b3f54d9cf5
 }
 
 function installThermald {
