@@ -3,129 +3,48 @@
 ## GLOBAL SOFTWARE
 
 function installBaseDevel {
-	case $DISTRO in
-	ARCH)
-		paru -S --noconfirm base-devel
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm base-devel
 }
 
 function installGo {
-	case $DISTRO in
-	ARCH)
-		paru -S --noconfirm go
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm go
 }
 
 function installRust {
-	case $DISTRO in
-	ARCH)
-		paru -S --noconfirm rustup
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm rustup
 }
 
 function installParu {
-	case $DISTRO in
-	ARCH)
-		git clone https://aur.archlinux.org/paru.git
-		cd paru && makepkg -si --noconfirm && cd ..
-		rm -rf paru
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	git clone https://aur.archlinux.org/paru.git
+	cd paru && makepkg -si --noconfirm && cd ..
+	rm -rf paru
 }
 
 function installCurl {
-	case $DISTRO in
-	UBUNTU)
-		apt-get update >/dev/null
-		apt-get -y install curl
-		;;
-	ARCH)
-		paru -S --noconfirm curl
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm curl
 }
 
 function installWget {
-	case $DISTRO in
-	ARCH)
-		paru -S --noconfirm wget
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm wget
 }
 
 function installGit {
-
-	case $DISTRO in
-	UBUNTU)
-		apt-get update >/dev/null
-		apt-get -y install git-core
-		;;
-	ARCH)
-		paru -S --noconfirm git
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm git
 }
 
 function installSsh {
-
-	case $DISTRO in
-	ARCH)
-		paru -S --noconfirm openssh
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm openssh
 }
 
 function installUnzip {
-
-	case $DISTRO in
-	ARCH)
-		paru -S --noconfirm unzip
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm unzip
 }
 
 ## SOFTWARE ##
 
 function installJetbrainsMono {
-	wget https://github.com/JetBrains/JetBrainsMono/releases/download/v$JETBRAINS_MONO_VERSION/JetBrainsMono-$JETBRAINS_MONO_VERSION.zip -O $TEMP_DIR/JetBrainsMono.zip
-
-	unzip $TEMP_DIR/JetBrainsMono.zip -d $TEMP_DIR/jetbrains-mono
-	mkdir -p ~/.fonts/jetbrains-mono
-	cp $TEMP_DIR/jetbrains-mono/fonts/ttf/* ~/.fonts/jetbrains-mono
-	# remove no ligature fonts
-	rm ~/.fonts/jetbrains-mono/*NL*
-
-	fc-cache
+	paru -S --noconfirm nerd-fonts-jetbrains-mono
+	paru -S --noconfirm ttf-jetbrains-mono-git
 }
 
 function installOpenSans {
@@ -152,110 +71,30 @@ function installFontAwesome {
 }
 
 function installLsd {
-	case $DISTRO in
-	ARCH)
-		paru -Sy --noconfirm lsd
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -Sy --noconfirm lsd
 }
 
 function installBat {
-	case $DISTRO in
-	ARCH)
-		paru -Sy --noconfirm bat
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -Sy --noconfirm bat
 }
 
 function installZsh {
-
-	case $DISTRO in
-	UBUNTU)
-		apt-get update >/dev/null
-		apt-get -y install zsh
-
-		chmod a+x /usr/bin/chsh
-		chsh -s $(which zsh)
-		;;
-	ARCH)
-		paru -Sy --noconfirm zsh
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -Sy --noconfirm zsh
 }
 
 function installChrome {
+	paru -S --noconfirm google-chrome
 
-	case $DISTRO in
-	UBUNTU)
-		wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-		sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-		apt-get update >/dev/null
-		apt-get -y install google-chrome-stable
-		;;
-	ARCH)
-		paru -S --noconfirm google-chrome
-
-		# enables hardware accelerated
-		paru -S --noconfirm libvdpau vdpauinfo
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	# enables hardware accelerated
+	paru -S --noconfirm libvdpau vdpauinfo
 }
 
 function installJetbrainsToolbox {
-	case $DISTRO in
-	UBUNTU)
-		wget https://download.jetbrains.com/toolbox/$JETBRAINS_TOOLBOX.tar.gz -q --show-progress
-		tar xvzf $JETBRAINS_TOOLBOX.tar.gz
-		./$JETBRAINS_TOOLBOX/jetbrains-toolbox
-		;;
-	ARCH)
-		paru -S --noconfirm fuse
-
-		wget https://download.jetbrains.com/toolbox/$JETBRAINS_TOOLBOX.tar.gz -q --show-progress
-		tar xvzf $JETBRAINS_TOOLBOX.tar.gz
-		./$JETBRAINS_TOOLBOX/jetbrains-toolbox
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
-}
-
-function installFuraCode {
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONT_VERSION/FiraCode.zip -O $TEMP_DIR/FuraCode.zip
-
-	unzip $TEMP_DIR/FuraCode.zip -d ~/.fonts/furacode
-
-	fc-cache
+	paru -S --noconfirm jetbrains-toolbox
 }
 
 function installTelegram {
-
-	case $DISTRO in
-	UBUNTU)
-		add-apt-repository -y ppa:atareao/telegram
-		apt-get update >/dev/null
-		apt-get -y install telegram
-		;;
-	ARCH)
-		paru -S --noconfirm telegram-desktop
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm telegram-desktop
 }
 
 function installBd {
@@ -265,18 +104,7 @@ function installBd {
 }
 
 function installXClip {
-
-	case $DISTRO in
-	UBUNTU)
-		apt-get -y install xclip
-		;;
-	ARCH)
-		paru -S --noconfirm xclip
-		;;
-	*)
-		echo NOT IMPLEMENTED!
-		;;
-	esac
+	paru -S --noconfirm xclip
 }
 
 function installSublimeMerge {

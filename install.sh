@@ -4,9 +4,6 @@
 DISTRO=${1^^}
 
 case $DISTRO in
-UBUNTU)
-	echo installing for ubuntu
-	;;
 ARCH)
 	echo installing for arch
 	;;
@@ -18,8 +15,6 @@ esac
 
 TEMP_DIR=~/setup-temp
 EMAIL=lucax88x@gmail.com
-JETBRAINS_MONO_VERSION=2.221
-JETBRAINS_TOOLBOX=jetbrains-toolbox-1.19.7784
 
 mkdir -p $TEMP_DIR
 cd $TEMP_DIR
@@ -125,8 +120,6 @@ if ! [ "pacman -Qs freetype2-ultimate5 > /dev/null" ]; then
 else
 	echo PATCHED FREETYPE ALREADY INSTALLED
 fi
-
-exit
 
 if ! [ -x "$(command -v bat)" ]; then
 	echo INSTALLING BAT
