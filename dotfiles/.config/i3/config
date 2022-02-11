@@ -287,15 +287,6 @@ for_window [title="^DevTools$" class="google-chrome"] floating enable
 exec --no-startup-id i3-battery-popup -n
 
 #####################
-### i3-easyfocus ###
-######################
-bindsym $mod+semicolon exec "i3-easyfocus -a -f -xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1"
-
-#####################
-### Picom ###
-######################
-
-#####################
 ### Change Language shortcuts ###
 ######################
 bindsym $mod+Shift+i exec setxkbmap it

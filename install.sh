@@ -1,6 +1,4 @@
 #!/bin/bash
-. ./installers.sh
-
 DISTRO=${1^^}
 
 case $DISTRO in
@@ -17,76 +15,80 @@ TEMP_DIR=~/setup-temp
 EMAIL=lucax88x@gmail.com
 
 mkdir -p $TEMP_DIR
-cd $TEMP_DIR
+cd $TEMP_DIR || exit
 
 echo '# GLOBAL SOFTWARE #'
 
 if ! [ -x "$(command -v make)" ]; then
 	echo INSTALLING BASE-DEVEL
-	installBaseDevel
-else
-	echo BASE-DEVEL ALREADY INSTALLED
-fi
 
-if ! [ -x "$(command -v make)" ]; then
-	echo INSTALLING BASE-DEVEL
-	installBaseDevel
+	paru -S --noconfirm base-devel
 else
 	echo BASE-DEVEL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v rustup)" ]; then
 	echo INSTALLING RUSTUP
-	installRust
+
+	paru -S --noconfirm rustup
 else
 	echo RUST ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v go)" ]; then
 	echo INSTALLING GO
-	installGo
+
+	paru -S --noconfirm go
 else
 	echo GO ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v git)" ]; then
 	echo INSTALLING GIT
-	installGit
+
+	paru -S --noconfirm git
 else
 	echo GIT ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v paru)" ]; then
 	echo INSTALLING PARU
-	installParu
+
+	git clone https://aur.archlinux.org/paru.git
+	cd paru && makepkg -si --noconfirm && cd ..
+	rm -rf paru
 else
 	echo PARU ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v wget)" ]; then
 	echo INSTALLING WGET
-	installWget
+
+	paru -S --noconfirm wget
 else
 	echo WGET ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v curl)" ]; then
 	echo INSTALLING CURL
-	installCurl
+
+	paru -S --noconfirm curl
 else
 	echo CURL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v ssh-keygen)" ]; then
 	echo INSTALLING SSH
-	installSsh
+
+	paru -S --noconfirm openssh
 else
 	echo SSH ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v unzip)" ]; then
 	echo INSTALLING UNZIP
-	installUnzip
+
+	paru -S --noconfirm unzip
 else
 	echo UNZIP ALREADY INSTALLED
 fi
@@ -95,331 +97,503 @@ echo '# SOFTWARE #'
 
 if ! [ "$(fc-list | grep -c 'JetBrains')" -ge 1 ]; then
 	echo INSTALLING JETBRAINS MONO
-	installJetbrainsMono
+
+	paru -S --noconfirm nerd-fonts-jetbrains-mono
+	paru -S --noconfirm ttf-jetbrains-mono-git
 else
 	echo JETBRAINS MONO ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Open Sans')" -ge 1 ]; then
 	echo INSTALLING OPEN SANS
-	installOpenSans
+
+	wget https://fonts.google.com/download?family=Open+Sans -O $TEMP_DIR/OpenSans.zip
+
+	unzip $TEMP_DIR/OpenSans.zip -d $TEMP_DIR/open-sans
+	mkdir -p ~/.fonts/open-sans
+	cp $TEMP_DIR/roboto/OpenSans-* ~/.fonts/open-sans
+
+	fc-cache
 else
 	echo OPEN SANS ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then
 	echo INSTALLING FONTAWESOME
-	installFontAwesome
+
+	# wget https://github.com/FortAwesome/Font-Awesome/releases/download/$FONTAWESOME_VERSION/fontawesome-free-$FONTAWESOME_VERSION-desktop.zip -O $TEMP_DIR/FontAwesome.zip
+
+	# unzip $TEMP_DIR/FontAwesome.zip -d ~/.fonts
+
+	# fc-cache
+	echo MANUALLY INSTALL FONTAWESOME 5 PRO!
 else
 	echo FONTAWESOME ALREADY INSTALLED
 fi
 
 if ! [ "pacman -Qs freetype2-ultimate5 > /dev/null" ]; then
 	echo INSTALLING FREETYPE PATCHED
-	installFreeType
+
+	paru -Sy --noconfirm freetype2-ultimate5
 else
 	echo PATCHED FREETYPE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v bat)" ]; then
 	echo INSTALLING BAT
-	installBat
+
+	paru -Sy --noconfirm bat
 else
 	echo BAT ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v lsd)" ]; then
 	echo INSTALLING LSD
-	installLsd
+
+	paru -Sy --noconfirm lsd
 else
 	echo LSD ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v zsh)" ]; then
 	echo INSTALLING ZSH
-	installZsh
+
+	paru -Sy --noconfirm zsh
 else
 	echo ZSH ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v google-chrome-stable)" ]; then
 	echo INSTALLING CHROME
-	installChrome
+
+	paru -S --noconfirm google-chrome
+
+	# enables hardware accelerated
+	paru -S --noconfirm libvdpau vdpauinfo
 else
 	echo CHROME ALREADY INSTALLED
 fi
 
 if ! [ -f ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox ]; then
 	echo INSTALLING JETBRAINS TOOLBOX
-	installJetbrainsToolbox
+
+	paru -S --noconfirm jetbrains-toolbox
 else
 	echo JETBRAINS TOOLBOX ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v telegram-desktop)" ]; then
 	echo INSTALLING TELEGRAM
-	installTelegram
+
+	paru -S --noconfirm telegram-desktop
 else
 	echo TELEGRAM ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v bd)" ]; then
-	echo INSTALLING BD
-	installBd
-else
-	echo BD ALREADY INSTALLED
-fi
-
 if ! [ -x "$(command -v xclip)" ]; then
 	echo INSTALLING XCLIP
-	installXClip
+
+	paru -S --noconfirm xclip
 else
 	echo XCLIP ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v smerge)" ]; then
 	echo INSTALLING SUBLIME MERGE
-	installSublimeMerge
+
+	curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo yay-key --add sublimehq-pub.gpg && sudo yay-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
+	echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/yay.conf
+	paru -Sy --noconfirm sublime-merge
 else
 	echo SUBLIME MERGE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v dotnet)" ]; then
 	echo INSTALLING DOTNETCORE SDK
-	installDotnetSdk
+
+	paru -Sy --noconfirm dotnet-sdk-bin
+	paru -Sy --noconfirm aspnet-runtime-bin
 else
 	echo DOTNETCORE SDK ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v node)" ]; then
 	echo INSTALLING NODE
-	installNode
+
+	paru -Sy --noconfirm nvm
 else
 	echo NODE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v yarn)" ]; then
 	echo INSTALLING YARN
-	installYarn
+
+	paru -Sy --noconfirm yarn
 else
 	echo YARN ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v docker)" ]; then
 	echo INSTALLING DOCKER
-	installDocker
+
+	# paru -Sy --noconfirm docker
+	#
+	# $DOCKER_GROUP = docker
+	# getent group $DOCKER_GROUP || sudo groupadd $DOCKER_GROUP
+	# sudo usermod -aG $DOCKER_GROUP $USER
+	# # newgrp docker
+	# sudo systemctl enable docker
+	# sudo systemctl start docker
 else
 	echo DOCKER ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v docker-compose)" ]; then
 	echo INSTALLING DOCKER-COMPOSE
-	installDockerCompose
+
+	# paru -Sy --noconfirm docker-compose
 else
 	echo DOCKER-COMPOSE ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v teams)" ]; then
 	echo INSTALLING TEAMS
-	installTeams
+
+	paru -Sy --noconfirm teams
 else
 	echo TEAMS ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v kubectl)" ]; then
 	echo INSTALLING KUBECTL
-	installKubectl
+
+	paru -Sy --noconfirm kubectl-bin
 else
 	echo KUBECTL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v slack)" ]; then
 	echo INSTALLING SLACK
-	installSlack
+
+	paru -Sy --noconfirm slack-desktop
 else
 	echo SLACK ALREADY INSTALLED
 fi
 
 if [ ! -f ~/.config/i3/config ]; then
 	echo INSTALLING I3
-	installI3
+
+	paru -Sy --noconfirm i3-wm
+	paru -Sy --noconfirm i3lock
+
+	# used for overall opacity
+	paru -Sy --noconfirm picom
+	# status bar
+	paru -Sy --noconfirm polybar
+	# background
+	paru -Sy --noconfirm feh
+	paru -Sy --noconfirm i3-battery-popup-git
 else
 	echo I3 ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v rofi)" ]; then
 	echo INSTALLING ROFI
-	installRofi
+
+	# launcher
+	paru -Sy --noconfirm rofi
+
+	# clipboard manager
+	paru -Sy --noconfirm rofi-greenclip
+	systemctl --user enable greenclip.service
+	systemctl --user start greenclip.service
+
+	# bluetooth
+	paru -S --noconfirm rofi-bluetooth-git
 else
 	echo ROFI ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v dunst)" ]; then
 	echo INSTALLING DUNST
-	installDunst
+
+	paru -Sy --noconfirm dbus
+
+	paru -Sy --noconfirm dunst
 else
 	echo DUNST ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v kitty)" ]; then
 	echo INSTALLING KITTY
-	installKitty
+
+	paru -Sy --noconfirm kitty
 else
 	echo KITTY ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v gnome-keyring)" ]; then
 	echo INSTALLING KEYRING
-	installGnomeKeyring
+
+	paru -Sy --noconfirm gnome-keyring
+	paru -Sy --noconfirm libsecret
 else
 	echo KEYRING ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v fzf)" ]; then
-	echo INSTALLING FZF
-	installFzf
+# if ! [ -x "$(command -v fzf)" ]; then
+# 	echo INSTALLING FZF
+#
+# 	paru -Sy --noconfirm fzf
+# else
+# 	echo FZF ALREADY INSTALLED
+# fi
+
+if ! [ -x "$(command -v delta)" ]; then
+	echo INSTALLING DELTA
+
+	paru -Sy --noconfirm git-delta
 else
-	echo FZF ALREADY INSTALLED
+	echo DELTA ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v rg)" ]; then
 	echo INSTALLING RG
-	installRg
+	paru -Sy --noconfirm ripgrep
 else
 	echo RG ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v fd)" ]; then
 	echo INSTALLING FD
-	installFd
+
+	paru -Sy --noconfirm fd
 else
 	echo FD ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v ranger)" ]; then
 	echo INSTALLING RANGER
-	installRanger
+
+	paru -Sy --noconfirm ranger
+
+	# image preview for range
+	paru -Sy --noconfirm ueberzug
+
+	git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 else
 	echo RANGER ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v udiskie)" ]; then
 	echo INSTALLING UDISKIE
-	installUdiskie
+
+	paru -Sy --noconfirm udiskie
 else
 	echo UDISKIE ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v procs)" ]; then
-	echo INSTALLING PROCS
-	installProcs
-else
-	echo PROCS ALREADY INSTALLED
-fi
-
 if ! [ -x "$(command -v btop)" ]; then
 	echo INSTALLING BTOP
-	installBtop
+
+	paru -S --noconfirm btop
 else
 	echo BTOP ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v navi)" ]; then
 	echo INSTALLING NAVI
-	installNavi
+
+	paru -S --noconfirm navi
 else
 	echo NAVI ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v openfortivpn)" ]; then
-	echo INSTALLING OPENFORTIVPN
-	installOpenfortivpn
-else
-	echo OPENFORTIVPN ALREADY INSTALLED
-fi
-
 if ! [ -x "$(command -v tldr)" ]; then
 	echo INSTALLING TLDR
-	installTldr
+
+	paru -S --noconfirm tldr
 else
 	echo TLDR ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v dropbox)" ]; then
 	echo INSTALLING DROPBOX
-	installDropbox
+
+	paru -S --noconfirm dropbox
 else
 	echo DROPBOX ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v flameshot)" ]; then
 	echo INSTALLING FLAMESHOT
-	installFlameshot
+
+	paru -S --noconfirm flameshot
 else
 	echo FLAMESHOT ALREADY INSTALLED
 fi
 
-if ! [ -x "$(command -v steam)" ]; then
-	echo INSTALLING STEAM
-	installSteam
-else
-	echo STEAM ALREADY INSTALLED
-fi
+# if ! [ -x "$(command -v steam)" ]; then
+# 	echo INSTALLING STEAM
+#
+# 	# https://wiki.archlinux.org/title/Steam#Installation
+#
+# 	## remember to enable multilib
+# 	paru -S --noconfirm steam steam-fonts
+# 	paru -S --noconfirm mangohud
+# 	paru -S --noconfirm nvidia nvidia-utils lib32-nvidia-utils
+#
+# 	paru -S --noconfirm nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
+# 	paru -S --noconfirm giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
+# 	# paru -S --noconfirm dxvk-bin
+#
+# 	## for battlenet!
+# 	paru -S --noconfirm lutris-git
+#
+# 	paru -S --noconfirm protonup-git
+# 	protonup -d "~/.steam/root/compatibilitytools.d/"
+# else
+# 	echo STEAM ALREADY INSTALLED
+# fi
 
 if ! [ -x "$(command -v pipewire)" ]; then
 	echo INSTALLING PIPEWIRE
-	installPipewire
+
+	paru -S --noconfirm pipewire pipewire-pulse pipewire-alsa
+	sudo systemctl status bluetooth.service
+
+	# bluetooth
+	paru -S --noconfirm bluez bluez-utils
 else
 	echo PIPEWIRE ALREADY INSTALLED
 fi
 
 if [ ! -f ~/.config/systemd/user/imwheel.service ]; then
 	echo INSTALLING IMWHEEL
-	installImwheel
+
+	paru -S --noconfirm imwheel
+
+	sudo tee ~/.config/systemd/user/imwheel.service >/dev/null <<EOT
+  [Unit]
+  Description=IMWheel
+  Wants=display-manager.service
+  After=display-manager.service
+
+  [Service]
+  Type=simple
+  Environment=XAUTHORITY=%h/.Xauthority
+  ExecStart=/usr/bin/imwheel -d -b 45
+  ExecStop=/usr/bin/pkill imwheel
+  RemainAfterExit=yes
+
+  [Install]
+  WantedBy=default.target
+EOT
+
+	systemctl --user daemon-reload
+	systemctl --user enable --now imwheel.service
+	systemctl --user start --now imwheel.service
+	journalctl --user --unit imwheel.service
 else
 	echo IMWHEEL ALREADY CONFIGURED
 fi
 
 if ! [ -x "$(command -v zathura)" ]; then
 	echo INSTALLING ZATHURA
-	installZathura
+
+	paru -S --noconfirm zathura-git zathura-pdf-poppler-git
 else
 	echo ZATHURA ALREADY CONFIGURED
 fi
 
 if ! [ -x "$(command -v cups)" ]; then
 	echo "INSTALLING CUPS (printer driver)"
-	installCups
+
+	paru -S --noconfirm cups cups-pdf system-config-printer
+	paru -S --noconfirm samsung-unified-driver
+
+	systemctl enable --now cups.service
+	systemctl start --now cups.service
 else
 	echo CUPS ALREADY CONFIGURED
 fi
 
 if ! [ -x "$(command -v thermald)" ]; then
 	echo "INSTALLING THERMALD"
-	installThermald
+
+	paru -S --noconfirm thermald
+	sudo systemctl enable --now thermald
+	sudo systemctl start --now thermald
 else
 	echo THERMALD ALREADY CONFIGURED
 fi
+
+function installOpenfortivpn {
+	if ! [ -x "$(command -v openfortivpn)" ]; then
+		echo INSTALLING OPENFORTIVPN
+
+		paru -S --noconfirm openfortivpn
+	else
+		echo OPENFORTIVPN ALREADY INSTALLED
+	fi
+}
+
+function installTplinkWifi {
+	paru -S --noconfirm rtl88x2bu-dkms-git
+	sudo modprobe 88x2bu
+}
+
+function installNordvpn {
+	paru -S --noconfirm nordvpn-bin
+	sudo systemctl enable nordvpnd.service
+	sudo systemctl start nordvpnd.service
+	sudo usermod -aG nordvpn "$USER"
+}
+
+function installForticlient {
+	paru -S --noconfirm forticlient-vpn
+	sudo systemctl enable forticlient-scheduler
+	sudo systemctl start forticlient-scheduler
+}
+
+function installVirtualization {
+	paru -S --noconfirm qemu virt-manager qemu-arch-extra ovmf vde2 ebtables dnsmasq bridge-utils openbsd-netcat dmidecode
+	sudo systemctl enable libvirtd.service
+	sudo systemctl start libvirtd.service
+
+	sudo virsh net-start default
+	sudo virsh net-autostart default
+
+	sudo usermod -aG libvirt "$USER"
+	# sudo usermod -aG libvirt-qemu "$USER"
+	# https://leduccc.medium.com/improving-the-performance-of-a-windows-10-guest-on-qemu-a5b3f54d9cf5
+}
 
 echo '# CONFIGURATIONS'
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
 	echo CONFIGURING SSH
-	configureSsh
+
+	ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -C "$EMAIL" -P ""
+	eval "$(ssh-agent -s)"
+	ssh-add ~/.ssh/id_ed25519
 else
 	echo SSH ALREADY CONFIGURED
 fi
 
 if [ ! -f ~/.zshrc ]; then
 	echo CONFIGURING ZSH
-	configureZsh
+
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 else
 	echo ZSH ALREADY CONFIGURED
 fi
 
 if [ ! -d ~/.config/fontconfig/conf.d ]; then
 	echo CONFIGURING SHARP FONTS
-	configureFonts
+
+	mkdir -p ~/.config/fontconfig/conf.d
+	ln -s /etc/fonts/conf.avail/11-lcdfilter-default.conf ~/.config/fontconfig/conf.d/
 else
 	echo SHARP FONTS ALREADY CONFIGURED
 fi
