@@ -18,7 +18,6 @@ esac
 
 TEMP_DIR=~/setup-temp
 EMAIL=lucax88x@gmail.com
-NERDFONT_VERSION=2.0.0
 JETBRAINS_MONO_VERSION=2.221
 JETBRAINS_TOOLBOX=jetbrains-toolbox-1.19.7784
 
@@ -111,13 +110,6 @@ if ! [ "$(fc-list | grep -c 'Open Sans')" -ge 1 ]; then
 	installOpenSans
 else
 	echo OPEN SANS ALREADY INSTALLED
-fi
-
-if ! [ "$(fc-list | grep -c 'Fura Code')" -ge 1 ]; then
-	echo INSTALLING PATCHED FIRACODE
-	installFuraCode
-else
-	echo PATCHED FIRACODE ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then

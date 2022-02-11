@@ -53,7 +53,7 @@
           },
           "layout": "splith",
           "marks": [],
-          "name": "Edoardo Arlati | Microsoft Teams",
+          "name": "Microsoft Teams",
           "orientation": "none",
           "percent": 0.25,
           "scratchpad_state": "none",
@@ -64,7 +64,7 @@
             {
               "class": "^Microsoft\\ Teams\\ \\-\\ Preview$",
               "instance": "^microsoft\\ teams\\ \\-\\ preview$",
-              "title": "^Edoardo\\ Arlati\\ \\|\\ Microsoft\\ Teams$"
+              "title": "^Microsoft\\ Teams$"
             }
           ]
         },

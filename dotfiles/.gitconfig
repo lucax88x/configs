@@ -12,14 +12,18 @@
 	autoStash = true
   
 [core]
-  pager = delta --theme='gruvbox' --plus-color="#98971a" --minus-color="#9d0006"
+  pager = delta 
 
 [interactive]
-  diffFilter = delta --theme='gruvbox' --plus-color="#98971a" --minus-color="#9d0006" --color-only
+  diffFilter = delta --color-only
 
 [delta]
   navigate = true  # use n and N to move between diff sections
   features = decorations
+  side-by-side = true
+  line-numbers = true
+  theme = gruvbox-dark
+  syntax-theme = gruvbox-dark
 
 [delta "interactive"]
   keep-plus-minus-markers = false
@@ -29,12 +33,10 @@
   commit-style = raw
   file-style = omit
   hunk-header-decoration-style = blue box
-  hunk-header-file-style = red
-  hunk-header-line-number-style = "#98971a"
   hunk-header-style = file line-number syntax   
     
 [diff]
-  tool = delta --theme='gruvbox' --plus-color="#98971a" --minus-color="#9d0006"
+  tool = delta
   colorMoved = default
   
 ; [merge]

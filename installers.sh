@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## GLOBAL SOFTWARE
 
 function installBaseDevel {
@@ -503,8 +505,8 @@ function installNordvpn {
 
 function installForticlient {
 	paru -S --noconfirm forticlient-vpn
-  sudo systemctl enable forticlient-scheduler
-  sudo systemctl start forticlient-scheduler
+	sudo systemctl enable forticlient-scheduler
+	sudo systemctl start forticlient-scheduler
 }
 
 function installVirtualization {
@@ -517,7 +519,7 @@ function installVirtualization {
 
 	sudo usermod -aG libvirt "$USER"
 	# sudo usermod -aG libvirt-qemu "$USER"
-  # https://leduccc.medium.com/improving-the-performance-of-a-windows-10-guest-on-qemu-a5b3f54d9cf5
+	# https://leduccc.medium.com/improving-the-performance-of-a-windows-10-guest-on-qemu-a5b3f54d9cf5
 }
 
 function installThermald {
@@ -529,13 +531,13 @@ function installThermald {
 ## CONFIGURATION
 
 function configureSsh {
-	ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C $EMAIL -P ""
+	ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -C "$EMAIL" -P ""
 	eval "$(ssh-agent -s)"
-	ssh-add ~/.ssh/id_rsa
+	ssh-add ~/.ssh/id_ed25519
 }
 
 function configureZsh {
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"}
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 }
 
 function configureFonts {

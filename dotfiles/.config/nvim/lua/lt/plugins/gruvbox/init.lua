@@ -59,7 +59,7 @@ if pcall(require, "nvim-tree") then
 end
 
 if pcall(require, "cmp") then
-  vim.cmd("highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=" .. colors.neutral_red)
+	vim.cmd("highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=" .. colors.neutral_red)
 	-- highlight_fg("CmpItemAbbrDeprecated", colors.neutral_red)
 	highlight_fg("CmpItemAbbrMatch", colors.neutral_blue)
 	highlight_fg("CmpItemAbbrMatchFuzzy", colors.neutral_blue)
@@ -71,4 +71,9 @@ if pcall(require, "cmp") then
 	highlight_fg("CmpItemKindKeyword", colors.neutral_green)
 	highlight_fg("CmpItemKindProperty", colors.neutral_green)
 	highlight_fg("CmpItemKindUnit", colors.neutral_green)
+end
+
+if pcall(require, "indent_blankline") then
+	vim.cmd("highlight IndentBlanklineContextChar guifg=" .. colors.light2 .. " gui=nocombine")
+	vim.cmd("highlight IndentBlanklineContextStart guisp=" .. colors.light2 .. " gui=underline cterm=underline")
 end
