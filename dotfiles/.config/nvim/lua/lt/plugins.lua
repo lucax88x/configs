@@ -250,9 +250,12 @@ return packer.startup({
 		use("jose-elias-alvarez/nvim-lsp-ts-utils")
 		use("williamboman/nvim-lsp-installer")
 		use("b0o/schemastore.nvim")
+		-- use({
+		-- 	"creativenull/efmls-configs-nvim",
+		-- 	requires = { "neovim/nvim-lspconfig" },
+		-- })
 		use({
-			"creativenull/efmls-configs-nvim",
-			requires = { "neovim/nvim-lspconfig" },
+			"jose-elias-alvarez/null-ls.nvim",
 		})
 
 		use({
