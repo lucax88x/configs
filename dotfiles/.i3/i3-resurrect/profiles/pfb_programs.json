@@ -1,0 +1,30 @@
+[
+  {
+    "command": [
+      "/usr/bin/kitty",
+      "-T=pfb/be:api"
+    ],
+    "working_directory": "/home/lucatrazzi/repos/playfeedback/src/PlayFeedback.Web.Api"
+  },
+  {
+    "command": [
+      "/usr/bin/kitty",
+      "-T=pfb/be:auth"
+    ],
+    "working_directory": "/home/lucatrazzi/repos/playfeedback/src/PlayFeedback.Web.Auth"
+  },
+  {
+    "command": [
+      "/usr/bin/kitty",
+      "-T=pfb/be:storage"
+    ],
+    "working_directory": "/home/lucatrazzi/repos/playfeedback/src/PlayFeedback.Web.Storage"
+  },
+  {
+    "command": [
+      "/usr/bin/kitty",
+      "-T=pfb/frontend"
+    ],
+    "working_directory": "/home/lucatrazzi/repos/playfeedback/src/playfeedback.app"
+  }
+]

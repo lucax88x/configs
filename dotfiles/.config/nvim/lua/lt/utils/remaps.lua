@@ -1,5 +1,5 @@
 local present_which_key, which_key = pcall(require, "which-key")
-local key = vim.keymap
+local keymap = vim.keymap
 
 local M = {}
 
@@ -34,7 +34,7 @@ function M.map(type, input, output, unique_identifier, description, additional_o
 		options = vim.tbl_deep_extend("force", options, additional_options)
 	end
 
-	key.set(type, input, output, options)
+	keymap.set(type, input, output, options)
 
 	if not options.buffer then
 		check_conflicts(type, input, unique_identifier)

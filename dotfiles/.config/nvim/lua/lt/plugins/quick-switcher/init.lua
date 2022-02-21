@@ -6,16 +6,16 @@ end
 
 local r = require("lt.utils.remaps")
 
-r.which_key("<leader>o", "quick-switcher")
+r.which_key("<leader>q", "quick-switcher")
 
-r.noremap("n", "<leader>oc", function()
-	quick_switcher.switch("component.ts")
-end, "quick_switcher", "Switch to component code")
-
-r.noremap("n", "<leader>ov", function()
+r.noremap("n", "<leader>qc", function()
 	quick_switcher.toggle("component.ts", "vue")
-end, "quick_switcher", "Toggles vue to component")
+end, "quick_switcher", "vue <-> component")
 
-r.noremap("n", "<leader>os", function()
-	quick_switcher.switch("scss")
-end, "quick_switcher", "Switch to scss")
+-- r.noremap("n", "<leader>qs", function()
+-- 	quick_switcher.switch("scss")
+-- end, "quick_switcher", "Switch to scss")
+
+r.noremap("n", "<leader>qt", function()
+	quick_switcher.toggle("spec.ts", "ts")
+end, "quick_switcher", "spec <-> code")

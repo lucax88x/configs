@@ -2,8 +2,8 @@ local r = require("lt.utils.remaps")
 local functions = require("lt.utils.functions")
 
 -- quit
-r.noremap("n", "<leader>q", "<cmd>q<CR>", "quit", "Quits editor")
-r.noremap("n", "Q", "<cmd>q!<CR>", "quit_force", "Force quits editor")
+r.noremap("n", "Q", "<cmd>q<CR>", "quit", "Quits editor")
+r.noremap("n", "<leader>Q", "<cmd>q!<CR>", "quit_force", "Force quits editor")
 
 -- reload
 r.noremap("n", "<leader><CR>", functions.reload, "reload", "Reloads configuration")

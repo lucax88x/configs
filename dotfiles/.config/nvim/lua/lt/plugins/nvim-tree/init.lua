@@ -46,6 +46,7 @@ vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_group_empty = 1
+vim.g.nvim_tree_respect_buf_cwd = 1
 
 nvim_tree.setup({
 	open_on_setup = false,
@@ -89,4 +90,3 @@ r.noremap("n", "-", "<cmd>NvimTreeToggle<CR>", "explorer_toggle", "Toggle explor
 -- r.map_virtual("a", "Create file/dir")
 -- r.map_virtual("d", "Remove file/dir")
 -- r.map_virtual("r", "Rename file/dir")
-

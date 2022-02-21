@@ -369,6 +369,13 @@ return packer.startup({
 		})
 
 		use({
+			"hoschi/yode-nvim",
+			config = function()
+				require("lt.plugins.yode")
+			end,
+		})
+
+		use({
 			"anuvyklack/pretty-fold.nvim",
 			config = function()
 				require("lt.plugins.pretty-fold")

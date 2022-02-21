@@ -1,0 +1,181 @@
+{
+  "border": "normal",
+  "current_border_width": -1,
+  "floating": "auto_off",
+  "fullscreen_mode": 1,
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "layout": "tabbed",
+  "marks": [],
+  "name": "3 \uf120",
+  "orientation": "horizontal",
+  "percent": 1.0,
+  "scratchpad_state": "none",
+  "sticky": false,
+  "type": "workspace",
+  "workspace_layout": "tabbed",
+  "nodes": [
+    {
+      "border": "normal",
+      "current_border_width": -1,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "layout": "tabbed",
+      "marks": [],
+      "name": "playfeedback",
+      "orientation": "horizontal",
+      "percent": 1.0,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "nodes": [
+        {
+          "border": "normal",
+          "current_border_width": -1,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "layout": "tabbed",
+          "marks": [],
+          "name": null,
+          "orientation": "horizontal",
+          "percent": 0.3333333333333333,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "nodes": [
+            {
+              "border": "pixel",
+              "current_border_width": 2,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 640,
+                "height": 400
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "pfb/be:api",
+              "orientation": "none",
+              "percent": 0.25,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "^kitty$",
+                  "instance": "^kitty$",
+                  "title": "^pfb/be:api$"
+                }
+              ]
+            },
+            {
+              "border": "pixel",
+              "current_border_width": 2,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 640,
+                "height": 400
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "pfb/be:auth",
+              "orientation": "none",
+              "percent": 0.25,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "^kitty$",
+                  "instance": "^kitty$",
+                  "title": "^pfb/be:auth$"
+                }
+              ]
+            },
+            {
+              "border": "pixel",
+              "current_border_width": 2,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 640,
+                "height": 400
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "pfb/be:storage",
+              "orientation": "none",
+              "percent": 0.25,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "^kitty$",
+                  "instance": "^kitty$",
+                  "title": "^pfb/be:storage$"
+                }
+              ]
+            },
+            {
+              "border": "pixel",
+              "current_border_width": 2,
+              "floating": "auto_off",
+              "fullscreen_mode": 0,
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 640,
+                "height": 400
+              },
+              "layout": "splith",
+              "marks": [],
+              "name": "pfb/frontend",
+              "orientation": "none",
+              "percent": 0.25,
+              "scratchpad_state": "none",
+              "sticky": false,
+              "type": "con",
+              "workspace_layout": "default",
+              "swallows": [
+                {
+                  "class": "^kitty$",
+                  "instance": "^kitty$",
+                  "title": "^pfb/frontend$"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
