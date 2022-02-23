@@ -379,6 +379,13 @@ return packer.startup({
 		})
 
 		use({
+			"monaqa/dial.nvim",
+			config = function()
+				require("lt.plugins.dial")
+			end,
+		})
+
+		use({
 			"anuvyklack/pretty-fold.nvim",
 			config = function()
 				require("lt.plugins.pretty-fold")

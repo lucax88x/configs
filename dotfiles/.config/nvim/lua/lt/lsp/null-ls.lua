@@ -5,7 +5,7 @@ end
 
 -- npm install -g @fsouza/prettierd
 -- npm install -g stylelint
--- paru -S luacheck
+-- paru -S selene-linter
 -- paru -S shfmt-bin
 -- paru -S shellcheck-bin
 -- paru -S yamllint
@@ -19,7 +19,7 @@ null_ls.setup({
  debug = false,
  sources = {
    diagnostics.actionlint,
-   diagnostics.luacheck,
+   diagnostics.selene,
    diagnostics.shellcheck,
    diagnostics.zsh,
    diagnostics.stylelint,

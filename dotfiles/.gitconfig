@@ -115,6 +115,7 @@
 	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Creset%Cgreen(%an %cr)%Creset%Cred%d' --abbrev-commit
 	lgb = log --oneline --graph --decorate --branches
 	b = branch
+	br = branch -r
 	ba = branch -a
 	bv = branch -v
 	bav = branch -av
@@ -134,7 +135,6 @@
   track = "!git branch --set-upstream-to origin/\"$(git rev-parse --abbrev-ref HEAD)\""
 	cl = clone
 	ci = commit
-	br = branch
 	dt = difftool
 	dtd = difftool -d
 	mt = mergetool

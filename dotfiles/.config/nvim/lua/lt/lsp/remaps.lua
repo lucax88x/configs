@@ -4,6 +4,7 @@ local M = {}
 
 local telescope_builtin = require("telescope.builtin")
 local lsp_functions = require("lt.lsp.functions")
+local telescope_functions = require("lt.plugins.telescope.functions")
 
 local function generate_buf_keymapper(bufnr)
 	return function(type, input, output, unique_identifier, description, extraOptions)
@@ -77,7 +78,8 @@ function M.set_default_on_buffer(client, bufnr)
 		-- buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', 'lsp', 'lsp_', '')
 		-- buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", 'lsp', 'lsp_', '')
 		buf_set_keymap("n", "<leader>fa", function()
-			telescope_builtin.lsp_code_actions({ timeout = 2000 })
+			-- telescope_builtin.lsp_code_actions({ timeout = 2000 })
+			telescope_functions.lsp_code_actions({ timeout = 2000 })
 		end, "lsp_code_actions", "Code actions")
 
 		buf_set_keymap("v", "<leader>fa", function()
