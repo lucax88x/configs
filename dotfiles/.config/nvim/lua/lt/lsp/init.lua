@@ -20,6 +20,7 @@ vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
 
 local function on_attach(client, bufnr)
     -- print(client.name)
+    -- require("lt.utils.functions").tprint_keys(client.server_capabilities)
     remaps.set_default_on_buffer(client, bufnr)
 
     if presentLspStatus then
@@ -102,6 +103,7 @@ local servers = {
  eslint = {},
  tsserver = require("lt.lsp.servers.tsserver")(on_attach),
  svelte = {},
+ texlab = {},
 }
 
 local default_lsp_config = {

@@ -21,7 +21,12 @@ end
 
 vim.cmd([[packadd packer.nvim]])
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
+-- local group = vim.api.nvim_create_augroup("ReloadPackerOnSave", { clear = true });
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   group = group,
+--   desc = "Reload packer when you save plugins file",
+--   command = 'source <afile> | PackerSync'
+-- })
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -56,6 +61,13 @@ return packer.startup({
 		use({ "wbthomason/packer.nvim", event = "VimEnter" })
 
 		use("lewis6991/impatient.nvim")
+    
+		use({
+			"nathom/filetype.nvim",
+			config = function()
+				require("lt.plugins.filetype")
+			end,
+		}) -- Fix CursorHold Performance
 
 		use({
 			"antoinemadec/FixCursorHold.nvim",
@@ -389,6 +401,24 @@ return packer.startup({
 			"anuvyklack/pretty-fold.nvim",
 			config = function()
 				require("lt.plugins.pretty-fold")
+			end,
+		})
+
+		use({
+			"bennypowers/nvim-regexplainer",
+			config = function()
+				require("lt.plugins.regexplainer")
+			end,
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "MunifTanjim/nui.nvim",
+      },
+		})
+
+		use({
+			"mvllow/modes.nvim",
+			config = function()
+				require("lt.plugins.modes")
 			end,
 		})
 

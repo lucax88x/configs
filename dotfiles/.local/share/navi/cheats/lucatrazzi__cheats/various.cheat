@@ -5,3 +5,6 @@ record-screen <name>.mp4
 
 # disable sleep
 xset s off -dpms
+
+# scan documents
+scanimage --format=png --output-file ~/Pictures/Scanner/<scan>.png --progress

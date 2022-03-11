@@ -27,6 +27,7 @@ M.lsp_install_servers = function()
 	installLanguageServer("rust_analyzer")
 	installLanguageServer("eslint")
 	installLanguageServer("svelte")
+	installLanguageServer("texlab")
 end
 
 return M

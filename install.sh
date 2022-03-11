@@ -111,11 +111,25 @@ if ! [ "$(fc-list | grep -c 'Open Sans')" -ge 1 ]; then
 
 	unzip $TEMP_DIR/OpenSans.zip -d $TEMP_DIR/open-sans
 	mkdir -p ~/.fonts/open-sans
-	cp $TEMP_DIR/roboto/OpenSans-* ~/.fonts/open-sans
+	cp -r $TEMP_DIR/open-sans/* ~/.fonts/open-sans
 
 	fc-cache
 else
 	echo OPEN SANS ALREADY INSTALLED
+fi
+
+if ! [ "$(fc-list | grep -c 'Roboto')" -ge 1 ]; then
+	echo INSTALLING ROBOTO
+
+	wget https://fonts.google.com/download?family=Roboto -O $TEMP_DIR/Roboto.zip
+
+	unzip $TEMP_DIR/Roboto.zip -d $TEMP_DIR/roboto
+	mkdir -p ~/.fonts/roboto
+	cp -r $TEMP_DIR/roboto/* ~/.fonts/roboto
+
+	fc-cache
+else
+	echo ROBOTO ALREADY INSTALLED
 fi
 
 if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then

@@ -44,7 +44,7 @@ font-6 = unifont:size=6;1
 
 modules-left = i3 wifi wired
 modules-center = xwindow
-modules-right = pulseaudio bluetooth backlight battery cpu date
+modules-right = pulseaudio bluetooth battery cpu date
 
 tray-position = right
 tray-padding = 4
@@ -191,7 +191,7 @@ click-left = ~/.config/rofi/bin/applet_network &
 
 [module/date]
 type = internal/date
-label = %{F${colors.foreground}%{F-} %date% %time%
+label =  %date% %time%
 date = %m-%d
 time = %H:%M
 interval = 5

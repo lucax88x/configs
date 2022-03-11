@@ -9,7 +9,9 @@ end
 -- paru -S shfmt-bin
 -- paru -S shellcheck-bin
 -- paru -S yamllint
-
+-- paru -S actionlint-bin
+-- paru -S nginxbeautifier
+-- paru -S stylua
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -25,14 +27,14 @@ null_ls.setup({
    diagnostics.stylelint,
    diagnostics.yamllint,
 
+   formatting.stylua,
    formatting.prettierd,
    formatting.stylelint,
    formatting.nginx_beautifier,
    formatting.shfmt,
-   formatting.sqlformat,
    formatting.xmllint,
 
-   code_actions.gitsigns,
+   -- code_actions.gitsigns,
    code_actions.refactoring,
    code_actions.shellcheck
  },

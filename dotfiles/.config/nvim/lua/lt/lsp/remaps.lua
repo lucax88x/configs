@@ -78,8 +78,8 @@ function M.set_default_on_buffer(client, bufnr)
 		-- buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', 'lsp', 'lsp_', '')
 		-- buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", 'lsp', 'lsp_', '')
 		buf_set_keymap("n", "<leader>fa", function()
-			-- telescope_builtin.lsp_code_actions({ timeout = 2000 })
-			telescope_functions.lsp_code_actions({ timeout = 2000 })
+			telescope_builtin.lsp_code_actions({ timeout = 2000 })
+			-- telescope_functions.lsp_code_actions({ timeout = 2000 })
 		end, "lsp_code_actions", "Code actions")
 
 		buf_set_keymap("v", "<leader>fa", function()
@@ -97,7 +97,7 @@ function M.set_default_on_buffer(client, bufnr)
 	buf_set_keymap("n", "]e", vim.diagnostic.goto_next, "lsp_next_diagnostic", "next diagnostic")
 
 	if cap.documentFormattingProvider then
-		buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_format", "Format")
+    buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_format", "Format")
 	elseif cap.documentRangeFormattingProvider then
 		buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_range_format", "Format")
 	end
@@ -114,7 +114,7 @@ function M.set_default_on_buffer(client, bufnr)
 		print(vim.lsp.get_log_path())
 	end, "lsp_debug_logs", "Show log path")
 
-	buf_set_keymap("n", "<leader>fsi", ":LspInfo()<CR>", "lsp_info", "LSP Info")
+	buf_set_keymap("n", "<leader>lsa", ":LspInfo()<CR>", "lsp_info", "LSP Info")
 end
 
 function M.set_typescript(client, bufnr)
