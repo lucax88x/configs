@@ -18,6 +18,7 @@ treesitter.setup({
 		"graphql",
     "vue",
     "svelte",
+    "regex",
 	},
 	highlight = {
 		enable = true,

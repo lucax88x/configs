@@ -23,7 +23,7 @@ highlight_bg("NumberColumn", colors.dark0_hard)
 highlight_fg_bg("PMenu", colors.light1, colors.dark0_hard)
 
 -- fold preview, for example
-highlight_fg_bg("NormalFloat", colors.light1, colors.dark0)
+highlight_fg_bg("NormalFloat", colors.light1, colors.dark0_hard)
  
 highlight_fg("StatusLine", colors.dark0)
 

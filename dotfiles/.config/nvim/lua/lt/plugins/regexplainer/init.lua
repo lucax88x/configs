@@ -10,9 +10,12 @@ regexplainer.setup {
   auto = true,
 
   -- Whether to log debug messages
-  debug = true,
-
-  mappings = {
-    show = "gR",
-  },
+  debug = false,
 }
+
+local r = require("lt.utils.remaps")
+
+r.which_key("<leader>tr", "regex")
+
+r.noremap("n", "<leader>trs", function() regexplainer.show() end, "regexplainer_show", "Show Regexplainer")
+r.noremap("n", "<leader>trh", function() regexplainer.hide() end, "regexplainer_hide", "Hide Regexplainer")
