@@ -96,11 +96,12 @@ function M.set_default_on_buffer(client, bufnr)
 	buf_set_keymap("n", "[e", vim.diagnostic.goto_prev, "lsp_previous_diagnostic", "Previous diagnostic")
 	buf_set_keymap("n", "]e", vim.diagnostic.goto_next, "lsp_next_diagnostic", "next diagnostic")
 
-	if cap.documentFormattingProvider then
+  -- when sumneko lua will be able to format we can reput the capabilities
+	-- if cap.documentFormattingProvider then
     buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_format", "Format")
-	elseif cap.documentRangeFormattingProvider then
-		buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_range_format", "Format")
-	end
+	-- elseif cap.documentRangeFormattingProvider then
+		-- buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_range_format", "Format")
+	-- end
 
 	if cap.renameProvider then
 		buf_set_keymap("n", "<leader>fr", vim.lsp.buf.rename, "lsp_rename", "Rename")

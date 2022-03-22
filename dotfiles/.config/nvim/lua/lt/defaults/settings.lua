@@ -57,6 +57,9 @@ local options = {
 	list = true,
 
 	listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<",
+ 
+  -- global statusline
+  laststatus = 3,
 }
 
 for k, v in pairs(options) do

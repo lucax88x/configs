@@ -470,10 +470,10 @@ return packer.startup({
 		})
 
 		use({
-			"NTBBloodbath/galaxyline.nvim",
+			"feline-nvim/feline.nvim",
 			requires = "SmiteshP/nvim-gps",
 			config = function()
-				require("lt.plugins.galaxyline")
+				require("lt.plugins.feline")
 			end,
 		})
 	end,

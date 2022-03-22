@@ -23,7 +23,6 @@ telescope.setup({
   find_files = { theme = "dropdown", previewer = false },
   git_files = { theme = "dropdown", previewer = false },
   registers = { theme = "dropdown" },
-  lsp_references = { previewer = false },
   lsp_code_actions = {
     theme = "cursor",
     layout_config = {

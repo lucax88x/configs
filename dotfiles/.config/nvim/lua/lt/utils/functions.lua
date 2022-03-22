@@ -44,6 +44,10 @@ function M.link_highlight(from, to, override)
     end
 end
 
+M.highlight = function(group, opts)
+    vim.api.nvim_set_hl(0, group, opts)
+end
+
 M.highlight_bg = function(group, col)
     vim.api.nvim_set_hl(0, group, { bg = col })
 end
@@ -66,5 +70,21 @@ end
 M.glob_split = function(pattern)
     return vim.split(vim.fn.glob(pattern), "\n")
 end
+
+M.from_highlight = function(hl)
+  local result = {}
+  local list = vim.api.nvim_get_hl_by_name(hl, true)
+  for k, v in pairs(list) do
+    local name = k == "background" and "bg" or "fg"
+    result[name] = string.format("#%06x", v)
+  end
+  return result
+end
+
+M.get_color_from_terminal = function(num, default)
+  local key = "terminal_color_" .. num
+  return vim.g[key] and vim.g[key] or default
+end
+
 
 return M
