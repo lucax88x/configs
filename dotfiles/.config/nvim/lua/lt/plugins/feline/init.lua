@@ -1,4 +1,5 @@
 local present, feline = pcall(require, "feline")
+local vim = vim
 
 if not present then
 	vim.notify("could not load feline")
@@ -7,7 +8,6 @@ end
 
 local lsp_provider = require("feline.providers.lsp")
 local u = require("lt.plugins.feline.util")
-local fmt = string.format
 
 -- "┃", "█", "", "", "", "", "", "", "●"
 
@@ -22,7 +22,7 @@ end
 local c = {
 	vimode = {
 		provider = function()
-			return string.format(" %s ", u.vi.text[vim.fn.mode()])
+			return string.format(" %s ", u.get_current_mode())
 		end,
 		hl = vi_mode_hl,
 		right_sep = { str = " ", hl = vi_sep_hl },
@@ -49,36 +49,31 @@ local c = {
 		hl = "FlnGitRemoved",
 		right_sep = { str = "  ", hl = "FlnGitBranch" },
 	},
-	fileinfo = {
-		provider = { name = "file_info", opts = { type = "relative" } },
+	file_info = {
+		provider = "file_info",
 		hl = "FlnFileInfo",
 		left_sep = { str = u.icons.slant_right, hl = "FlnFileInfoSep" },
 	},
 	file_type = {
-		provider = function()
-			return fmt(" %s", vim.bo.filetype:upper())
-		end,
+		provider = "file_type",
 		hl = "FlnFileType",
-		left_sep = { str = u.icons.slant_left, hl = "FlnFileTypeToDiagnostic" },
+		left_sep = { str = " " .. u.icons.slant_left, hl = "FlnFileTypeToDiagnostic" },
+		right_sep = { str = " ", hl = "FlnFileType" },
 	},
 	file_enc = {
-		provider = function()
-			local os = u.icons[vim.bo.fileformat] or ""
-			return fmt("%s %s ", os, vim.bo.fileencoding)
-		end,
+		provider = "file_encoding",
 		hl = "FlnFileEnc",
+		right_sep = { str = " ", hl = "FlnFileEnc" },
 	},
 	cur_position = {
-		provider = function()
-			-- TODO: What about 4+ diget line numbers?
-			return fmt(" %3d:%-2d ", unpack(vim.api.nvim_win_get_cursor(0)))
-		end,
+		provider = "position",
 		hl = vi_mode_hl,
 		left_sep = { str = u.icons.left_filled, hl = vi_sep_hl },
+		right_sep = { str = " ", hl = vi_mode_hl },
 	},
 	cur_percent = {
 		provider = function()
-			return " " .. require("feline.providers.cursor").line_percentage() .. "  "
+			return " " .. require("feline.providers.cursor").line_percentage()
 		end,
 		hl = vi_mode_hl,
 		left_sep = { str = u.icons.left, hl = vi_mode_hl },
@@ -94,7 +89,7 @@ local c = {
 	},
 	lsp_status = {
 		provider = function()
-			return u.get_lsp_client("No active lsp", { "null-ls" })
+			return u.get_lsp_client("none", { "null-ls" })
 		end,
 		hl = "FlnStatus",
 		left_sep = { str = u.icons.left_filled, hl = "FlnStatusBg" },
@@ -142,7 +137,7 @@ local active = {
 		c.git_diff_added,
 		c.git_diff_changed,
 		c.git_diff_removed,
-		c.fileinfo,
+		c.file_info,
 		c.default, -- must be last
 	},
 	{ -- right
@@ -191,6 +186,7 @@ feline.setup({
 			"startify",
 			"alpha",
 			"CTRLSF",
+			"LSP_INSTALLER",
 		},
 	},
 })

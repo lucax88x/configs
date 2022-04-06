@@ -1,3 +1,5 @@
+local vim = vim;
+
 vim.cmd("syntax on")
 
 vim.o.termguicolors = true
@@ -29,7 +31,7 @@ highlight_fg_bg("PMenu", colors.light1, bg_alt)
 -- fold preview, for example
 highlight_fg_bg("NormalFloat", colors.light1, bg_alt)
 -- no border
-highlight_fg_bg("FloatBorder", bg, bg)
+highlight_fg_bg("FloatBorder", bg_alt, bg_alt)
 
 highlight_fg("StatusLine", colors.bg)
 
@@ -134,11 +136,11 @@ if pcall(require, "feline") then
 		FlnInfo = { fg = c.info, bg = c.alt, bold = true },
 		FlnWarn = { fg = c.warn, bg = c.alt, bold = true },
 		FlnError = { fg = c.err, bg = c.alt, bold = true },
-		FlnStatus = { fg = c.black, bg = c.white, bold = true },
+		FlnStatus = { fg = c.fg, bg = c.bg, bold = true },
 
 		-- Dianostic Separators
-		FlnStatusBg = { fg = c.white, bg = c.alt },
-		FlnStatusToDiagnostic = { fg = c.white, bg = c.alt },
+		FlnStatusBg = { fg = c.bg, bg = c.alt },
+		FlnStatusToDiagnostic = { fg = c.bg, bg = c.alt },
 		FlnFileTypeToDiagnostic = { fg = c.bg, bg = c.alt },
 
 		FlnAlt = { fg = c.white, bg = c.alt },

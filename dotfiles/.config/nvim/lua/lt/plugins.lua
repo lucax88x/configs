@@ -1,3 +1,4 @@
+local vim = vim
 local fn = vim.fn
 
 -- Automatically install packer
@@ -61,7 +62,7 @@ return packer.startup({
 		use({ "wbthomason/packer.nvim", event = "VimEnter" })
 
 		use("lewis6991/impatient.nvim")
-    
+
 		use({
 			"nathom/filetype.nvim",
 			config = function()
@@ -153,10 +154,16 @@ return packer.startup({
 			end,
 		})
 
+		-- use({
+		-- 	"phaazon/hop.nvim",
+		-- 	config = function()
+		-- 		require("lt.plugins.hop-nvim")
+		-- 	end,
+		-- })
 		use({
-			"phaazon/hop.nvim",
+			"ggandor/leap.nvim",
 			config = function()
-				require("lt.plugins.hop-nvim")
+				require("lt.plugins.leap")
 			end,
 		})
 
@@ -170,7 +177,7 @@ return packer.startup({
 		})
 
 		use("tpope/vim-surround") -- Change surrounding arks
-		use("tpope/vim-repeat") -- extends . repeat, for example for make it work with vim-sneak
+		use("tpope/vim-repeat") -- extends . repeat
 		use({
 			"bkad/CamelCaseMotion",
 			config = function()
@@ -186,13 +193,16 @@ return packer.startup({
 
 		use({
 			"nvim-telescope/telescope.nvim",
-			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+			requires = {
+				{ "nvim-lua/popup.nvim" },
+				{ "nvim-lua/plenary.nvim" },
+				{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+				{ "nvim-telescope/telescope-ui-select.nvim" },
+			},
 			config = function()
 				require("lt.plugins.telescope")
 			end,
 		})
-		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-		use({ "nvim-telescope/telescope-ui-select.nvim" })
 
 		use({
 			"dyng/ctrlsf.vim",
@@ -262,10 +272,6 @@ return packer.startup({
 		use("jose-elias-alvarez/nvim-lsp-ts-utils")
 		use("williamboman/nvim-lsp-installer")
 		use("b0o/schemastore.nvim")
-		-- use({
-		-- 	"creativenull/efmls-configs-nvim",
-		-- 	requires = { "neovim/nvim-lspconfig" },
-		-- })
 		use({
 			"jose-elias-alvarez/null-ls.nvim",
 		})
@@ -286,9 +292,12 @@ return packer.startup({
 		})
 
 		use({
-			"github/copilot.vim",
+			"zbirenbaum/copilot.lua",
+			event = "InsertEnter",
 			config = function()
-				require("lt.plugins.copilot")
+				vim.schedule(function()
+					require("lt.plugins.copilot-lua")
+				end)
 			end,
 		})
 		use({
@@ -325,6 +334,10 @@ return packer.startup({
 		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
+		use({
+			"zbirenbaum/copilot-cmp",
+			after = { "copilot.lua", "nvim-cmp" },
+		})
 
 		use({
 			"windwp/nvim-autopairs",
@@ -409,10 +422,10 @@ return packer.startup({
 			config = function()
 				require("lt.plugins.regexplainer")
 			end,
-      requires = {
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-      },
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"MunifTanjim/nui.nvim",
+			},
 		})
 
 		use({

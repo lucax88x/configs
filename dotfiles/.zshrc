@@ -46,6 +46,7 @@ zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # those should stay last
+# 
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
  
@@ -81,6 +82,8 @@ export VISUAL=nvim
 export PATH="$HOME/bin:$PATH"
 # add yarn globals to path
 export PATH="$(yarn global bin):$PATH"
+# add local bin (python executables, for example)
+export PATH="$HOME/.local/bin:$PATH"
 
 # add dotnet globals to path
 export PATH="/usr/share/dotnet:$PATH"

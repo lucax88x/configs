@@ -13,12 +13,18 @@ treesitter.setup({
 		"json",
 		"rust",
 		"css",
+    "scss",
+    "ruby",
+    "rasi",
 		"javascript",
+    "dockerfile",
+    "bash",
 		"c_sharp",
 		"graphql",
     "vue",
     "svelte",
     "regex",
+    "yaml"
 	},
 	highlight = {
 		enable = true,

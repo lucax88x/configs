@@ -256,8 +256,8 @@ if ! [ -x "$(command -v docker)" ]; then
 	# getent group $DOCKER_GROUP || sudo groupadd $DOCKER_GROUP
 	# sudo usermod -aG $DOCKER_GROUP $USER
 	# # newgrp docker
-	# sudo systemctl enable docker
-	# sudo systemctl start docker
+	# sudo systemctl enable docker.socket
+	# sudo systemctl start docker.socket
 else
 	echo DOCKER ALREADY INSTALLED
 fi
@@ -300,13 +300,13 @@ if [ ! -f ~/.config/i3/config ]; then
 	paru -Sy --noconfirm i3-wm
 	paru -Sy --noconfirm i3lock
 
-	# used for overall opacity
-	paru -Sy --noconfirm picom
 	# status bar
 	paru -Sy --noconfirm polybar
 	# background
 	paru -Sy --noconfirm feh
 	paru -Sy --noconfirm i3-battery-popup-git
+  # autostart
+	paru -Sy --noconfirm dex
 else
 	echo I3 ALREADY INSTALLED
 fi
@@ -581,6 +581,13 @@ function installVirtualization {
 	sudo usermod -aG libvirt "$USER"
 	# sudo usermod -aG libvirt-qemu "$USER"
 	# https://leduccc.medium.com/improving-the-performance-of-a-windows-10-guest-on-qemu-a5b3f54d9cf5
+}
+
+function installAlbert {
+	# app launcher
+	paru -Sy --noconfirm albert-minimal
+
+  ln -s /usr/share/applications/albert.desktop ~/.config/autostart/
 }
 
 echo '# CONFIGURATIONS'

@@ -106,6 +106,7 @@ local servers = {
 	tsserver = require("lt.lsp.servers.tsserver")(on_attach),
 	svelte = {},
 	texlab = {},
+  ansiblels = {},
 }
 
 local default_lsp_config = {

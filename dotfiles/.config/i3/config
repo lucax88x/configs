@@ -201,7 +201,8 @@ mode "$resize" {
 ######################
 bindsym $mod+q exec $HOME/.config/rofi/bin/menu_powermenu
 # bindsym $altMod+space exec $HOME/.config/rofi/bin/launcher_misc
-bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons"
+# bindsym $altMod+space exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons" 
+bindsym $altMod+space exec "albert toggle"
 bindsym $altMod+Tab exec "rofi -combi window -show"
 bindsym $mod+$altMod+w exec $HOME/bin/rofi/i3-resurrect
 bindsym $mod+m exec $HOME/bin/rofi/monitor
@@ -223,6 +224,11 @@ hide_edge_borders smart
 # using a cronjob for rotating images in ~/backgrounds
 # exec --no-startup-id feh --bg-fill ~/backgrounds/background.jpg
 exec --no-startup-id ~/bin/rotate-background-images
+
+#####################
+### Set autostart ###
+######################
+exec --no-startup-id dex --autostart --environment i3
 
 #####################
 ### Launch Polybar ###

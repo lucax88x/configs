@@ -12,6 +12,7 @@ end
 -- paru -S actionlint-bin
 -- paru -S nginxbeautifier
 -- paru -S stylua
+-- paru -S ansible-lint-git
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -20,12 +21,14 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup({
 	debug = false,
 	sources = {
-		diagnostics.actionlint,
+    -- github actions
+		-- diagnostics.actionlint,
 		diagnostics.selene,
 		diagnostics.shellcheck,
 		diagnostics.zsh,
 		diagnostics.stylelint,
 		diagnostics.yamllint,
+    diagnostics.ansiblelint,
 
 		formatting.stylua,
 		formatting.prettierd,

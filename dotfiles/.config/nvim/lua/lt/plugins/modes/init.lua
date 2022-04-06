@@ -10,10 +10,10 @@ vim.opt.cursorline = true
 
 modes.setup({
   colors = {
-    copy = gruvbox.neutral_yellow,
-    delete = gruvbox.neutral_red,
-    insert = gruvbox.neutral_green,
-    visual = gruvbox.neutral_purple,
+    copy = gruvbox.bright_yellow,
+    delete = gruvbox.bright_red,
+    insert = gruvbox.bright_green,
+    visual = gruvbox.bright_purple,
   },
 
   -- Cursorline highlight opacity

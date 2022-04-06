@@ -1,3 +1,4 @@
+local vim = vim
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -54,12 +55,11 @@ local options = {
 	showmode = false,
 
 	-- show spaces
-	list = true,
-
+	list = false,
 	listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<",
- 
-  -- global statusline
-  laststatus = 3,
+
+	-- global statusline
+	laststatus = 3,
 }
 
 for k, v in pairs(options) do

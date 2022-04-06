@@ -28,6 +28,7 @@ M.lsp_install_servers = function()
 	installLanguageServer("eslint")
 	installLanguageServer("svelte")
 	installLanguageServer("texlab")
+	installLanguageServer("ansiblels")
 end
 
 return M
