@@ -296,7 +296,7 @@ return packer.startup({
 			event = "InsertEnter",
 			config = function()
 				vim.schedule(function()
-					require("lt.plugins.copilot-lua")
+					require("copilot").setup()
 				end)
 			end,
 		})
