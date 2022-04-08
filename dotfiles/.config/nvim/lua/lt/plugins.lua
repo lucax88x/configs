@@ -154,16 +154,10 @@ return packer.startup({
 			end,
 		})
 
-		-- use({
-		-- 	"phaazon/hop.nvim",
-		-- 	config = function()
-		-- 		require("lt.plugins.hop-nvim")
-		-- 	end,
-		-- })
 		use({
-			"ggandor/leap.nvim",
+			"phaazon/hop.nvim",
 			config = function()
-				require("lt.plugins.leap")
+				require("lt.plugins.hop-nvim")
 			end,
 		})
 
@@ -292,14 +286,25 @@ return packer.startup({
 		})
 
 		use({
-			"zbirenbaum/copilot.lua",
+			"github/copilot.vim",
 			event = "InsertEnter",
 			config = function()
-				vim.schedule(function()
-					require("copilot").setup()
-				end)
+				require("lt.plugins.copilot-vim")
 			end,
 		})
+
+		-- use({
+		-- 	"zbirenbaum/copilot.lua",
+		-- 	event = "InsertEnter",
+		-- 	config = function()
+		-- 		require("lt.plugins.copilot-lua")
+		-- 	end,
+		-- })
+		-- use({
+		-- 	"zbirenbaum/copilot-cmp",
+		-- 	after = { "copilot.lua", "nvim-cmp" },
+		-- })
+
 		use({
 			"stevearc/aerial.nvim",
 			config = function()
@@ -334,10 +339,6 @@ return packer.startup({
 		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
-		use({
-			"zbirenbaum/copilot-cmp",
-			after = { "copilot.lua", "nvim-cmp" },
-		})
 
 		use({
 			"windwp/nvim-autopairs",

@@ -55,7 +55,7 @@ local options = {
 	showmode = false,
 
 	-- show spaces
-	list = false,
+	list = true,
 	listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<",
 
 	-- global statusline

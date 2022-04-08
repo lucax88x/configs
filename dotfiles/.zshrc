@@ -52,6 +52,7 @@ zinit light zdharma/fast-syntax-highlighting
  
 source /usr/share/nvm/init-nvm.sh
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
+source "$HOME/bin/ks"
 
 # awaits, necessary for vi mode
 zinit ice lucid wait

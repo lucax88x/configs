@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# add to your shell startup script (e.g: $HOME/.bashrc).
+# install [fzf](https://github.com/junegunn/fzf)
+# e.g: brew install fzf
+
+ks() {
+  (
+    cd ~/.kube/ || exit 1
+    # shellcheck disable=SC2012
+    KUBE=$(ls *.config | fzf)
+    [[ -n "$KUBE" ]] && ln -sf "$KUBE" config
+  )
+}

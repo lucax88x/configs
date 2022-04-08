@@ -1,39 +1,40 @@
 local present, alpha = pcall(require, "alpha")
 
 if not present then
-    return
+	vim.notify("alpha not present")
+	return
 end
 
 local dashboard = require("alpha.themes.dashboard")
 
 dashboard.section.header.val = {
- " ██▓     █    ██  ▄████▄   ▄▄▄     ▄▄▄█████▓ ██▀███   ▄▄▄      ▒███████▒▒███████▒ ██▓",
- "▓██▒     ██  ▓██▒▒██▀ ▀█  ▒████▄   ▓  ██▒ ▓▒▓██ ▒ ██▒▒████▄    ▒ ▒ ▒ ▄▀░▒ ▒ ▒ ▄▀░▓██▒",
- "▒██░    ▓██  ▒██░▒▓█    ▄ ▒██  ▀█▄ ▒ ▓██░ ▒░▓██ ░▄█ ▒▒██  ▀█▄  ░ ▒ ▄▀▒░ ░ ▒ ▄▀▒░ ▒██▒",
- "▒██░    ▓▓█  ░██░▒▓▓▄ ▄██▒░██▄▄▄▄██░ ▓██▓ ░ ▒██▀▀█▄  ░██▄▄▄▄██   ▄▀▒   ░  ▄▀▒   ░░██░",
- "░██████▒▒▒█████▓ ▒ ▓███▀ ░ ▓█   ▓██▒ ▒██▒ ░ ░██▓ ▒██▒ ▓█   ▓██▒▒███████▒▒███████▒░██░",
- "░ ▒░▓  ░░▒▓▒ ▒ ▒ ░ ░▒ ▒  ░ ▒▒   ▓▒█░ ▒ ░░   ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░░▒▒ ▓░▒░▒░▒▒ ▓░▒░▒░▓  ",
- "░ ░ ▒  ░░░▒░ ░ ░   ░  ▒     ▒   ▒▒ ░   ░      ░▒ ░ ▒░  ▒   ▒▒ ░░░▒ ▒ ░ ▒░░▒ ▒ ░ ▒ ▒ ░",
- "  ░ ░    ░░░ ░ ░ ░          ░   ▒    ░        ░░   ░   ░   ▒   ░ ░ ░ ░ ░░ ░ ░ ░ ░ ▒ ░",
- "    ░  ░   ░     ░ ░            ░  ░           ░           ░  ░  ░ ░      ░ ░     ░  ",
- "                 ░                                             ░        ░            ",
+	" ██▓     █    ██  ▄████▄   ▄▄▄     ▄▄▄█████▓ ██▀███   ▄▄▄      ▒███████▒▒███████▒ ██▓",
+	"▓██▒     ██  ▓██▒▒██▀ ▀█  ▒████▄   ▓  ██▒ ▓▒▓██ ▒ ██▒▒████▄    ▒ ▒ ▒ ▄▀░▒ ▒ ▒ ▄▀░▓██▒",
+	"▒██░    ▓██  ▒██░▒▓█    ▄ ▒██  ▀█▄ ▒ ▓██░ ▒░▓██ ░▄█ ▒▒██  ▀█▄  ░ ▒ ▄▀▒░ ░ ▒ ▄▀▒░ ▒██▒",
+	"▒██░    ▓▓█  ░██░▒▓▓▄ ▄██▒░██▄▄▄▄██░ ▓██▓ ░ ▒██▀▀█▄  ░██▄▄▄▄██   ▄▀▒   ░  ▄▀▒   ░░██░",
+	"░██████▒▒▒█████▓ ▒ ▓███▀ ░ ▓█   ▓██▒ ▒██▒ ░ ░██▓ ▒██▒ ▓█   ▓██▒▒███████▒▒███████▒░██░",
+	"░ ▒░▓  ░░▒▓▒ ▒ ▒ ░ ░▒ ▒  ░ ▒▒   ▓▒█░ ▒ ░░   ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░░▒▒ ▓░▒░▒░▒▒ ▓░▒░▒░▓  ",
+	"░ ░ ▒  ░░░▒░ ░ ░   ░  ▒     ▒   ▒▒ ░   ░      ░▒ ░ ▒░  ▒   ▒▒ ░░░▒ ▒ ░ ▒░░▒ ▒ ░ ▒ ▒ ░",
+	"  ░ ░    ░░░ ░ ░ ░          ░   ▒    ░        ░░   ░   ░   ▒   ░ ░ ░ ░ ░░ ░ ░ ░ ░ ▒ ░",
+	"    ░  ░   ░     ░ ░            ░  ░           ░           ░  ░  ░ ░      ░ ░     ░  ",
+	"                 ░                                             ░        ░            ",
 }
 
 dashboard.section.buttons.val = {
- dashboard.button("e", " New file", ":ene <BAR> startinsert <CR>"),
- dashboard.button("f", " Find file", ":cd $HOME | Telescope find_files<CR>"),
+	dashboard.button("e", " New file", ":ene <BAR> startinsert <CR>"),
+	dashboard.button("f", " Find file", ":cd $HOME | Telescope find_files<CR>"),
 
- dashboard.button("s", " Restore Session", "<CMD>SessionManager load_last_session<CR>"),
- dashboard.button("S", " Sessions", ":SessionManager load_session<CR>"),
- dashboard.button("p", " Projects", ":Telescope projects<CR>"),
- dashboard.button("r", " Recent files", ":Telescope oldfiles<CR>"),
+	dashboard.button("s", " Restore Session", "<CMD>SessionManager load_last_session<CR>"),
+	dashboard.button("S", " Sessions", ":SessionManager load_session<CR>"),
+	dashboard.button("p", " Projects", ":Telescope projects<CR>"),
+	dashboard.button("r", " Recent files", ":Telescope oldfiles<CR>"),
 
- dashboard.button("c", " Config", ":e $MYVIMRC | pwd<CR>"),
- dashboard.button("u p", " Update plugins", ":PackerSync<CR>"),
- -- dashboard.button("u l", " Update LSP", '<cmd>lua require("lt.lsp.functions").lsp_install_servers()<CR>'),
- dashboard.button("u l", " Update LSP", "<cmd>LspInstallInfo<CR>"),
+	dashboard.button("c", " Config", ":e $MYVIMRC | pwd<CR>"),
+	dashboard.button("u p", " Update plugins", ":PackerSync<CR>"),
+	-- dashboard.button("u l", " Update LSP", '<cmd>lua require("lt.lsp.functions").lsp_install_servers()<CR>'),
+	dashboard.button("u l", " Update LSP", "<cmd>LspInstallInfo<CR>"),
 
- dashboard.button("q", " Quit NVIM", ":qa<CR>"),
+	dashboard.button("q", " Quit NVIM", ":qa<CR>"),
 }
 
 -- local function footer()
@@ -49,8 +50,8 @@ local start_plugins = #glob_split("~/.local/share/nvim/site/pack/packer/start/*"
 local opt_plugins = #glob_split("~/.local/share/nvim/site/pack/packer/opt/*")
 
 dashboard.section.footer.val = {
-    string.format("   %d plugins (%d loaded)", start_plugins + opt_plugins, start_plugins),
-    "  https://github.com/lucax88x/configs",
+	string.format("   %d plugins (%d loaded)", start_plugins + opt_plugins, start_plugins),
+	"  https://github.com/lucax88x/configs",
 }
 
 -- Send config to alpha
