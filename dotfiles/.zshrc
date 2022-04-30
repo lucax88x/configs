@@ -78,6 +78,7 @@ eval "$(zoxide init zsh)"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export EDITOR=nvim
 export VISUAL=nvim
+export MANGOHUD=1
 
 export PATH="$HOME/bin:$PATH"
 # add yarn globals to path
