@@ -21,7 +21,4 @@ modes.setup({
 
   -- Highlight cursor
   set_cursor = true,
-
-  -- Highlight in active window only
-  focus_only = true
 })

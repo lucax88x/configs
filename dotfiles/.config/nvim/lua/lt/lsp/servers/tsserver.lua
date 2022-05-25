@@ -9,7 +9,7 @@ return function(on_attach)
 			remaps.set_typescript(client, bufnr)
 
 			-- tsserver, stop messing with prettier da fuck!
-			client.resolved_capabilities.document_formatting = false
+			client.server_capabilities.document_formatting = false
 		end,
 	}
 end

@@ -398,13 +398,6 @@ return packer.startup({
 		})
 
 		use({
-			"hoschi/yode-nvim",
-			config = function()
-				require("lt.plugins.yode")
-			end,
-		})
-
-		use({
 			"monaqa/dial.nvim",
 			config = function()
 				require("lt.plugins.dial")
@@ -413,6 +406,7 @@ return packer.startup({
 
 		use({
 			"anuvyklack/pretty-fold.nvim",
+			requires = "anuvyklack/nvim-keymap-amend",
 			config = function()
 				require("lt.plugins.pretty-fold")
 			end,
