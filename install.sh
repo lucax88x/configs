@@ -19,6 +19,16 @@ cd $TEMP_DIR || exit
 
 echo '# GLOBAL SOFTWARE #'
 
+if ! [ -x "$(command -v paru)" ]; then
+	echo INSTALLING PARU
+
+	git clone https://aur.archlinux.org/paru.git
+	cd paru && makepkg -si --noconfirm && cd ..
+	rm -rf paru
+else
+	echo PARU ALREADY INSTALLED
+fi
+
 if ! [ -x "$(command -v make)" ]; then
 	echo INSTALLING BASE-DEVEL
 
@@ -49,16 +59,6 @@ if ! [ -x "$(command -v git)" ]; then
 	paru -S --noconfirm git
 else
 	echo GIT ALREADY INSTALLED
-fi
-
-if ! [ -x "$(command -v paru)" ]; then
-	echo INSTALLING PARU
-
-	git clone https://aur.archlinux.org/paru.git
-	cd paru && makepkg -si --noconfirm && cd ..
-	rm -rf paru
-else
-	echo PARU ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v wget)" ]; then
@@ -250,14 +250,14 @@ fi
 if ! [ -x "$(command -v docker)" ]; then
 	echo INSTALLING DOCKER
 
-	# paru -Sy --noconfirm docker
-	#
-	# $DOCKER_GROUP = docker
-	# getent group $DOCKER_GROUP || sudo groupadd $DOCKER_GROUP
-	# sudo usermod -aG $DOCKER_GROUP $USER
-	# # newgrp docker
-	# sudo systemctl enable docker.socket
-	# sudo systemctl start docker.socket
+	paru -Sy --noconfirm docker
+
+	DOCKER_GROUP=docker
+	getent group $DOCKER_GROUP || sudo groupadd $DOCKER_GROUP
+	sudo usermod -aG "$DOCKER_GROUP" "$USER"
+	# newgrp docker
+	sudo systemctl enable docker.socket
+	sudo systemctl start docker.socket
 else
 	echo DOCKER ALREADY INSTALLED
 fi
@@ -265,7 +265,7 @@ fi
 if ! [ -x "$(command -v docker-compose)" ]; then
 	echo INSTALLING DOCKER-COMPOSE
 
-	# paru -Sy --noconfirm docker-compose
+	paru -Sy --noconfirm docker-compose
 else
 	echo DOCKER-COMPOSE ALREADY INSTALLED
 fi
@@ -305,7 +305,7 @@ if [ ! -f ~/.config/i3/config ]; then
 	# background
 	paru -Sy --noconfirm feh
 	paru -Sy --noconfirm i3-battery-popup-git
-  # autostart
+	# autostart
 	paru -Sy --noconfirm dex
 else
 	echo I3 ALREADY INSTALLED
@@ -355,13 +355,13 @@ else
 	echo KEYRING ALREADY INSTALLED
 fi
 
-# if ! [ -x "$(command -v fzf)" ]; then
-# 	echo INSTALLING FZF
-#
-# 	paru -Sy --noconfirm fzf
-# else
-# 	echo FZF ALREADY INSTALLED
-# fi
+if ! [ -x "$(command -v fzf)" ]; then
+	echo INSTALLING FZF
+
+	paru -Sy --noconfirm fzf
+else
+	echo FZF ALREADY INSTALLED
+fi
 
 if ! [ -x "$(command -v delta)" ]; then
 	echo INSTALLING DELTA
@@ -587,7 +587,7 @@ function installAlbert {
 	# app launcher
 	paru -Sy --noconfirm albert-minimal
 
-  ln -s /usr/share/applications/albert.desktop ~/.config/autostart/
+	ln -s /usr/share/applications/albert.desktop ~/.config/autostart/
 }
 
 echo '# CONFIGURATIONS'
