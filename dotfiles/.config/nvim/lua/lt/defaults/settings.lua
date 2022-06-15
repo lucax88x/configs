@@ -30,7 +30,7 @@ local options = {
   -- live preview of substitutions
   inccommand = "split",
   -- Give more space for displaying messages.
-  cmdheight = 1,
+  cmdheight = 0,
 
   timeoutlen = 300, -- time to wait for a mapped sequence to complete (in milliseconds)
 
@@ -60,7 +60,6 @@ local options = {
 
   -- global statusline
   laststatus = 3,
-  winbar = "%=%m %f",
 }
 
 for k, v in pairs(options) do

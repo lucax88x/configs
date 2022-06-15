@@ -132,3 +132,5 @@ compctl -W $REPOSITORIES_FOLDER -/ prj
 # END FUNCTIONS
 
 [[ ! -f $HOME/.p10k.zsh ]] || zinit snippet $HOME/.p10k.zsh
+
+source /home/lucatrazzi/.config/broot/launcher/bash/br

@@ -58,7 +58,7 @@ scroll-down = i3-desknext
 [bar/laptop]
 inherit = bar/center
 
-monitor = DP-4
+monitor = Virtual1
 
 enable-ipc = true
 bottom = true

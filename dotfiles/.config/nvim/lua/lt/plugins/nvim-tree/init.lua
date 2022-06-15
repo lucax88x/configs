@@ -43,15 +43,11 @@ local list = {
   { key = "g?", cb = tree_cb("toggle_help") },
 }
 
-vim.g.nvim_tree_git_hl = 0
-vim.g.nvim_tree_highlight_opened_files = 1
-vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_respect_buf_cwd = 1
-
 nvim_tree.setup({
   open_on_setup = false,
   open_on_tab = false,
   update_cwd = false,
+  respect_buf_cwd = true,
   diagnostics = {
     enable = false,
   },
@@ -77,6 +73,11 @@ nvim_tree.setup({
     open_file = {
       quit_on_open = true,
     },
+  },
+  renderer = {
+    highlight_opened_files = "icon",
+    highlight_git = false,
+    group_empty = true,
   },
 })
 

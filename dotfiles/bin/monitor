@@ -11,23 +11,13 @@ notify-send "monitor" "switching to $1"
 
 if [ "$1" = "work" ]; then
     xrandr \
-    --output DP-1 --primary --mode 2560x1440 --pos 1920x0 --rotate normal \
-    --output DP-3 --mode 2560x1440 --pos 4480x0 --rotate normal \
-    --output DP-4 --mode 1920x1080 --pos 0x0 --rotate normal \
-    --output DP-2 --off --output DP-3 --off \
-    --output DP-0 --off --output DP-1 --off \
-    --output DP-6 --off
+    --output Virtual1 --primary --mode 2560x1440 --rotate normal
+    # --output Virtual1 --primary --mode 1920x1080 --rotate normal
 fi
 
 if [ "$1" = "undocked" ]; then
     xrandr \
-    --output DP-4 --primary --mode 1920x1080 --pos 0x0 --rotate normal --panning 1920x1080 \
-    --output DP-5 --off \
-    --output DP-2 --off --output DP-3 --off \
-    --output DP-0 --off --output DP-1 --off \
-    --output DP-3.1 --off \
-    --output DP-3.2 --off \
-    --output DP-6 --off
+    --output Virtual1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal 
 fi
 
 if [ "$1" = "home" ]; then

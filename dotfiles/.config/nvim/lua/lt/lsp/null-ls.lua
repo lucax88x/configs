@@ -3,16 +3,8 @@ if not null_ls_status_ok then
 	return
 end
 
--- npm install -g @fsouza/prettierd
--- npm install -g stylelint
--- paru -S selene-linter
--- paru -S shfmt-bin
--- paru -S shellcheck-bin
--- paru -S yamllint
--- paru -S actionlint-bin
--- paru -S nginxbeautifier
--- paru -S stylua
--- paru -S ansible-lint-git
+-- npm install -g @fsouza/prettierd stylelint
+-- paru -S selene-linter shfmt shellcheck-bin yamllint actionlint-bin nginxbeautifier stylua ansible-lint-git
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics

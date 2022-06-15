@@ -137,7 +137,7 @@ if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then
 
 	# wget https://github.com/FortAwesome/Font-Awesome/releases/download/$FONTAWESOME_VERSION/fontawesome-free-$FONTAWESOME_VERSION-desktop.zip -O $TEMP_DIR/FontAwesome.zip
 
-	# unzip $TEMP_DIR/FontAwesome.zip -d ~/.fonts
+	# unzip $TEMP_DIR/FontAwesome.zip -d ~/.fonts/fontawesome5
 
 	# fc-cache
 	echo MANUALLY INSTALL FONTAWESOME 5 PRO!
@@ -600,14 +600,6 @@ if [ ! -f ~/.ssh/id_rsa.pub ]; then
 	ssh-add ~/.ssh/id_ed25519
 else
 	echo SSH ALREADY CONFIGURED
-fi
-
-if [ ! -f ~/.zshrc ]; then
-	echo CONFIGURING ZSH
-
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
-else
-	echo ZSH ALREADY CONFIGURED
 fi
 
 if [ ! -d ~/.config/fontconfig/conf.d ]; then
