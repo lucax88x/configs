@@ -1,7 +1,7 @@
 local present, refactoring = pcall(require, "refactoring")
 
 if not present then
-	return
+  return
 end
 
 refactoring.setup({})
@@ -12,17 +12,17 @@ r.which_key("<leader>te", "extract")
 r.which_key("<leader>ti", "inline")
 
 r.noremap("v", "<leader>tef", function()
-	refactoring.refactor("Extract Function")
-end, "refactoring_extract_function", "Extract Function")
+  refactoring.refactor("Extract Function")
+end, "Extract Function")
 
 r.noremap("v", "<leader>teF", function()
-	refactoring.refactor("Extract Function To File")
-end, "refactoring_extract_function_to_file", "Extact Function to file")
+  refactoring.refactor("Extract Function To File")
+end, "Extact Function to file")
 
 r.noremap("v", "<leader>tev", function()
-	refactoring.refactor("Extract Variable")
-end, "refactoring_extract_variable", "Extact variable")
+  refactoring.refactor("Extract Variable")
+end, "Extact variable")
 
 r.noremap("v", "<leader>tiv", function()
-	refactoring.refactor("Inline Variable")
-end, "refactoring_inline_variable", "Inline variable")
+  refactoring.refactor("Inline Variable")
+end, "Inline variable")

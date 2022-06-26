@@ -17,18 +17,18 @@ r.map({ "i", "s" }, "<c-n>", function()
 	if luasnip.expand_or_jumpable() then
 		luasnip.expand_or_jump()
 	end
-end, "luasnip_expand_or_jump", "Expand current snippet or jump to next", { silent = true })
+end, "Expand current snippet or jump to next", { silent = true })
 
 r.map({ "i", "s" }, "<c-p>", function()
 	if luasnip.jumpable(-1) then
 		luasnip.jump(-1)
 	end
-end, "luasnip_previous", "Go to previous snippet", { silent = true })
+end, "Go to previous snippet", { silent = true })
 
 r.map("i", "<c-l>", function()
 	if luasnip.choice_active() then
 		luasnip.change_choice(1)
 	end
-end, "luasnip_options", "Show list of options")
+end, "Show list of options")
 
 -- vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>")

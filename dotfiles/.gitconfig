@@ -176,3 +176,5 @@
 	# unstage = clean -fd 
 	# unstage = clean -fdx
 	discard = checkout -- .
+  
+	rebsqua = "!f() { number_of_commits=${1}; git rebase -i HEAD~$number_of_commits;  }; f"

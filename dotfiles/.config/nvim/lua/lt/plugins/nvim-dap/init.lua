@@ -1,12 +1,15 @@
+local vim = vim
 local present, dap = pcall(require, "dap")
 
 if not present then
-	return
+  return
 end
 
 -- dap.set_log_level("TRACE")
 
 local r = require("lt.utils.remaps")
+
+-- TODO: consider switching to hydra
 
 r.which_key("<leader>dd", "debugger")
 r.which_key("<leader>dds", "step")
@@ -16,15 +19,15 @@ r.which_key("<leader>dw", "widgets")
 r.which_key("<leader>dr", "repl")
 r.which_key("<leader>/d", "dap")
 
-r.noremap("n", "<leader>ddc", dap.continue, "dap_start_continue", "Start/Continue")
-r.noremap("n", "<leader>ddsv", dap.step_over, "dap_step_over", "Step over")
-r.noremap("n", "<leader>ddsi", dap.step_into, "dap_step_into", "Step into")
-r.noremap("n", "<leader>ddso", dap.step_out, "dap_step_out", "Step out")
+r.noremap("n", "<leader>ddc", dap.continue, "Start/Continue")
+r.noremap("n", "<leader>ddsv", dap.step_over, "Step over")
+r.noremap("n", "<leader>ddsi", dap.step_into, "Step into")
+r.noremap("n", "<leader>ddso", dap.step_out, "Step out")
 
-r.noremap("n", "<leader>dbt", dap.toggle_breakpoint, "dap_toggle_breakpoint", "Toggle breakpoint")
+r.noremap("n", "<leader>dbt", dap.toggle_breakpoint, "Toggle breakpoint")
 r.noremap("n", "<leader>dbc", function()
-	dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-end, "dap_set_breakpoint", "Set breakpoint")
+  dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, "Set breakpoint")
 -- r.noremap(
 -- "n",
 -- 	"<leader>dbm",
@@ -66,16 +69,13 @@ end, "dap_set_breakpoint", "Set breakpoint")
 -- r.noremap("n", "<leader>drl", dap.repl.run_last, "repl_run_last", "REPL last")
 
 r.noremap("n", "<leader>dl", function()
-	print(vim.fn.stdpath("cache") .. "/dap.log")
-end, "dap_log_folder", "Show log path")
+  print(vim.fn.stdpath("cache") .. "/dap.log")
+end, "Show log path")
 
 local telescope = require("telescope")
-r.noremap("n", "<leader>/dcc", telescope.extensions.dap.commands, "dap_commands", "DAP commands")
 
-r.noremap("n", "<leader>/dco", telescope.extensions.dap.configurations, "dap_configurations", "DAP configurations")
-
-r.noremap("n", "<leader>/db", telescope.extensions.dap.list_breakpoints, "dap_list_breakpoints", "DAP list breakpoints")
-
-r.noremap("n", "<leader>/dv", telescope.extensions.dap.variables, "dap_variables", "DAP variables")
-
-r.noremap("n", "<leader>/df", telescope.extensions.dap.frames, "dap_frames", "DAP frames")
+r.noremap("n", "<leader>/dcc", telescope.extensions.dap.commands, "DAP commands")
+r.noremap("n", "<leader>/dco", telescope.extensions.dap.configurations, "DAP configurations")
+r.noremap("n", "<leader>/db", telescope.extensions.dap.list_breakpoints, "DAP list breakpoints")
+r.noremap("n", "<leader>/dv", telescope.extensions.dap.variables, "DAP variables")
+r.noremap("n", "<leader>/df", telescope.extensions.dap.frames, "DAP frames")

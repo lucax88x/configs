@@ -8,4 +8,4 @@ dap_ui.setup({})
 
 local r = require("lt.utils.remaps")
 
-r.noremap("n", "<leader>du", dap_ui.toggle, "dap_ui_toggle", "Toggle DAP UI")
+r.noremap("n", "<leader>du", dap_ui.toggle, "Toggle DAP UI")

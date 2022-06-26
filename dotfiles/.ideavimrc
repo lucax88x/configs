@@ -103,6 +103,8 @@ nnoremap [d :action GotoPreviousError<cr>
 nnoremap ]h :action VcsShowNextChangeMarker<cr>
 nnoremap [h :action VcsShowPrevChangeMarker<cr>
 nnoremap <leader>es :action ShowErrorDescription<cr>
+nnoremap [q :action PreviousOccurence<cr>
+nnoremap ]q :action NextOccurence<cr>
 
 " Misc
 nnoremap <leader><cr> :source ~/.ideavimrc<CR>

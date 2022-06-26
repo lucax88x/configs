@@ -30,7 +30,7 @@ local options = {
   -- live preview of substitutions
   inccommand = "split",
   -- Give more space for displaying messages.
-  cmdheight = 0,
+  cmdheight = 1,
 
   timeoutlen = 300, -- time to wait for a mapped sequence to complete (in milliseconds)
 

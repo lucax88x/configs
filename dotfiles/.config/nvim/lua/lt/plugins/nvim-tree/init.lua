@@ -82,7 +82,7 @@ nvim_tree.setup({
 })
 
 local r = require("lt.utils.remaps")
-r.noremap("n", "-", "<cmd>NvimTreeToggle<CR>", "explorer_toggle", "Toggle explorer")
+r.noremap("n", "-", "<cmd>NvimTreeToggle<CR>", "Toggle explorer")
 
 -- r.map_virtual("<BS>", "Closes directory")
 -- r.map_virtual("a", "Create file/dir")

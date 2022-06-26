@@ -99,6 +99,13 @@ return packer.startup({
     })
 
     use({
+      "anuvyklack/hydra.nvim",
+      config = function()
+        require("lt.plugins.hydra")
+      end,
+    })
+
+    use({
       "goolord/alpha-nvim",
       event = "BufWinEnter",
       config = function()
@@ -286,13 +293,13 @@ return packer.startup({
       end,
     })
 
-    use({
-      "github/copilot.vim",
-      event = "InsertEnter",
-      config = function()
-        require("lt.plugins.copilot-vim")
-      end,
-    })
+    -- use({
+    --   "github/copilot.vim",
+    --   event = "InsertEnter",
+    --   config = function()
+    --     require("lt.plugins.copilot-vim")
+    --   end,
+    -- })
 
     -- use({
     -- 	"zbirenbaum/copilot.lua",
@@ -377,13 +384,6 @@ return packer.startup({
       end,
     })
 
-    use({
-      "ThePrimeagen/harpoon",
-      config = function()
-        require("lt.plugins.harpoon")
-      end,
-      requires = "nvim-lua/plenary.nvim",
-    })
     use({
       "Everduin94/nvim-quick-switcher",
       config = function()

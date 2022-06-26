@@ -1,7 +1,7 @@
 local present, dap_install = pcall(require, "dap-install")
 
 if not present then
-	return
+  return
 end
 
 dap_install.setup({})
@@ -12,7 +12,7 @@ local r = require("lt.utils.remaps")
 r.which_key("<leader>ds", "servers")
 
 r.noremap("n", "<leader>dsi", function()
-	require("lt.plugins.dap-install.functions").dap_install_servers()
+  require("lt.plugins.dap-install.functions").dap_install_servers()
 end, "dap_install_server", "Install DAP servers")
 
-r.noremap("n", "<leader>dsl", "<cmd>DIList<CR>", "dap_install_server_info", "DAP servers install info")
+r.noremap("n", "<leader>dsl", "<cmd>DIList<CR>", "DAP servers install info")
