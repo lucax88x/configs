@@ -116,14 +116,7 @@ function M.set_typescript(client, bufnr)
     tsUtils.setup_client(client)
   end
 
-  buf_set_keymap(
-    "n",
-    "<leader>fo",
-    ":TSLspOrganize<CR>",
-    "lsp_typescript_organize",
-    "Organize imports",
-    { silent = true }
-  )
+  buf_set_keymap("n", "<leader>fo", ":TSLspOrganize<CR>", "Organize imports", { silent = true })
   buf_set_keymap("n", "<leader>fc", ":TSLspFixCurrent<CR>", "lsp_typescript_fix_current", "Fix current")
   -- buf_set_keymap("n", "gr", ":TSLspRenameFile<CR>", 'lsp', 'lsp_', '')
   buf_set_keymap("n", "<leader>fi", ":TSLspImportAll<CR>", "lsp_typescript_import_all", "Import all")

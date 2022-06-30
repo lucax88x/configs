@@ -1,4 +1,5 @@
 local M = {}
+local vim = vim
 
 M.show_diagnostics = function(opts)
 	opts = opts or {}
@@ -20,13 +21,14 @@ M.lsp_install_servers = function()
 	installLanguageServer("yamlls")
 	installLanguageServer("html")
 	installLanguageServer("cssls")
-	installLanguageServer("csharp_ls")
+	-- installLanguageServer("csharp_ls")
+	installLanguageServer("omnisharp")
 	installLanguageServer("dockerls")
 	installLanguageServer("graphql")
 	installLanguageServer("efm")
 	installLanguageServer("rust_analyzer")
 	installLanguageServer("eslint")
-	installLanguageServer("svelte")
+	-- installLanguageServer("svelte")
 	installLanguageServer("texlab")
 	installLanguageServer("ansiblels")
 end

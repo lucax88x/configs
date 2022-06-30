@@ -9,13 +9,6 @@ hop.setup({
   uppercase_labels = true,
 })
 
-local colors = require("gruvbox.colors")
-
-vim.api.nvim_command("highlight HopNextKey  guifg=" .. colors.light0 .. " gui=bold ctermfg=198 cterm=bold")
-vim.api.nvim_command("highlight HopNextKey1 guifg=" .. colors.light1 .. " gui=bold ctermfg=45 cterm=bold")
-vim.api.nvim_command("highlight HopNextKey2 guifg=" .. colors.light2 .. " ctermfg=33")
-vim.api.nvim_command("highlight HopUnmatched guifg=#666666 guibg=bg guisp=#666666 ctermfg=242")
-
 local hint = require("hop.hint")
 local r = require("lt.utils.remaps")
 

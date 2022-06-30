@@ -4,18 +4,18 @@ if not present then
 	return
 end
 
-local colors = require("gruvbox.colors")
+local palette = require("gruvbox.palette")
 
 scrollbar.setup({
 	handle = {
-		color = colors.dark1,
+		color = palette.dark1,
 	},
 	marks = {
-		search = { color = colors.neutral_yellow },
-		error = { color = colors.neutral_red },
-		Warn = { color = colors.neutral_yellow },
-		Info = { color = colors.neutral_aqua },
-		Hint = { color = colors.neutral_aqujak },
-		Misc = { color = colors.neutral_blue },
+		search = { color = palette.neutral_yellow },
+		error = { color = palette.neutral_red },
+		Warn = { color = palette.neutral_yellow },
+		Info = { color = palette.neutral_aqua },
+		Hint = { color = palette.neutral_aqujak },
+		Misc = { color = palette.neutral_blue },
 	},
 })

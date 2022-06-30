@@ -1,6 +1,5 @@
 local hydra = require("hydra")
 
-print('hdra win')
 local hint = [[
 ^^^^^^     Move     ^^^^^^   ^^     Split         ^^^^    Size
 ^^^^^^--------------^^^^^^   ^^---------------    ^^^^------------- 

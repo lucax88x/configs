@@ -4,16 +4,16 @@ if not present then
 	return
 end
 
-local gruvbox = require("gruvbox.colors")
+local palette = require("gruvbox.palette")
 
 vim.opt.cursorline = true
 
 modes.setup({
   colors = {
-    copy = gruvbox.bright_yellow,
-    delete = gruvbox.bright_red,
-    insert = gruvbox.bright_green,
-    visual = gruvbox.bright_purple,
+    copy = palette.bright_yellow,
+    delete = palette.bright_red,
+    insert = palette.bright_green,
+    visual = palette.bright_purple,
   },
 
   -- Cursorline highlight opacity

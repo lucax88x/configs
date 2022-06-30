@@ -1,10 +1,5 @@
-local present, _ = pcall(require, "lspconfig")
+local present, lspconfig = pcall(require, "lspconfig")
 if not present then
-  return
-end
-
-local present_lsp_installer, lsp_installer = pcall(require, "nvim-lsp-installer.servers")
-if not present_lsp_installer then
   return
 end
 
@@ -103,13 +98,14 @@ local servers = {
   cssls = {},
   sumneko_lua = require("lt.lsp.servers.sumneko_lua")(on_attach),
   dockerls = {},
-  csharp_ls = {},
+  -- csharp_ls = {},
+  omnisharp = {},
   vuels = {},
   graphql = {},
   rust_analyzer = {},
   eslint = require("lt.lsp.servers.eslint")(on_attach),
   tsserver = require("lt.lsp.servers.tsserver")(on_attach),
-  svelte = {},
+  -- svelte = {},
   texlab = {},
   ansiblels = {},
 }
@@ -123,30 +119,26 @@ local default_lsp_config = {
   },
 }
 
+local server_names = {}
+for server_name, _ in pairs(servers) do
+  table.insert(server_names, server_name)
+end
+
+local present_lsp_installer, lsp_installer = pcall(require, "nvim-lsp-installer")
+if present_lsp_installer then
+  lsp_installer.setup({ ensure_installed = server_names })
+end
+
 for server_name, server_config in pairs(servers) do
-  local server_installed, server = lsp_installer.get_server(server_name)
-  if server_installed then
-    server:on_ready(function()
-      local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_config)
+  local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_config)
 
-      if server.name == "rust_analyzer" then
-        local default_server_lsp_config = server:get_default_options()
-        merged_config = vim.tbl_deep_extend("force", default_server_lsp_config, merged_config)
+  lspconfig[server_name].setup(merged_config)
 
-        local present_rust_tools, rust_tools = pcall(require, "rust-tools")
+  if server_name == "rust_analyzer" then
+    local present_rust_tools, rust_tools = pcall(require, "rust-tools")
 
-        if present_rust_tools then
-          rust_tools.setup({ server = merged_config })
-          server:attach_buffers()
-        else
-          server:setup(merged_config)
-        end
-      else
-        server:setup(merged_config)
-      end
-    end)
-    if not server:is_installed() then
-      server:install()
+    if present_rust_tools then
+      rust_tools.setup({ server = merged_config })
     end
   end
 end
