@@ -101,25 +101,25 @@ function M.set_default_on_buffer(client, bufnr)
   buf_set_keymap("n", "<leader>lsa", ":LspInfo()<CR>", "LSP Info")
 end
 
-function M.set_typescript(client, bufnr)
+function M.set_typescript(bufnr)
   local buf_set_keymap = generate_buf_keymapper(bufnr)
+  local typescript = require("typescript")
 
-  local presentTsUtils, tsUtils = pcall(require, "nvim-lsp-ts-utils")
+  buf_set_keymap("n", "<leader>fo", function()
+    typescript.actions.organizeImports()
+  end, "Organize imports")
 
-  if presentTsUtils then
-    -- defaults
-    tsUtils.setup({
-      auto_inlay_hints = false,
-    })
+  buf_set_keymap("n", "<leader>fu", function()
+    typescript.actions.removeUnused()
+  end, "Remove unused variables")
 
-    -- required to fix code action ranges and filter diagnostics
-    tsUtils.setup_client(client)
-  end
+  buf_set_keymap("n", "<leader>fc", function()
+    typescript.actions.fixAll()
+  end, "Fix All problems")
 
-  buf_set_keymap("n", "<leader>fo", ":TSLspOrganize<CR>", "Organize imports", { silent = true })
-  buf_set_keymap("n", "<leader>fc", ":TSLspFixCurrent<CR>", "lsp_typescript_fix_current", "Fix current")
-  -- buf_set_keymap("n", "gr", ":TSLspRenameFile<CR>", 'lsp', 'lsp_', '')
-  buf_set_keymap("n", "<leader>fi", ":TSLspImportAll<CR>", "lsp_typescript_import_all", "Import all")
+  buf_set_keymap("n", "<leader>fi", function()
+    typescript.actions.addMissingImports()
+  end, "Import all")
 end
 
 r.which_key("<leader>ls", "servers")

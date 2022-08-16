@@ -173,6 +173,8 @@
 	undop = restore --staged -p # to unstage hunks
 	undo = reset --soft HEAD^
 	unstage = reset HEAD --
+  # delete untracked files & directories
+	clearall = clean --fn
 	# unstage = clean -fd 
 	# unstage = clean -fdx
 	discard = checkout -- .

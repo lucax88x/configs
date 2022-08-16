@@ -34,7 +34,9 @@ local function on_attach(client, bufnr)
   end
 
   if presentNavic then
-    navic.attach(client, bufnr)
+    if client.name ~= "eslint" and client.name ~= "angularls" then
+      navic.attach(client, bufnr)
+    end
   end
 end
 
@@ -102,12 +104,12 @@ local servers = {
   omnisharp = {},
   vuels = {},
   graphql = {},
-  rust_analyzer = {},
+  -- rust_analyzer = {},
   eslint = require("lt.lsp.servers.eslint")(on_attach),
-  tsserver = require("lt.lsp.servers.tsserver")(on_attach),
   -- svelte = {},
   texlab = {},
   ansiblels = {},
+  angularls = {},
 }
 
 local default_lsp_config = {
@@ -127,6 +129,17 @@ end
 local present_lsp_installer, lsp_installer = pcall(require, "nvim-lsp-installer")
 if present_lsp_installer then
   lsp_installer.setup({ ensure_installed = server_names })
+end
+
+local present_typescript, typescript = pcall(require, "typescript")
+if present_typescript then
+  typescript.setup({
+    server = {
+      on_attach = function(_, bufnr)
+        remaps.set_typescript(bufnr)
+      end,
+    },
+  })
 end
 
 for server_name, server_config in pairs(servers) do

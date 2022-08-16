@@ -26,11 +26,12 @@ M.lsp_install_servers = function()
 	installLanguageServer("dockerls")
 	installLanguageServer("graphql")
 	installLanguageServer("efm")
-	installLanguageServer("rust_analyzer")
+	-- installLanguageServer("rust_analyzer")
 	installLanguageServer("eslint")
 	-- installLanguageServer("svelte")
 	installLanguageServer("texlab")
 	installLanguageServer("ansiblels")
+	installLanguageServer("angularls")
 end
 
 return M

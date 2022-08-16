@@ -270,7 +270,7 @@ return packer.startup({
       end,
     })
     use("onsails/lspkind-nvim")
-    use("jose-elias-alvarez/nvim-lsp-ts-utils")
+    use("jose-elias-alvarez/typescript.nvim")
     use("williamboman/nvim-lsp-installer")
     use("b0o/schemastore.nvim")
     use({
@@ -392,7 +392,7 @@ return packer.startup({
     })
 
     use({
-      "kdav5758/TrueZen.nvim",
+      "Pocco81/true-zen.nvim",
       config = function()
         require("lt.plugins.truezen")
       end,
@@ -407,7 +407,7 @@ return packer.startup({
 
     use({
       "anuvyklack/pretty-fold.nvim",
-      requires = "anuvyklack/nvim-keymap-amend",
+      requires = { "anuvyklack/nvim-keymap-amend", "anuvyklack/fold-preview.nvim" },
       config = function()
         require("lt.plugins.pretty-fold")
       end,
