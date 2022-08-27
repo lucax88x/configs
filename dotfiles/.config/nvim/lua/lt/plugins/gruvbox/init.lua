@@ -3,9 +3,19 @@ local vim = vim
 vim.cmd("syntax on")
 
 vim.o.termguicolors = true
+
+local present, gruvbox = pcall(require, "gruvbox")
+
+if not present then
+  vim.notify("could not load gruvbox")
+  return
+end
+
 vim.o.background = "dark"
 
-vim.g.gruvbox_contrast_dark = "hard"
+gruvbox.setup({
+  contrast = "hard",
+})
 
 vim.cmd("colorscheme gruvbox")
 
@@ -36,7 +46,7 @@ highlight_fg_bg("FloatBorder", bg_alt, bg_alt)
 highlight_fg("StatusLine", palette.bg)
 
 if pcall(require, "telescope") then
-  -- functions.link_highlight("TelescopeBorder", "GruvboxBg2", true)
+  --[[ link_highlight("TelescopeBorder", "GruvboxBg2", true) ]]
   -- functions.link_highlight("TelescopePromptBorder", "GruvboxBg2", true)
   -- functions.link_highlight("TelescopeResultsBorder", "GruvboxBg2", true)
   -- functions.link_highlight("TelescopePreviewBorder", "GruvboxBg2", true)

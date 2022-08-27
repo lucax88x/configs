@@ -4,7 +4,6 @@ if not present then
 end
 
 local vim = vim
-
 require("lt.lsp.null-ls")
 local remaps = require("lt.lsp.remaps")
 
@@ -13,6 +12,7 @@ local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
 local presentAerial, aerial = pcall(require, "aerial")
 local presentLspSignature, lspSignature = pcall(require, "lsp_signature")
 local presentNavic, navic = pcall(require, "nvim-navic")
+local presentUfo, ufo = pcall(require, "ufo")
 
 vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
 
@@ -22,7 +22,7 @@ local function on_attach(client, bufnr)
   remaps.set_default_on_buffer(client, bufnr)
 
   if presentLspStatus then
-    lspStatus.on_attach(client, bufnr)
+    lspStatus.on_attach(client)
   end
 
   if presentAerial then
@@ -52,7 +52,7 @@ for _, sign in ipairs(signs) do
 end
 
 local config = {
-  virtual_text = true,
+  virtual_text = not pcall(require, "lsp_lines"),
   -- show signs
   signs = {
     active = signs,
@@ -92,6 +92,18 @@ if presentCmpNvimLsp then
   capabilities = vim.tbl_extend("keep", capabilities, cmpNvimLsp.update_capabilities(capabilities))
 end
 
+if presentUfo then
+  capabilities = vim.tbl_extend(
+    "keep",
+    capabilities,
+    { textDocument = { foldingRange = {
+
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    } } }
+  )
+end
+
 local servers = {
   bashls = {},
   yamlls = require("lt.lsp.servers.yamlls")(capabilities),
@@ -125,10 +137,12 @@ local server_names = {}
 for server_name, _ in pairs(servers) do
   table.insert(server_names, server_name)
 end
+--[[ setupped by typescript package so we need to ensure installed by mason ]]
+table.insert(server_names, "tsserver")
 
-local present_lsp_installer, lsp_installer = pcall(require, "nvim-lsp-installer")
-if present_lsp_installer then
-  lsp_installer.setup({ ensure_installed = server_names })
+local present_mason, mason = pcall(require, "mason-lspconfig")
+if present_mason then
+  mason.setup({ ensure_installed = server_names })
 end
 
 local present_typescript, typescript = pcall(require, "typescript")
@@ -154,4 +168,8 @@ for server_name, server_config in pairs(servers) do
       rust_tools.setup({ server = merged_config })
     end
   end
+end
+
+if presentUfo then
+  ufo.setup()
 end

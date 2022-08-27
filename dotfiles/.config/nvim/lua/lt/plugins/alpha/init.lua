@@ -31,8 +31,7 @@ dashboard.section.buttons.val = {
 
 	dashboard.button("c", " Config", ":e $MYVIMRC | pwd<CR>"),
 	dashboard.button("u p", " Update plugins", ":PackerSync<CR>"),
-	-- dashboard.button("u l", " Update LSP", '<cmd>lua require("lt.lsp.functions").lsp_install_servers()<CR>'),
-	dashboard.button("u l", " Update LSP", "<cmd>LspInstallInfo<CR>"),
+	dashboard.button("u l", " Update LSP", "<cmd>Mason<CR>"),
 
 	dashboard.button("q", " Quit NVIM", ":qa<CR>"),
 }

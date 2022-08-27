@@ -1,17 +1,27 @@
-local present, true_zen = pcall(require, "true-zen")
+local present, truezen = pcall(require, "true-zen")
 
 if not present then
   return
 end
 
-true_zen.setup({
-  integrations = {
-    gitsigns = true,
+truezen.setup({
+  integrations = {},
+  modes = {
+    ataraxis = {
+      quit_untoggles = true,
+      minimum_writing_area = { -- minimum size of main window
+        width = 80,
+      },
+      padding = { -- padding windows
+        left = 5,
+        right = 5,
+        top = 0,
+        bottom = 0,
+      },
+    },
   },
 })
 
 local r = require("lt.utils.remaps")
 
-r.which_key("<leader>z", "zen")
-
-r.noremap("n", "<leader>zz", "<cmd>:TZAtaraxis<CR>", "Zen")
+r.noremap("n", "<leader>Z", truezen.ataraxis, "zen")

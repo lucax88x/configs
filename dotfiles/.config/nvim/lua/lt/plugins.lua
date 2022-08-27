@@ -261,7 +261,16 @@ return packer.startup({
     use("tpope/vim-abolish") -- :S to replace with smartcase
 
     -- Autocomplete & Linters
-    use("neovim/nvim-lspconfig")
+    use("williamboman/mason.nvim")
+    use({
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      config = function()
+        require("lt.plugins.mason")
+      end,
+      requires = "williamboman/mason.nvim",
+    })
+    use({ "williamboman/mason-lspconfig.nvim", requires = "williamboman/mason.nvim" })
+    use({ "neovim/nvim-lspconfig", requires = "williamboman/mason-lspconfig.nvim" })
     use("nvim-lua/lsp-status.nvim")
     use({
       "stevearc/dressing.nvim",
@@ -271,10 +280,16 @@ return packer.startup({
     })
     use("onsails/lspkind-nvim")
     use("jose-elias-alvarez/typescript.nvim")
-    use("williamboman/nvim-lsp-installer")
+
     use("b0o/schemastore.nvim")
     use({
       "jose-elias-alvarez/null-ls.nvim",
+    })
+    use({
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      config = function()
+        require("lt.plugins.lsp_lines")
+      end,
     })
 
     -- annotation
@@ -371,12 +386,12 @@ return packer.startup({
     use("RRethy/nvim-treesitter-textsubjects")
     use("nvim-treesitter/nvim-treesitter-textobjects")
 
-    use({
-      "andymass/vim-matchup", -- enhances %
-      config = function()
-        require("lt.plugins.vim-matchup")
-      end,
-    })
+    --[[ use({ ]]
+    --[[   "andymass/vim-matchup", -- enhances % ]]
+    --[[   config = function() ]]
+    --[[     require("lt.plugins.vim-matchup") ]]
+    --[[   end, ]]
+    --[[ }) ]]
     use({
       "folke/todo-comments.nvim",
       config = function()
@@ -405,12 +420,21 @@ return packer.startup({
       end,
     })
 
+    --[[ use({ ]]
+    --[[   "anuvyklack/pretty-fold.nvim", ]]
+    --[[   requires = { "anuvyklack/nvim-keymap-amend", "anuvyklack/fold-preview.nvim" }, ]]
+    --[[   config = function() ]]
+    --[[     require("lt.plugins.pretty-fold") ]]
+    --[[   end, ]]
+    --[[ }) ]]
     use({
-      "anuvyklack/pretty-fold.nvim",
-      requires = { "anuvyklack/nvim-keymap-amend", "anuvyklack/fold-preview.nvim" },
+      "kevinhwang91/nvim-ufo",
       config = function()
-        require("lt.plugins.pretty-fold")
+        require("lt.plugins.ufo")
       end,
+      requires = {
+        "kevinhwang91/promise-async",
+      },
     })
 
     use({

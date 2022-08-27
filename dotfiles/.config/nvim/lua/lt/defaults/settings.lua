@@ -71,10 +71,19 @@ vim.opt.shortmess:append("c")
 vim.g.loaded_matchparen = 1
 vim.g.mapleader = " "
 
--- fold
-vim.wo.foldcolumn = "0" -- defines 1 col at window left, to indicate folding
-vim.o.foldlevelstart = 99 -- start file with all folds opened
+local presentUfo = pcall(require, "ufo")
 
--- using treesitter for folding
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+if presentUfo then
+  vim.o.foldcolumn = "1"
+  vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+  vim.o.foldlevelstart = 99
+  vim.o.foldenable = true
+else
+  -- fold
+  vim.wo.foldcolumn = "0" -- defines 1 col at window left, to indicate folding
+  vim.o.foldlevelstart = 99 -- start file with all folds opened
+
+  -- using treesitter for folding
+  vim.wo.foldmethod = "expr"
+  vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+end
