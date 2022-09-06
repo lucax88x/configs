@@ -297,7 +297,7 @@ fi
 if [ ! -f ~/.config/i3/config ]; then
 	echo INSTALLING I3
 
-	paru -Sy --noconfirm i3-wm
+	paru -Sy --noconfirm i3-gaps
 	paru -Sy --noconfirm i3lock
 
 	# status bar
@@ -509,7 +509,7 @@ EOT
 	systemctl --user start --now imwheel.service
 	journalctl --user --unit imwheel.service
 else
-	echo IMWHEEL ALREADY CONFIGURED
+	echo IMWHEEL ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v zathura)" ]; then
@@ -517,7 +517,7 @@ if ! [ -x "$(command -v zathura)" ]; then
 
 	paru -S --noconfirm zathura-git zathura-pdf-poppler-git
 else
-	echo ZATHURA ALREADY CONFIGURED
+	echo ZATHURA ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v cups)" ]; then
@@ -529,7 +529,7 @@ if ! [ -x "$(command -v cups)" ]; then
 	systemctl enable --now cups.service
 	systemctl start --now cups.service
 else
-	echo CUPS ALREADY CONFIGURED
+	echo CUPS ALREADY INSTALLED
 fi
 
 if ! [ -x "$(command -v thermald)" ]; then
@@ -539,7 +539,18 @@ if ! [ -x "$(command -v thermald)" ]; then
 	sudo systemctl enable --now thermald
 	sudo systemctl start --now thermald
 else
-	echo THERMALD ALREADY CONFIGURED
+	echo THERMALD ALREADY INSTALLED
+fi
+
+if ! [ -x "$(command -v sddm)" ]; then
+	echo "INSTALLING SDDM"
+
+	paru -S --noconfirm sddm sddm-sugar-candy-git
+	sudo systemctl enable --now sddm
+  sudo mkdir /etc/sddm.conf.d -p
+	sudo cp ./dotfiles/sddm.conf /etc/sddm.conf.d/sddm.conf
+else
+	echo SDDM ALREADY INSTALLED
 fi
 
 function installOpenfortivpn {

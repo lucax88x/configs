@@ -429,9 +429,6 @@ return packer.startup({
     --[[ }) ]]
     use({
       "kevinhwang91/nvim-ufo",
-      config = function()
-        require("lt.plugins.ufo")
-      end,
       requires = {
         "kevinhwang91/promise-async",
       },

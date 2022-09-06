@@ -12,7 +12,7 @@ local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
 local presentAerial, aerial = pcall(require, "aerial")
 local presentLspSignature, lspSignature = pcall(require, "lsp_signature")
 local presentNavic, navic = pcall(require, "nvim-navic")
-local presentUfo, ufo = pcall(require, "ufo")
+local ufo = require("lt.plugins.ufo.setup")
 
 vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
 
@@ -170,6 +170,4 @@ for server_name, server_config in pairs(servers) do
   end
 end
 
-if presentUfo then
-  ufo.setup()
-end
+ufo.setupWithFallback()

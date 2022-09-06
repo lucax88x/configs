@@ -72,7 +72,7 @@ if pcall(require, "nvim-tree") then
   highlight_fg("NvimTreeFolderName", palette.light1)
   -- highlight_fg("NvimTreeGitDirty", red)
   -- highlight_fg("NvimTreeIndentMarker", one_bg2)
-  highlight_bg("NvimTreeNormal", bg_alt)
+  highlight_bg("NvimTreeNormal", bg)
   highlight_bg("NvimTreeNormalNC", bg_alt)
   highlight_fg("NvimTreeOpenedFolderName", palette.light1)
   highlight_fg("NvimTreeRootFolder", palette.light1)
