@@ -215,13 +215,12 @@ bindsym Shift+$mod+v exec "rofi -modi 'clipboard:greenclip print' -show clipboar
 #####################
 ### i3 custom gaps ###
 ######################
-# for_window [class=".*"] border pixel 1 
+for_window [class=".*"] border pixel 1 
 # hide_edge_borders smart 
 
 #####################
 ### i3 gaps ###
 ######################
-for_window [class=".*"] border pixel 0
 gaps inner 7 
 
 #####################
