@@ -10,9 +10,9 @@ local r = require("lt.utils.remaps")
 
 r.which_key("<leader>q", "quick-switcher")
 
-r.noremap("n", "<leader>qc", function()
-  quick_switcher.toggle("component.ts", "vue")
-end, "vue <-> component")
+r.noremap("n", "<leader>qh", function()
+  quick_switcher.toggle("component.ts", "component.html")
+end, "component.ts <-> component.html")
 
 -- r.noremap("n", "<leader>qs", function()
 -- 	quick_switcher.switch("scss")

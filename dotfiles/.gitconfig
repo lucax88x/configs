@@ -174,7 +174,7 @@
 	undo = reset --soft HEAD^
 	unstage = reset HEAD --
   # delete untracked files & directories
-	clearall = clean --fn
+	clearall = clean -f
 	# unstage = clean -fd 
 	# unstage = clean -fdx
 	discard = checkout -- .

@@ -13,17 +13,36 @@ fi
 
 HOME_DIR="$HOME"
 
-ARRAY=(
+ARRAY_OSX=(
+    .config/kitty/kitty.conf
+    .config/nvim
+    .config/ranger/rc.conf
+    .config/yabai/yabairc
+    .config/skhd/skhdrc
+    .gitconfig
+    .hammerspoon
+    bin
+    .ideavimrc
+    .zshrc
+    .p10k.zsh
+    .zprofile
+    .tmux.conf
+    .tmuxinator
+    .imwheelrc
+    .local/share/navi/cheats/lucatrazzi__cheats
+    .ssh/config
+    backgrounds
+)
+
+ARRAY_LINUX=(
     .config/rofi
     .config/dunst/dunstrc
     .config/kitty/kitty.conf
     .config/picom/picom.conf
     .config/nvim
     .config/X11
-    .config/ranger/rc.conf
     .config/polybar
     .config/fontconfig/fonts.conf
-    .config/efm-langserver
     .config/i3/config
     .config/chrome-flags.conf
     .config/ranger/rc.conf
@@ -79,8 +98,10 @@ function sync()
 
 mkdir -p $HOME_DIR
 
-for ((I = 1; I < $#ARRAY + 1; I++)); do
-  VALUE=$ARRAY[$I]
+for ((I = 1; I < $#ARRAY_OSX + 1; I++)); do
+  VALUE=$ARRAY_OSX[$I]
+  echo $VALUE
+  echo $PWD
   FROM="$PWD/dotfiles/$VALUE"
   TO="$HOME_DIR/$VALUE"
   sync $FROM $TO

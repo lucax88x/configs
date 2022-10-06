@@ -28,9 +28,12 @@ if ! [ -x "$(command -v datediff)" ]; then
   exit
 fi
 
+echo CHECKING
+
 # Get newest Neovim Nightly info
 wget https://github.com/neovim/neovim/releases/tag/nightly -q -O - > /tmp/nvim28dce75c-4317-4006-a103-8069d573e2b2
 RESPONSE=$(wget https://github.com/neovim/neovim/releases/tag/nightly --save-headers -O - 2>&1)
+
 
 if [[ "$RESPONSE" =~ 404\ Not\ Found ]]; then
   printf "${RED}Couldn't fetch newest Neovim Nighly info. Aborting...${NC}\n"
@@ -41,9 +44,12 @@ fi
 SHOW_PROMPT=0
 CURR_NVIM_VER=$(nvim --version | head -n 1)
 NEW_NVIM_VER=$(xmllint --html --xpath "//pre//code/node()" /tmp/nvim28dce75c-4317-4006-a103-8069d573e2b2 2>/dev/null | grep NVIM)
-CURR_DATETIME_ISO=$(date --iso-8601=ns)
+# CURR_DATETIME_ISO=$(date --iso-8601=ns)
+CURR_DATETIME_ISO=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 NEW_NVIM_VER_RELEASE_DATETIME_ISO=$(xmllint --html --xpath "string(//relative-time/@datetime)" /tmp/nvim28dce75c-4317-4006-a103-8069d573e2b2 2>/dev/null)
 LAST_RELEASE_DATETIME_DIFF=$(datediff ${NEW_NVIM_VER_RELEASE_DATETIME_ISO} ${CURR_DATETIME_ISO} -f "%H hours %M minutes ago")
+
+echo o
 
 # Check if Neovim Nightly exists in repo
 if [[ "$NEW_NVIM_VER" == "" ]]; then

@@ -16,13 +16,13 @@ M.setupWithFallback = function()
   local function customizeSelector(bufnr)
     local function handleFallbackException(err, providerName)
       if type(err) == "string" and err:match("UfoFallbackException") then
-        return ufo.getFolds(providerName, bufnr)
+        return ufo.getFolds(bufnr, providerName)
       else
         return require("promise").reject(err)
       end
     end
 
-    return ufo.getFolds("lsp", bufnr)
+    return ufo.getFolds(bufnr, "lsp")
         :catch(function(err)
           return handleFallbackException(err, "treesitter")
         end)

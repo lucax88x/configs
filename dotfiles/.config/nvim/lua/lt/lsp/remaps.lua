@@ -65,7 +65,7 @@ function M.set_default_on_buffer(client, bufnr)
 
   if cap.codeActionProvider then
     buf_set_keymap("n", "<leader>fa", vim.lsp.buf.code_action, "Code actions")
-    buf_set_keymap("v", "<leader>fa", vim.lsp.buf.range_code_action, "Range code actions")
+    buf_set_keymap("v", "<leader>fa", vim.lsp.buf.code_action, "Code actions")
   end
 
   -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)

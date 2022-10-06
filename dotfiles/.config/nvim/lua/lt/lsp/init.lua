@@ -12,6 +12,7 @@ local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
 local presentAerial, aerial = pcall(require, "aerial")
 local presentLspSignature, lspSignature = pcall(require, "lsp_signature")
 local presentNavic, navic = pcall(require, "nvim-navic")
+local presentUfo = pcall(require, "ufo")
 local ufo = require("lt.plugins.ufo.setup")
 
 vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
@@ -52,7 +53,9 @@ for _, sign in ipairs(signs) do
 end
 
 local config = {
-  virtual_text = not pcall(require, "lsp_lines"),
+  virtual_text = true,
+  -- enables lsp_lines but we want to start disabled
+  virtual_lines = false,
   -- show signs
   signs = {
     active = signs,
@@ -93,15 +96,10 @@ if presentCmpNvimLsp then
 end
 
 if presentUfo then
-  capabilities = vim.tbl_extend(
-    "keep",
-    capabilities,
-    { textDocument = { foldingRange = {
-
-      dynamicRegistration = false,
-      lineFoldingOnly = true,
-    } } }
-  )
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+  }
 end
 
 local servers = {

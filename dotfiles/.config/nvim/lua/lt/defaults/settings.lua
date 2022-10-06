@@ -21,7 +21,6 @@ local options = {
   smartcase = true,
   swapfile = false,
   backup = false,
-  undodir = "/home/lucatrazzi/.nvim/undodir",
   undofile = true,
   incsearch = true,
   termguicolors = true,
@@ -76,9 +75,9 @@ local presentUfo = pcall(require, "ufo")
 if presentUfo then
   vim.o.foldcolumn = "0" -- defines 1 col at window left, to indicate folding
   -- vim.o.foldcolumn = "1"
-  -- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+  vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
   -- vim.o.foldlevelstart = 99
-  -- vim.o.foldenable = true
+  vim.o.foldenable = true
 else
   -- fold
   vim.wo.foldcolumn = "0" -- defines 1 col at window left, to indicate folding

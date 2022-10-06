@@ -34,7 +34,7 @@ fi
 # PLUGINS
 # zinit ice depth=1
 # ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-# zinit light jeffreytse/zsh-vi-mode
+# zinit light jeffreytse/zsh-vimode
 
 zinit light zsh-users/zsh-completions
 zinit light MichaelAquilina/zsh-auto-notify
@@ -43,12 +43,48 @@ zinit snippet OMZ::lib/history.zsh
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
+# autocomplete
+zinit snippet OMZ::plugins/docker-compose/_docker-compose
+zinit snippet OMZ::plugins/docker/_docker
+
 # those should stay last
 # 
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
+
+# ENV VAR
+# add brew for OSX
+export PATH="/opt/homebrew/bin:$PATH" 
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export EDITOR=nvim
+export VISUAL=nvim
+export MANGOHUD=1
+
+export PATH="$HOME/bin:$PATH"
+# add yarn globals to path
+# export PATH="$(yarn global bin):$PATH"
+# add local bin (python executables, for example)
+export PATH="$HOME/.local/bin:$PATH"
+
+# add dotnet globals to path
+export PATH="/usr/share/dotnet:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
+
+# used by jetbrains toolbox for OSX
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$HOME/repos/dotmemory"
+
+# export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
+# export DOTNET_ROOT="$HOME/.dotnet"
+# END ENV VAR
  
-source /usr/share/nvm/init-nvm.sh
+# LINUX
+# source /usr/share/nvm/init-nvm.sh
+# OSX
+export NVM_DIR="$HOME/.nvm"
+    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 source "$HOME/bin/functions/ks"
 
@@ -69,29 +105,9 @@ bindkey '^[[B' history-substring-search-down
 
 # zinit snippet OMZ::lib/key-bindings.zsh 
  
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
 
 # END PLUGINS
-
-# ENV VAR
-export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-export EDITOR=nvim
-export VISUAL=nvim
-export MANGOHUD=1
-
-export PATH="$HOME/bin:$PATH"
-# add yarn globals to path
-export PATH="$(yarn global bin):$PATH"
-# add local bin (python executables, for example)
-export PATH="$HOME/.local/bin:$PATH"
-
-# add dotnet globals to path
-export PATH="/usr/share/dotnet:$PATH"
-export PATH="$HOME/.dotnet/tools:$PATH"
-
-# export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
-# export DOTNET_ROOT="$HOME/.dotnet"
-# END ENV VAR
 
 # ALIASES
 alias k='kubectl'
@@ -116,7 +132,6 @@ alias grep='rg'
 alias crashed='journalctl --since=today'
 
 alias ssk="kitty +kitten ssh"
-alias br="broot"
 alias lg="lazygit"
 
 alias ys='yarn start'
@@ -132,5 +147,3 @@ compctl -W $REPOSITORIES_FOLDER -/ prj
 # END FUNCTIONS
 
 [[ ! -f $HOME/.p10k.zsh ]] || zinit snippet $HOME/.p10k.zsh
-
-source /home/lucatrazzi/.config/broot/launcher/bash/br
