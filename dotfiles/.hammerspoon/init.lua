@@ -32,7 +32,7 @@ local space_assignments = {
 
 local app_spaces = {
   ["Google Chrome"] = browser,
-  [".Rider."] = code,
+  ["JetBrains Rider"] = code,
   ["kitty"] = terminal,
   ["WhatsApp"] = chat,
   ["Slack"] = chat,
