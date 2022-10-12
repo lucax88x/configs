@@ -34,40 +34,25 @@ yabai -m config left_padding 5
 yabai -m config right_padding 5
 yabai -m config window_gap 10
 
-# detect by uid maybe?
-LAPTOP=1
-LEFT=4
-CENTRAL=3
-RIGHT=2
-
-# space labels
-yabai -m space 1 --label chat --display $LAPTOP
-yabai -m space 2 --label code --display $CENTRAL
-yabai -m space 3 --label terminal --display $LEFT
-yabai -m space 4 --label browser --display $LEFT
-yabai -m space 5 --label tools --display $RIGHT
-yabai -m space 6 --label email --display $RIGHT
+yabai -m space 1 --label chat
+yabai -m space 2 --label code
+yabai -m space 3 --label terminal
+yabai -m space 4 --label browser
+yabai -m space 5 --label tools
+yabai -m space 6 --label email
 
 # apps to not manage (ignore)
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^Wally$" manage=off
 yabai -m rule --add app="^Alfred Preferences$" manage=off
-yabai -m rule --add app="^Merge Tool" manage=off
+yabai -m rule --add app="^.*Rider.*$" --title="^Welcome.*$" manage=off
+yabai -m rule --add app="^.*Rider.*$" --title="^Rename$" manage=off
 
 # apps placement to space
 yabai -m rule --add app="^(Slack|WhatsApp|Microsoft Teams|Telegram)$" space=chat
-yabai -m rule --add app="^(IntelliJ IDEA|WebStorm|RubyMine|PyCharm|Rider)$" space=code
+yabai -m rule --add app="^(IntelliJ IDEA|WebStorm|RubyMine|PyCharm|.*Rider.*)$" space=code
 yabai -m rule --add app="^(kitty)$" space=terminal
 yabai -m rule --add app="^(Google Chrome|Firefox)$" space=browser
 yabai -m rule --add app="^(DataGrip|Docker|Postman|Sublime Merge)$" space=tools
-yabai -m rule --add app="^(Outlook|Mail)$" space=email
-
-# DISPLAYS=$(yabai -m query displays)
-#
-# get_display_by_id() {
-# 	# yabai -m query displays | jq '.[] | select(.id == 3)'
-#
-# }
-#
-# DISPLAYS=jq
+yabai -m rule --add app="^(Microsoft Outlook|Mail)$" space=email

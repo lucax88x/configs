@@ -3,9 +3,24 @@ ctrl + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # focus window
 alt - h : yabai -m window --focus west
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
+
+alt - j : yabai -m window --focus south
+#alt - j : if [ "$(yabai -m query --spaces --space | jq -r '.type')" = "stack" ]; then (yabai -m window --focus stack.prev || yabai -m window --focus stack.last); else yabai -m window --focus prev || yabai -m window --focus last; fi
+#alt + j = yabai -m query --spaces --space |
+#  jq -re ".index" |
+#  xargs -I{} yabai -m query --windows --space {} |
+#  jq -sre 'add | map(select(."is-minimized"==false)) | sort_by(.display, .frame.y, .frame.x, .id) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $array_length - 1 > $has_index then nth($has_index + 1).id else nth(0).id end' |
+#  xargs -I{} yabai -m window --focus {}
+  
+alt - k : yabai -m window --focus north
+#alt - k : if [ "$(yabai -m query --spaces --space | jq -r '.type')" = "stack" ]; then (yabai -m window --focus stack.next || yabai -m window --focus stack.first); else yabai -m window --focus next || yabai -m window --focus first; fi
+#alt + k = yabai -m query --spaces --space |
+#  jq -re ".index" |
+#  xargs -I{} yabai -m query --windows --space {} |
+#  jq -sre 'add | map(select(."is-minimized"==false)) | sort_by(.display, .frame.y, .frame.x, .id) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $has_index > 0 then nth($has_index - 1).id else nth($array_length - 1).id end' |
+#  xargs -I{} yabai -m window --focus {}
+  
 
 # swap managed window
 shift + alt - h : yabai -m window --swap west

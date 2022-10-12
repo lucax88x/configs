@@ -1,13 +1,14 @@
+local vim = vim
 local api = vim.api
 
 return function(on_attach)
   return {
-		on_attach = function(client, bufnr)
-			on_attach(client, bufnr)
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
 
       client.server_capabilities.document_formatting = false
       client.server_capabilities.document_range_formatting = false
-		end,
+    end,
 
     settings = {
       Lua = {
@@ -16,12 +17,15 @@ return function(on_attach)
           version = "LuaJIT",
         },
         diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = { "vim" },
+          globals = { "vim", "hs", "spoon" },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
-          library = api.nvim_get_runtime_file("", true),
+          library = vim.tbl_extend(
+            "keep",
+            api.nvim_get_runtime_file("", true),
+            { "~/.hammerspoon/Spoons/EmmyLua.spoon/annotations" }
+          ),
         },
         -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = { enable = false },
