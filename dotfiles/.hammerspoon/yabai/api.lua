@@ -63,22 +63,39 @@ function M.space.get(callback)
   end)
 end
 
-function M.space.get_last_space(callback)
-  M.space.get(function(spaces)
-    local last_space
+function M.space.get_by_display(display_index, callback)
+  yabai({ "-m", "query", "--spaces", "--display", display_index }, function(out, error)
+    if not utils.is_empty(error) then
+      print(error)
+    else
+      local spaces = hs.json.decode(out)
+      if utils.is_array(spaces) then
+        if callback ~= nil then
+          callback(spaces)
+        end
+      else
+        print("not an array")
+      end
+    end
+  end)
+end
+
+function M.space.get_last_space_index_of_display(display_index, callback)
+  M.space.get_by_display(display_index, function(spaces)
+    local last_space_index
 
     for _, space in pairs(spaces) do
-      if last_space == nil then
-        last_space = space
+      if last_space_index == nil then
+        last_space_index = space.index
       else
-        if space.index > last_space.index then
-          last_space = space
+        if space.index > last_space_index then
+          last_space_index = space.index
         end
       end
     end
 
     if callback ~= nil then
-      callback(last_space)
+      callback(last_space_index)
     end
   end)
 end
@@ -90,35 +107,23 @@ function M.space.create(space_label, display_index, callback)
     end
   end
 
-  yabai({ "-m", "space", "--create" }, function(_, error)
-    if not utils.is_empty(error) then
-      print(error)
-    else
-      M.space.get_last_space(function(last_space)
-        if last_space ~= nil then
-          M.space.label(last_space.index, space_label, function(label_space_error)
-            if not utils.is_empty(label_space_error) then
-              print(label_space_error)
-            end
-
-            if last_space.display ~= display_index then
-              M.space.move(last_space.index, display_index, function(move_space_error)
-                if not utils.is_empty(move_space_error) then
-                  print(move_space_error)
-                end
-
-                verify_callback()
-              end)
-            else
-              verify_callback()
-            end
-          end)
-        else
-          print("could not find last space")
+  M.space.get_last_space_index_of_display(display_index, function(last_space_index)
+    if last_space_index ~= nil then
+      print("creating " .. space_label .. " in display " .. display_index .. " with index " .. last_space_index)
+      yabai(
+        { "-m", "space", "--create", last_space_index, "--label", space_label, "--display", display_index },
+        function(_, error)
+          if not utils.is_empty(error) then
+            print(error)
+          end
 
           verify_callback()
         end
-      end)
+      )
+    else
+      print("could not find last space")
+
+      verify_callback()
     end
   end)
 end
@@ -141,6 +146,14 @@ end
 
 function M.space.destroy(space_index, callback)
   yabai({ "-m", "space", space_index, "--destroy" }, function(_, error)
+    if callback ~= nil then
+      callback(error)
+    end
+  end)
+end
+
+function M.space.focus(label, callback)
+  yabai({ "-m", "space", "--focus", label }, function(_, error)
     if callback ~= nil then
       callback(error)
     end

@@ -145,6 +145,10 @@ function M.first(list, test)
   return nil
 end
 
+function M.any(list, test)
+  return M.first(list, test) ~= nil
+end
+
 function M.clone(t)
   local cloned = {}
   for key, value in pairs(t) do

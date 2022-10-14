@@ -13,7 +13,7 @@ yabai -m config window_shadow on
 yabai -m config window_opacity off
 # yabai -m config window_opacity_duration 0.1
 yabai -m config active_window_opacity 1.0
-yabai -m config normal_window_opacity 1
+yabai -m config normal_window_opacity 1.0
 yabai -m config window_border off
 yabai -m config window_border_width 6
 yabai -m config active_window_border_color 0xff775759
@@ -34,6 +34,10 @@ yabai -m config left_padding 5
 yabai -m config right_padding 5
 yabai -m config window_gap 10
 
+# spacebar integration
+EXTERNAL_BAR_HEIGHT=$(sketchybar --query bar | jq ".height")
+yabai -m config external_bar all:0:"$EXTERNAL_BAR_HEIGHT"
+
 yabai -m space 1 --label chat
 yabai -m space 2 --label code
 yabai -m space 3 --label terminal
@@ -46,8 +50,7 @@ yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^Wally$" manage=off
 yabai -m rule --add app="^Alfred Preferences$" manage=off
-yabai -m rule --add app="^.*Rider.*$" title="^Welcome.*$" manage=off
-yabai -m rule --add app="^.*Rider.*$" title="^Rename$" manage=off
+yabai -m rule --add app="^.*Rider.*$" title="^(Welcome.|Rename|Pull Members Up|Copy Type|Extract Method|Safe Delete)*$" manage=off
 yabai -m rule --add app="^Sublime Merge$" title="^Merge Tool$" manage=off
 yabai -m rule --add app="^Hammerspoon$" title="^Hammerspoon Console$" manage=off
 

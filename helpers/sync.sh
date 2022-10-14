@@ -19,6 +19,7 @@ ARRAY_OSX=(
     .config/ranger/rc.conf
     .config/yabai/yabairc
     .config/skhd/skhdrc
+    .config/sketchybar/sketchybarrc
     .gitconfig
     .hammerspoon
     bin
