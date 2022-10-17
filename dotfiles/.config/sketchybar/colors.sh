@@ -18,7 +18,7 @@ export ICON_COLOR=$WHITE    # Color of all icons
 export LABEL_COLOR=$WHITE   # Color of all labels
 export SPACE_BACKGROUND=0xff3c3e4f
 export OPEN_APPS_BACKGROUND=0xff494d64
-export CALENDAR_BACKGROUND=0xffb8c0e0
+export CLOCK_BACKGROUND=0xffb8c0e0
 
 export POPUP_BACKGROUND_COLOR=$BLACK
 export POPUP_BORDER_COLOR=$WHITE

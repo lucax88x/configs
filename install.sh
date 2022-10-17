@@ -1,5 +1,8 @@
 #!/bin/bash
-DISTRO=${1^^}
+
+. ./installers.sh
+
+DISTRO=${1}
 
 case $DISTRO in
 ARCH)
@@ -20,8 +23,6 @@ EMAIL=lucax88x@gmail.com
 mkdir -p $TEMP_DIR
 cd $TEMP_DIR || exit
 
-source ./installers.sh
-
 echo '# GLOBAL SOFTWARE #'
 
 # if ! [ -x "$(command -v rustup)" ]; then
@@ -40,99 +41,25 @@ echo '# GLOBAL SOFTWARE #'
 # 	echo GO ALREADY INSTALLED
 # fi
 #
-# installParu
-# installBaseDevel
-# installGit
-# installWget
-# installCurl
-# installSsh
-# installUnzip
+installBrew
+installParu
+installBaseDevel
+installGit
+installWget
+installCurl
+installSsh
+installUnzip
 installYabai
 installHammerspoon
-#
-# case $DISTRO in
-# ARCH)
-# 	if ! [ "$(fc-list | grep -c 'JetBrains')" -ge 1 ]; then
-# 		echo INSTALLING JETBRAINS MONO
-#
-# 		paru -S --noconfirm nerd-fonts-jetbrains-mono
-# 		paru -S --noconfirm ttf-jetbrains-mono-git
-# 	else
-# 		echo JETBRAINS MONO ALREADY INSTALLED
-# 	fi
-# 	;;
-# OSX)
-# 	if ! [ "$(brew info font-jetbrains-mono)" -ge 1 ]; then
-# 		echo INSTALLING JETBRAINS MONO
-#
-# 		brew install font-jetbrains-mono
-# 	else
-# 		echo JETBRAINS MONO ALREADY INSTALLED
-# 	fi
-# 	;;
-# *)
-# 	echo not supported distro
-# 	exit 1
-# 	;;
-# esac
-#
-# if [ "$DISTRO" = "ARCH" ]; then
-# 	if ! [ "$(fc-list | grep -c 'Open Sans')" -ge 1 ]; then
-# 		echo INSTALLING OPEN SANS
-#
-# 		wget https://fonts.google.com/download?family=Open+Sans -O $TEMP_DIR/OpenSans.zip
-#
-# 		unzip $TEMP_DIR/OpenSans.zip -d $TEMP_DIR/open-sans
-# 		mkdir -p ~/.fonts/open-sans
-# 		cp -r $TEMP_DIR/open-sans/* ~/.fonts/open-sans
-#
-# 		fc-cache
-# 	else
-# 		echo OPEN SANS ALREADY INSTALLED
-# 	fi
-# fi
-#
-# if [ "$DISTRO" = "ARCH" ]; then
-# 	if ! [ "$(fc-list | grep -c 'Roboto')" -ge 1 ]; then
-# 		echo INSTALLING ROBOTO
-#
-# 		wget https://fonts.google.com/download?family=Roboto -O $TEMP_DIR/Roboto.zip
-#
-# 		unzip $TEMP_DIR/Roboto.zip -d $TEMP_DIR/roboto
-# 		mkdir -p ~/.fonts/roboto
-# 		cp -r $TEMP_DIR/roboto/* ~/.fonts/roboto
-#
-# 		fc-cache
-# 	else
-# 		echo ROBOTO ALREADY INSTALLED
-# 	fi
-# fi
-#
-# if [ "$DISTRO" = "ARCH" ]; then
-# 	if ! [ "$(fc-list | grep -c 'Font Awesome 5 Free')" -ge 1 ]; then
-# 		echo INSTALLING FONTAWESOME
-#
-# 		# wget https://github.com/FortAwesome/Font-Awesome/releases/download/$FONTAWESOME_VERSION/fontawesome-free-$FONTAWESOME_VERSION-desktop.zip -O $TEMP_DIR/FontAwesome.zip
-#
-# 		# unzip $TEMP_DIR/FontAwesome.zip -d ~/.fonts/fontawesome5
-#
-# 		# fc-cache
-# 		echo MANUALLY INSTALL FONTAWESOME 5 PRO!
-# 	else
-# 		echo FONTAWESOME ALREADY INSTALLED
-# 	fi
-# fi
-#
-# if [ "$DISTRO" = "ARCH" ]; then
-# 	if ! [ "pacman -Qs freetype2-ultimate5 > /dev/null" ]; then
-# 		echo INSTALLING FREETYPE PATCHED
-#
-# 		paru -Sy --noconfirm freetype2-ultimate5
-# 	else
-# 		echo PATCHED FREETYPE ALREADY INSTALLED
-# 	fi
-# fi
-#
+installJetbrainsMono
+installOpensans
+installRoboto
+installFontawesome
+installFreetype
+installSFMono
+installSFPro
+installHackNerdFont
+
 # if ! [ -x "$(command -v bat)" ]; then
 # 	echo INSTALLING BAT
 #
@@ -629,7 +556,6 @@ installHammerspoon
 # else
 # 	echo SHARP FONTS ALREADY CONFIGURED
 # fi
-
 
 rm -rf $TEMP_DIR
 

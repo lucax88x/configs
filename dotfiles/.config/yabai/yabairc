@@ -1,7 +1,11 @@
 #!/usr/bin/env sh
 
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 
 # global settings
 yabai -m config mouse_follows_focus on
@@ -34,16 +38,16 @@ yabai -m config left_padding 5
 yabai -m config right_padding 5
 yabai -m config window_gap 10
 
-# spacebar integration
-EXTERNAL_BAR_HEIGHT=$(sketchybar --query bar | jq ".height")
-yabai -m config external_bar all:0:"$EXTERNAL_BAR_HEIGHT"
-
-yabai -m space 1 --label chat
-yabai -m space 2 --label code
-yabai -m space 3 --label terminal
-yabai -m space 4 --label browser
-yabai -m space 5 --label tools
-yabai -m space 6 --label email
+# sketchybar integration
+# EXTERNAL_BAR_HEIGHT=$(sketchybar --query bar | jq ".height") + 7
+yabai -m config external_bar all:0:46
+#
+# yabai -m space 1 --label chat
+# yabai -m space 2 --label code
+# yabai -m space 3 --label terminal
+# yabai -m space 4 --label browser
+# yabai -m space 5 --label tools
+# yabai -m space 6 --label email
 
 # apps to not manage (ignore)
 yabai -m rule --add app="^System Preferences$" manage=off
@@ -53,6 +57,9 @@ yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="^.*Rider.*$" title="^(Welcome.|Rename|Pull Members Up|Copy Type|Extract Method|Safe Delete)*$" manage=off
 yabai -m rule --add app="^Sublime Merge$" title="^Merge Tool$" manage=off
 yabai -m rule --add app="^Hammerspoon$" title="^Hammerspoon Console$" manage=off
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 
 # apps placement to space
 yabai -m rule --add app="^(Slack|WhatsApp|Microsoft Teams|Telegram)$" space=chat
@@ -61,3 +68,5 @@ yabai -m rule --add app="^(kitty)$" space=terminal
 yabai -m rule --add app="^(Google Chrome|Firefox)$" space=browser
 yabai -m rule --add app="^(DataGrip|Docker|Postman|Sublime Merge)$" space=tools
 yabai -m rule --add app="^(Microsoft Outlook|Mail)$" space=email
+
+echo "yabai configuration loaded.."
