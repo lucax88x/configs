@@ -13,7 +13,7 @@ modes.setup({
     copy = palette.bright_yellow,
     delete = palette.bright_red,
     insert = palette.bright_green,
-    visual = palette.bright_purple,
+    visual = palette.neutral_purple,
   },
 
   -- Cursorline highlight opacity

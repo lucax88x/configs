@@ -105,7 +105,7 @@ bindkey '^[[B' history-substring-search-down
 
 # zinit snippet OMZ::lib/key-bindings.zsh 
  
-# eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh)"
 
 # END PLUGINS
 

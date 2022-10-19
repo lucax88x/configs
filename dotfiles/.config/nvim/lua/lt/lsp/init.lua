@@ -84,21 +84,23 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
   border = "rounded",
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities
+
+if presentCmpNvimLsp then
+  capabilities = cmpNvimLsp.default_capabilities()
+else
+  capabilities = vim.lsp.protocol.make_client_capabilities()
+end
 
 if presentLspStatus then
   lspStatus.register_progress()
   capabilities = vim.tbl_extend("keep", capabilities, lspStatus.capabilities)
 end
 
-if presentCmpNvimLsp then
-  capabilities = vim.tbl_extend("keep", capabilities, cmpNvimLsp.update_capabilities(capabilities))
-end
-
 if presentUfo then
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
-    lineFoldingOnly = true
+    lineFoldingOnly = true,
   }
 end
 
