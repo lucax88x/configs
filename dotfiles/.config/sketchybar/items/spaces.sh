@@ -6,13 +6,19 @@ sid=0
 for i in "${!SPACE_ICONS[@]}"
 do
   sid=$(($i+1))
-  sketchybar --add space      space.$sid left                               \
-             --set space.$sid associated_space=$sid                         \
+  SPACE_NAME=space.$sid
+  
+	# --subscribe system.yabai window_focus_spaces \
+  sketchybar --add space      "$SPACE_NAME" left                               \
+             --set "$SPACE_NAME" associated_space=$sid                         \
+             --set "$SPACE_NAME" script="$PLUGIN_DIR/yabai.sh" \
+	updates=on \
                               icon=${SPACE_ICONS[i]}                        \
                               icon.padding_left=22                          \
                               icon.padding_right=22                         \
                               label.padding_right=33                        \
-                              icon.highlight_color="$FG_3"                     \
+                              label.color="$FG_4" \
+                              icon.highlight_color="$FG_4"                     \
                               background.padding_left=-8                    \
                               background.padding_right=-8                   \
                               background.height=26                          \

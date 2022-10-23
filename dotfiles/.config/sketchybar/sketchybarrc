@@ -47,6 +47,7 @@ sketchybar --bar height=39 \
 	popup.background.shadow.drawing=$SHADOW
 
 # Left
+source "$ITEM_DIR/wake.sh"
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/front_app.sh"
@@ -56,6 +57,7 @@ source "$ITEM_DIR/front_app.sh"
 # Right
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/clock.sh"
+source "$ITEM_DIR/wifi.sh"
 
 ############## FINALIZING THE SETUP ##############
 sketchybar --update

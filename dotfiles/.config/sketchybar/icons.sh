@@ -11,6 +11,13 @@ export MAIL_OPEN=􀍜
 export BELL=􀋚
 export BELL_DOT=􀝗
 
+export BATTERY_FULL=
+export BATTERY_75=
+export BATTERY_50=
+export BATTERY_25=
+export BATTERY_0=
+export BATTERY_CHARGING=
+
 # Git Icons
 export GIT_ISSUE=􀍷
 export GIT_DISCUSSION=􀒤
