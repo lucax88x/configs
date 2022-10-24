@@ -6,7 +6,6 @@ window_focus_update_front_app() {
 
 	WINDOW=$(yabai -m query --windows --window)
 	CURRENT=$(echo "$WINDOW" | jq '.["stack-index"]')
-	SPACE_LABEL=$(yabai -m query --spaces --space | jq '.label')
 
 	args=()
 	if [[ $CURRENT -gt 0 ]]; then
@@ -51,6 +50,37 @@ space_change_update_space_label() {
 	sketchybar -m "${args[@]}"
 }
 
+init_spaces() {
+	source "$HOME/.config/sketchybar/colors.sh"
+	source "$HOME/.config/sketchybar/icons.sh"
+
+	SPACES=$(yabai -m query --spaces)
+	SPACE_INDEX=$(echo "$NAME" | cut -d '.' -f 2)
+
+	# not a number
+	if ! [[ $SPACE_INDEX =~ ^[0-9]+$ ]]; then
+		exit 0
+	fi
+
+	SPACE_BY_INDEX=$(echo "$SPACES" | jq ".[] | select(.index==$SPACE_INDEX)" -r)
+	SPACE_LABEL=$(echo "$SPACE_BY_INDEX" | jq ".label" -r)
+
+	args=()
+
+	case "$SPACE_LABEL" in
+	"terminal")
+		icon=$TERMINAL
+		;;
+	esac
+
+	if [ -n "$icon" ]; then
+		args+=(--set "$NAME" label.drawing=off icon="$icon")
+
+		sketchybar -m "${args[@]}"
+	fi
+
+}
+
 mouse_clicked() {
 	yabai -m window --toggle float
 	update
@@ -61,15 +91,12 @@ case "$SENDER" in
 	mouse_clicked
 	;;
 "forced")
-	exit 0
+	init_spaces
 	;;
 "window_focus")
 	window_focus_update_front_app
 	;;
 "space_change")
-	space_change_update_space_label
+	# space_change_update_space_label
 	;;
-	# "windows_on_spaces")
-	# 	windows_on_spaces
-	# 	;;
 esac

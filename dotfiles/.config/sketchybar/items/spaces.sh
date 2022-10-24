@@ -13,6 +13,7 @@ do
              --set "$SPACE_NAME" associated_space=$sid                         \
              --set "$SPACE_NAME" script="$PLUGIN_DIR/yabai.sh" \
 	updates=on \
+                              icon.font="$ICON_FONT"\
                               icon=${SPACE_ICONS[i]}                        \
                               icon.padding_left=22                          \
                               icon.padding_right=22                         \

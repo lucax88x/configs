@@ -16,7 +16,10 @@ export BATTERY_75=
 export BATTERY_50=
 export BATTERY_25=
 export BATTERY_0=
-export BATTERY_CHARGING=
+export BATTERY_CHARGING=
+
+export WIFI_ON=直
+export WIFI_OFF=睊
 
 # Git Icons
 export GIT_ISSUE=􀍷
@@ -31,3 +34,5 @@ export YABAI_FULLSCREEN_ZOOM=􀏜
 export YABAI_PARENT_ZOOM=􀥃
 export YABAI_FLOAT=􀢌
 export YABAI_GRID=􀧍
+
+export TERMINAL=

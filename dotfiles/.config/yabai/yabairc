@@ -59,6 +59,7 @@ yabai -m rule --add app="^Hammerspoon$" title="^Hammerspoon Console$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add label="Simulator" app="^Simulator$" manage=off
 
 # apps placement to space
 yabai -m rule --add app="^(Slack|WhatsApp|Microsoft Teams|Telegram)$" space=chat
