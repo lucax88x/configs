@@ -2,8 +2,6 @@
 ctrl + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # focus window
-alt - h : yabai -m window --focus west
-alt - l : yabai -m window --focus east
 
 #alt - j : yabai -m window --focus south
 alt - j : if [ "$(yabai -m query --spaces --space | jq -r '.type')" = "stack" ]; then (yabai -m window --focus stack.prev || yabai -m window --focus stack.last); else yabai -m window --focus prev || yabai -m window --focus last; fi
@@ -46,9 +44,6 @@ alt - t : yabai -m window --toggle float;\
 
 # toggle window split type
 alt - e : yabai -m window --toggle split
-
-# balance size of windows
-shift + alt - 0 : yabai -m space --balance
 
 # move window and focus desktop
 shift + alt - 1 : yabai -m window --space chat

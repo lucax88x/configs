@@ -189,4 +189,16 @@ function M.window.move(window_id, space_index, callback)
   end)
 end
 
+function M.window.focus(direction, callback)
+  yabai({ "-m", "window", "--focus", direction }, function(_, error)
+    if not utils.is_empty(error) then
+      print(error)
+    else
+      if callback ~= nil then
+        callback()
+      end
+    end
+  end)
+end
+
 return M

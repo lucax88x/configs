@@ -14,7 +14,7 @@ fi
 HOME_DIR="$HOME"
 
 ARRAY_OSX=(
-    .config/kitty/kitty.conf
+    .config/kitty
     .config/nvim
     .config/ranger/rc.conf
     .config/yabai/yabairc

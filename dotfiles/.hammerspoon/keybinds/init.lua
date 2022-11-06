@@ -1,22 +1,22 @@
 local yabai = require("yabai.api")
-local toast = require("toast")
-local utils = require("utils")
+local helper = require("keybinds.helper")
 
-local super = { "command", "control" }
-local alt = { "option" }
+local mods = helper.modifiers
+
+local actions = {
+  ["reload"] = function()
+    hs.reload()
+  end,
+  ["balance_space"] = function()
+    yabai({ "-m", "space", "--balance" })
+  end,
+}
 
 --# Main chooser
 local mainChooser = hs.chooser
     .new(function(option)
       if option ~= nil then
-        if option.action == "reload" then
-          hs.reload()
-        elseif option.action == "toggle_gap" then
-          toast("todo")
-          --[[ yabai({ "-m", "space", "--toggle", "padding" }, function() ]]
-          --[[   yabai({ "-m", "space", "--toggle", "gap" }) ]]
-          --[[ end) ]]
-        end
+        actions[option.action]()
       end
     end)
     :choices({
@@ -26,56 +26,56 @@ local mainChooser = hs.chooser
         action = "reload",
       },
       {
-        text = "Toggle Gap",
-        subText = "Toggles padding and gaps around the current space",
-        action = "toggle_gap",
+        text = "Balance space",
+        subText = "Balances space between windows",
+        action = "balance_space",
       },
     })
 
-local label_move_cache = {}
-local function label_move(number, label)
-  local function label_focus()
-    label_move_cache[label] = true
-    yabai.space.focus(label, function(error)
-      if not utils.is_empty(error) then
-        if not string.find(error, "cannot focus an already focused space") then
-          label_move_cache[label] = nil
-          toast("could not move to " .. label)
-          print(error)
-        end
-      end
-    end)
-  end
+local binds = {
+  {
+    mods.super,
+    "return",
+    function()
+      mainChooser:show()
+    end,
+  },
+  {
+    mods.alt,
+    "h",
+    function()
+      yabai.window.focus("west")
+    end,
+  },
+  {
+    mods.alt,
+    "l",
+    function()
+      yabai.window.focus("east")
+    end,
+  },
+}
 
-  hs.hotkey.bind(alt, hs.keycodes.map[number], function()
-    if label_move_cache[label] then
-      label_focus()
-    else
-      yabai.space.get(function(spaces)
-        if utils.any(spaces, function(space)
-          return space.label == label
-        end) then
-          label_focus()
-        else
-          label_move_cache[label] = nil
-          toast("space " .. label .. " not created")
-        end
-      end)
-    end
-  end)
+helper.label_move("1", "chat")
+helper.label_move("2", "code")
+helper.label_move("3", "terminal")
+helper.label_move("4", "browser")
+helper.label_move("5", "tools")
+helper.label_move("6", "email")
+
+for _, bind in ipairs(binds) do
+  local modifiers = bind[1]
+  local key = bind[2]
+  local fn = bind[3]
+
+  print(modifiers, key, fn)
+
+  hs.hotkey.bind(modifiers, hs.keycodes.map[key], nil, fn)
 end
 
---# open main chooser
-hs.hotkey.bind(super, hs.keycodes.map["return"], nil, function()
-  mainChooser:show()
-end)
-
-label_move("1", "chat")
-label_move("2", "code")
-label_move("3", "terminal")
-label_move("4", "browser")
-label_move("5", "tools")
-label_move("6", "email")
+--[[ hs.hotkey.bind(mods.alt, hs.keycodes.map["l"], function() ]]
+--[[   yabai({ "-m", "window", "--focus", "east" }) ]]
+--[[ end) ]]
 
 --hs.hotkey.bind(super, hs.keycodes.map["«"], function()
 --  yabai({ "-m", "space", "mouse", "--layout", "stack" }, function()

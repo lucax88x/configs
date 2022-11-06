@@ -146,10 +146,12 @@ if present_mason then
 end
 
 local present_typescript, typescript = pcall(require, "typescript")
+
 if present_typescript then
   typescript.setup({
     server = {
-      on_attach = function(_, bufnr)
+      on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
         remaps.set_typescript(bufnr)
       end,
     },

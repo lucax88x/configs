@@ -97,6 +97,7 @@ zinit light Tarrasch/zsh-bd
 #
 zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
 zinit light g-plane/zsh-yarn-autocompletions
+zinit light hlolli/zsh-better-npm-completion
 
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=true
 zinit light zsh-users/zsh-history-substring-search

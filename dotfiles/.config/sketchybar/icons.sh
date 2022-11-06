@@ -35,4 +35,9 @@ export YABAI_PARENT_ZOOM=􀥃
 export YABAI_FLOAT=􀢌
 export YABAI_GRID=􀧍
 
-export TERMINAL=
+export SOCIAL=
+export TERMINAL=
+export CODE=
+export BROWSER=
+export EMAIL=
+export TOOLS=

@@ -67,9 +67,27 @@ init_spaces() {
 
 	args=()
 
+	icon_font=$ICON_FONT
+
 	case "$SPACE_LABEL" in
+	"social")
+		icon=$SOCIAL
+		;;
 	"terminal")
 		icon=$TERMINAL
+		;;
+	"code")
+		icon=$CODE
+		;;
+	"browser")
+		icon=$BROWSER
+		icon_font=$ICON_BRANDS_FONT
+		;;
+	"email")
+		icon=$EMAIL
+		;;
+	"tools")
+		icon=$TOOLS
 		;;
 	esac
 
