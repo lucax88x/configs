@@ -37,7 +37,12 @@ catppuccin.setup({
 local palette = require("catppuccin.palettes").get_palette("mocha")
 
 local highlight = require("lt.utils.functions").highlight
+local highlight_bg = require("lt.utils.functions").highlight_bg
 local get_color_from_terminal = require("lt.utils.functions").get_color_from_terminal
+
+if pcall(require, "ufo") then
+  highlight_bg("UfoFoldedBg", palette.base)
+end
 
 local bg = palette.mantle
 local bg_alt = palette.base

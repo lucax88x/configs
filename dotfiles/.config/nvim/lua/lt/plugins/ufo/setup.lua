@@ -5,7 +5,7 @@ local present, ufo = pcall(require, "ufo")
 
 M.setupWithFallback = function()
   if not present then
-    print("ufo not installed")
+    vim.notify("ufo not installed")
     return
   end
 

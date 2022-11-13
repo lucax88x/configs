@@ -126,6 +126,7 @@ return packer.startup({
         require("lt.plugins.fugitive")
       end,
     })
+
     use({
       "lewis6991/gitsigns.nvim",
       config = function()
@@ -439,7 +440,6 @@ return packer.startup({
       requires = {
         "kevinhwang91/promise-async",
       },
-      after = "catppuccin",
     })
 
     use({
@@ -487,6 +487,13 @@ return packer.startup({
       requires = { "mfussenegger/nvim-dap" },
       config = function()
         require("lt.plugins.dap-install")
+      end,
+    })
+
+    use({
+      "akinsho/toggleterm.nvim",
+      config = function()
+        require("lt.plugins.toggleterm-nvim")
       end,
     })
 

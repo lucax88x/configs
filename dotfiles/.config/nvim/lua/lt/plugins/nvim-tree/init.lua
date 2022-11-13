@@ -48,6 +48,11 @@ nvim_tree.setup({
   open_on_tab = false,
   update_cwd = false,
   respect_buf_cwd = true,
+  hijack_netrw = true,
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
   diagnostics = {
     enable = false,
   },
@@ -79,9 +84,9 @@ nvim_tree.setup({
     highlight_git = false,
     group_empty = true,
   },
-  notify = {
-    threshold = vim.log.levels.WARN,
-  },
+  --[[ notify = { ]]
+  --[[   threshold = vim.log.levels.WARN, ]]
+  --[[ }, ]]
 })
 
 local r = require("lt.utils.remaps")
