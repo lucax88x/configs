@@ -36,7 +36,7 @@ r.map("o", "f", function()
   hop.hint_char1({
     direction = hint.HintDirection.AFTER_CURSOR,
     current_line_only = true,
-    inclusive_jump = true,
+    hint_offset = 0,
   })
 end, "Search")
 
@@ -44,14 +44,22 @@ r.map("o", "F", function()
   hop.int_char1({
     direction = hint.HintDirection.BEFORE_CURSOR,
     current_line_only = true,
-    inclusive_jump = true,
+    hint_offset = 0,
   })
 end, "Search")
 
 r.map("", "t", function()
-  hop.hint_char1({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = true })
+  hop.hint_char1({
+    direction = hint.HintDirection.AFTER_CURSOR,
+    current_line_only = true,
+    hint_offset = -1,
+  })
 end, "Search")
 
 r.map("", "T", function()
-  hop.hint_char1({ direction = hint.HintDirection.BEFORE_CURSOR, current_line_only = true })
+  hop.hint_char1({
+    direction = hint.HintDirection.BEFORE_CURSOR,
+    current_line_only = true,
+    hint_offset = -1,
+  })
 end, "Search")

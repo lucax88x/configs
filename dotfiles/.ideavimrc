@@ -72,11 +72,12 @@ nnoremap <leader>sp :action ParameterInfo<CR>
 nnoremap <leader>sd :action QuickImplementations<CR>
 
 " Search
-" nnoremap <leader>fs :action GotoSymbol<CR>
-" nnoremap <leader>ff :action GotoFile<CR>
-" nnoremap <leader>fc :action GotoClass<CR>
-" nnoremap <leader>fa :action GotoAction<CR>
-" nnoremap <leader>fg :action FindInPath<CR>
+" nnoremap <leader>ps :action GotoSymbol<CR>
+" nnoremap <leader>ps :action SearchEverywhere<CR>
+nnoremap <leader>pf :action GotoFile<CR>
+nnoremap <leader>pg :action GotoClass<CR>
+nnoremap <leader>fa :action GotoAction<CR>
+nnoremap <leader>ps :action FindInPath<CR>
 " nnoremap <leader>fr :action ReplaceInPath<CR>
 " vmap <leader>fg :action FindInPath<CR>
 " vmap <leader>fr :action ReplaceInPath<CR>

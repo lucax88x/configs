@@ -82,6 +82,13 @@ return packer.startup({
     use("MunifTanjim/nui.nvim") -- ui library
 
     use({
+      "catppuccin/nvim",
+      config = function()
+        require("lt.plugins.catppuccin-theme")
+      end,
+    })
+
+    use({
       "rcarriga/nvim-notify", -- notifications
       config = function()
         require("lt.plugins.nvim-notify")
@@ -432,6 +439,7 @@ return packer.startup({
       requires = {
         "kevinhwang91/promise-async",
       },
+      after = "catppuccin",
     })
 
     use({
@@ -450,14 +458,6 @@ return packer.startup({
       config = function()
         require("lt.plugins.modes")
       end,
-    })
-
-    use({
-      "ellisonleao/gruvbox.nvim",
-      config = function()
-        require("lt.plugins.gruvbox")
-      end,
-      requires = { "rktjmp/lush.nvim" },
     })
 
     -- debugging

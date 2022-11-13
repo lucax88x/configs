@@ -7,7 +7,7 @@ local M = {}
 local function try_add_to_which_key_by_input(input, description)
   if present_which_key then
     local leader_index = string.find(input, "<leader>")
-    -- print(input)
+    --[[ print(input) ]]
     if leader_index then
       which_key.register({
         [input] = description,
@@ -16,7 +16,7 @@ local function try_add_to_which_key_by_input(input, description)
   end
 end
 
-function M.map(type, input, output, description, additional_options, add_to_which_key)
+function M.map(type, input, output, description, additional_options)
   which_key = which_key or true
 
   local options = { remap = true, desc = description }
@@ -26,18 +26,16 @@ function M.map(type, input, output, description, additional_options, add_to_whic
 
   keymap.set(type, input, output, options)
 
-  if add_to_which_key then
-    try_add_to_which_key_by_input(input, description)
-  end
+  try_add_to_which_key_by_input(input, description)
 end
 
-function M.noremap(type, input, output, description, additional_options, add_to_which_key)
+function M.noremap(type, input, output, description, additional_options)
   local options = { remap = false }
   if additional_options then
     options = vim.tbl_deep_extend("force", options, additional_options)
   end
 
-  M.map(type, input, output, description, options, add_to_which_key)
+  M.map(type, input, output, description, options)
 end
 
 function M.map_virtual(input, description)

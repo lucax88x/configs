@@ -1,6 +1,7 @@
 #!/bin/bash
 
 window_focus_update_front_app() {
+	source "$HOME/.config/sketchybar/vars.sh"
 	source "$HOME/.config/sketchybar/colors.sh"
 	source "$HOME/.config/sketchybar/icons.sh"
 
@@ -33,6 +34,7 @@ window_focus_update_front_app() {
 }
 
 space_change_update_space_label() {
+	source "$HOME/.config/sketchybar/vars.sh"
 	source "$HOME/.config/sketchybar/colors.sh"
 	source "$HOME/.config/sketchybar/icons.sh"
 
@@ -42,15 +44,16 @@ space_change_update_space_label() {
 
 	args=()
 	if [[ $NAME == "space.$CURRENT_SPACE_INDEX" ]]; then
-		args+=(--set "$NAME" label.drawing=on label="$CURRENT_SPACE_LABEL")
+		args+=(--set "$NAME" icon.background.drawing=on icon.background.height=1 icon.background.color=$FG_0 icon.background.y_offset=-12)
 	else
-		args+=(--set "$NAME" label.drawing=off)
+		args+=(--set "$NAME" icon.background.drawing=off)
 	fi
 
 	sketchybar -m "${args[@]}"
 }
 
 init_spaces() {
+	source "$HOME/.config/sketchybar/vars.sh"
 	source "$HOME/.config/sketchybar/colors.sh"
 	source "$HOME/.config/sketchybar/icons.sh"
 
@@ -70,14 +73,14 @@ init_spaces() {
 	icon_font=$ICON_FONT
 
 	case "$SPACE_LABEL" in
-	"social")
+	"chat")
 		icon=$SOCIAL
-		;;
-	"terminal")
-		icon=$TERMINAL
 		;;
 	"code")
 		icon=$CODE
+		;;
+	"terminal")
+		icon=$TERMINAL
 		;;
 	"browser")
 		icon=$BROWSER
@@ -92,11 +95,10 @@ init_spaces() {
 	esac
 
 	if [ -n "$icon" ]; then
-		args+=(--set "$NAME" label.drawing=off icon="$icon")
+		args+=(--set "$NAME" icon="$icon" icon.font="$icon_font")
 
 		sketchybar -m "${args[@]}"
 	fi
-
 }
 
 mouse_clicked() {
@@ -115,6 +117,6 @@ case "$SENDER" in
 	window_focus_update_front_app
 	;;
 "space_change")
-	# space_change_update_space_label
+	space_change_update_space_label
 	;;
 esac

@@ -9,7 +9,6 @@ local remaps = require("lt.lsp.remaps")
 
 local presentLspStatus, lspStatus = pcall(require, "lsp-status")
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
-local presentAerial, aerial = pcall(require, "aerial")
 local presentLspSignature, lspSignature = pcall(require, "lsp_signature")
 local presentNavic, navic = pcall(require, "nvim-navic")
 local presentUfo = pcall(require, "ufo")
@@ -24,10 +23,6 @@ local function on_attach(client, bufnr)
 
   if presentLspStatus then
     lspStatus.on_attach(client)
-  end
-
-  if presentAerial then
-    aerial.on_attach(client, bufnr)
   end
 
   if presentLspSignature then

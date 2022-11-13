@@ -79,6 +79,9 @@ nvim_tree.setup({
     highlight_git = false,
     group_empty = true,
   },
+  notify = {
+    threshold = vim.log.levels.WARN,
+  },
 })
 
 local r = require("lt.utils.remaps")

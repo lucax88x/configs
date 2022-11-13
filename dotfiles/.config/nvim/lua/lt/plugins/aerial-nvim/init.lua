@@ -5,7 +5,6 @@ if not present then
 end
 
 aerial.setup({
-  default_direction = "left",
   on_attach = function(bufnr)
     local r = require("lt.utils.remaps")
 

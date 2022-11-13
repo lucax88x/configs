@@ -54,6 +54,13 @@ local binds = {
       yabai.window.focus("east")
     end,
   },
+  --[[ { ]]
+  --[[   mods.super, ]]
+  --[[   "l", ]]
+  --[[   function() ]]
+  --[[     yabai.window.stack("east") ]]
+  --[[   end, ]]
+  --[[ }, ]]
 }
 
 helper.label_move("1", "chat")
@@ -107,17 +114,6 @@ end
 --  toast("🎚☁️")
 --end) --["/"]
 --
-----# change window stack focus
---hs.hotkey.bind(super, hs.keycodes.map["è"], function()
---  yabai({ "-m", "window", "--focus", "stack.next" }, function()
---    toast("📚↥")
---  end)
---end) --["t"]
---hs.hotkey.bind(super, hs.keycodes.map[","], function()
---  yabai({ "-m", "window", "--focus", "stack.prev" }, function()
---    toast("📚↧")
---  end)
---end) --["g"]
 --
 ----# change window focus to direction
 --hs.hotkey.bind(super, hs.keycodes.map["n"], function()

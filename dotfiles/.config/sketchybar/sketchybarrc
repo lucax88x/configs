@@ -1,14 +1,12 @@
 #!/bin/bash
 
+source "$HOME/.config/sketchybar/vars.sh"   # Loads all defined vars
 source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
 source "$HOME/.config/sketchybar/icons.sh"  # Loads all defined icons
 
 export ITEM_DIR="$HOME/.config/sketchybar/items"     # Directory where the items are configured
 export PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
 
-export FONT="SF Pro"                                                 # Needs to have Regular, Bold, Semibold, Heavy and Black variants
-export ICON_FONT="Font Awesome 5 Pro:Regular:16.0"                       # Needs to have Regular, Bold, Semibold, Heavy and Black variants
-export ICON_BRAND_FONT="Font Awesome 5 Brands:Regular:16.0"                       # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 export SPACE_CLICK_SCRIPT="yabai -m space --focus \$SID 2>/dev/null" # The script that is run for clicking on space components
 
 PADDINGS=3 # All paddings use this value (icon, label, background)

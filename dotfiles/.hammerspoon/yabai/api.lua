@@ -201,4 +201,16 @@ function M.window.focus(direction, callback)
   end)
 end
 
+function M.window.stack(direction, callback)
+  yabai({ "-m", "window", "--stack", direction }, function(_, error)
+    if not utils.is_empty(error) then
+      print(error)
+    else
+      if callback ~= nil then
+        callback()
+      end
+    end
+  end)
+end
+
 return M
