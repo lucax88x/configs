@@ -7,23 +7,31 @@ yabai -m signal --add event=window_focused action="sketchybar --trigger window_f
 
 # global settings
 yabai -m config mouse_follows_focus on
-yabai -m config focus_follows_mouse autofocus
+yabai -m config focus_follows_mouse autoraise
+
 yabai -m config window_origin_display default
 yabai -m config window_placement second_child
-yabai -m config window_topmost off
-yabai -m config window_shadow off
+
+# floating windows are always on top (default: off)
+yabai -m config window_topmost on
+yabai -m config window_shadow float
+
 yabai -m config window_opacity off
 # yabai -m config window_opacity_duration 0.1
 yabai -m config active_window_opacity 1.0
 yabai -m config normal_window_opacity 1.0
+
 yabai -m config window_border on
 yabai -m config window_border_width 1
 yabai -m config window_border_radius 0
 yabai -m config active_window_border_color 0xffEBDBB2
 yabai -m config normal_window_border_color 0xff
 yabai -m config insert_feedback_color 0xffd75f5f
-yabai -m config split_ratio 0.50
-yabai -m config auto_balance off
+
+yabai -m config auto_balance on
+# with auto_balance off split_ratio doesnt work
+# yabai -m config split_ratio 0.50
+
 yabai -m config mouse_modifier fn
 yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
@@ -40,13 +48,6 @@ yabai -m config window_gap 5
 # sketchybar integration
 # EXTERNAL_BAR_HEIGHT=$(sketchybar --query bar | jq ".height") + 7
 yabai -m config external_bar all:0:46
-#
-# yabai -m space 1 --label chat
-# yabai -m space 2 --label code
-# yabai -m space 3 --label terminal
-# yabai -m space 4 --label browser
-# yabai -m space 5 --label tools
-# yabai -m space 6 --label email
 
 # apps to not manage (ignore)
 yabai -m rule --add app="^System Preferences$" manage=off
@@ -68,5 +69,15 @@ yabai -m rule --add app="^(kitty)$" space=terminal
 yabai -m rule --add app="^(Google Chrome|Firefox)$" space=browser
 yabai -m rule --add app="^(DataGrip|Docker|Postman|Sublime Merge)$" space=tools
 yabai -m rule --add app="^(Microsoft Outlook|Mail)$" space=email
+
+yabai -m signal --add \
+	label=launch-split \
+	event=application_launched \
+	action='~/.config/yabai/auto-split.sh'
+
+yabai -m signal --add \
+	label=create-split \
+	event=window_created \
+	action='~/.config/yabai/auto-split.sh'
 
 echo "yabai configuration loaded.."

@@ -17,8 +17,8 @@ ARRAY_OSX=(
     .config/kitty
     .config/nvim
     .config/ranger/rc.conf
-    .config/yabai/yabairc
-    .config/skhd/skhdrc
+    .config/yabai
+    .config/skhd
     .config/sketchybar
     .gitconfig
     .hammerspoon
