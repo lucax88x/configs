@@ -1,3 +1,6 @@
+# if you need to profile
+# zmodload zsh/zprof
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -44,23 +47,24 @@ zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # autocomplete
-zinit snippet OMZ::plugins/docker-compose/_docker-compose
 zinit snippet OMZ::plugins/docker/_docker
 
 # those should stay last
 # 
 zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
+# for some reason really slow in osx
+# zinit light zdharma-continuum/fast-syntax-highlighting
 
 # ENV VAR
-# add brew for OSX
-export PATH="/opt/homebrew/bin:$PATH" 
+export VOLTA_HOME="$HOME/.volta"
+export PATH="/opt/homebrew/bin:$PATH" # add brew for OSX
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export EDITOR=nvim
 export VISUAL=nvim
 export MANGOHUD=1
 
 export PATH="$HOME/bin:$PATH"
+export PATH="$VOLTA_HOME/bin:$PATH"
 # add yarn globals to path
 # export PATH="$(yarn global bin):$PATH"
 # add local bin (python executables, for example)
@@ -78,13 +82,6 @@ export PATH="$PATH:$HOME/repos/dotmemory"
 # export DOTNET_ROOT="$HOME/.dotnet"
 # END ENV VAR
  
-# LINUX
-# source /usr/share/nvm/init-nvm.sh
-# OSX
-export NVM_DIR="$HOME/.nvm"
-    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
-    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
-
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 source "$HOME/bin/functions/ks"
 
@@ -97,7 +94,6 @@ zinit light Tarrasch/zsh-bd
 #
 zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
 zinit light g-plane/zsh-yarn-autocompletions
-zinit light hlolli/zsh-better-npm-completion
 
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=true
 zinit light zsh-users/zsh-history-substring-search
@@ -148,3 +144,5 @@ compctl -W $REPOSITORIES_FOLDER -/ prj
 # END FUNCTIONS
 
 [[ ! -f $HOME/.p10k.zsh ]] || zinit snippet $HOME/.p10k.zsh
+
+# zprof

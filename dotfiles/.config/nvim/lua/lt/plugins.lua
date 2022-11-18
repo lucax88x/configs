@@ -1,8 +1,11 @@
-local vim = vim
 local fn = vim.fn
 
+local plugins_path = fn.stdpath("data") .. "/site/pack/packer"
 -- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+local install_path = plugins_path .. "/opt/packer.nvim"
+
+--[[ print("packer is installed in " .. install_path) ]]
+--[[ print("plugins are in  " .. plugins_path) ]]
 
 -- remove the dir before cloning
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -21,19 +24,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 vim.cmd([[packadd packer.nvim]])
-
--- local group = vim.api.nvim_create_augroup("ReloadPackerOnSave", { clear = true });
--- vim.api.nvim_create_autocmd("BufWritePost", {
---   group = group,
---   desc = "Reload packer when you save plugins file",
---   command = 'source <afile> | PackerSync'
--- })
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -393,6 +383,12 @@ return packer.startup({
     use("haringsrob/nvim_context_vt") -- shows treesitter context in end of parenthesis
     use("RRethy/nvim-treesitter-textsubjects")
     use("nvim-treesitter/nvim-treesitter-textobjects")
+    use({
+      "cshuaimin/ssr.nvim",
+      config = function()
+        require("lt.plugins.nvim-ssr")
+      end,
+    })
 
     --[[ use({ ]]
     --[[   "andymass/vim-matchup", -- enhances % ]]

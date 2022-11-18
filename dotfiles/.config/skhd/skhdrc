@@ -35,9 +35,6 @@ shift + alt + ctrl - l : yabai -m window --warp east
 # rotate tree
 alt - r : yabai -m space --rotate 90
 
-# toggle window fullscreen zoom
-alt - f : yabai -m window --toggle zoom-fullscreen
-
 # float / unfloat window and center on screen
 alt - t : yabai -m window --toggle float;\
           yabai -m window --grid 4:4:1:1:2:2

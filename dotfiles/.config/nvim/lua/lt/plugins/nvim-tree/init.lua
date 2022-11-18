@@ -49,10 +49,10 @@ nvim_tree.setup({
   update_cwd = false,
   respect_buf_cwd = true,
   hijack_netrw = true,
-  hijack_directories = {
-    enable = true,
-    auto_open = true,
-  },
+  --[[ hijack_directories = { ]]
+  --[[   enable = true, ]]
+  --[[   auto_open = true, ]]
+  --[[ }, ]]
   diagnostics = {
     enable = false,
   },
@@ -90,14 +90,17 @@ nvim_tree.setup({
 })
 
 local r = require("lt.utils.remaps")
-r.noremap("n", "-", function()
-  local view = require("nvim-tree.view")
-  if view.is_visible() then
-    view.close()
-  else
-    require("nvim-tree").open_replacing_current_buffer()
-  end
-end, "Toggle explorer")
+
+--[[ r.noremap("n", "-", function() ]]
+--[[   local view = require("nvim-tree.view") ]]
+--[[   if view.is_visible() then ]]
+--[[     view.close() ]]
+--[[   else ]]
+--[[     --require("nvim-tree").open_replacing_current_buffer()
+--[[   end ]]
+--[[ end, "Toggle explorer") ]]
+
+r.noremap("n", "-", "<cmd>NvimTreeToggle<CR>", "Toggle explorer")
 
 -- r.map_virtual("<BS>", "Closes directory")
 -- r.map_virtual("a", "Create file/dir")

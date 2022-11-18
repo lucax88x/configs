@@ -169,9 +169,10 @@ installHackNerdFont
 # if ! [ -x "$(command -v node)" ]; then
 # 	echo INSTALLING NODE
 #
-# 	paru -Sy --noconfirm nvm
+# 	curl https://get.volta.sh | bash
+
 # else
-# 	echo NODE ALREADY INSTALLED
+# 	echo VOLTA ALREADY INSTALLED
 # fi
 #
 # if ! [ -x "$(command -v yarn)" ]; then
@@ -564,7 +565,6 @@ echo Purged temp folder
 echo REMEMBER TO:
 echo - update all packages and the system
 echo - register ssh public key to github
-echo - install node with nvm
 echo '- disable alt+space shortcut (https://unix.stackexchange.com/questions/44643/change-global-keyboard-shortcuts)'
 echo '-remember to configure keyring (https://wiki.archlinux.org/index.php/GNOME/Keyring#PAM_method)'
 echo '-remember to configure nvidia hook (https://wiki.archlinux.org/title/NVIDIA#pacman_hook)'

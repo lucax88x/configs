@@ -54,6 +54,14 @@ local binds = {
       yabai.window.focus("east")
     end,
   },
+  {
+    mods.alt,
+    "f",
+    function()
+      --[[ yabai.window.zoom_fullscreen() ]]
+      yabai.window.native_fullscreen()
+    end,
+  },
   --[[ { ]]
   --[[   mods.super, ]]
   --[[   "l", ]]

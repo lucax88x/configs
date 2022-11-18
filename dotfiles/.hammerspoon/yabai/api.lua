@@ -213,4 +213,28 @@ function M.window.stack(direction, callback)
   end)
 end
 
+function M.window.native_fullscreen(callback)
+  yabai({ "-m", "window", "--toggle", "native-fullscreen" }, function(_, error)
+    if not utils.is_empty(error) then
+      print(error)
+    else
+      if callback ~= nil then
+        callback()
+      end
+    end
+  end)
+end
+
+function M.window.zoom_fullscreen(callback)
+  yabai({ "-m", "window", "--toggle", "zoom-fullscreen" }, function(_, error)
+    if not utils.is_empty(error) then
+      print(error)
+    else
+      if callback ~= nil then
+        callback()
+      end
+    end
+  end)
+end
+
 return M

@@ -77,7 +77,7 @@ nnoremap <leader>sd :action QuickImplementations<CR>
 nnoremap <leader>pf :action GotoFile<CR>
 nnoremap <leader>pg :action GotoClass<CR>
 nnoremap <leader>fa :action GotoAction<CR>
-nnoremap <leader>ps :action FindInPath<CR>
+nnoremap <leader>ss :action FindInPath<CR>
 " nnoremap <leader>fr :action ReplaceInPath<CR>
 " vmap <leader>fg :action FindInPath<CR>
 " vmap <leader>fr :action ReplaceInPath<CR>
