@@ -117,6 +117,7 @@ local servers = {
   texlab = {},
   ansiblels = {},
   angularls = {},
+  gopls = {},
 }
 
 local default_lsp_config = {

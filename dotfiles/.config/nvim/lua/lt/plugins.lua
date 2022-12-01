@@ -160,9 +160,12 @@ return packer.startup({
     })
 
     use({
-      "phaazon/hop.nvim",
+      "ggandor/flit.nvim",
+      requires = {
+        { "ggandor/leap.nvim" },
+      },
       config = function()
-        require("lt.plugins.hop-nvim")
+        require("lt.plugins.leap-nvim")
       end,
     })
 
