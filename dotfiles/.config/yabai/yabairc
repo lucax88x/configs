@@ -47,7 +47,8 @@ yabai -m config window_gap 5
 
 # sketchybar integration
 # EXTERNAL_BAR_HEIGHT=$(sketchybar --query bar | jq ".height") + 7
-yabai -m config external_bar all:0:46
+# yabai -m config external_bar all:0:46
+yabai -m config external_bar all:0:0
 
 # apps to not manage (ignore)
 yabai -m rule --add app="^System Preferences$" manage=off

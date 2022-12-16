@@ -32,6 +32,7 @@ M.lsp_install_servers = function()
 	installLanguageServer("texlab")
 	installLanguageServer("ansiblels")
 	installLanguageServer("angularls")
+	installLanguageServer("gopls")
 end
 
 return M

@@ -25,7 +25,6 @@ catppuccin.setup({
     nvimtree = true,
     telescope = true,
     treesitter = true,
-    feline = true,
     fidget = true,
     hop = true,
     mason = true,

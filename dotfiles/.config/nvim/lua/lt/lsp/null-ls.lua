@@ -25,6 +25,9 @@ null_ls.setup({
     diagnostics.stylelint,
     diagnostics.yamllint,
     diagnostics.ansiblelint,
+    diagnostics.golangci_lint,
+    diagnostics.gitlint,
+    diagnostics.jsonlint,
 
     formatting.stylua,
     formatting.prettierd,

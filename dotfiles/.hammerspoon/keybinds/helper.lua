@@ -21,7 +21,7 @@ local M = {
 
 local label_move_cache = {}
 M.label_move = function(number, label)
-  local function label_focus()
+  local function local_label_focus()
     label_move_cache[label] = true
     yabai.space.focus(label, function(error)
       if not utils.is_empty(error) then
@@ -36,16 +36,30 @@ M.label_move = function(number, label)
 
   hs.hotkey.bind(option, hs.keycodes.map[number], function()
     if label_move_cache[label] then
-      label_focus()
+      print("space " .. label .. " in cache, focusing")
+      local_label_focus()
     else
       yabai.space.get(function(spaces)
-        if utils.any(spaces, function(space)
+
+        local found_space = utils.any(spaces, function(space)
           return space.label == label
-        end) then
-          label_focus()
+        end)
+
+        if found_space then
+          print("space " .. label .. " found, focusing")
+          local_label_focus()
         else
+          print("space " .. label .. " NOT found, creating")
+
           label_move_cache[label] = nil
-          toast("space " .. label .. " not created")
+
+          yabai.display.get_current_index(function(current_display_index)
+            yabai.space.create(label, current_display_index, function()
+              toast("space " .. label .. " created on the fly")
+              print("space " .. label .. " created, moving")
+              local_label_focus()
+            end)
+          end)
         end
       end)
     end

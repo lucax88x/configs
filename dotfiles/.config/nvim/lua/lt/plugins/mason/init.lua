@@ -27,6 +27,9 @@ mason_tool_installer.setup({
     "stylua",
     --[[ "ansible", ]]
     "luacheck",
+    "golangci-lint",
+    "gitlint",
+    "jsonlint",
   },
 
   auto_update = false,
