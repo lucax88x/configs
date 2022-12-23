@@ -19,16 +19,38 @@ return function(str, time, params)
 
   local name = params.name or "main"
 
-  --local toast = toasts[name]
+  --[[ white = 49, ]]
+  --[[ green = 50, ]]
+  --[[ blue = 68, ]]
+  --[[ red = 205, ]]
+  --[[ green = 214, ]]
+  --[[ blue = 244, ]]
+
   toasts[name] = hs.alert(str, {
-    fillcolor = { white = 0, alpha = 0.4 },
-    strokecolor = { white = 0, alpha = 0 },
-    strokewidth = 0,
-    textcolor = { white = 1, alpha = 1 },
-    radius = 0,
+    fillColor = {
+      white = 0,
+      alpha = 0.4,
+    },
+    strokeColor = { white = 0, alpha = 0 },
+    strokeWidth = 0,
+    textColor = {
+      white = 1,
+      alpha = 1,
+    },
+    radius = 0.3,
     padding = 6,
-    atscreenedge = 0,
-    fadeinduration = 0.1,
-    fadeoutduration = params.fadeoutduration or 0.1,
-  }, time or 1.5)
+    textSize = 20,
+    fadeInDuration = 0.1,
+    fadeOutDuration = params.fadeoutduration or 0.1,
+    atScreenEdge = 2,
+  }, time or 1.5, hs.screen.mainScreen())
+
+  --[[ toasts[name] = hs.alert(str, { ]]
+  --[[   textSize = 14, ]]
+  --[[   radius = 10, ]]
+  --[[   padding = 6, ]]
+  --[[   fadeInDuration = 0.1, ]]
+  --[[   fadeOutDuration = params.fadeoutduration or 0.1, ]]
+  --[[   atScreenEdge = 1, ]]
+  --[[ }, time or 1.5, hs.screen.mainScreen()) ]]
 end

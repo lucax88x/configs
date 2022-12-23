@@ -1,6 +1,3 @@
-# Reload yabai
-ctrl + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-
 # focus window
 
 #alt - j : yabai -m window --focus south
@@ -43,12 +40,12 @@ alt - t : yabai -m window --toggle float;\
 alt - e : yabai -m window --toggle split
 
 # move window and focus desktop
-shift + alt - 1 : yabai -m window --space chat
-shift + alt - 2 : yabai -m window --space code
-shift + alt - 3 : yabai -m window --space terminal
-shift + alt - 4 : yabai -m window --space browser
-shift + alt - 5 : yabai -m window --space tools
-shift + alt - 6 : yabai -m window --space email
+# shift + alt - 1 : yabai -m window --space chat
+# shift + alt - 2 : yabai -m window --space code
+# shift + alt - 3 : yabai -m window --space terminal
+# shift + alt - 4 : yabai -m window --space browser
+# shift + alt - 5 : yabai -m window --space tools
+# shift + alt - 6 : yabai -m window --space email
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
 shift + alt - n : yabai -m space --create && \

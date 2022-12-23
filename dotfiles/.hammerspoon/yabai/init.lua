@@ -41,6 +41,7 @@ local app_spaces = {
 
 local yabai = require("yabai.api")
 local utils = require("utils")
+local yabai_helper = require("yabai.helper")
 
 local function get_displays_indexes(args, callback)
   yabai.display.get(function(retrieved_displays)
@@ -55,49 +56,6 @@ local function get_displays_indexes(args, callback)
     end
 
     callback(indexes)
-  end)
-end
-
-local function purge_empty_spaces(callback)
-  yabai.space.get(function(spaces)
-    local to_destroy_ids = {}
-
-    for _, space in pairs(spaces) do
-      if utils.is_empty(space.label) then
-        table.insert(to_destroy_ids, space.id)
-      end
-    end
-
-    utils.sequential(to_destroy_ids, function(to_find_space_id, next)
-      yabai.space.get(function(loop_spaces)
-        local found_space = utils.first(loop_spaces, function(space)
-          return space.id == to_find_space_id
-        end)
-
-        if found_space == nil then
-          print("cannot find space with id " .. to_find_space_id)
-          next()
-        else
-          local space_index = found_space.index
-
-          print("destroying space with id " .. found_space.id .. " index " .. space_index)
-
-          yabai.space.destroy(space_index, function(error)
-            if not utils.is_empty(error) then
-              print(error)
-            else
-              print("destroyed space with index " .. space_index)
-            end
-
-            next()
-          end)
-        end
-      end)
-    end, function()
-      if callback then
-        callback()
-      end
-    end)
   end)
 end
 
@@ -218,14 +176,14 @@ local function correct_windows(spaces_indexes)
   end)
 end
 
-purge_empty_spaces(function()
+yabai_helper.purge_empty_spaces(function()
   print("purged all empty spaces")
-  get_displays_indexes(my_displays, function(displays_indexes)
-    correct_spaces(displays_indexes, function()
-      print("corrected spaces")
-      get_spaces_labels_indexes(function(updated_spaces_indexes)
-        correct_windows(updated_spaces_indexes)
-      end)
-    end)
-  end)
+  --[[ get_displays_indexes(my_displays, function(displays_indexes) ]]
+  --[[   correct_spaces(displays_indexes, function() ]]
+  --[[     print("corrected spaces") ]]
+  --[[     get_spaces_labels_indexes(function(updated_spaces_indexes) ]]
+  --[[       correct_windows(updated_spaces_indexes) ]]
+  --[[     end) ]]
+  --[[   end) ]]
+  --[[ end) ]]
 end)

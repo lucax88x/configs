@@ -1,14 +1,25 @@
+local hs = hs
 local yabai = require("yabai.api")
+local yabai_helper = require("yabai.helper")
 local helper = require("keybinds.helper")
 
 local mods = helper.modifiers
 
+--[[ # Reload yabai ]]
+--[[ ctrl + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai" ]]
+
 local actions = {
-  ["reload"] = function()
+  ["reload_hs"] = function()
     hs.reload()
+  end,
+  ["reload_yabai"] = function()
+    yabai.reload()
   end,
   ["balance_space"] = function()
     yabai({ "-m", "space", "--balance" })
+  end,
+  ["purge_empty_spaces"] = function()
+    yabai_helper.purge_empty_spaces()
   end,
 }
 
@@ -21,14 +32,24 @@ local mainChooser = hs.chooser
     end)
     :choices({
       {
-        text = "Reload",
+        text = "Reload Hammerspoon",
         subText = "Reload Hammerspoon configuration",
-        action = "reload",
+        action = "reload_hs",
+      },
+      {
+        text = "Reload Yabai",
+        subText = "Reload Yabai configuration",
+        action = "reload_yabai",
       },
       {
         text = "Balance space",
         subText = "Balances space between windows",
         action = "balance_space",
+      },
+      {
+        text = "Purge empty spaces",
+        subText = "Purge empty spaces",
+        action = "purge_empty_spaces",
       },
     })
 
@@ -77,6 +98,7 @@ helper.label_move("3", "terminal")
 helper.label_move("4", "browser")
 helper.label_move("5", "tools")
 helper.label_move("6", "email")
+helper.label_move("7", "extra")
 
 for _, bind in ipairs(binds) do
   local modifiers = bind[1]

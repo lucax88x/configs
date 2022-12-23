@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+# yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 
 # global settings
 yabai -m config mouse_follows_focus on
@@ -59,17 +59,21 @@ yabai -m rule --add app="^.*Rider.*$" title="^(Welcome.|Rename|Pull Members Up|C
 yabai -m rule --add app="^Sublime Merge$" title="^Merge Tool$" manage=off
 yabai -m rule --add app="^Hammerspoon$" title="^Hammerspoon Console$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
-yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+# yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="Finder" app="^Finder$" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="Simulator" app="^Simulator$" manage=off
 
+# android studio emulator dropdown
+yabai -m rule --add app="^qemu-system-aarch64$" manage=off
+
 # apps placement to space
-yabai -m rule --add app="^(Slack|WhatsApp|Microsoft Teams|Telegram)$" space=chat
-yabai -m rule --add app="^(IntelliJ IDEA|WebStorm|RubyMine|PyCharm|.*Rider.*)$" space=code
-yabai -m rule --add app="^(kitty)$" space=terminal
-yabai -m rule --add app="^(Google Chrome|Firefox)$" space=browser
-yabai -m rule --add app="^(DataGrip|Docker|Postman|Sublime Merge)$" space=tools
-yabai -m rule --add app="^(Microsoft Outlook|Mail)$" space=email
+# yabai -m rule --add app="^(Slack|WhatsApp|Microsoft Teams|Telegram)$" space=chat
+# yabai -m rule --add app="^(IntelliJ IDEA|WebStorm|RubyMine|PyCharm|.*Rider.*)$" space=code
+# yabai -m rule --add app="^(kitty)$" space=terminal
+# yabai -m rule --add app="^(Google Chrome|Firefox)$" space=browser
+# yabai -m rule --add app="^(DataGrip|Docker|Postman|Sublime Merge)$" space=tools
+# yabai -m rule --add app="^(Microsoft Outlook|Mail)$" space=email
 
 # There's still a slight mistake in there: The event=application_launched signal does not carry $YABAI_WINDOW_ID, which then evaluates to an empty string in the signals action, causing it to act on the focused window.
 # If multiple windows are restored, this is incorrect behavior.
