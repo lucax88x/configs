@@ -1,4 +1,3 @@
-local vim = vim
 local hydra = require("hydra")
 local presentGitSigns, gitsigns = pcall(require, "gitsigns")
 
