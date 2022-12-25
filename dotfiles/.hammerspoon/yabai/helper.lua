@@ -1,5 +1,6 @@
 local utils = require("utils")
 local yabai = require("yabai.api")
+local log = hs.logger.new("mine", "info")
 
 local M = { display = {}, space = {}, window = {} }
 
@@ -20,22 +21,29 @@ function M.purge_empty_spaces(callback)
         end)
 
         if found_space == nil then
-          print("cannot find space with id " .. to_find_space_id)
+          log.i("cannot find space with id " .. to_find_space_id)
           next()
         else
           local space_index = found_space.index
 
-          print("destroying space with id " .. found_space.id .. " index " .. space_index)
+          local is_native_fullscreen = found_space["is-native-fullscreen"]
 
-          yabai.space.destroy(space_index, function(error)
-            if not utils.is_empty(error) then
-              print(error)
-            else
-              print("destroyed space with index " .. space_index)
-            end
+          if not is_native_fullscreen then
+            log.i("destroying space with id " .. found_space.id .. " index " .. space_index)
 
+            yabai.space.destroy(space_index, function(error)
+              if not utils.is_empty(error) then
+                log.i(error)
+              else
+                log.i("destroyed space with index " .. space_index)
+              end
+
+              next()
+            end)
+          else
+            log.i("skipping space with id " .. found_space.id .. " because full screen")
             next()
-          end)
+          end
         end
       end)
     end, function()

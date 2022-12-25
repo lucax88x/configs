@@ -29,23 +29,12 @@ shift + alt + ctrl - j : yabai -m window --warp south
 shift + alt + ctrl - k : yabai -m window --warp north
 shift + alt + ctrl - l : yabai -m window --warp east
 
-# rotate tree
-alt - r : yabai -m space --rotate 90
-
 # float / unfloat window and center on screen
 alt - t : yabai -m window --toggle float;\
           yabai -m window --grid 4:4:1:1:2:2
 
 # toggle window split type
 alt - e : yabai -m window --toggle split
-
-# move window and focus desktop
-# shift + alt - 1 : yabai -m window --space chat
-# shift + alt - 2 : yabai -m window --space code
-# shift + alt - 3 : yabai -m window --space terminal
-# shift + alt - 4 : yabai -m window --space browser
-# shift + alt - 5 : yabai -m window --space tools
-# shift + alt - 6 : yabai -m window --space email
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
 shift + alt - n : yabai -m space --create && \

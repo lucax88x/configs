@@ -1,3 +1,5 @@
+local log = hs.logger.new("mine", "info")
+
 local yabai = require("yabai.api")
 local toast = require("toast")
 local utils = require("utils")
@@ -21,14 +23,14 @@ local M = {
 
 local label_move_cache = {}
 
-M.label_move = function(number, label)
+M.space = function(number, label)
   local function local_label_focus()
     yabai.space.focus(label, function(error)
       if not utils.is_empty(error) then
         if not string.find(error, "cannot focus an already focused space") then
           label_move_cache[label] = nil
           toast("could not move to " .. label)
-          print(error)
+          log.i(error)
         end
       else
         label_move_cache[label] = true
@@ -42,7 +44,7 @@ M.label_move = function(number, label)
 
   local function focus_space_or_create_if_missing()
     if label_move_cache[label] then
-      print("space " .. label .. " in cache, focusing")
+      log.i("space " .. label .. " in cache, focusing")
       local_label_focus()
     else
       yabai.space.get(function(spaces)
@@ -51,17 +53,17 @@ M.label_move = function(number, label)
         end)
 
         if found_space then
-          print("space " .. label .. " found, focusing")
+          log.i("space " .. label .. " found, focusing")
           local_label_focus()
         else
-          print("space " .. label .. " NOT found, creating")
+          log.i("space " .. label .. " NOT found, creating")
 
           label_move_cache[label] = nil
 
           yabai.display.get_current(function(current_display)
             yabai.space.create(label, current_display.index, function()
               toast("space " .. label .. " created on the fly")
-              print("space " .. label .. " created, moving")
+              log.i("space " .. label .. " created, moving")
               local_label_focus()
             end)
           end)

@@ -2,123 +2,126 @@ local hs = hs
 local yabai = require("yabai.api")
 local yabai_helper = require("yabai.helper")
 local helper = require("keybinds.helper")
+local toast = require("toast")
 
 local mods = helper.modifiers
 
---[[ # Reload yabai ]]
---[[ ctrl + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai" ]]
-
 local actions = {
-  ["reload_hs"] = function()
-    hs.reload()
-  end,
-  ["reload_yabai"] = function()
-    yabai.reload()
-  end,
-  ["balance_space"] = function()
-    yabai({ "-m", "space", "--balance" })
-  end,
-  ["purge_empty_spaces"] = function()
-    yabai_helper.purge_empty_spaces()
-  end,
-}
-
---# Main chooser
-local mainChooser = hs.chooser
-    .new(function(option)
-      if option ~= nil then
-        actions[option.action]()
-      end
-    end)
-    :choices({
-      {
-        text = "Reload Hammerspoon",
-        subText = "Reload Hammerspoon configuration",
-        action = "reload_hs",
-      },
-      {
-        text = "Reload Yabai",
-        subText = "Reload Yabai configuration",
-        action = "reload_yabai",
-      },
-      {
-        text = "Balance space",
-        subText = "Balances space between windows",
-        action = "balance_space",
-      },
-      {
-        text = "Purge empty spaces",
-        subText = "Purge empty spaces",
-        action = "purge_empty_spaces",
-      },
-    })
-
-local binds = {
   {
-    mods.super,
-    "return",
-    function()
-      mainChooser:show()
+    text = "Reload Hammerspoon",
+    action = function()
+      hs.reload()
     end,
   },
   {
-    mods.alt,
-    "h",
-    function()
+    text = "Reload Yabai",
+    action = function()
+      yabai.reload()
+    end,
+  },
+  {
+    text = "Balance space",
+    description = "Balances space between windows",
+    action = function()
+      yabai.space.balance()
+    end,
+  },
+  {
+    text = "Purge empty spaces",
+    action = function()
+      yabai_helper.purge_empty_spaces()
+    end,
+  },
+  {
+    text = "Focus west",
+    bind = { mods.alt, "h" },
+    action = function()
       yabai.window.focus("west")
     end,
   },
   {
-    mods.alt,
-    "l",
-    function()
+    text = "Focus east",
+    bind = { mods.alt, "l" },
+    action = function()
       yabai.window.focus("east")
     end,
   },
   {
-    mods.alt,
-    "f",
-    function()
+    text = "Full screen",
+    bind = { mods.alt, "f" },
+    action = function()
       --[[ yabai.window.zoom_fullscreen() ]]
       yabai.window.native_fullscreen()
     end,
   },
-  --[[ { ]]
-  --[[   mods.super, ]]
-  --[[   "l", ]]
-  --[[   function() ]]
-  --[[     yabai.window.stack("east") ]]
-  --[[   end, ]]
-  --[[ }, ]]
+  {
+    text = "Rotate",
+    bind = { mods.alt, "r" },
+    action = function()
+      yabai.space.rotate(90)
+    end,
+  },
+  {
+    text = "Stack",
+    description = "Toggle bsp to stack",
+    bind = { mods.alt, "s" },
+    action = function()
+      yabai.space.get_current(function(current_space)
+        if current_space.type == "bsp" then
+          yabai.space.layout("stack", function()
+            toast("changed to stack")
+          end)
+        else
+          if current_space.type == "stack" then
+            yabai.space.layout("bsp", function()
+              toast("changed to bsp")
+            end)
+          else
+            toast("cannot change, probably float")
+          end
+        end
+      end)
+    end,
+  },
 }
 
-helper.label_move("1", "chat")
-helper.label_move("2", "code")
-helper.label_move("3", "terminal")
-helper.label_move("4", "browser")
-helper.label_move("5", "tools")
-helper.label_move("6", "email")
-helper.label_move("7", "extra")
+helper.space("1", "chat")
+helper.space("2", "code")
+helper.space("3", "terminal")
+helper.space("4", "browser")
+helper.space("5", "tools")
+helper.space("6", "email")
+helper.space("7", "extra")
 
-for _, bind in ipairs(binds) do
-  local modifiers = bind[1]
-  local key = bind[2]
-  local fn = bind[3]
+local choices = {}
+local mapped_actions = {}
+for _, action in ipairs(actions) do
+  if action.bind ~= nil then
+    local modifiers = action.bind[1]
+    local key = action.bind[2]
 
-  print(modifiers, key, fn)
+    hs.hotkey.bind(modifiers, hs.keycodes.map[key], nil, action.action)
+  end
 
-  hs.hotkey.bind(modifiers, hs.keycodes.map[key], nil, fn)
+  table.insert(choices, { text = action.text, subText = action.description, action = action.text })
+  mapped_actions[action.text] = action.action
 end
 
---[[ hs.hotkey.bind(mods.alt, hs.keycodes.map["l"], function() ]]
---[[   yabai({ "-m", "window", "--focus", "east" }) ]]
---[[ end) ]]
+local mainChooser = hs.chooser
+    .new(function(option)
+      if option ~= nil then
+        local action = mapped_actions[option.text]
+        if action ~= nil then
+          action()
+        end
+      end
+    end)
+    :choices(choices)
 
---hs.hotkey.bind(super, hs.keycodes.map["«"], function()
---  yabai({ "-m", "space", "mouse", "--layout", "stack" }, function()
---    toast("📚")
---  end)
---end) --["2"]
+hs.hotkey.bind(mods.super, hs.keycodes.map["return"], nil, function()
+  mainChooser:show()
+end)
+
 --hs.hotkey.bind(super, hs.keycodes.map["»"], function()
 --  yabai({ "-m", "space", "mouse", "--layout", "float" }, function()
 --    toast("☁️")

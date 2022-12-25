@@ -3,3 +3,5 @@ dotfiles/.config/nvim/plugin/packer_compiled.lua
 dotfiles/.config/nvim/plugin/packer_compiled.vim
 dotfiles/.config/nvim/.netrwhist
 dotfiles/.hammerspoon/Spoons
+dotfiles/.hammerspoon/rcmd
+dotfiles/.hammerspoon/stackline
