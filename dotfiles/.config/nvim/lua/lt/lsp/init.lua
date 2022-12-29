@@ -16,6 +16,27 @@ local ufo = require("lt.plugins.ufo.setup")
 
 vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
 
+local function try_attach_navic(client, bufnr)
+  if presentNavic then
+    local filetype = vim.api.nvim_buf_get_option(bufnr or 0, "filetype")
+
+    if client.server_capabilities.documentSymbolProvider then
+      if client.name == "graphql" then
+        if filetype == "typescript" or filetype == "typescriptreact" or filetype == "javascript" then
+          return
+        end
+      end
+
+      if client.name == "eslint" or client.name == "angularls" or client.name == "null-ls" then
+        return
+      end
+
+      vim.notify("attach navic to " .. client.name)
+      navic.attach(client, bufnr)
+    end
+  end
+end
+
 local function on_attach(client, bufnr)
   -- print(client.name)
   -- require("lt.utils.functions").tprint_keys(client.server_capabilities)
@@ -29,10 +50,12 @@ local function on_attach(client, bufnr)
     lspSignature.on_attach({ floating_window = false, timer_interval = 500 })
   end
 
-  if presentNavic then
-    if client.name ~= "eslint" and client.name ~= "angularls" then
-      navic.attach(client, bufnr)
-    end
+  try_attach_navic(client, bufnr)
+
+  if client.name == "tsserver" then
+    -- let prettier format
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
   end
 end
 

@@ -1,11 +1,12 @@
 local present, notify = pcall(require, "notify")
 
 if not present then
-	return
+  return
 end
 
 notify.setup({
-	stages = "fade",
+  stages = "fade",
+  render = "minimal",
 })
 
 vim.notify = notify

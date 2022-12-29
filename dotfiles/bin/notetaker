@@ -1,11 +1,11 @@
 #!/bin/sh
 
-mkdir -p $HOME/repos/notes
+mkdir -p "$HOME/Dropbox/notes"
 
 noteFilename="$HOME/Dropbox/notes/note-$(date +%Y-%m-%d).md"
 
-if [ ! -f $noteFilename ]; then
-  echo "# Notes for $(date +%Y-%m-%d)" > $noteFilename
+if [ ! -f "$noteFilename" ]; then
+	echo "# Notes for $(date +%Y-%m-%d)" >"$noteFilename"
 fi
 
 nvim \
@@ -13,4 +13,4 @@ nvim \
 	-c "norm Go## $(date +%H:%M)" \
 	-c "norm G2o" \
 	-c "norm zz" \
-	-c "startinsert" $noteFilename 
+	-c "startinsert" "$noteFilename"

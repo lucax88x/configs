@@ -1,4 +1,3 @@
-local vim = vim
 local present, nvim_tree = pcall(require, "nvim-tree")
 
 if not present then
@@ -44,7 +43,7 @@ local list = {
 }
 
 nvim_tree.setup({
-  open_on_setup = false,
+  open_on_setup = true,
   open_on_tab = false,
   update_cwd = false,
   respect_buf_cwd = true,

@@ -2,18 +2,6 @@ return {
   "nvim-lua/plenary.nvim",
 
   {
-    "nathom/filetype.nvim",
-    config = function()
-      require("lt.plugins.filetype")
-    end,
-  },
-  {
-    "antoinemadec/FixCursorHold.nvim",
-    config = function()
-      require("lt.plugins.fix-cursorhold")
-    end,
-  },
-  {
     "catppuccin/nvim",
     config = function()
       require("lt.plugins.catppuccin-theme")
@@ -72,6 +60,7 @@ return {
       require("lt.plugins.camelcasemotion")
     end,
   },
+
   -- highlight matching words when cursor on it
   "rrethy/vim-illuminate",
   -- disabled search highlight until next search
@@ -87,7 +76,6 @@ return {
     config = function()
       require("lt.plugins.alpha")
     end,
-    event = "BufWinEnter",
   },
   {
     "ahmedkhalf/project.nvim",
@@ -454,14 +442,12 @@ return {
     keys = { "<leader>Z" },
   },
 
-  -- {
-  --   "nvim-neorg/neorg",
-  --   -- lazy-load on filetype
-  --   ft = "norg",
-  --   -- custom config that will be executed when loading the plugin
-  --   config = function()
-  --     require("neorg").setup()
-  --   end,
-  -- },
-  --
+  --[[ { ]]
+  --[[   "nvim-neorg/neorg", ]]
+  --[[   run = ":Neorg sync-parsers", ]]
+  --[[   ft = "norg", ]]
+  --[[   config = function() ]]
+  --[[     require("lt.plugins.neorg").setup() ]]
+  --[[   end, ]]
+  --[[ }, ]]
 }
