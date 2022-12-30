@@ -3,36 +3,36 @@ return {
   init = function()
     local r = require("lt.utils.remaps")
 
-    r.which_key("<leader>te", "extract")
-    r.which_key("<leader>ti", "inline")
+    r.which_key("<leader>re", "extract")
+    r.which_key("<leader>ri", "inline")
 
     local opts = { silent = true, expr = false }
 
-    r.noremap("n", "<leader>teb", function()
+    r.noremap("n", "<leader>reb", function()
       require("refactoring").refactor("Extract Block")
     end, "Extract Block", opts)
 
-    r.noremap("n", "<leader>teB", function()
+    r.noremap("n", "<leader>reB", function()
       require("refactoring").refactor("Extract Block To File")
     end, "Extract Block", opts)
 
-    r.noremap("v", "<leader>tef", function()
+    r.noremap("v", "<leader>rem", function()
       require("refactoring").refactor("Extract Function")
     end, "Extract Function", opts)
 
-    r.noremap("v", "<leader>teF", function()
+    r.noremap("v", "<leader>reM", function()
       require("refactoring").refactor("Extract Function To File")
     end, "Extact Function to file", opts)
 
-    r.noremap("v", "<leader>tev", function()
+    r.noremap("v", "<leader>rev", function()
       require("refactoring").refactor("Extract Variable")
     end, "Extact variable", opts)
 
-    r.noremap("v", "<leader>tiv", function()
+    r.noremap("v", "<leader>riv", function()
       require("refactoring").refactor("Inline Variable")
     end, "Inline variable", opts)
 
-    r.noremap("v", "<leader>tl", function()
+    r.noremap("v", "<leader>rl", function()
       require("telescope").extensions.refactoring.refactors()
     end, "Refactor list", opts)
   end,

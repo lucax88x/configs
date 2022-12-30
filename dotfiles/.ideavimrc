@@ -37,12 +37,12 @@ nnoremap <leader>fa :action Refactorings.QuickListPopupAction<CR>
 vmap <leader>fa :action Refactorings.QuickListPopupAction<CR>
 " nnoremap <leader>fa :action ShowIntentionActions<CR>
 
-nnoremap <leader>fc :action CopyElement<CR>
+nnoremap <leader>rc :action CopyElement<CR>
 
-nnoremap <leader>ff :action ReformatCode<CR>
-nnoremap <leader>fo :action OptimizeImports<CR>
+nnoremap <leader>rf :action ReformatCode<CR>
+nnoremap <leader>rio :action OptimizeImports<CR>
 
-nnoremap <leader>fr :action RenameElement<CR>
+nnoremap <leader>rr :action RenameElement<CR>
 " nnoremap <leader>rf :action RenameFile<CR>
 
 " Comment
@@ -54,8 +54,11 @@ vmap <leader>cb :action CommentByBlockComment<CR>
 " nnoremap <leader>m :action ActivateProjectToolWindow<CR>
 
 " Refactorings
-" nnoremap <leader>ri :action Inline<CR>
-" nnoremap <leader>rv :action IntroduceVariable<CR>
+nnoremap <leader>riv :action Inline<CR>
+vmap <leader>rev :action IntroduceVariable<CR>
+vmap <leader>ref :action IntroduceField<CR>
+vmap <leader>rep :action IntroduceParameter<CR>
+vmap <leader>rem :action ExtractMethod<CR>
 " nnoremap <leader>rm :action ExtractMethod<CR>
 " vmap <leader>rp :action IntroduceParameter<CR>
 " vmap <leader>ri :action Inline<CR>
@@ -76,7 +79,7 @@ nnoremap <leader>sd :action QuickImplementations<CR>
 " nnoremap <leader>ps :action SearchEverywhere<CR>
 nnoremap <leader>pf :action GotoFile<CR>
 nnoremap <leader>pg :action GotoClass<CR>
-nnoremap <leader>fa :action GotoAction<CR>
+nnoremap <leader>ra :action GotoAction<CR>
 nnoremap <leader>ss :action FindInPath<CR>
 " nnoremap <leader>fr :action ReplaceInPath<CR>
 " vmap <leader>fg :action FindInPath<CR>

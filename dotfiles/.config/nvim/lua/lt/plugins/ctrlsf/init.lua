@@ -11,5 +11,5 @@ return {
       at = "start",
     }
   end,
-  cmd = "CtrlSFPrompt",
+  event = "VeryLazy",
 }

@@ -6,6 +6,30 @@ function M.starts_with(str, start)
   return str:sub(1, #start) == start
 end
 
+function M.is_table(to_check)
+  return type(to_check) == "table"
+end
+
+function M.has_key(t, key)
+  for t_key, _ in pairs(t) do
+    if t_key == key then
+      return true
+    end
+  end
+
+  return false
+end
+
+function M.has_value(t, val)
+  for _, value in ipairs(t) do
+    if value == val then
+      return true
+    end
+  end
+
+  return false
+end
+
 function M.tprint(table)
   print(vim.inspect(table))
 end

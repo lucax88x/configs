@@ -73,7 +73,7 @@ return {
       w = { name = "window" },
       g = { name = "git" },
       t = { name = "types" },
-      f = { name = "refactor" },
+      r = { name = "refactor" },
       l = { name = "lsp" },
       d = { name = "debug" },
       ["'"] = { name = "marks" },
