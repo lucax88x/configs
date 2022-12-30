@@ -1,51 +1,66 @@
-local present, gitsigns = pcall(require, "gitsigns")
+return {
+  "lewis6991/gitsigns.nvim",
+  init = function()
+    local r = require("lt.utils.remaps")
 
-if not present then
-  return
-end
+    r.which_key("<leader>gh", "hunks")
 
-gitsigns.setup({
-  numhl = false,
-  watch_gitdir = {
-    interval = 1000,
-  },
-  sign_priority = 9,
-  status_formatter = nil, -- Use default
-})
+    r.noremap("n", "]h", function()
+      if vim.wo.diff then
+        return "]h"
+      end
+      vim.schedule(function()
+        require("gitsigns").next_hunk()
+      end)
+      return "<Ignore>"
+    end, "go to next hunk", { expr = true })
 
-local present_scrollbar = pcall(require, "scrollbar")
+    r.noremap("n", "[h", function()
+      if vim.wo.diff then
+        return "[h"
+      end
+      vim.schedule(function()
+        require("gitsigns").prev_hunk()
+      end)
+      return "<Ignore>"
+    end, "go to prev hunk", { expr = true })
 
-if present_scrollbar then
-  require("scrollbar.handlers.gitsigns").setup()
-end
+    r.noremap("n", "<leader>ghs", function()
+      require("gitsigns").stage_hunk()
+    end, "Stage hunk")
+    r.noremap("n", "<leader>ghu", function()
+      require("gitsigns").undo_stage_hunk()
+    end, "Undo stage hunk")
+    r.noremap("n", "<leader>ghr", function()
+      require("gitsigns").reset_hunk()
+    end, "Reset hunk")
+    r.noremap("n", "<leader>ghp", function()
+      require("gitsigns").preview_hunk()
+    end, "Preview hunk")
+    r.noremap("n", "<leader>ghb", function()
+      require("gitsigns").blame_line()
+    end, "Blame line")
+    r.noremap("n", "<leader>ghd", function()
+      require("gitsigns").diffthis()
+    end, "Diff this")
+  end,
+  config = function()
+    local gitsigns = require("gitsigns")
 
-local r = require("lt.utils.remaps")
+    gitsigns.setup({
+      numhl = false,
+      watch_gitdir = {
+        interval = 1000,
+      },
+      sign_priority = 9,
+      status_formatter = nil, -- Use default
+    })
 
-r.which_key("<leader>gh", "hunks")
+    local present_scrollbar = pcall(require, "scrollbar")
 
-r.noremap("n", "]h", function()
-  if vim.wo.diff then
-    return "]h"
-  end
-  vim.schedule(function()
-    gitsigns.next_hunk()
-  end)
-  return "<Ignore>"
-end, "go to next hunk", { expr = true })
-
-r.noremap("n", "[h", function()
-  if vim.wo.diff then
-    return "[h"
-  end
-  vim.schedule(function()
-    gitsigns.prev_hunk()
-  end)
-  return "<Ignore>"
-end, "go to prev hunk", { expr = true })
-
-r.noremap("n", "<leader>ghs", gitsigns.stage_hunk, "Stage hunk")
-r.noremap("n", "<leader>ghu", gitsigns.undo_stage_hunk, "Undo stage hunk")
-r.noremap("n", "<leader>ghr", gitsigns.reset_hunk, "Reset hunk")
-r.noremap("n", "<leader>ghp", gitsigns.preview_hunk, "Preview hunk")
-r.noremap("n", "<leader>ghb", gitsigns.blame_line, "Blame line")
-r.noremap("n", "<leader>ghd", gitsigns.diffthis, "Diff this")
+    if present_scrollbar then
+      require("scrollbar.handlers.gitsigns").setup()
+    end
+  end,
+  event = "BufWinEnter",
+}

@@ -1,8 +1,15 @@
-vim.g.ctrlsf_auto_focus = {
-  at = "start",
+return {
+  "dyng/ctrlsf.vim",
+  init = function()
+    local r = require("lt.utils.remaps")
+
+    r.map("n", "<leader>ss", "<Plug>CtrlSFPrompt", "Search term in all files")
+    r.noremap("n", "<leader>sS", ":CtrlSFToggle<CR>", "Toggle searched term in all files")
+  end,
+  config = function()
+    vim.g.ctrlsf_auto_focus = {
+      at = "start",
+    }
+  end,
+  cmd = "CtrlSFPrompt",
 }
-
-local r = require("lt.utils.remaps")
-
-r.map("n", "<leader>ss", "<Plug>CtrlSFPrompt", "Search term in all files")
-r.noremap("n", "<leader>sS", ":CtrlSFToggle<CR>", "Toggle searched term in all files")

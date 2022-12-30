@@ -1,4 +1,3 @@
-local vim = vim
 local M = {}
 
 local present, ufo = pcall(require, "ufo")

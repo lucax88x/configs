@@ -1,9 +1,9 @@
-local present, project = pcall(require, "project_nvim")
-
-if not present then
-	return
-end
-
-project.setup({
-	patterns = { ".git", "package.json", ".projectile" },
-})
+return {
+  "ahmedkhalf/project.nvim",
+  config = function()
+    local project = require("project_nvim")
+    project.setup({
+      patterns = { ".git", "package.json", ".projectile" },
+    })
+  end,
+}

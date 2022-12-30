@@ -1,37 +1,32 @@
-local vim = vim
-local present_mason, mason = pcall(require, "mason")
-local present_mason_tool_installer, mason_tool_installer = pcall(require, "mason-tool-installer")
+return {
+  "WhoIsSethDaniel/mason-tool-installer.nvim",
+  config = function()
+    local mason = require("mason")
+    local mason_tool_installer = require("mason-tool-installer")
 
-if not present_mason then
-  vim.notify("Could not load mason")
-  return
-end
+    mason.setup()
 
-mason.setup()
+    mason_tool_installer.setup({
+      ensure_installed = {
+        "prettierd",
+        "stylelint-lsp",
+        "selene",
+        "shfmt",
+        "shellcheck",
+        "yamllint",
+        "actionlint",
+        --[[ "nginxbeautifier", ]]
+        "stylua",
+        --[[ "ansible", ]]
+        "luacheck",
+        "golangci-lint",
+        "gitlint",
+        "jsonlint",
+      },
 
-if not present_mason_tool_installer then
-  vim.notify("Could not load mason-tool-installer")
-  return
-end
-
-mason_tool_installer.setup({
-  ensure_installed = {
-    "prettierd",
-    "stylelint-lsp",
-    "selene",
-    "shfmt",
-    "shellcheck",
-    "yamllint",
-    "actionlint",
-    --[[ "nginxbeautifier", ]]
-    "stylua",
-    --[[ "ansible", ]]
-    "luacheck",
-    "golangci-lint",
-    "gitlint",
-    "jsonlint",
-  },
-
-  auto_update = false,
-  run_on_start = false,
-})
+      auto_update = false,
+      run_on_start = false,
+    })
+  end,
+  dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+}

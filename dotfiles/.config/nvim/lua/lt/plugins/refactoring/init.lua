@@ -1,28 +1,48 @@
-local present, refactoring = pcall(require, "refactoring")
+return {
+  "ThePrimeagen/refactoring.nvim",
+  init = function()
+    local r = require("lt.utils.remaps")
 
-if not present then
-  return
-end
+    r.which_key("<leader>te", "extract")
+    r.which_key("<leader>ti", "inline")
 
-refactoring.setup({})
+    local opts = { silent = true, expr = false }
 
-local r = require("lt.utils.remaps")
+    r.noremap("n", "<leader>teb", function()
+      require("refactoring").refactor("Extract Block")
+    end, "Extract Block", opts)
 
-r.which_key("<leader>te", "extract")
-r.which_key("<leader>ti", "inline")
+    r.noremap("n", "<leader>teB", function()
+      require("refactoring").refactor("Extract Block To File")
+    end, "Extract Block", opts)
 
-r.noremap("v", "<leader>tef", function()
-  refactoring.refactor("Extract Function")
-end, "Extract Function")
+    r.noremap("v", "<leader>tef", function()
+      require("refactoring").refactor("Extract Function")
+    end, "Extract Function", opts)
 
-r.noremap("v", "<leader>teF", function()
-  refactoring.refactor("Extract Function To File")
-end, "Extact Function to file")
+    r.noremap("v", "<leader>teF", function()
+      require("refactoring").refactor("Extract Function To File")
+    end, "Extact Function to file", opts)
 
-r.noremap("v", "<leader>tev", function()
-  refactoring.refactor("Extract Variable")
-end, "Extact variable")
+    r.noremap("v", "<leader>tev", function()
+      require("refactoring").refactor("Extract Variable")
+    end, "Extact variable", opts)
 
-r.noremap("v", "<leader>tiv", function()
-  refactoring.refactor("Inline Variable")
-end, "Inline variable")
+    r.noremap("v", "<leader>tiv", function()
+      require("refactoring").refactor("Inline Variable")
+    end, "Inline variable", opts)
+
+    r.noremap("v", "<leader>tl", function()
+      require("telescope").extensions.refactoring.refactors()
+    end, "Refactor list", opts)
+  end,
+  config = function()
+    local refactoring = require("refactoring")
+
+    refactoring.setup({})
+  end,
+  dependencies = {
+    { "nvim-lua/plenary.nvim" },
+    { "nvim-treesitter/nvim-treesitter" },
+  },
+}

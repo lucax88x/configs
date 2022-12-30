@@ -1,4 +1,7 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local pluginspath = vim.fn.stdpath("data") .. "/lazy"
+local lazypath = pluginspath .. "/lazy.nvim"
+
+--[[ print("plugins are installed in " .. pluginspath) ]]
 
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({

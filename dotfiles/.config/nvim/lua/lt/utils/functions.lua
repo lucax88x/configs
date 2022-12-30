@@ -36,8 +36,8 @@ M.reload = function()
   end
 end
 
-function M.is_linux()
-  return vim.loop.os_uname().sysname == "Linux"
+function M.is_macunix()
+  return vim.fn.has("macunix")
 end
 
 function M.link_highlight(from, to, override)

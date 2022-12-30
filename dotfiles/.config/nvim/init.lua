@@ -8,4 +8,3 @@
 require("lt.defaults")
 require("lt.lazy")
 require("lt.buffer")
-require("lt.lsp")

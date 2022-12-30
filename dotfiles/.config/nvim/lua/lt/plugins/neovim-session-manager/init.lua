@@ -1,10 +1,11 @@
-local present, session = pcall(require, "session_manager")
+return {
+  "shatur/neovim-session-manager",
+  config = function()
+    local session = require("session_manager")
 
-if not present then
-	return
-end
-
-session.setup({
-	-- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
-	autoload_mode = require("session_manager.config").AutoloadMode.Disabled,
-})
+    session.setup({
+      -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
+      autoload_mode = require("session_manager.config").AutoloadMode.Disabled,
+    })
+  end,
+}

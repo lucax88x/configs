@@ -1,24 +1,32 @@
-local present, modes = pcall(require, "modes")
+return {
+  "mvllow/modes.nvim",
+  config = function()
+    local modes = require("modes")
 
-if not present then
-	return
-end
+    local present_catppuccin, catppuccin_palettes = pcall(require, "catppuccin.palettes")
 
-local palette = require("catppuccin.palettes").get_palette("mocha")
+    if not present_catppuccin then
+      print("catppuccin not installed, cannot set modes")
+      return
+    end
 
-vim.opt.cursorline = true
+    local palette = catppuccin_palettes.get_palette("mocha")
 
-modes.setup({
-  colors = {
-    copy = palette.yellow,
-    delete = palette.red,
-    insert = palette.green,
-    visual = palette.purple,
-  },
+    vim.opt.cursorline = true
 
-  -- Cursorline highlight opacity
-  line_opacity = 0.2,
+    modes.setup({
+      colors = {
+        copy = palette.yellow,
+        delete = palette.red,
+        insert = palette.green,
+        visual = palette.purple,
+      },
 
-  -- Highlight cursor
-  set_cursor = true,
-})
+      -- Cursorline highlight opacity
+      line_opacity = 0.2,
+
+      -- Highlight cursor
+      set_cursor = true,
+    })
+  end,
+}
