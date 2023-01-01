@@ -64,7 +64,8 @@ return {
   require("lt.plugins.diffview"),
 
   -- navigation
-  require("lt.plugins.leap"),
+  --[[ require("lt.plugins.leap"), ]]
+  require("lt.plugins.hop"),
 
   -- fuzzy finder
   require("lt.plugins.telescope"),
