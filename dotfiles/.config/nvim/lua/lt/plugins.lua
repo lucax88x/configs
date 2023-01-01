@@ -26,20 +26,21 @@ return {
   require("lt.plugins.hydra"),
 
   -- Change surrounding marks
-  { "tpope/vim-surround" },
+  require("lt.plugins.surround"),
+
   -- extends . repeat
-  { "tpope/vim-repeat" },
+  { "tpope/vim-repeat", event = "VeryLazy" },
   -- allows to move by camelCase with w e
   require("lt.plugins.camel-case-motion"),
 
   -- highlight matching words when cursor on it
-  "rrethy/vim-illuminate",
+  { "rrethy/vim-illuminate", event = "VeryLazy" },
   -- disabled search highlight until next search
-  "romainl/vim-cool",
+  { "romainl/vim-cool", event = "VeryLazy" },
   -- deletes all buffers except
   "numtostr/BufOnly.nvim",
   -- :S to replace with smartcase
-  "tpope/vim-abolish",
+  { "tpope/vim-abolish", event = "VeryLazy" },
 
   -- start screen & project management
   require("lt.plugins.alpha"),
@@ -145,6 +146,7 @@ return {
   require("lt.plugins.modes"),
   require("lt.plugins.indent-blankline"),
   require("lt.plugins.fidget"),
+  require("lt.plugins.no-neck-pain"),
 
   -- status bar
   require("lt.plugins.feline"),

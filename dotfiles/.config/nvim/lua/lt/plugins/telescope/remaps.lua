@@ -20,3 +20,5 @@ r.noremap("n", "<leader>/gb", builtin.git_branches, "Search git branches")
 r.noremap("n", "<leader>/gc", builtin.git_commits, "Search git commits")
 r.noremap("n", "<leader>bl", builtin.buffers, "Search buffers")
 r.noremap("n", "<leader>bc", builtin.git_bcommits, "Search buffer git commits")
+r.noremap("n", "<leader>//", builtin.resume, "Resume")
+
