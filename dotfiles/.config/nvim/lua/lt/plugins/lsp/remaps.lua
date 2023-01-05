@@ -75,8 +75,18 @@ function M.set_default_on_buffer(client, bufnr)
   -- end
 
   if cap.codeActionProvider then
-    buf_set_keymap("n", "<leader>ra", vim.lsp.buf.code_action, "Code actions")
-    buf_set_keymap("v", "<leader>ra", vim.lsp.buf.code_action, "Code actions")
+    buf_set_keymap({ "n", "v" }, "<leader>ra", vim.lsp.buf.code_action, "Code actions")
+    buf_set_keymap({ "n", "v" }, "<leader>rA", function()
+      local line_count = vim.api.nvim_buf_line_count(bufnr)
+      --[[ local range = vim.lsp.util.make_given_range_params({ 1, 1 }, { line_count, 1 }, bufnr) ]]
+
+      local range = {
+        start = { line = 1, character = 1 },
+        ["end"] = { line = line_count, character = 1 },
+      }
+
+      vim.lsp.buf.code_action({ range = range.range })
+    end, "Buffer code actions")
   end
 
   -- when sumneko lua will be able to format we can reput the capabilities

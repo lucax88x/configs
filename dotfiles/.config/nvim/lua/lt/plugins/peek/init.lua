@@ -1,7 +1,7 @@
 return {
   "toppair/peek.nvim",
   build = "deno task --quiet build:fast",
-  filetype = { "markdown" },
+  ft = { "markdown" },
   init = function()
     local r = require("lt.utils.remaps")
 

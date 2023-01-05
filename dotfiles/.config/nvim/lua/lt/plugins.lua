@@ -158,6 +158,7 @@ return {
   require("lt.plugins.dial"),
   require("lt.plugins.truezen"),
   require("lt.plugins.peek"),
+  require("lt.plugins.import-cost"),
 
   --[[ { ]]
   --[[   "nvim-neorg/neorg", ]]

@@ -10,6 +10,7 @@ return {
     vim.g.ctrlsf_auto_focus = {
       at = "start",
     }
+    vim.g.ctrlsf_populate_qflist = 1
   end,
   event = "VeryLazy",
 }
