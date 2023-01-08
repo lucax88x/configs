@@ -44,17 +44,18 @@ return {
     tree.setup({
       open_on_setup = true,
       open_on_tab = false,
-      update_cwd = false,
+      sync_root_with_cwd = true,
+      update_cwd = true,
       respect_buf_cwd = true,
       hijack_netrw = true,
       --[[ hijack_directories = { ]]
       --[[   enable = true, ]]
       --[[   auto_open = true, ]]
       --[[ }, ]]
+      update_focused_file = { enable = true, update_cwd = true, ignore_list = {} },
       diagnostics = {
         enable = false,
       },
-      update_focused_file = { enable = true, update_cwd = false, ignore_list = {} },
       git = {
         enable = false,
         ignore = true,

@@ -164,7 +164,6 @@ return {
       force_inactive = {
         filetypes = {
           "NvimTree",
-          "packer",
           "dap-repl",
           "dapui_scopes",
           "dapui_stacks",

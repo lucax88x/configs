@@ -8,6 +8,7 @@ end
 -- paru -S selene-linter shfmt shellcheck-bin yamllint actionlint-bin stylua
 
 -- paru -S nginxbeautifier ansible-lint-git
+-- brew install ansible-lint gitlint stylelint
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics

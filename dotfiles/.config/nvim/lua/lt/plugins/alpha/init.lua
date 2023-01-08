@@ -42,12 +42,10 @@ return {
     -- dashboard.section.footer.val = footer()
     -- dashboard.section.footer.opts.hl = "Constant"
 
-    local glob_split = require("lt.utils.functions").glob_split
-    local start_plugins = #glob_split("~/.local/share/nvim/site/pack/packer/start/*")
-    local opt_plugins = #glob_split("~/.local/share/nvim/site/pack/packer/opt/*")
+    local stats = require("lazy").stats()
 
     dashboard.section.footer.val = {
-      string.format("   %d plugins (%d loaded)", start_plugins + opt_plugins, start_plugins),
+      string.format("   %d plugins (%d loaded)", stats.count, stats.loaded),
       "  https://github.com/lucax88x/configs",
     }
 

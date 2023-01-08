@@ -1,6 +1,6 @@
 return {
   "folke/which-key.nvim",
-  lazy = true,
+  keys = { "<leader>" },
   config = function()
     local which_key = require("which-key")
 

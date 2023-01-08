@@ -48,7 +48,7 @@ return {
   require("lt.plugins.neovim-session-manager"),
 
   -- scroll
-  require("lt.plugins.neoscroll"),
+  --[[ require("lt.plugins.neoscroll"), ]]
   require("lt.plugins.scrollbar"),
 
   -- treesitter

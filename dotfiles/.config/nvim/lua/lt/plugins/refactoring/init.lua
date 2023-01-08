@@ -8,31 +8,31 @@ return {
 
     local opts = { silent = true, expr = false }
 
-    r.noremap("n", "<leader>reb", function()
+    r.noremap({ "n", "v" }, "<leader>reb", function()
       require("refactoring").refactor("Extract Block")
     end, "Extract Block", opts)
 
-    r.noremap("n", "<leader>reB", function()
+    r.noremap({ "n", "v" }, "<leader>reB", function()
       require("refactoring").refactor("Extract Block To File")
     end, "Extract Block", opts)
 
-    r.noremap("v", "<leader>rem", function()
+    r.noremap({ "n", "v" }, "<leader>rem", function()
       require("refactoring").refactor("Extract Function")
     end, "Extract Function", opts)
 
-    r.noremap("v", "<leader>reM", function()
+    r.noremap({ "n", "v" }, "<leader>reM", function()
       require("refactoring").refactor("Extract Function To File")
     end, "Extact Function to file", opts)
 
-    r.noremap("v", "<leader>rev", function()
-      require("refactoring").refactor("Extract Variable")
+    r.noremap({ "n", "v" }, "<leader>rev", function()
+      require("refactoring").refactor("Extract Variable ")
     end, "Extact variable", opts)
 
-    r.noremap("v", "<leader>riv", function()
+    r.noremap({ "n", "v" }, "<leader>riv", function()
       require("refactoring").refactor("Inline Variable")
     end, "Inline variable", opts)
 
-    r.noremap("v", "<leader>rl", function()
+    r.noremap({ "n", "v" }, "<leader>rl", function()
       require("telescope").extensions.refactoring.refactors()
     end, "Refactor list", opts)
   end,

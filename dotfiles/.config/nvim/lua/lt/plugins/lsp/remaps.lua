@@ -98,14 +98,14 @@ function M.set_default_on_buffer(client, bufnr)
       filter = function(format_client)
         if is_typescript then
           if format_client.name == "null-ls" then
-            --[[ vim.notify("format " .. filetype .. " with " .. format_client.name) ]]
+            vim.notify("format " .. filetype .. " with " .. format_client.name)
             return true
           else
             return false
           end
         end
 
-        --[[ vim.notify("format " .. filetype .. " with " .. format_client.name) ]]
+        vim.notify("format " .. filetype .. " with " .. format_client.name)
         return true
       end,
     })

@@ -95,10 +95,6 @@ M.highlight_fg_bg = function(group, fgcol, bgcol)
   vim.api.nvim_set_hl(0, group, { bg = bgcol, fg = fgcol })
 end
 
-M.glob_split = function(pattern)
-  return vim.split(vim.fn.glob(pattern), "\n")
-end
-
 M.from_highlight = function(hl)
   local result = {}
   local list = vim.api.nvim_get_hl_by_name(hl, true)
