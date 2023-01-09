@@ -103,43 +103,13 @@ return {
   -- tree
   require("lt.plugins.tree"),
 
+  -- tests
+  require("lt.plugins.neotest"),
+
   -- debugging
-  {
-    "mfussenegger/nvim-dap",
-    enabled = false,
-    config = function()
-      require("lt.plugins.nvim-dap")
-    end,
-  },
-  {
-    "nvim-telescope/telescope-dap.nvim",
-    enabled = false,
-    dependencies = { "mfussenegger/nvim-dap" },
-  },
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    enabled = false,
-    dependencies = { "mfussenegger/nvim-dap" },
-    config = function()
-      require("lt.plugins.nvim-dap-virtual-text")
-    end,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    enabled = false,
-    dependencies = { "mfussenegger/nvim-dap" },
-    config = function()
-      require("lt.plugins.nvim-dap-ui")
-    end,
-  },
-  {
-    "Pocco81/DAPInstall.nvim",
-    enabled = false,
-    dependencies = { "mfussenegger/nvim-dap" },
-    config = function()
-      require("lt.plugins.dap-install")
-    end,
-  },
+  require("lt.plugins.dap"),
+  require("lt.plugins.dap-ui"),
+  require("lt.plugins.dap-virtual-text"),
 
   -- ui
   require("lt.plugins.dressing"),

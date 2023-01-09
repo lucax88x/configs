@@ -4,8 +4,7 @@ return {
     local r = require("lt.utils.remaps")
 
     r.map("n", "<leader>tc", function()
-      local neogen = require("neogen")
-      neogen.generate()
+      require("neogen").generate()
     end, "Add documentation for the method/class/function ")
   end,
   config = function()
@@ -13,6 +12,7 @@ return {
 
     neogen.setup({
       enabled = true,
+      snippet_engine = "luasnip",
     })
   end,
   dependencies = "nvim-treesitter/nvim-treesitter",
