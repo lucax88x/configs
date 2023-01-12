@@ -5,6 +5,15 @@ local present, ufo = pcall(require, "ufo")
 M.setupWithFallback = function()
   if not present then
     vim.notify("ufo not installed")
+
+    -- fold
+    vim.wo.foldcolumn = "0" -- defines 1 col at window left, to indicate folding
+    vim.o.foldlevelstart = 99 -- start file with all folds opened
+
+    -- using treesitter for folding
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+
     return
   end
 
@@ -39,6 +48,12 @@ M.setupWithFallback = function()
 
   vim.keymap.set("n", "zR", ufo.openAllFolds)
   vim.keymap.set("n", "zM", ufo.closeAllFolds)
+
+  vim.o.foldlevel = 99
+  vim.o.foldlevelstart = 99
+  vim.o.foldenable = true
+  vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+  vim.o.statuscolumn = "%=%l%s%C"
 end
 
 return M

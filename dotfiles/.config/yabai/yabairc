@@ -63,6 +63,7 @@ yabai -m rule --add label="About This Mac" app="System Information" title="About
 yabai -m rule --add label="Finder" app="^Finder$" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="Simulator" app="^Simulator$" manage=off
+yabai -m rule --add label="Abacus" app="^Abacus$" title="Selection list - Project" manage=off
 
 # android studio emulator dropdown
 yabai -m rule --add app="^qemu-system-aarch64$" manage=off

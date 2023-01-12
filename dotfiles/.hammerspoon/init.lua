@@ -13,14 +13,14 @@ require("keybinds")
 require("rcmd")
 
 hs.ipc.cliInstall("/opt/homebrew")
-local stackline = require("stackline")
-
-stackline:init({
-  paths = {
-    yabai = "/opt/homebrew/bin/yabai",
-  },
-})
-
-stackline.config:set("appearance.showIcons", false)
+--[[ local stackline = require("stackline") ]]
+--[[]]
+--[[ stackline:init({ ]]
+--[[   paths = { ]]
+--[[     yabai = "/opt/homebrew/bin/yabai", ]]
+--[[   }, ]]
+--[[ }) ]]
+--[[]]
+--[[ stackline.config:set("appearance.showIcons", false) ]]
 
 toast("reloaded config")
