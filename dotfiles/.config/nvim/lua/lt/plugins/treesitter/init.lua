@@ -1,7 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "JoosepAlviste/nvim-ts-context-commentstring",
+    --[[ "JoosepAlviste/nvim-ts-context-commentstring", ]]
     -- shows treesitter context in end of parenthesis
     "haringsrob/nvim_context_vt",
     "RRethy/nvim-treesitter-textsubjects",

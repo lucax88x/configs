@@ -1,4 +1,4 @@
-local log = hs.logger.new("mine", "info")
+local log = hs.logger.new("yabai.api", "info")
 local utils = require("utils")
 local tasker = require("tasker")
 
@@ -191,11 +191,11 @@ function M.space.create(space_label, display_index, callback)
               end
 
               local verify_callbacks = utils.aggregate_callbacks(
-                      callbacks_count,
-                      function(aggregate_error, _)
-                        ensure(callback, aggregate_error, space)
-                      end
-                  )
+                callbacks_count,
+                function(aggregate_error, _)
+                  ensure(callback, aggregate_error, space)
+                end
+              )
 
               if must_move then
                 M.space.move(last_space_index, display_index, function(move_error)
@@ -406,7 +406,9 @@ function M.window.move_current_to_new_space(callback)
     if not utils.is_empty(current_window_error) then
       ensure(callback, current_window_error, nil)
     else
-      if window.is_native_fullscreen then
+      local is_native_fullscreen = window["is-native-fullscreen"]
+
+      if is_native_fullscreen then
         ensure(callback, "window is full screen, cannot move!", nil)
       else
         M.space.create(nil, window.display, function(create_error, space)

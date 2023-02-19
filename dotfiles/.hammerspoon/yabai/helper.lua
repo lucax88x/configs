@@ -1,6 +1,6 @@
 local utils = require("utils")
 local yabai = require("yabai.api")
-local log = hs.logger.new("mine", "info")
+local log = hs.logger.new("yabai.helper", "info")
 
 local M = { display = {}, space = {}, window = {} }
 
@@ -27,7 +27,7 @@ function M.purge_empty_spaces(callback)
       else
         next("skipping space with id " .. space.id .. " because full screen or has windows", nil)
       end
-    end)
+    end, callback)
   end)
 end
 

@@ -1,4 +1,4 @@
-local log = hs.logger.new("mine", "info")
+local log = hs.logger.new("yabai.init", "info")
 
 local laptop = "37D8832A-2D66-02CA-B9F7-8F30A301B230"
 local central = "8ED98897-AA63-402D-BB78-ED8F83F14117"
@@ -17,28 +17,28 @@ local tools = "tools"
 local email = "email"
 
 local space_assignments = {
-    [chat] = laptop,
-    [code] = office,
-    [browser] = office,
-    [terminal] = laptop,
-    [tools] = office,
-    [email] = office,
+  [chat] = laptop,
+  [code] = office,
+  [browser] = office,
+  [terminal] = laptop,
+  [tools] = office,
+  [email] = office,
 }
 
 local app_spaces = {
-    ["Google Chrome"] = browser,
-    ["JetBrains Rider"] = code,
-    ["kitty"] = terminal,
-    ["WhatsApp"] = chat,
-    ["Slack"] = chat,
-    ["Microsoft Teams"] = chat,
-    ["Telegram"] = chat,
-    ["Microsoft Outlook"] = email,
-    ["Mail"] = email,
-    ["DataGrip"] = tools,
-    ["Docker Desktop"] = tools,
-    ["Postman"] = tools,
-    ["Sublime Merge"] = tools,
+  ["Google Chrome"] = browser,
+  ["JetBrains Rider"] = code,
+  ["kitty"] = terminal,
+  ["WhatsApp"] = chat,
+  ["Slack"] = chat,
+  ["Microsoft Teams"] = chat,
+  ["Telegram"] = chat,
+  ["Microsoft Outlook"] = email,
+  ["Mail"] = email,
+  ["DataGrip"] = tools,
+  ["Docker Desktop"] = tools,
+  ["Postman"] = tools,
+  ["Sublime Merge"] = tools,
 }
 
 local yabai = require("yabai.api")
@@ -124,12 +124,12 @@ local function correct_spaces(displays_indexes, callback)
           next()
         else
           log.i(
-              "space "
-              .. space_label
-              .. " is in display: "
-              .. current_space_index
-              .. " so we need to move to display: "
-              .. to_move_display_index
+            "space "
+            .. space_label
+            .. " is in display: "
+            .. current_space_index
+            .. " so we need to move to display: "
+            .. to_move_display_index
           )
 
           yabai.space.move(current_space_index, to_move_display_index, function(error)
@@ -180,12 +180,12 @@ local function correct_windows(spaces_indexes)
                 log.i("window " .. window.app .. " is already in space: " .. to_move_space_label)
               else
                 log.i(
-                    "window "
-                    .. window.app
-                    .. " is in space: "
-                    .. window.space
-                    .. " so we need to move to display: "
-                    .. to_move_space_label
+                  "window "
+                  .. window.app
+                  .. " is in space: "
+                  .. window.space
+                  .. " so we need to move to display: "
+                  .. to_move_space_label
                 )
 
                 yabai.window.move(window.id, to_move_space_index, function(move_error)
@@ -206,13 +206,11 @@ local function correct_windows(spaces_indexes)
   end)
 end
 
-log.i("oh 1")
-yabai_helper.purge_empty_spaces(function(error)
-  log.i("oh 2")
-  if not utils.is_empty(error) then
-    log.e(error)
+yabai_helper.purge_empty_spaces(function(errors, results)
+  if not utils.is_empty(errors) then
+    log.e("errors: " .. utils.stringify(errors))
   else
-    log.i("purged all empty spaces")
+    log.i("results: " .. utils.stringify(results))
 
     get_displays_indexes(my_displays, function(display_indexs_error, displays_indexes)
       if not utils.is_empty(display_indexs_error) then

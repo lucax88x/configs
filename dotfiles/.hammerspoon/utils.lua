@@ -1,12 +1,14 @@
+local log = hs.logger.new("utils", "info")
+
 local M = {}
 
-local function concatenate_array(array)
+function M.stringify_array(array)
   return table.concat(array, ",")
 end
 
-local function concatenate_table(t)
+function M.stringify(t)
   if not M.is_table(t) then
-    return ""
+    return tostring(t)
   end
 
   local str = ""
@@ -16,10 +18,10 @@ local function concatenate_table(t)
     str = str .. "value: "
 
     if M.is_array(value) then
-      str = str .. concatenate_array(value)
+      str = str .. M.stringify_array(value)
     else
       if M.is_table(value) then
-        str = str .. concatenate_table(value)
+        str = str .. M.stringify(value)
       else
         str = str .. tostring(value)
       end
@@ -38,7 +40,15 @@ function M.length(t)
 end
 
 function M.is_empty(s)
-  return s == nil or s == ""
+  if s == nil then
+    return true
+  end
+
+  if M.is_array(s) then
+    return M.length(s) == 0
+  end
+
+  return s == ""
 end
 
 function M.is_table(to_check)
@@ -94,10 +104,6 @@ function M.has_value(t, val)
   return false
 end
 
-function M.print_table(t)
-  print(concatenate_table(t))
-end
-
 function M.keys(t)
   local keys = {}
   for key, _ in pairs(t) do
@@ -122,14 +128,21 @@ function M.aggregate_callbacks(callback_total, callback)
       callback_counter = callback_counter + 1
 
       if not M.is_empty(error) then
-        table.insert(errors, error)
+        if error ~= nil then
+          table.insert(errors, error)
+        end
       else
-        table.insert(results, result)
+        if result ~= nil then
+          table.insert(results, result)
+        end
       end
-      --[[ print("callback count " .. callback_counter .. "/" .. callback_total) ]]
+
+      --[[ log.i("callback count " .. callback_counter .. "/" .. callback_total) ]]
       if callback_counter == callback_total then
         callback(errors, results)
       end
+    else
+      log.e("has no callback")
     end
   end
 
@@ -181,17 +194,14 @@ function M.sequential(parameters, next, callback)
   local queue = M.clone(parameters)
 
   if M.length(queue) == 0 then
+    log.i("has empty queue, returning")
     callback()
+    return
   end
 
   local verify_callbacks = M.aggregate_callbacks(M.length(queue), callback)
 
   local function loop()
-    local function verify_and_loop()
-      verify_callbacks()
-      loop()
-    end
-
     if M.length(queue) > 0 then
       local parameter = nil
       if M.is_array(queue) then
@@ -202,7 +212,9 @@ function M.sequential(parameters, next, callback)
         parameter = { key = first_key, value = M.remove_by_key(queue, first_key) }
       end
 
-      next(parameter, verify_and_loop)
+      --[[ log.i("next with parameter " .. M.stringify(parameter)) ]]
+      verify_callbacks()
+      next(parameter, loop)
     else
       verify_callbacks()
     end

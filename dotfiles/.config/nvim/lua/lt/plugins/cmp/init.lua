@@ -10,6 +10,7 @@ return {
     "hrsh7th/cmp-nvim-lua",
     "windwp/nvim-autopairs",
     "onsails/lspkind-nvim",
+    "roobert/tailwindcss-colorizer-cmp.nvim"
   },
   config = function()
     local cmp = require("cmp")
@@ -24,7 +25,7 @@ return {
         end,
       },
       mapping = {
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs( -4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
@@ -52,7 +53,7 @@ return {
         ["<C-p>"] = function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif require("luasnip").jumpable(-1) then
+          elseif require("luasnip").jumpable( -1) then
             vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
           else
             fallback()
@@ -66,25 +67,25 @@ return {
 
           -- set a name for each source
           vim_item.menu = ({
-            -- copilot = "[cop]",
-            nvim_lsp = "[LSP]",
-            luasnip = "[snp]",
-            buffer = "[buf]",
-            nvim_lua = "[lua]",
-            path = "[path]",
-          })[entry.source.name]
+                -- copilot = "[cop]",
+                nvim_lsp = "[LSP]",
+                luasnip = "[snp]",
+                buffer = "[buf]",
+                nvim_lua = "[lua]",
+                path = "[path]",
+              })[entry.source.name]
 
-          return vim_item
+          return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
         end,
       },
       sources = {
         -- { name = "copilot", priority = 1, group_index = 1 },
         { name = "nvim_lsp_signature_help", group_index = 1 },
-        { name = "luasnip", max_item_count = 10, group_index = 1 },
-        { name = "nvim_lsp", max_item_count = 10, group_index = 1 },
-        { name = "nvim_lua", group_index = 1 },
-        { name = "path", group_index = 2 },
-        { name = "buffer", keyword_length = 2, max_item_count = 10, group_index = 2 },
+        { name = "luasnip",                 max_item_count = 10, group_index = 1 },
+        { name = "nvim_lsp",                max_item_count = 10, group_index = 1 },
+        { name = "nvim_lua",                group_index = 1 },
+        { name = "path",                    group_index = 2 },
+        { name = "buffer",                  keyword_length = 2,  max_item_count = 10, group_index = 2 },
       },
       experimental = { native_menu = false, ghost_text = false },
     })

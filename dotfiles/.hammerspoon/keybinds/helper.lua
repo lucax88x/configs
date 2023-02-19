@@ -2,7 +2,7 @@
 -- move to display after creating space!
 -- check is-native_fullscreen!
 
-local log = hs.logger.new("mine", "info")
+local log = hs.logger.new("keybinds.helper", "info")
 
 local yabai = require("yabai.api")
 local toast = require("toast")
@@ -14,35 +14,26 @@ local command = "command"
 local control = "control"
 
 local M = {
-    modifiers = {
-        ["shift"] = { shift },
-        ["alt"] = { option },
-        ["option"] = { option },
-        ["command"] = { command },
-        ["control"] = { control },
-        ["super"] = { command, control },
-        ["alt_shift"] = { option, shift },
-    },
+  modifiers = {
+    ["shift"] = { shift },
+    ["alt"] = { option },
+    ["option"] = { option },
+    ["command"] = { command },
+    ["control"] = { control },
+    ["super"] = { command, control },
+    ["alt_shift"] = { option, shift },
+  },
 }
-
-local label_move_cache = {}
-
-M.purge_cache = function()
-  label_move_cache = {}
-end
 
 M.space = function(number, label)
   local function local_label_focus()
     yabai.space.focus(label, function(error)
       if not utils.is_empty(error) then
         if not string.find(error, "cannot focus an already focused space") then
-          label_move_cache[label] = nil
           log.e(error)
           toast("could not move to " .. label)
         end
       else
-        label_move_cache[label] = true
-
         yabai.space.get_current(function(get_current_error, current_space)
           if not utils.is_empty(get_current_error) then
             log.e(get_current_error)
@@ -56,47 +47,40 @@ M.space = function(number, label)
   end
 
   local function focus_space_or_create_if_missing()
-    if label_move_cache[label] then
-      log.i("space " .. label .. " in cache, focusing")
-      local_label_focus()
-    else
-      yabai.space.get_all(function(error, spaces)
-        if not utils.is_empty(error) then
-          log.e(error)
-          toast("could not get spaces")
+    yabai.space.get_all(function(error, spaces)
+      if not utils.is_empty(error) then
+        log.e(error)
+        toast("could not get spaces")
+      else
+        local found_space = utils.any(spaces, function(space)
+          return space.label == label
+        end)
+
+        if found_space then
+          log.i("space " .. label .. " found, focusing")
+          local_label_focus()
         else
-          local found_space = utils.any(spaces, function(space)
-                return space.label == label
+          log.i("space " .. label .. " NOT found, creating")
+
+          yabai.display.get_current(function(get_current_error, current_display)
+            if not utils.is_empty(get_current_error) then
+              log.e(get_current_error)
+              toast("could not get current")
+            else
+              yabai.space.create(label, current_display.index, function(create_error, _)
+                if not utils.is_empty(create_error) then
+                  log.e(create_error)
+                  toast("could not create " .. label)
+                else
+                  log.i("space " .. label .. " created, moving")
+                  local_label_focus()
+                end
               end)
-
-          if found_space then
-            log.i("space " .. label .. " found, focusing")
-            local_label_focus()
-          else
-            log.i("space " .. label .. " NOT found, creating")
-
-            label_move_cache[label] = nil
-
-            yabai.display.get_current(function(get_current_error, current_display)
-              if not utils.is_empty(get_current_error) then
-                log.e(get_current_error)
-                toast("could not get current")
-              else
-                yabai.space.create(label, current_display.index, function(create_error, _)
-                  if not utils.is_empty(create_error) then
-                    log.e(create_error)
-                    toast("could not create " .. label)
-                  else
-                    log.i("space " .. label .. " created, moving")
-                    local_label_focus()
-                  end
-                end)
-              end
-            end)
-          end
+            end
+          end)
         end
-      end)
-    end
+      end
+    end)
   end
 
   local function move_to_space()
