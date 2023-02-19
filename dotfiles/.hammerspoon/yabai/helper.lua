@@ -5,50 +5,27 @@ local log = hs.logger.new("mine", "info")
 local M = { display = {}, space = {}, window = {} }
 
 function M.purge_empty_spaces(callback)
-  yabai.space.get(function(spaces)
-    local to_destroy_ids = {}
-
-    for _, space in pairs(spaces) do
-      if utils.is_empty(space.label) then
-        table.insert(to_destroy_ids, space.id)
-      end
+  yabai.space.get_all(function(error, spaces)
+    if not utils.is_empty(error) then
+      callback(error, nil)
+      return
     end
 
-    utils.sequential(to_destroy_ids, function(to_find_space_id, next)
-      yabai.space.get(function(loop_spaces)
-        local found_space = utils.first(loop_spaces, function(space)
-          return space.id == to_find_space_id
-        end)
+    utils.sequential(spaces, function(space, next)
+      local is_native_fullscreen = space["is-native-fullscreen"]
+      local has_windows = utils.length(space.windows) > 0
 
-        if found_space == nil then
-          log.i("cannot find space with id " .. to_find_space_id)
-          next()
-        else
-          local space_index = found_space.index
-
-          local is_native_fullscreen = found_space["is-native-fullscreen"]
-
-          if not is_native_fullscreen then
-            log.i("destroying space with id " .. found_space.id .. " index " .. space_index)
-
-            yabai.space.destroy(space_index, function(error)
-              if not utils.is_empty(error) then
-                log.i(error)
-              else
-                log.i("destroyed space with index " .. space_index)
-              end
-
-              next()
-            end)
+      if not is_native_fullscreen and not has_windows then
+        yabai.space.destroy(space.index, function(destroy_error)
+          if not utils.is_empty(destroy_error) then
+            log.e(destroy_error)
+            next(destroy_error, nil)
           else
-            log.i("skipping space with id " .. found_space.id .. " because full screen")
-            next()
+            next(nil, "destroyed space with index " .. space.index)
           end
-        end
-      end)
-    end, function()
-      if callback then
-        callback()
+        end)
+      else
+        next("skipping space with id " .. space.id .. " because full screen or has windows", nil)
       end
     end)
   end)

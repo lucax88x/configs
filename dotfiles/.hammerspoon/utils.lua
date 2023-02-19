@@ -115,16 +115,26 @@ end
 function M.aggregate_callbacks(callback_total, callback)
   local callback_counter = 0
 
-  local function verify_callbacks()
+  local errors = {}
+  local results = {}
+  local function verify_callbacks(error, result)
     if callback ~= nil then
       callback_counter = callback_counter + 1
 
+      if not M.is_empty(error) then
+        table.insert(errors, error)
+      else
+        table.insert(results, result)
+      end
       --[[ print("callback count " .. callback_counter .. "/" .. callback_total) ]]
-
       if callback_counter == callback_total then
-        callback()
+        callback(errors, results)
       end
     end
+  end
+
+  if callback_total == 0 then
+    callback(nil, nil)
   end
 
   return verify_callbacks
