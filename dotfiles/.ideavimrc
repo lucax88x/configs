@@ -33,9 +33,10 @@ nnoremap gd :action GotoDeclaration<CR>
 nnoremap gr :action FindUsages<CR>
 nnoremap gi :action GotoImplementation<CR>
 
-nnoremap <leader>fa :action Refactorings.QuickListPopupAction<CR>
-vmap <leader>fa :action Refactorings.QuickListPopupAction<CR>
-" nnoremap <leader>fa :action ShowIntentionActions<CR>
+nnoremap <leader>rl :action Refactorings.QuickListPopupAction<CR>
+vmap <leader>rl :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>ra :action ShowIntentionActions<CR>
+vmap <leader>ra :action ShowIntentionActions<CR>
 
 nnoremap <leader>rc :action CopyElement<CR>
 
@@ -55,10 +56,16 @@ vmap <leader>cb :action CommentByBlockComment<CR>
 
 " Refactorings
 nnoremap <leader>riv :action Inline<CR>
+
+nnoremap <leader>rev :action IntroduceVariable<CR>
 vmap <leader>rev :action IntroduceVariable<CR>
+nnoremap <leader>ref :action IntroduceField<CR>
 vmap <leader>ref :action IntroduceField<CR>
+nnoremap <leader>rep :action IntroduceParameter<CR>
 vmap <leader>rep :action IntroduceParameter<CR>
+nnoremap <leader>rem :action ExtractMethod<CR>
 vmap <leader>rem :action ExtractMethod<CR>
+
 " nnoremap <leader>rm :action ExtractMethod<CR>
 " vmap <leader>rp :action IntroduceParameter<CR>
 " vmap <leader>ri :action Inline<CR>
@@ -79,7 +86,7 @@ nnoremap <leader>sd :action QuickImplementations<CR>
 " nnoremap <leader>ps :action SearchEverywhere<CR>
 nnoremap <leader>pf :action GotoFile<CR>
 nnoremap <leader>pg :action GotoClass<CR>
-nnoremap <leader>ra :action GotoAction<CR>
+" nnoremap <leader>ra :action GotoAction<CR>
 nnoremap <leader>ss :action FindInPath<CR>
 " nnoremap <leader>fr :action ReplaceInPath<CR>
 " vmap <leader>fg :action FindInPath<CR>
@@ -109,6 +116,8 @@ nnoremap [h :action VcsShowPrevChangeMarker<cr>
 nnoremap <leader>es :action ShowErrorDescription<cr>
 nnoremap [q :action PreviousOccurence<cr>
 nnoremap ]q :action NextOccurence<cr>
+nnoremap [m :action MethodUp<cr>
+nnoremap ]m :action MethodDown<cr>
 
 " Misc
 nnoremap <leader><cr> :source ~/.ideavimrc<CR>

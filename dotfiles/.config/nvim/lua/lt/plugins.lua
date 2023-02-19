@@ -1,7 +1,6 @@
 return {
   "nvim-lua/plenary.nvim",
 
-  require("lt.plugins.filetype"),
   require("lt.plugins.fix-cursor-hold"),
   require("lt.plugins.catppuccin"),
 
@@ -19,6 +18,7 @@ return {
     "MunifTanjim/nui.nvim",
     event = "VeryLazy",
   },
+  require("lt.plugins.noice"),
 
   -- shortcuts
   require("lt.plugins.better-escape"),
@@ -53,7 +53,6 @@ return {
 
   -- treesitter
   require("lt.plugins.treesitter"),
-  require("lt.plugins.treesitter-playground"),
 
   -- git
   require("lt.plugins.fugitive"),
@@ -74,9 +73,12 @@ return {
   require("lt.plugins.ctrlsf"),
   require("lt.plugins.ssr"),
   require("lt.plugins.hlslens"),
+  require("lt.plugins.spectre"),
 
   -- lsp
   require("lt.plugins.mason"),
+  require("lt.plugins.mason-dap"),
+  require("lt.plugins.mason-null-ls"),
 
   require("lt.plugins.lsp"),
 
@@ -116,11 +118,13 @@ return {
   require("lt.plugins.colorizer"),
   require("lt.plugins.modes"),
   require("lt.plugins.indent-blankline"),
-  require("lt.plugins.fidget"),
+  --[[ require("lt.plugins.fidget"), ]]
   require("lt.plugins.no-neck-pain"),
+  require("lt.plugins.recorder"),
 
   -- status bar
   require("lt.plugins.feline"),
+  require("lt.plugins.statuscol"),
 
   -- rest
   "mbbill/undotree",

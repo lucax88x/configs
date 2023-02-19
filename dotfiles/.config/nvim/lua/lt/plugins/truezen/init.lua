@@ -4,7 +4,7 @@ return {
   init = function()
     local r = require("lt.utils.remaps")
 
-    r.noremap("n", "<leader>Z", function()
+    r.noremap("n", "<leader>zz", function()
       local truezen = require("true-zen")
       truezen.ataraxis()
     end, "zen")

@@ -32,6 +32,11 @@ return {
         "regex",
         "yaml",
         "go",
+        "terraform",
+        "vim",
+        "markdown",
+        "markdown_inline",
+        "regex",
       },
       highlight = {
         enable = true,
@@ -118,7 +123,9 @@ return {
 
     r.which_key("<leader>dt", "Treesitter")
 
-    r.noremap("n", "<leader>dtp", "<cmd>TSPlaygroundToggle<CR>", "Treesitter playground")
+    r.noremap("n", "<leader>dtp", function()
+      vim.treesitter.show_tree({ command = "botright 60vnew" })
+    end, "Treesitter playground")
     r.noremap("n", "<leader>dtt", "<cmd>TSHighlightCapturesUnderCursor<CR>", "Shows highlight colors under cursor")
     r.map_virtual("af", "Function outer motion")
     r.map_virtual("if", "Function inner motion")

@@ -103,6 +103,8 @@ bindkey '^[[B' history-substring-search-down
 # zinit snippet OMZ::lib/key-bindings.zsh 
  
 eval "$(zoxide init zsh)"
+# gh completion -s zsh > /Users/luca.trazzi/.zinit/completions/_gh
+# https://cli.github.com/manual/gh_completion
 
 # END PLUGINS
 

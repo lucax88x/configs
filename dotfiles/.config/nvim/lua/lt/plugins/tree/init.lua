@@ -1,5 +1,25 @@
 return {
   "kyazdani42/nvim-tree.lua",
+  cmd = "NvimTreeToggle",
+  init = function()
+    local r = require("lt.utils.remaps")
+
+    --[[ r.noremap("n", "-", function() ]]
+    --[[   local view = require("nvim-tree.view") ]]
+    --[[   if view.is_visible() then ]]
+    --[[     view.close() ]]
+    --[[   else ]]
+    --[[     --require("nvim-tree").open_replacing_current_buffer()
+--[[   end ]]
+    --[[ end, "Toggle explorer") ]]
+
+    r.noremap("n", "-", "<cmd>NvimTreeToggle<CR>", "Toggle explorer")
+
+    -- r.map_virtual("<BS>", "Closes directory")
+    -- r.map_virtual("a", "Create file/dir")
+    -- r.map_virtual("d", "Remove file/dir")
+    -- r.map_virtual("r", "Rename file/dir")
+  end,
   config = function()
     local tree = require("nvim-tree")
 
@@ -42,7 +62,6 @@ return {
     }
 
     tree.setup({
-      open_on_setup = true,
       open_on_tab = false,
       sync_root_with_cwd = true,
       update_cwd = true,
@@ -87,23 +106,5 @@ return {
       --[[   threshold = vim.log.levels.WARN, ]]
       --[[ }, ]]
     })
-
-    local r = require("lt.utils.remaps")
-
-    --[[ r.noremap("n", "-", function() ]]
-    --[[   local view = require("nvim-tree.view") ]]
-    --[[   if view.is_visible() then ]]
-    --[[     view.close() ]]
-    --[[   else ]]
-    --[[     --require("nvim-tree").open_replacing_current_buffer()
---[[   end ]]
-    --[[ end, "Toggle explorer") ]]
-
-    r.noremap("n", "-", "<cmd>NvimTreeToggle<CR>", "Toggle explorer")
-
-    -- r.map_virtual("<BS>", "Closes directory")
-    -- r.map_virtual("a", "Create file/dir")
-    -- r.map_virtual("d", "Remove file/dir")
-    -- r.map_virtual("r", "Rename file/dir")
   end,
 }

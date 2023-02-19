@@ -22,6 +22,7 @@ return {
         "golangci-lint",
         "gitlint",
         "jsonlint",
+        "terraform-ls",
       },
 
       auto_update = false,

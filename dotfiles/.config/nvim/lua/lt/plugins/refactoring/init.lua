@@ -34,7 +34,7 @@ return {
 
     r.noremap({ "n", "v" }, "<leader>rl", function()
       require("telescope").extensions.refactoring.refactors()
-    end, "Refactor list", opts)
+    end, "Refactor", opts)
   end,
   config = function()
     local refactoring = require("refactoring")

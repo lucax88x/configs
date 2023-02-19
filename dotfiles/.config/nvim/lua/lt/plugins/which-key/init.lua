@@ -76,6 +76,8 @@ return {
       r = { name = "refactor" },
       l = { name = "lsp" },
       d = { name = "debug" },
+      z = { name = "zen" },
+      n = { name = "notifications" },
       ["'"] = { name = "marks" },
       ['"'] = { name = "registers" },
       ["/"] = { name = "search" },

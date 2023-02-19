@@ -1,6 +1,5 @@
 return {
   "nvim-treesitter/playground",
-  cmd = "TSPlaygroundToggle",
   config = function()
     local treesitter = require("nvim-treesitter.configs")
     treesitter.setup({

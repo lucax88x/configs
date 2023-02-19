@@ -1,4 +1,3 @@
-local vim = vim
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -18,6 +17,8 @@ local options = {
   wrap = false,
 
   relativenumber = true,
+  number = true,
+
   smartcase = true,
   swapfile = false,
   backup = false,

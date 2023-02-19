@@ -138,7 +138,7 @@ return {
       jsonls = require("lt.plugins.lsp.servers.jsonls")(capabilities),
       html = {},
       cssls = {},
-      sumneko_lua = require("lt.plugins.lsp.servers.sumneko_lua")(on_attach),
+      lua_ls = require("lt.plugins.lsp.servers.lua_ls")(on_attach),
       dockerls = {},
       -- csharp_ls = {},
       omnisharp = {},
@@ -151,6 +151,7 @@ return {
       ansiblels = {},
       angularls = {},
       gopls = {},
+      terraformls = {},
     }
 
     local default_lsp_config = {

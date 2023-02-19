@@ -26,6 +26,7 @@ return function(on_attach)
             api.nvim_get_runtime_file("", true),
             { "~/.hammerspoon/Spoons/EmmyLua.spoon/annotations" }
           ),
+          checkThirdParty = false,
         },
         -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = { enable = false },

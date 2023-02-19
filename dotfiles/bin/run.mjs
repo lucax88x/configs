@@ -36,10 +36,10 @@ const splitted_selected_script = selected_script.split("#");
 if (splitted_selected_script) {
   if (splitted_selected_script.length === 1) {
     const [script] = splitted_selected_script;
-    await $`pnpm ${script.trim()}`;
+    await $`pnpm run ${script.trim()}`;
   }
   if (splitted_selected_script.length === 2) {
     const [path, script] = splitted_selected_script;
-    await $`cd ${path} && pnpm ${script.trim()}`;
+    await $`cd ${path} && pnpm run ${script.trim()}`;
   }
 }

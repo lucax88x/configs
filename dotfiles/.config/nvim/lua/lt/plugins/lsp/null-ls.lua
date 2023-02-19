@@ -9,6 +9,7 @@ end
 
 -- paru -S nginxbeautifier ansible-lint-git
 -- brew install ansible-lint gitlint stylelint
+-- brew install tfsec
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -29,6 +30,7 @@ null_ls.setup({
     diagnostics.golangci_lint,
     diagnostics.gitlint,
     diagnostics.jsonlint,
+    diagnostics.tfsec,
 
     formatting.stylua,
     formatting.prettierd,
@@ -36,6 +38,8 @@ null_ls.setup({
     formatting.nginx_beautifier,
     formatting.shfmt,
     formatting.xmllint,
+    formatting.terraform_fmt,
+
 
     -- code_actions.gitsigns,
     code_actions.refactoring,

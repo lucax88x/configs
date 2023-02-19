@@ -1,13 +1,21 @@
 return {
-  "rcarriga/nvim-notify",
-  config = function()
-    local notify = require("notify")
+    "rcarriga/nvim-notify",
+    init = function()
+      local r = require("lt.utils.remaps")
 
-    notify.setup({
-      stages = "fade",
-      render = "minimal",
-    })
+      r.noremap("n", "<leader>nc", function()
+        local notify = require("notify")
+        notify.dismiss()
+      end, "Close all notifications")
+    end,
+    config = function()
+      local notify = require("notify")
 
-    vim.notify = notify
-  end,
+      notify.setup({
+          stages = "fade",
+          render = "minimal",
+      })
+
+      vim.notify = notify
+    end,
 }
