@@ -71,9 +71,9 @@ return {
 
     local signs = {
       { name = "DiagnosticSignError", text = "" },
-      { name = "DiagnosticSignWarn", text = "" },
-      { name = "DiagnosticSignHint", text = "" },
-      { name = "DiagnosticSignInfo", text = "" },
+      { name = "DiagnosticSignWarn",  text = "" },
+      { name = "DiagnosticSignHint",  text = "" },
+      { name = "DiagnosticSignInfo",  text = "" },
     }
 
     for _, sign in ipairs(signs) do
@@ -139,6 +139,7 @@ return {
       html = {},
       cssls = {},
       lua_ls = require("lt.plugins.lsp.servers.lua_ls")(on_attach),
+      teal_ls = {},
       dockerls = {},
       -- csharp_ls = {},
       omnisharp = {},

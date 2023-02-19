@@ -77,6 +77,7 @@ return {
 
   -- lsp
   require("lt.plugins.mason"),
+  require("lt.plugins.mason-tool"),
   require("lt.plugins.mason-dap"),
   require("lt.plugins.mason-null-ls"),
 

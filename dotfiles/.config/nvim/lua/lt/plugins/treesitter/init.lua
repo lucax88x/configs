@@ -13,16 +13,17 @@ return {
     treesitter.setup({
       ensure_installed = {
         "typescript",
+        "javascript",
         "html",
         "tsx",
         "lua",
+        "teal",
         "json",
         "rust",
         "css",
         "scss",
         "ruby",
         "rasi",
-        "javascript",
         "dockerfile",
         "bash",
         "c_sharp",
