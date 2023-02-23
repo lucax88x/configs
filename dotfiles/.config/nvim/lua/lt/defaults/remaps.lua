@@ -22,10 +22,6 @@ r.noremap("v", "X", '"_d', "Deletes on visual")
 r.noremap("n", "n", "nzzzv", "When going to next search, we center screen")
 r.noremap("n", "N", "Nzzzv", "When going to previous search, we center screen")
 
--- navigate quick fix
-r.noremap("n", "]q", ":cnext<CR>", "Navigate to next quickfix")
-r.noremap("n", "[q", ":cprev<CR>", "Navigate to previous quickfix")
-
 -- buffers
 -- bufremove
 -- r.noremap("n", "<leader>bd", "<cmd>bd<CR>", "Deletes buffer")

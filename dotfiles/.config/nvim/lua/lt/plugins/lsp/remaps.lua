@@ -67,9 +67,6 @@ function M.set_default_on_buffer(client, bufnr)
   buf_set_keymap("n", "<leader>te", lsp_functions.show_diagnostics, "Show diagnostics")
   buf_set_keymap("n", "<leader>tE", vim.diagnostic.open_float, "Show line diagnostics")
 
-  buf_set_keymap("n", "[e", vim.diagnostic.goto_prev, "Previous diagnostic")
-  buf_set_keymap("n", "]e", vim.diagnostic.goto_next, "next diagnostic")
-
   -- if cap.workspaceSymbolProvider then
   --   map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
   -- end

@@ -9,7 +9,7 @@ return {
   init = function()
     local r = require("lt.utils.remaps")
 
-    r.which_key("<leader>;", "test")
+    r.which_key("<leader>;", "+test")
 
     r.noremap("n", "<leader>;f", function()
       require("neotest").run.run()

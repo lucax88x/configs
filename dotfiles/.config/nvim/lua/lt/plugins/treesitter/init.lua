@@ -4,6 +4,7 @@ return {
     -- shows treesitter context in end of parenthesis
     "haringsrob/nvim_context_vt",
     "RRethy/nvim-treesitter-textsubjects",
+    "nvim-treesitter/nvim-treesitter-textobjects",
   },
   event = { "BufReadPost", "BufNewFile" },
   config = function()
@@ -73,15 +74,15 @@ return {
       --       ["iv"] = "@value.inner",
       --     },
       --   },
-      --   swap = {
-      --     enable = true,
-      --     swap_next = {
-      --       ["<leader>fpp"] = "@parameter.inner",
-      --     },
-      --     swap_previous = {
-      --       ["<leader>fpP"] = "@parameter.inner",
-      --     },
-      --   },
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<leader>rp"] = "@parameter.inner",
+          },
+          swap_previous = {
+            ["<leader>rP"] = "@parameter.inner",
+          },
+        },
       --   move = {
       --     enable = true,
       --     set_jumps = true, -- whether to set jumps in the jumplist
@@ -144,8 +145,8 @@ return {
     --
     -- r.which_key("fp", "parameters")
     --
-    -- r.map_virtual("<leader>fpp", "Swap parameter to next")
-    -- r.map_virtual("<leader>fpP", "Swap parameter to previous")
+    r.map_virtual("<leader>rp", "Swap parameter to next")
+    r.map_virtual("<leader>rP", "Swap parameter to previous")
     --
     -- r.map_virtual("]m", "Go to next function (start)")
     -- r.map_virtual("]M", "Go to next function (end)")

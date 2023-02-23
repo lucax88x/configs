@@ -23,6 +23,8 @@ return {
       d = { name = "debug" },
       z = { name = "zen" },
       n = { name = "notifications" },
+      q = { name = "quick switcher" },
+      [";"] = { name = "test" },
       ["'"] = { name = "marks" },
       ['"'] = { name = "registers" },
       ["/"] = { name = "search" },

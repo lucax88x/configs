@@ -1,14 +1,11 @@
 return {
   "Pocco81/true-zen.nvim",
-  keys = { "<leader>Z" },
-  init = function()
-    local r = require("lt.utils.remaps")
-
-    r.noremap("n", "<leader>zz", function()
+  keys = {
+    { "<leader>zz", function()
       local truezen = require("true-zen")
       truezen.ataraxis()
-    end, "zen")
-  end,
+    end, desc = "zen" }
+  },
   config = function()
     local truezen = require("true-zen")
     truezen.setup({

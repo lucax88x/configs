@@ -5,7 +5,7 @@ return function(on_attach)
       client.server_capabilities.document_formatting = true
     end,
     settings = {
-      format = { enable = true }, -- this will enable formatting
+      format = { enable = true },
     },
   }
 end

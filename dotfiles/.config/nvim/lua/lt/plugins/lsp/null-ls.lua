@@ -33,7 +33,11 @@ null_ls.setup({
     diagnostics.tfsec,
 
     formatting.stylua,
-    formatting.prettierd,
+    formatting.prettierd.with({
+      condition = function(utils)
+        return utils.has_file({ ".prettierrc*" })
+      end,
+    }),
     formatting.stylelint,
     formatting.nginx_beautifier,
     formatting.shfmt,

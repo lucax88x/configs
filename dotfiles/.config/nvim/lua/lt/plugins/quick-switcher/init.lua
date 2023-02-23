@@ -5,8 +5,6 @@ return {
   init = function()
     local r = require("lt.utils.remaps")
 
-    r.which_key("<leader>q", "quick-switcher")
-
     r.noremap("n", "<leader>qh", function()
       local quick_switcher = require("nvim-quick-switcher")
       quick_switcher.toggle("component.ts", "component.html")
