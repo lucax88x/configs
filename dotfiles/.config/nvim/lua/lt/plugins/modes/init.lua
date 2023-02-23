@@ -1,5 +1,6 @@
 return {
   "mvllow/modes.nvim",
+  event = { "BufReadPost", "BufNewFile" },
   config = function()
     local modes = require("modes")
 
@@ -21,10 +22,8 @@ return {
         insert = palette.green,
         visual = palette.purple,
       },
-
       -- Cursorline highlight opacity
       line_opacity = 0.2,
-
       -- Highlight cursor
       set_cursor = true,
     })

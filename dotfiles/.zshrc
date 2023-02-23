@@ -31,7 +31,9 @@ zinit light-mode for \
 ### END ZINIT
 
 if [ `tput colors` = "256" ]; then  
-	zinit light romkatv/powerlevel10k
+  if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+    zinit light romkatv/powerlevel10k
+  fi
 fi 
 
 # PLUGINS

@@ -26,6 +26,14 @@ r.noremap("n", "N", "Nzzzv", "When going to previous search, we center screen")
 r.noremap("n", "]q", ":cnext<CR>", "Navigate to next quickfix")
 r.noremap("n", "[q", ":cprev<CR>", "Navigate to previous quickfix")
 
+-- buffers
+-- bufremove
+-- r.noremap("n", "<leader>bd", "<cmd>bd<CR>", "Deletes buffer")
+-- r.noremap("n", "<leader>bD", "<cmd>bd!<CR>", "Force delete buffer")
+r.noremap("n", "<leader>bad", "<cmd>%bd<CR>", "Deletes all buffers")
+r.noremap("n", "<leader>bw", "<cmd>update<CR>", "Saves/writes/updates buffer")
+r.noremap("n", "<leader>bW", "<cmd>update!<CR>", "Force save/write/update buffer")
+
 -- maps c-n / c-t to navigate while searching with /
 vim.api.nvim_exec(
 	[[

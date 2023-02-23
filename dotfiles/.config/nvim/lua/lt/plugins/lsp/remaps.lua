@@ -154,7 +154,6 @@ end
 
 r.which_key("<leader>ls", "servers")
 
-r.noremap("n", "<leader>lsu", lsp_functions.lsp_install_servers, "Installer LSP servers")
 r.noremap("n", "<leader>lsi", "<cmd>LspInstallInfo<CR>", "LSP servers install info")
 
 return M

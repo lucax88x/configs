@@ -1,13 +1,12 @@
 return {
   "mfussenegger/nvim-dap",
   dependencies = { "nvim-telescope/telescope-dap.nvim" },
-  keys = { "<leader>ddc" },
+  -- keys = { "<leader>ddc" },
   init = function()
     -- dap.set_log_level("TRACE")
 
     local r = require("lt.utils.remaps")
 
-    -- TODO: consider switching to hydra
     r.which_key("<leader>dd", "debugger")
     r.which_key("<leader>dds", "step")
     r.which_key("<leader>db", "breakpoints")

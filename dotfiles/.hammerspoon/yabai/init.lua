@@ -65,24 +65,6 @@ local function get_displays_indexes(args, callback)
   end)
 end
 
-local function get_spaces_labels_indexes(callback)
-  yabai.space.get_all(function(error, spaces)
-    if not utils.is_empty(error) then
-      callback(error, nil)
-    end
-
-    local indexes = {}
-
-    for _, space in pairs(spaces) do
-      if not utils.is_empty(space.label) then
-        indexes[space.label] = { index = space.index, display = space.display }
-      end
-    end
-
-    callback(nil, indexes)
-  end)
-end
-
 local function get_space_label_indexes(label, callback)
   yabai.space.get_all(function(error, spaces)
     if not utils.is_empty(error) then
@@ -159,53 +141,6 @@ local function correct_spaces(displays_indexes, callback)
   end)
 end
 
-local function correct_windows(spaces_indexes)
-  yabai.window.get_all(function(error, windows)
-    if not utils.is_empty(error) then
-      log.e(error)
-      return
-    end
-
-    for _, window in pairs(windows) do
-      log.i("checking window " .. window.app)
-      for app_identifier, to_move_space_label in pairs(app_spaces) do
-        if not utils.is_empty(window.app) then
-          if string.match(window.app, app_identifier) ~= nil then
-            local space_indexes = spaces_indexes[to_move_space_label]
-
-            if space_indexes ~= nil then
-              local to_move_space_index = space_indexes.index
-
-              if window.space == to_move_space_index then
-                log.i("window " .. window.app .. " is already in space: " .. to_move_space_label)
-              else
-                log.i(
-                  "window "
-                  .. window.app
-                  .. " is in space: "
-                  .. window.space
-                  .. " so we need to move to display: "
-                  .. to_move_space_label
-                )
-
-                yabai.window.move(window.id, to_move_space_index, function(move_error)
-                  if not utils.is_empty(move_error) then
-                    log.e(move_error)
-                  else
-                    log.i("window " .. window.app .. " moved to " .. to_move_space_label)
-                  end
-                end)
-              end
-
-              break
-            end
-          end
-        end
-      end
-    end
-  end)
-end
-
 yabai_helper.purge_empty_spaces(function(errors, results)
   if not utils.is_empty(errors) then
     log.e("errors: " .. utils.stringify(errors))
@@ -216,11 +151,12 @@ yabai_helper.purge_empty_spaces(function(errors, results)
       if not utils.is_empty(display_indexs_error) then
         log.e(display_indexs_error)
       else
-        correct_spaces(displays_indexes, function()
-          log.i("corrected spaces")
-          --[[     get_spaces_labels_indexes(function(updated_spaces_indexes) ]]
-          --[[       correct_windows(updated_spaces_indexes) ]]
-          --[[     end) ]]
+        correct_spaces(displays_indexes, function(correct_spaces_error)
+          if not utils.is_empty(correct_spaces_error) then
+            log.e(correct_spaces_error)
+          else
+            log.i("corrected spaces")
+          end
         end)
       end
     end)

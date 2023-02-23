@@ -1,5 +1,7 @@
 return {
   "shatur/neovim-session-manager",
+  event = "BufReadPre",
+  cmd = "SessionManager",
   config = function()
     local session = require("session_manager")
 

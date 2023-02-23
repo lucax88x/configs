@@ -9,6 +9,7 @@ return {
     require("lt.plugins.lsp_lines"),
     require("lt.plugins.aerial"),
   },
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("neodev").setup({})
 
@@ -103,14 +104,6 @@ return {
     }
 
     vim.diagnostic.config(config)
-
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-      border = "rounded",
-    })
-
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-      border = "rounded",
-    })
 
     local capabilities
 

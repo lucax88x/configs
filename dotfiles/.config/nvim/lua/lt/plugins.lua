@@ -9,7 +9,7 @@ return {
 
   -- icons
   {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     event = "VeryLazy",
   },
 
@@ -19,6 +19,7 @@ return {
     event = "VeryLazy",
   },
   require("lt.plugins.noice"),
+  require("lt.plugins.dressing"),
 
   -- shortcuts
   require("lt.plugins.better-escape"),
@@ -34,18 +35,17 @@ return {
   require("lt.plugins.camel-case-motion"),
 
   -- highlight matching words when cursor on it
-  { "rrethy/vim-illuminate", event = "VeryLazy" },
+  require("lt.plugins.illuminate"),
   -- disabled search highlight until next search
   { "romainl/vim-cool", event = "VeryLazy" },
-  -- deletes all buffers except
-  "numtostr/BufOnly.nvim",
+  require("lt.plugins.bufremove"),
   -- :S to replace with smartcase
   { "tpope/vim-abolish", event = "VeryLazy" },
 
   -- start screen & project management
   require("lt.plugins.alpha"),
   require("lt.plugins.project"),
-  require("lt.plugins.neovim-session-manager"),
+  require("lt.plugins.session-manager"),
 
   -- scroll
   --[[ require("lt.plugins.neoscroll"), ]]
@@ -53,6 +53,7 @@ return {
 
   -- treesitter
   require("lt.plugins.treesitter"),
+  require("lt.plugins.mini-ai"),
 
   -- git
   require("lt.plugins.fugitive"),
@@ -92,7 +93,7 @@ return {
 
   -- comments & annotation
   require("lt.plugins.neogen"),
-  require("lt.plugins.comment"),
+  require("lt.plugins.mini-comment"),
   require("lt.plugins.todo-comments"),
 
   -- fold
@@ -115,16 +116,16 @@ return {
   require("lt.plugins.dap-virtual-text"),
 
   -- ui
-  require("lt.plugins.dressing"),
   require("lt.plugins.colorizer"),
   require("lt.plugins.modes"),
   require("lt.plugins.indent-blankline"),
   --[[ require("lt.plugins.fidget"), ]]
   require("lt.plugins.no-neck-pain"),
   require("lt.plugins.recorder"),
+  require("lt.plugins.inc_rename"),
 
   -- status bar
-  require("lt.plugins.feline"),
+  require("lt.plugins.lualine"),
   require("lt.plugins.statuscol"),
 
   -- rest
@@ -134,6 +135,8 @@ return {
   require("lt.plugins.truezen"),
   require("lt.plugins.peek"),
   require("lt.plugins.import-cost"),
+
+  -- require("lt.plugins.profile"),
 
   --[[ { ]]
   --[[   "nvim-neorg/neorg", ]]

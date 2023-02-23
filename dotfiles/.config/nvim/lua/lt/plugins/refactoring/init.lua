@@ -1,5 +1,6 @@
 return {
   "ThePrimeagen/refactoring.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   init = function()
     local r = require("lt.utils.remaps")
 

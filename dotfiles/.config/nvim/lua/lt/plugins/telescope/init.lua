@@ -5,6 +5,28 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-ui-select.nvim" },
   },
+  cmd = "Telescope",
+  keys = {
+    { "<leader>/c",  function() require("telescope.builtin").commands() end,                         desc = "Search commands" },
+    { "<leader>pp",  "<cmd>Telescope projects<CR>",                                                  desc = "Projects" },
+    { "<leader>sl",  function() require("telescope.builtin").live_grep() end,                        desc = "Live grep" },
+    { "<leader>sL",  function() require("lt.plugins.telescope.functions").live_grep_in_folder() end, desc = "Live grep in folder" },
+    { "<leader>sc",  function() require("lt.plugins.telescope.functions").search_config() end,       desc = "Search neovim config" },
+    { "<leader>pf",  function() require("telescope.builtin").find_files() end,                       desc = "Find files" },
+    { "<leader>po",  function() require("telescope.builtin").oldfiles() end,                         desc = "Find files" },
+    { "<leader>pg",  function() require("telescope.builtin").git_files() end,                        desc = "Find git files" },
+    { "<leader>/h",  function() require("telescope.builtin").highlights() end,                       desc = "Search highlights" },
+    { "<leader>/C",  function() require("telescope.builtin").command_history() end,                  desc = "Search command history" },
+    { "<leader>/r",  function() require("telescope.builtin").registers() end,                        desc = "Search registers" },
+    { "<leader>/m",  function() require("telescope.builtin").marks() end,                            desc = "Search marks" },
+    { "<leader>/k",  function() require("telescope.builtin").keymaps() end,                          desc = "Search keymaps" },
+    { "<leader>/t",  function() require("telescope.builtin").treesitter() end,                       desc = "Search treesitter" },
+    { "<leader>/gb", function() require("telescope.builtin").git_branches() end,                     desc = "Search git branches" },
+    { "<leader>/gc", function() require("telescope.builtin").git_commits() end,                      desc = "Search git commits" },
+    { "<leader>bl",  function() require("telescope.builtin").buffers() end,                          desc = "Search buffers" },
+    { "<leader>bc",  function() require("telescope.builtin").git_bcommits() end,                     desc = "Search buffer git commits" },
+    { "<leader>//",  function() require("telescope.builtin").resume() end,                           desc = "Resume" },
+  },
   config = function()
     local telescope = require("telescope")
 
@@ -51,8 +73,6 @@ return {
         },
       },
     })
-
-    require("lt.plugins.telescope.remaps")
 
     telescope.load_extension("ui-select")
 

@@ -5,6 +5,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "haydenmeade/neotest-jest",
   },
+  keys = { "<leader>;" },
   init = function()
     local r = require("lt.utils.remaps")
 
