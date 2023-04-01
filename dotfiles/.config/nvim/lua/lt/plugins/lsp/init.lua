@@ -5,7 +5,7 @@ return {
     "nvim-lua/lsp-status.nvim",
     "jose-elias-alvarez/typescript.nvim",
     "b0o/schemastore.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
+    "williamboman/mason-lspconfig.nvim",
     require("lt.plugins.lsp_lines"),
     require("lt.plugins.aerial"),
   },
@@ -15,8 +15,8 @@ return {
 
     local lspconfig = require("lspconfig")
 
-    require("lt.plugins.lsp.null-ls")
     local remaps = require("lt.plugins.lsp.remaps")
+    local icons = require("lt.utils.icons")
 
     local presentLspStatus, lsp_status = pcall(require, "lsp-status")
     local presentCmpNvimLsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
@@ -71,10 +71,10 @@ return {
     end
 
     local signs = {
-      { name = "DiagnosticSignError", text = "" },
-      { name = "DiagnosticSignWarn",  text = "" },
-      { name = "DiagnosticSignHint",  text = "" },
-      { name = "DiagnosticSignInfo",  text = "" },
+      { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+      { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warn },
+      { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
+      { name = "DiagnosticSignInfo",  text = icons.diagnostics.Info },
     }
 
     for _, sign in ipairs(signs) do
@@ -141,7 +141,7 @@ return {
       eslint = require("lt.plugins.lsp.servers.eslint")(on_attach),
       -- svelte = {},
       angularls = {},
-      tailwindcss = {},
+      -- tailwindcss = {},
       texlab = {},
       ansiblels = {},
       gopls = {},

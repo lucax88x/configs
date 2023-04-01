@@ -1,7 +1,6 @@
 return {
   "nvim-lua/plenary.nvim",
 
-  require("lt.plugins.fix-cursor-hold"),
   require("lt.plugins.catppuccin"),
 
   -- notifications
@@ -70,6 +69,7 @@ return {
 
   -- fuzzy finder
   require("lt.plugins.telescope"),
+  require("lt.plugins.fzf"),
 
   -- search
   require("lt.plugins.ctrlsf"),
@@ -79,10 +79,10 @@ return {
 
   -- lsp
   require("lt.plugins.mason"),
-  require("lt.plugins.mason-tool"),
   require("lt.plugins.mason-dap"),
   require("lt.plugins.mason-null-ls"),
 
+  require("lt.plugins.null-ls"),
   require("lt.plugins.lsp"),
 
   -- autocompletion
@@ -120,7 +120,6 @@ return {
   require("lt.plugins.colorizer"),
   require("lt.plugins.modes"),
   require("lt.plugins.indent-blankline"),
-  --[[ require("lt.plugins.fidget"), ]]
   require("lt.plugins.no-neck-pain"),
   require("lt.plugins.recorder"),
   require("lt.plugins.inc_rename"),
@@ -131,11 +130,10 @@ return {
 
   -- rest
   "mbbill/undotree",
-  require("lt.plugins.startup-time"),
   require("lt.plugins.dial"),
   require("lt.plugins.truezen"),
   require("lt.plugins.peek"),
-  require("lt.plugins.import-cost"),
+  require("lt.plugins.toggleterm"),
 
   -- require("lt.plugins.profile"),
 

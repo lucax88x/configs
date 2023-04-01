@@ -35,11 +35,17 @@ return {
               hint = icons.diagnostics.Hint,
             },
           },
-          { "filetype", icon_only = true, separator = "",                                               padding = { left = 1, right = 0 } },
-          { "filename", path = 1,         symbols = { modified = "  ", readonly = "", unnamed = "" } },
-          {
-            function() return require("nvim-navic").get_location() end,
-            cond = function() return package.loaded["nvim-navic"] and require("nvim-navic").is_available() end,
+          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          { "filename",
+            path = 1,
+            fmt = function(path)
+              return table.concat({ vim.fs.basename(vim.fs.dirname(path)),
+                vim.fs.basename(path) }, package.config:sub(1, 1))
+            end,
+            symbols = {
+              modified = "  ", readonly = "", unnamed = ""
+
+            }
           },
         },
         lualine_x = {
@@ -68,12 +74,13 @@ return {
           { "location", padding = { left = 0, right = 1 } },
         },
         lualine_z = {
+          { "searchcount" },
           function()
             return " " .. os.date("%R")
           end,
         },
       },
-      extensions = { "neo-tree" },
+      extensions = { "neo-tree", "nvim-dap-ui", "quickfix" },
     }
   end,
 }

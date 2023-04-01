@@ -1,5 +1,6 @@
 return {
   "jay-babu/mason-nvim-dap.nvim",
+  cmd = "Mason",
   config = function()
     local mason_dap = require("mason-nvim-dap")
 

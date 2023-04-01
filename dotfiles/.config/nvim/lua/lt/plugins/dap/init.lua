@@ -1,6 +1,5 @@
 return {
   "mfussenegger/nvim-dap",
-  dependencies = { "nvim-telescope/telescope-dap.nvim" },
   -- keys = { "<leader>ddc" },
   init = function()
     -- dap.set_log_level("TRACE")
@@ -86,24 +85,19 @@ return {
     end, "Show log path")
 
     r.noremap("n", "<leader>/dcc", function()
-      local telescope = require("telescope")
-      telescope.extensions.dap.commands()
+      require("fzf-lua").dap_commands()
     end, "DAP commands")
     r.noremap("n", "<leader>/dco", function()
-      local telescope = require("telescope")
-      telescope.extensions.dap.configurations()
+      require("fzf-lua").dap_configurations()
     end, "DAP configurations")
     r.noremap("n", "<leader>/db", function()
-      local telescope = require("telescope")
-      telescope.extensions.dap.list_breakpoints()
+      require("fzf-lua").dap_breakpoints()
     end, "DAP list breakpoints")
     r.noremap("n", "<leader>/dv", function()
-      local telescope = require("telescope")
-      telescope.extensions.dap.variables()
+      require("fzf-lua").dap_variables()
     end, "DAP variables")
     r.noremap("n", "<leader>/df", function()
-      local telescope = require("telescope")
-      telescope.extensions.dap.frames()
+      require("fzf-lua").dap_frames()
     end, "DAP frames")
   end,
 }

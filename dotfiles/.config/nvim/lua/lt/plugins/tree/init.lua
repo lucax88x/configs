@@ -18,9 +18,10 @@ return {
       follow_current_file = true,
     },
     window = {
-      position = "current",
+      -- position = "current",
       mappings = {
         ["-"] = "close_window",
+        ["/"] = "noop"
       }
     }
   }

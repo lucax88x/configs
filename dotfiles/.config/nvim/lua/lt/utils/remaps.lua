@@ -42,7 +42,6 @@ function M.map(type, input, output, description, additional_options)
   keymap.set(type, input, output, options)
 
   check_duplicates(type, input, description)
-  try_add_to_which_key_by_input(input, description)
 end
 
 function M.noremap(type, input, output, description, additional_options)

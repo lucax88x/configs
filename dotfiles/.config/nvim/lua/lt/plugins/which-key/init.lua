@@ -24,10 +24,13 @@ return {
       z = { name = "zen" },
       n = { name = "notifications" },
       q = { name = "quick switcher" },
+      k = { name = "terminal" },
       [";"] = { name = "test" },
       ["'"] = { name = "marks" },
       ['"'] = { name = "registers" },
       ["/"] = { name = "search" },
+      ["/g"] = { name = "git" },
+      ["/gd"] = { name = "diff" },
       ["["] = { name = "previous" },
       ["]"] = { name = "next" },
     }

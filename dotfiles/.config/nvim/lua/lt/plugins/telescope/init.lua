@@ -3,29 +3,28 @@ return {
   dependencies = {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-telescope/telescope-ui-select.nvim" },
+    { "aaronhallaert/advanced-git-search.nvim" },
   },
   cmd = "Telescope",
   keys = {
-    { "<leader>/c",  function() require("telescope.builtin").commands() end,                         desc = "Search commands" },
-    { "<leader>pp",  "<cmd>Telescope projects<CR>",                                                  desc = "Projects" },
-    { "<leader>sl",  function() require("telescope.builtin").live_grep() end,                        desc = "Live grep" },
-    { "<leader>sL",  function() require("lt.plugins.telescope.functions").live_grep_in_folder() end, desc = "Live grep in folder" },
-    { "<leader>sc",  function() require("lt.plugins.telescope.functions").search_config() end,       desc = "Search neovim config" },
-    { "<leader>pf",  function() require("telescope.builtin").find_files() end,                       desc = "Find files" },
-    { "<leader>po",  function() require("telescope.builtin").oldfiles() end,                         desc = "Find files" },
-    { "<leader>pg",  function() require("telescope.builtin").git_files() end,                        desc = "Find git files" },
-    { "<leader>/h",  function() require("telescope.builtin").highlights() end,                       desc = "Search highlights" },
-    { "<leader>/C",  function() require("telescope.builtin").command_history() end,                  desc = "Search command history" },
-    { "<leader>/r",  function() require("telescope.builtin").registers() end,                        desc = "Search registers" },
-    { "<leader>/m",  function() require("telescope.builtin").marks() end,                            desc = "Search marks" },
-    { "<leader>/k",  function() require("telescope.builtin").keymaps() end,                          desc = "Search keymaps" },
-    { "<leader>/t",  function() require("telescope.builtin").treesitter() end,                       desc = "Search treesitter" },
-    { "<leader>/gb", function() require("telescope.builtin").git_branches() end,                     desc = "Search git branches" },
-    { "<leader>/gc", function() require("telescope.builtin").git_commits() end,                      desc = "Search git commits" },
-    { "<leader>bl",  function() require("telescope.builtin").buffers() end,                          desc = "Search buffers" },
-    { "<leader>bc",  function() require("telescope.builtin").git_bcommits() end,                     desc = "Search buffer git commits" },
-    { "<leader>//",  function() require("telescope.builtin").resume() end,                           desc = "Resume" },
+    { "<leader>/gr", function()
+      require('telescope').extensions.advanced_git_search.checkout_reflog()
+    end, desc = "Git Search: Checkout Reflog" },
+    { "<leader>/gdb", function()
+      require('telescope').extensions.advanced_git_search.diff_branch_file()
+    end, desc = "Git Search: Diff branch file" },
+    { "<leader>/gdf", function()
+      require('telescope').extensions.advanced_git_search.diff_commit_file()
+    end, desc = "Git Search: Diff commit file" },
+    { "<leader>/gdl", function()
+      require('telescope').extensions.advanced_git_search.diff_commit_line()
+    end, desc = "Git Search: Diff commit line" },
+    { "<leader>/gl", function()
+      require('telescope').extensions.advanced_git_search.search_log_content()
+    end, desc = "Git Search: Log content" },
+    { "<leader>/gL", function()
+      require('telescope').extensions.advanced_git_search.search_log_content_file()
+    end, desc = "Git Search: Log conten file" },
   },
   config = function()
     local telescope = require("telescope")
@@ -66,28 +65,13 @@ return {
           case_mode = "smart_case", -- or "ignore_case" or "respect_case"
           -- the default case_mode is "smart_case"
         },
-        ["ui-select"] = {
-          require("telescope.themes").get_dropdown({
-            -- even more opts
-          }),
-        },
       },
     })
-
-    telescope.load_extension("ui-select")
 
     if functions.is_macunix() then
       telescope.load_extension("fzf")
     else
       vim.notify("not using fzf")
-    end
-
-    if pcall(require, "project_nvim") then
-      telescope.load_extension("projects")
-    end
-
-    if pcall(require, "harpoon") then
-      telescope.load_extension("harpoon")
     end
 
     if pcall(require, "dap") then
@@ -96,6 +80,10 @@ return {
 
     if pcall(require, "refactoring") then
       telescope.load_extension("refactoring")
+    end
+
+    if pcall(require, "advanced_git_search") then
+      telescope.load_extension("advanced_git_search")
     end
   end,
 }

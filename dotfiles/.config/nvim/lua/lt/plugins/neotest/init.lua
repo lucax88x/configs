@@ -3,7 +3,10 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "haydenmeade/neotest-jest",
+    -- "haydenmeade/neotest-jest",
+    "marilari88/neotest-vitest",
+    "Issafalcon/neotest-dotnet",
+
   },
   keys = { "<leader>;" },
   init = function()
@@ -32,9 +35,11 @@ return {
   config = function()
     require("neotest").setup({
       adapters = {
-        require("neotest-jest")({
-          jestCommand = "jest --watch ",
-        }),
+        -- require("neotest-jest")({
+        --   jestCommand = "jest --watch ",
+        -- }),
+        require('neotest-vitest'),
+        require('neotest-dotnet')
       },
     })
   end,

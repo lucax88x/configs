@@ -7,7 +7,7 @@ end
 
 local hint = [[
  _J_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
- _K_: prev hunk   _u_: undo stage hunk   _p_: preview hunk   _B_: blame show full 
+ _K_: prev hunk   _u_: undo stage hunk   _p_: preview hunk   _B_: blame show full
  ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
  ^
  ^ ^              _<Enter>_: Neogit              _q_: exit
@@ -67,7 +67,7 @@ hydra({
     { "u", gitsigns.undo_stage_hunk },
     { "S", gitsigns.stage_buffer },
     { "p", gitsigns.preview_hunk },
-    { "d", gitsigns.toggle_deleted, { nowait = true } },
+    { "d", gitsigns.toggle_deleted,    { nowait = true } },
     { "b", gitsigns.blame_line },
     {
       "B",
@@ -75,8 +75,8 @@ hydra({
         gitsigns.blame_line({ full = true })
       end,
     },
-    { "/", gitsigns.show, { exit = true } }, -- show the base of the file
+    { "/",       gitsigns.show,     { exit = true } }, -- show the base of the file
     { "<Enter>", "<cmd>Neogit<CR>", { exit = true } },
-    { "q", nil, { exit = true, nowait = true } },
+    { "q",       nil,               { exit = true, nowait = true } },
   },
 })

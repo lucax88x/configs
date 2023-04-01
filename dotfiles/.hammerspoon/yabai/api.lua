@@ -159,7 +159,7 @@ function M.space.create(space_label, display_index, callback)
   if must_label then
     log.i("creating " .. space_label .. " in display " .. display_index)
   else
-    log.i("creating display " .. display_index)
+    log.i("creating in display " .. display_index)
   end
 
   yabai({ "-m", "space", "--create" }, function(_, error)
@@ -414,6 +414,7 @@ function M.window.move_current_to_new_space(callback)
         M.space.create(nil, window.display, function(create_error, space)
           log.i("space created, move the window")
 
+          log.i(space.index);
           if not utils.is_empty(create_error) then
             ensure(callback, create_error, nil)
           else

@@ -21,7 +21,7 @@
   navigate = true  # use n and N to move between diff sections
   features = decorations
   side-by-side = true
-  line-numbers = true
+  ; line-numbers = true ; very slow performances
   theme = gruvbox-dark
   syntax-theme = gruvbox-dark
 
@@ -180,3 +180,9 @@
 	discard = checkout -- .
   
 	rebsqua = "!f() { number_of_commits=${1}; git rebase -i HEAD~$number_of_commits;  }; f"
+ 
+  feat = "!f() { git commit -m \"feat: $1\";  }; f"
+  chore = "!f() { git commit -m \"chore: $1\";  }; f"
+  refactor = "!f() { git commit -m \"refactor: $1\";  }; f"
+  fix = "!f() { git commit -m \"fix: $1\";  }; f"
+  docs = "!f() { git commit -m \"docs: $1\";  }; f"

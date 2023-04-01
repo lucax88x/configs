@@ -55,8 +55,8 @@ local options = {
   showmode = false,
 
   -- show spaces
-  list = true,
-  listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<",
+  list = false,
+  -- listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<",
 
   -- global statusline
   laststatus = 3,

@@ -81,11 +81,11 @@ return {
       sources = {
         -- { name = "copilot", priority = 1, group_index = 1 },
         { name = "nvim_lsp_signature_help", group_index = 1 },
-        { name = "luasnip",                 max_item_count = 10, group_index = 1 },
-        { name = "nvim_lsp",                max_item_count = 10, group_index = 1 },
+        { name = "luasnip",                 max_item_count = 5,  group_index = 1 },
+        { name = "nvim_lsp",                max_item_count = 20, group_index = 1 },
         { name = "nvim_lua",                group_index = 1 },
         { name = "path",                    group_index = 2 },
-        { name = "buffer",                  keyword_length = 2,  max_item_count = 10, group_index = 2 },
+        { name = "buffer",                  keyword_length = 2,  max_item_count = 5, group_index = 2 },
       },
       experimental = { native_menu = false, ghost_text = false },
     })
