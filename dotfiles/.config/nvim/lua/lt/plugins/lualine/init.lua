@@ -35,8 +35,17 @@ return {
               hint = icons.diagnostics.Hint,
             },
           },
-          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { "filename",
+          {
+            "filetype",
+            icon_only = true,
+            separator = "",
+            padding = {
+              left = 1,
+              right = 0
+            }
+          },
+          {
+            "filename",
             path = 1,
             fmt = function(path)
               return table.concat({ vim.fs.basename(vim.fs.dirname(path)),
@@ -44,9 +53,9 @@ return {
             end,
             symbols = {
               modified = "  ", readonly = "", unnamed = ""
-
             }
           },
+          { require('NeoComposer.ui').status_recording },
         },
         lualine_x = {
           {

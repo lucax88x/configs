@@ -121,7 +121,7 @@ return {
   require("lt.plugins.modes"),
   require("lt.plugins.indent-blankline"),
   require("lt.plugins.no-neck-pain"),
-  require("lt.plugins.recorder"),
+  require("lt.plugins.neocomposer"),
   require("lt.plugins.inc_rename"),
 
   -- status bar

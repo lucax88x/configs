@@ -22,6 +22,7 @@ return {
       l = { name = "lsp" },
       d = { name = "debug" },
       z = { name = "zen" },
+      m = { name = "macro/markdown" },
       n = { name = "notifications" },
       q = { name = "quick switcher" },
       k = { name = "terminal" },

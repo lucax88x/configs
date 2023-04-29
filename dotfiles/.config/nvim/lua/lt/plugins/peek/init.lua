@@ -3,7 +3,6 @@ return {
   build = "deno task --quiet build:fast",
   init = function()
     local r = require("lt.utils.remaps")
-    r.which_key("<leader>m", "markdown")
 
     r.map("n", "<leader>mp", function()
       local peek = require("peek")

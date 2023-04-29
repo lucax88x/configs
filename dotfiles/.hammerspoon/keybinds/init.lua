@@ -9,97 +9,97 @@ local log = hs.logger.new("keybinds.init", "info")
 local mods = helper.modifiers
 
 local actions = {
-  {
-    text = "Reload Hammerspoon",
-    action = function()
-      hs.reload()
-    end,
-  },
-  {
-    text = "Reload Yabai",
-    action = function()
-      yabai.reload()
-    end,
-  },
-  {
-    text = "Balance space",
-    description = "Balances space between windows",
-    action = function()
-      yabai.space.balance()
-    end,
-  },
-  {
-    text = "Purge empty spaces",
-    action = function()
-      yabai_helper.purge_empty_spaces(function(errors, results)
-        log.e("errors: " .. utils.stringify(errors))
-        log.i("results: " .. utils.stringify(results))
-      end)
-    end,
-  },
-  {
-    text = "Focus west",
-    bind = { mods.alt, "h" },
-    action = function()
-      yabai.window.focus("west")
-    end,
-  },
-  {
-    text = "Focus east",
-    bind = { mods.alt, "l" },
-    action = function()
-      yabai.window.focus("east")
-    end,
-  },
-  {
-    text = "Full screen",
-    bind = { mods.alt, "f" },
-    action = function()
-      --[[ yabai.window.zoom_fullscreen() ]]
-      yabai.window.native_fullscreen()
-    end,
-  },
-  {
-    text = "Rotate",
-    bind = { mods.alt, "r" },
-    action = function()
-      yabai.space.rotate(90)
-    end,
-  },
-  {
-    text = "Stack",
-    description = "Toggle bsp to stack",
-    bind = { mods.alt, "s" },
-    action = function()
-      yabai.space.get_current(function(current_space)
-        if current_space.type == "bsp" then
-          yabai.space.layout("stack", function()
-            toast("changed to stack")
-          end)
-        else
-          if current_space.type == "stack" then
-            yabai.space.layout("bsp", function()
-              toast("changed to bsp")
-            end)
-          else
-            toast("cannot change, probably float")
-          end
-        end
-      end)
-    end,
-  },
-  {
-    text = "Move to new space",
-    bind = { mods.alt, "n" },
-    action = function()
-      yabai.window.move_current_to_new_space(function(error)
-        if not utils.is_empty(error) then
-          log.e(error)
-          toast("cannot move to new space")
-        end
-      end)
-    end,
-  },
+	{
+		text = "Reload Hammerspoon",
+		action = function()
+			hs.reload()
+		end,
+	},
+	{
+		text = "Reload Yabai",
+		action = function()
+			yabai.reload()
+		end,
+	},
+	{
+		text = "Balance space",
+		description = "Balances space between windows",
+		action = function()
+			yabai.space.balance()
+		end,
+	},
+	{
+		text = "Purge empty spaces",
+		action = function()
+			yabai_helper.purge_empty_spaces(function(errors, results)
+				log.e("errors: " .. utils.stringify(errors))
+				log.i("results: " .. utils.stringify(results))
+			end)
+		end,
+	},
+	{
+		text = "Focus west",
+		bind = { mods.alt, "h" },
+		action = function()
+			yabai.window.focus("west")
+		end,
+	},
+	{
+		text = "Focus east",
+		bind = { mods.alt, "l" },
+		action = function()
+			yabai.window.focus("east")
+		end,
+	},
+	{
+		text = "Full screen",
+		bind = { mods.alt, "f" },
+		action = function()
+			--[[ yabai.window.zoom_fullscreen() ]]
+			yabai.window.native_fullscreen()
+		end,
+	},
+	{
+		text = "Rotate",
+		bind = { mods.alt, "r" },
+		action = function()
+			yabai.space.rotate(90)
+		end,
+	},
+	{
+		text = "Stack",
+		description = "Toggle bsp to stack",
+		bind = { mods.alt, "s" },
+		action = function()
+			yabai.space.get_current(function(current_space)
+				if current_space.type == "bsp" then
+					yabai.space.layout("stack", function()
+						toast("changed to stack")
+					end)
+				else
+					if current_space.type == "stack" then
+						yabai.space.layout("bsp", function()
+							toast("changed to bsp")
+						end)
+					else
+						toast("cannot change, probably float")
+					end
+				end
+			end)
+		end,
+	},
+	{
+		text = "Move to new space",
+		bind = { mods.alt, "n" },
+		action = function()
+			yabai.window.move_current_to_new_space(function(error)
+				if not utils.is_empty(error) then
+					log.e(error)
+					toast("cannot move to new space")
+				end
+			end)
+		end,
+	},
 }
 
 helper.space("1", "chat")
@@ -113,30 +113,30 @@ helper.space("7", "extra")
 local choices = {}
 local mapped_actions = {}
 for _, action in ipairs(actions) do
-  if action.bind ~= nil then
-    local modifiers = action.bind[1]
-    local key = action.bind[2]
+	if action.bind ~= nil then
+		local modifiers = action.bind[1]
+		local key = action.bind[2]
 
-    hs.hotkey.bind(modifiers, hs.keycodes.map[key], nil, action.action)
-  end
+		hs.hotkey.bind(modifiers, hs.keycodes.map[key], nil, action.action)
+	end
 
-  table.insert(choices, { text = action.text, subText = action.description, action = action.text })
-  mapped_actions[action.text] = action.action
+	table.insert(choices, { text = action.text, subText = action.description, action = action.text })
+	mapped_actions[action.text] = action.action
 end
 
 local mainChooser = hs.chooser
-    .new(function(option)
-      if option ~= nil then
-        local action = mapped_actions[option.text]
-        if action ~= nil then
-          action()
-        end
-      end
-    end)
-    :choices(choices)
+	.new(function(option)
+		if option ~= nil then
+			local action = mapped_actions[option.text]
+			if action ~= nil then
+				action()
+			end
+		end
+	end)
+	:choices(choices)
 
 hs.hotkey.bind(mods.super, hs.keycodes.map["return"], nil, function()
-  mainChooser:show()
+	mainChooser:show()
 end)
 
 --hs.hotkey.bind(super, hs.keycodes.map["»"], function()

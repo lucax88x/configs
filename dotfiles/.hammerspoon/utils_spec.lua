@@ -72,26 +72,36 @@ describe("utils", function()
 	end)
 
 	describe("sequential", function()
-		it("should never call next and should call callback", function()
-			async()
-
+		it("should call callback with empty", function()
 			local counter = 0
-			utils.sequential({}, function()
+			utils.sequential({}, function(_, loop)
 				counter = counter + 1
+				loop()
 			end, function()
-				done()
 				assert.are.same(counter, 0)
 			end)
 		end)
 
-		it("should call two next and should call callback", function(done)
-			async()
-
+		it("should call two next and should call callback with results", function()
 			local counter = 0
-			utils.sequential({ 1, 2 }, function()
+			utils.sequential({ 1, 2 }, function(p, loop)
 				counter = counter + 1
-			end, function(a, b)
-				done()
+				loop(nil, "next " .. p)
+			end, function(errors, results)
+				assert.are.same(errors, {})
+				assert.are.same(results, { "next 1", "next 2" })
+				assert.are.same(counter, 2)
+			end)
+		end)
+
+		it("should call two next and should call callback with errors", function()
+			local counter = 0
+			utils.sequential({ 1, 2 }, function(_, loop)
+				counter = counter + 1
+				loop("some error")
+			end, function(errors, results)
+				assert.are.same(errors, { "some error", "some error" })
+				assert.are.same(results, {})
 				assert.are.same(counter, 2)
 			end)
 		end)

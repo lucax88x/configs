@@ -48,6 +48,7 @@ return {
         formatting.terraform_fmt,
         formatting.yamlfmt,
         formatting.jq,
+        formatting.clang_format,
 
         -- code_actions.gitsigns,
         code_actions.refactoring,

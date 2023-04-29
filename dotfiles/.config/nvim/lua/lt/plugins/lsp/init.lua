@@ -146,6 +146,7 @@ return {
       ansiblels = {},
       gopls = {},
       terraformls = {},
+      clangd = {},
     }
 
     local default_lsp_config = {

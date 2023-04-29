@@ -36,12 +36,6 @@ alt - t : yabai -m window --toggle float;\
 # toggle window split type
 alt - e : yabai -m window --toggle split
 
-# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-shift + alt - n : yabai -m space --create && \
-                   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-                   yabai -m window --space "${index}" && \
-                   yabai -m space --focus "${index}"
-
 # focus last space
 alt - o : yabai -m space --focus recent
 

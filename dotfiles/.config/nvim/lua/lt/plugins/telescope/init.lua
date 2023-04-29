@@ -7,24 +7,53 @@ return {
   },
   cmd = "Telescope",
   keys = {
-    { "<leader>/gr", function()
-      require('telescope').extensions.advanced_git_search.checkout_reflog()
-    end, desc = "Git Search: Checkout Reflog" },
-    { "<leader>/gdb", function()
-      require('telescope').extensions.advanced_git_search.diff_branch_file()
-    end, desc = "Git Search: Diff branch file" },
-    { "<leader>/gdf", function()
-      require('telescope').extensions.advanced_git_search.diff_commit_file()
-    end, desc = "Git Search: Diff commit file" },
-    { "<leader>/gdl", function()
-      require('telescope').extensions.advanced_git_search.diff_commit_line()
-    end, desc = "Git Search: Diff commit line" },
-    { "<leader>/gl", function()
-      require('telescope').extensions.advanced_git_search.search_log_content()
-    end, desc = "Git Search: Log content" },
-    { "<leader>/gL", function()
-      require('telescope').extensions.advanced_git_search.search_log_content_file()
-    end, desc = "Git Search: Log conten file" },
+    {
+      "<leader>/gr",
+      function()
+        require('telescope').extensions.advanced_git_search.checkout_reflog()
+      end,
+      desc = "Git Search: Checkout Reflog"
+    },
+    {
+      "<leader>/gdb",
+      function()
+        require('telescope').extensions.advanced_git_search.diff_branch_file()
+      end,
+      desc = "Git Search: Diff branch file"
+    },
+    {
+      "<leader>/gdf",
+      function()
+        require('telescope').extensions.advanced_git_search.diff_commit_file()
+      end,
+      desc = "Git Search: Diff commit file"
+    },
+    {
+      "<leader>/gdl",
+      function()
+        require('telescope').extensions.advanced_git_search.diff_commit_line()
+      end,
+      desc = "Git Search: Diff commit line"
+    },
+    {
+      "<leader>/gl",
+      function()
+        require('telescope').extensions.advanced_git_search.search_log_content()
+      end,
+      desc = "Git Search: Log content"
+    },
+    {
+      "<leader>/gL",
+      function()
+        require('telescope').extensions.advanced_git_search.search_log_content_file()
+      end,
+      desc = "Git Search: Log content file"
+    },
+    {
+      "<leader>/m",
+      "<cmd>Telescope macros<cr>",
+      desc = "Search macros"
+    },
   },
   config = function()
     local telescope = require("telescope")
@@ -61,8 +90,8 @@ return {
         fzf = {
           fuzzy = true,
           override_generic_sorter = false, -- override the generic sorter
-          override_file_sorter = true, -- override the file sorter
-          case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+          override_file_sorter = true,     -- override the file sorter
+          case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
           -- the default case_mode is "smart_case"
         },
       },
@@ -74,16 +103,28 @@ return {
       vim.notify("not using fzf")
     end
 
-    if pcall(require, "dap") then
-      telescope.load_extension("dap")
-    end
+    -- if pcall(require, "dap") then
+    --   telescope.load_extension("dap")
+    -- else
+    --   vim.notify("telescope not using dap")
+    -- end
 
     if pcall(require, "refactoring") then
       telescope.load_extension("refactoring")
+    else
+      vim.notify("telescope not using refactoring")
     end
 
     if pcall(require, "advanced_git_search") then
       telescope.load_extension("advanced_git_search")
+    else
+      vim.notify("telescope not using advanced_git_search")
+    end
+
+    if pcall(require, "NeoComposer") then
+      telescope.load_extension('macros')
+    else
+      vim.notify("telescope not using neocomposer")
     end
   end,
 }

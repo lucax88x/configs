@@ -119,7 +119,7 @@ return {
     r.which_key("<leader>dt", "Treesitter")
 
     r.noremap("n", "<leader>dtp", function()
-      vim.treesitter.show_tree({ command = "botright 60vnew" })
+      vim.treesitter.inspect_tree({ command = "botright 60vnew" })
     end, "Treesitter playground")
 
     r.noremap("n", "<leader>dtt", "<cmd>TSHighlightCapturesUnderCursor<CR>", "Shows highlight colors under cursor")

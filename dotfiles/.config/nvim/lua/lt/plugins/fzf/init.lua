@@ -11,21 +11,29 @@ return {
     --     cwd = "cwd?",
     --   })
     -- end, desc = "Search neovim config" },
-    { "<leader>sc", function()
-      require("fzf-lua").files({
-        prompt = "< Config >",
-        cwd = "$HOME/.config/nvim",
-      })
-    end, desc = "Search neovim config" },
+    {
+      "<leader>sc",
+      function()
+        require("fzf-lua").files({
+          prompt = "< Config >",
+          cwd = "$HOME/.config/nvim",
+        })
+      end,
+      desc = "Search neovim config"
+    },
     { "<leader>pf", function() require("fzf-lua").files() end,     desc = "Find files" },
     { "<leader>po", function() require("fzf-lua").oldfiles() end,  desc = "Find files" },
     { "<leader>pg", function() require("fzf-lua").git_files() end, desc = "Find git files" },
-    { "<leader>pp", function()
-      require("lt.plugins.project.functions").switch_project()
-    end, desc = "Switch projects" },
+    {
+      "<leader>pp",
+      function()
+        require("lt.plugins.project.functions").switch_project()
+      end,
+      desc = "Switch projects"
+    },
     { "<leader>/h",  function() require("fzf-lua").highlights() end,   desc = "Search highlights" },
     { "<leader>/r",  function() require("fzf-lua").registers() end,    desc = "Search registers" },
-    { "<leader>/m",  function() require("fzf-lua").marks() end,        desc = "Search marks" },
+    { "<leader>/M",  function() require("fzf-lua").marks() end,        desc = "Search marks" },
     { "<leader>/k",  function() require("fzf-lua").keymaps() end,      desc = "Search keymaps" },
     { "<leader>/t",  function() require("fzf-lua").treesitter() end,   desc = "Search treesitter" },
     { "<leader>/gb", function() require("fzf-lua").git_branches() end, desc = "Search git branches" },
@@ -35,6 +43,15 @@ return {
     { "<leader>bl",  function() require("fzf-lua").buffers() end,      desc = "Search buffers" },
     { "<leader>//",  function() require("fzf-lua").resume() end,       desc = "Resume FZF" },
   },
+  config = function()
+    require('fzf-lua').setup({
+      keymap = {
+        fzf = {
+          ['CTRL-Q'] = 'select-all+accept',
+        },
+      },
+    })
+  end,
   init = function()
     require("fzf-lua").register_ui_select()
   end
