@@ -387,7 +387,11 @@ installHackNerdFont
 # # 	echo INSTALLING STEAM
 # #
 # # 	# https://wiki.archlinux.org/title/Steam#Installation
-# #
+# paru -S --noconfirm flatpak
+#  flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# flatpak --user install flathub com.valvesoftware.Steam
+# flatpak run com.valvesoftware.Steam#
+# noto-fonts?
 # # 	## remember to enable multilib
 # # 	paru -S --noconfirm steam steam-fonts
 # # 	paru -S --noconfirm mangohud
@@ -557,6 +561,8 @@ installHackNerdFont
 # else
 # 	echo SHARP FONTS ALREADY CONFIGURED
 # fi
+#
+# plasma kde, kde-meta-system-applications + xdg-mime dolphin
 
 rm -rf $TEMP_DIR
 
