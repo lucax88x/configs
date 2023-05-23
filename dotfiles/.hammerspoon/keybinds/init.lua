@@ -86,3 +86,4 @@ for index, space in ipairs({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }) do
 		spaces.move_to_space(index)
 	end)
 end
+
