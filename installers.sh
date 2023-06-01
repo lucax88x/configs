@@ -267,6 +267,19 @@ installRoboto() {
 	esac
 }
 
+installSymbolsOnly() {
+	case $DISTRO in
+	ARCH)
+		echo SKIPPING SYMBOLS_ONLY
+		;;
+	OSX)
+    brew tap homebrew/cask-fonts
+    brew install --cask font-symbols-only-nerd-font
+
+		;;
+	esac
+}
+
 installFontawesome() {
 	case $DISTRO in
 	ARCH)

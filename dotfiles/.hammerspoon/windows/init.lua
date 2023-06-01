@@ -1,6 +1,3 @@
-local utils = require("utils")
-local log = hs.logger.new("windows.init", "info")
-
 local M = {}
 
 hs.window.animationDuration = 0
@@ -18,6 +15,11 @@ end
 function M.minimize()
 	local window = hs.window.focusedWindow()
 	window:minimize()
+end
+
+function M.close()
+	local window = hs.window.focusedWindow()
+	window:close()
 end
 
 function M.window_size(x, y, w, h)
