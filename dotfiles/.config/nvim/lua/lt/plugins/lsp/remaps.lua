@@ -125,7 +125,9 @@ function M.set_default_on_buffer(client, bufnr)
   end
 
   if cap.renameProvider then
-    buf_set_keymap("n", "<leader>rr", vim.lsp.buf.rename, "Rename")
+    -- buf_set_keymap("n", "<leader>rr", vim.lsp.buf.rename, "Rename")
+    buf_set_keymap("n", "<leader>rr", ":IncRename ", "Rename")
+    -- function() return ":IncRename " .. vim.fn.expand("<cword>") end, desc = "Rename", expr = true },
   end
 
   buf_set_keymap("n", "<leader>lsc", function()

@@ -18,7 +18,6 @@ return {
     event = "VeryLazy",
   },
   require("lt.plugins.noice"),
-  require("lt.plugins.dressing"),
 
   -- shortcuts
   require("lt.plugins.better-escape"),

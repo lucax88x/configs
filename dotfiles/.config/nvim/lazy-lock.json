@@ -15,7 +15,6 @@
   "ctrlsf.vim": { "branch": "master", "commit": "32236a8b376d9311dec9b5fe795ca99d32060b13" },
   "dial.nvim": { "branch": "master", "commit": "747d6fd009dbc1904627868125e16cfa7c524b0d" },
   "diffview.nvim": { "branch": "main", "commit": "bff58a6ea3e081ca50049700f9848b2f84ea57be" },
-  "dressing.nvim": { "branch": "master", "commit": "f19cbd56f7f8cad212c58a7285d09c5d9c273896" },
   "friendly-snippets": { "branch": "main", "commit": "7006e69b60a559837ff6cdb7fe610af4f6ca823c" },
   "fzf-lua": { "branch": "main", "commit": "bc5110738d44c16655cf1b23534343aaade855a2" },
   "gitsigns.nvim": { "branch": "main", "commit": "f868d82a36f7f7f5e110eb0a9659993984f59875" },

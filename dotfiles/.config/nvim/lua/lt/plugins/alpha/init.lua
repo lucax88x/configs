@@ -16,16 +16,16 @@ return {
 
     dashboard.section.buttons.val = {
       dashboard.button("e", " New file", ":ene <BAR> startinsert<CR>"),
-      dashboard.button("f", " Find file", ":FzfLua files cwd=$HOME<CR>"),
+      dashboard.button("f", "󰱼 Find file", ":FzfLua files cwd=$HOME<CR>"),
       dashboard.button("s", " Restore Session", ":SessionManager load_last_session<CR>"),
       dashboard.button("S", " Sessions", ":SessionManager load_session<CR>"),
-      dashboard.button("p", " Projects", ':lua require("lt.plugins.project.functions").switch_project()<CR>'),
+      dashboard.button("p", " Projects", ':lua require("lt.plugins.project.functions").switch_project()<CR>'),
       dashboard.button("r", " Recent files", ":FzfLua oldfiles<CR>"),
       dashboard.button("c", " Config", ":e $MYVIMRC | pwd<CR>"),
       dashboard.button("u p", " Lazy", ":Lazy<CR>"),
       dashboard.button("u l", " Mason", ":Mason<CR>"),
 
-      dashboard.button("q", " Quit NVIM", ":qa<CR>"),
+      dashboard.button("q", "󰿅 Quit NVIM", ":qa<CR>"),
     }
 
     -- local function footer()
