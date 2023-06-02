@@ -65,12 +65,20 @@ yabai -m rule --add label="Abacus" app="^Abacus$" title="Selection list - Projec
 # android studio emulator dropdown
 yabai -m rule --add app="^qemu-system-aarch64$" manage=off
 
+# default spaces
+yabai -m space 1 --label chat
+yabai -m space 2 --label code
+yabai -m space 3 --label three
+yabai -m space 4 --label browser
+yabai -m space 5 --label email
+yabai -m space 6 --label tools
+
 # apps placement to space
-# yabai -m rule --add app="^(Slack|WhatsApp|Microsoft Teams|Telegram)$" space=chat
-# yabai -m rule --add app="^(IntelliJ IDEA|WebStorm|RubyMine|PyCharm|.*Rider.*)$" space=code
-# yabai -m rule --add app="^(kitty)$" space=terminal
-# yabai -m rule --add app="^(Google Chrome|Firefox)$" space=browser
-# yabai -m rule --add app="^(DataGrip|Docker|Postman|Sublime Merge)$" space=tools
-# yabai -m rule --add app="^(Microsoft Outlook|Mail)$" space=email
+yabai -m rule --add app="^(Slack|WhatsApp|Microsoft Teams|Telegram)$" space=chat
+yabai -m rule --add app="^(IntelliJ IDEA|WebStorm|RubyMine|PyCharm|.*Rider.*)$" space=code
+yabai -m rule --add app="^(kitty)$" space=terminal
+yabai -m rule --add app="^(Google Chrome|Firefox)$" space=browser
+yabai -m rule --add app="^(Microsoft Outlook|Mail)$" space=email
+yabai -m rule --add app="^(DataGrip|Docker|Postman|Sublime Merge)$" space=tools
 
 echo "yabai configuration loaded.."

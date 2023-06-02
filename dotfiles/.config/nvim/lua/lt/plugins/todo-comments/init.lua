@@ -1,7 +1,7 @@
 return {
   "folke/todo-comments.nvim",
   -- cmd = { "TodoTelescope" },
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "BufReadPost", "BufNewFile", "BufEnter" },
   config = true,
   keys = {
     { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },

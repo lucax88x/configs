@@ -1,6 +1,6 @@
 return {
   "mvllow/modes.nvim",
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "BufReadPost", "BufNewFile", "BufEnter" },
   config = function()
     local modes = require("modes")
 

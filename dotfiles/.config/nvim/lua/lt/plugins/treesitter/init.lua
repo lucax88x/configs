@@ -6,7 +6,7 @@ return {
     "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "BufReadPost", "BufNewFile", "BufEnter" },
   config = function()
     local treesitter = require("nvim-treesitter.configs")
 

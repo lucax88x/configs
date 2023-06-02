@@ -62,5 +62,5 @@ return {
       require("scrollbar.handlers.gitsigns").setup()
     end
   end,
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPre", "BufNewFile", "BufEnter" },
 }

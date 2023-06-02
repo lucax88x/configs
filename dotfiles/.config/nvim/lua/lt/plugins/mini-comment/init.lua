@@ -1,6 +1,6 @@
 return {
   "echasnovski/mini.comment",
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "BufReadPost", "BufNewFile", "BufEnter" },
   dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
   opts = {
     hooks = {

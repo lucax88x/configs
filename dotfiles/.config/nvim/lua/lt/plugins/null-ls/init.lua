@@ -1,6 +1,6 @@
 return {
   "jose-elias-alvarez/null-ls.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPre", "BufNewFile", "BufEnter" },
   dependencies = { "mason.nvim" },
   config = function()
     local nls = require("null-ls")
@@ -42,7 +42,7 @@ return {
         -- }),
         formatting.prettierd,
         formatting.stylelint,
-        formatting.nginx_beautifier,
+        -- formatting.nginx_beautifier,
         formatting.shfmt,
         formatting.xmllint,
         formatting.terraform_fmt,

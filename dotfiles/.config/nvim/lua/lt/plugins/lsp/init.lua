@@ -9,8 +9,9 @@ return {
     require("lt.plugins.lsp_lines"),
     require("lt.plugins.aerial"),
   },
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPre", "BufNewFile", "BufEnter" },
   config = function()
+    print('ohh')
     require("neodev").setup({})
 
     local lspconfig = require("lspconfig")
