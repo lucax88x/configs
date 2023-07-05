@@ -25,30 +25,6 @@ cd $TEMP_DIR || exit
 
 echo '# GLOBAL SOFTWARE #'
 
-# if ! [ -x "$(command -v rustup)" ]; then
-# 	echo INSTALLING RUSTUP
-#
-# 	paru -S --noconfirm rustup
-# else
-# 	echo RUST ALREADY INSTALLED
-# fi
-
-# if ! [ -x "$(command -v go)" ]; then
-# 	echo INSTALLING GO
-#
-# 	paru -S --noconfirm go
-# else
-# 	echo GO ALREADY INSTALLED
-# fi
-#
-installBrew
-installParu
-installBaseDevel
-installGit
-installWget
-installCurl
-installSsh
-installUnzip
 installYabai
 installHammerspoon
 installJetbrainsMono
@@ -60,69 +36,6 @@ installSFMono
 installSFPro
 installHackNerdFont
 
-# if ! [ -x "$(command -v bat)" ]; then
-# 	echo INSTALLING BAT
-#
-# 	case $DISTRO in
-# 	ARCH)
-# 		paru -Sy --noconfirm bat
-# 		;;
-# 	OSX)
-# 		brew install bat
-# 		;;
-# 	esac
-# else
-# 	echo BAT ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v lsd)" ]; then
-# 	echo INSTALLING LSD
-#
-# 	case $DISTRO in
-# 	ARCH)
-# 		paru -Sy --noconfirm lsd
-# 		;;
-# 	OSX)
-# 		brew install lsd
-# 		;;
-# 	esac
-# else
-# 	echo LSD ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v zsh)" ]; then
-# 	echo INSTALLING ZSH
-#
-# 	case $DISTRO in
-# 	ARCH)
-# 		paru -Sy --noconfirm zsh
-# 		;;
-# 	OSX)
-# 		echo HOW?
-# 		;;
-# 	esac
-# else
-# 	echo ZSH ALREADY INSTALLED
-# fi
-#
-# case $DISTRO in
-# ARCH)
-# 	if ! [ -x "$(command -v google-chrome-stable)" ]; then
-# 		echo INSTALLING CHROME
-#
-# 		paru -S --noconfirm google-chrome
-#
-# 		# enables hardware accelerated
-# 		paru -S --noconfirm libvdpau vdpauinfo
-# 	else
-# 		echo CHROME ALREADY INSTALLED
-# 	fi
-# 	;;
-# OSX)
-# 	echo HOW?
-# 	;;
-# esac
-#
 # if ! [ -f ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox ]; then
 # 	echo INSTALLING JETBRAINS TOOLBOX
 #
@@ -130,23 +43,7 @@ installHackNerdFont
 # else
 # 	echo JETBRAINS TOOLBOX ALREADY INSTALLED
 # fi
-#
-# if ! [ -x "$(command -v telegram-desktop)" ]; then
-# 	echo INSTALLING TELEGRAM
-#
-# 	paru -S --noconfirm telegram-desktop
-# else
-# 	echo TELEGRAM ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v xclip)" ]; then
-# 	echo INSTALLING XCLIP
-#
-# 	paru -S --noconfirm xclip
-# else
-# 	echo XCLIP ALREADY INSTALLED
-# fi
-#
+
 # if ! [ -x "$(command -v smerge)" ]; then
 # 	echo INSTALLING SUBLIME MERGE
 #

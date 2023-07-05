@@ -1,0 +1,44 @@
+#!/bin/bash
+
+pkill podman
+pkill qemu
+
+podman machine start &
+PID=$!
+sleep 2
+
+pkill -STOP podman
+pkill -STOP gvproxy
+
+echo "^^^^"
+echo "^^^^"
+echo "^^^^"
+echo "If the above says the VM already running or started"
+echo "then edit the json file located at ~/.config/containers/podman/machine/qemu/"
+echo "and change the line"
+echo "\"Starting\": true"
+echo "to be"
+echo "\"Starting\": false"
+echo ""
+echo "don't forget to save, and rerun this script."
+echo ""
+echo "Else, continue with instructions below"
+echo ""
+echo "Wait until the displayed CPU utilization lowers and stabilizes to 1% or less"
+echo "Then hit enter"
+
+PID_QEMU=$(pgrep qemu)
+
+while true; do
+  CPU=$(ps -p $PID_QEMU -o %cpu | awk 'NR>1 {print $1}')
+  printf "\rCPU utilization: %s%%             " $CPU
+
+  read -s -t 1
+  if [ $? -eq 0 ]; then
+    break
+  fi
+done
+
+
+pkill -CONT podman
+pkill -CONT gvproxy

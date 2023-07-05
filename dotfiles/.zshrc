@@ -112,7 +112,6 @@ eval "$(zoxide init zsh)"
 
 # ALIASES
 alias k='kubectl'
-alias c='xclip -selection clipboard'
 alias v='nvim'
 
 alias ls='lsd'

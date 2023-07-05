@@ -6,5 +6,7 @@ dotfiles/.hammerspoon/Spoons
 dotfiles/.hammerspoon/rcmd
 dotfiles/.hammerspoon/stackline
 
+node_modules
+
 .DS_Store
 

@@ -6,12 +6,12 @@ return {
     "jose-elias-alvarez/typescript.nvim",
     "b0o/schemastore.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "SmiteshP/nvim-navic",
     require("lt.plugins.lsp_lines"),
     require("lt.plugins.aerial"),
   },
   event = { "BufReadPre", "BufNewFile", "BufEnter" },
   config = function()
-    print('ohh')
     require("neodev").setup({})
 
     local lspconfig = require("lspconfig")
@@ -29,7 +29,9 @@ return {
     vim.lsp.set_log_level("error") -- 'trace', 'debug', 'info', 'warn', 'error'
 
     local function try_attach_navic(client, bufnr)
-      if presentNavic then
+      if not presentNavic then
+        vim.notify('navic not present')
+      else
         local filetype = vim.api.nvim_buf_get_option(bufnr or 0, "filetype")
 
         if client.server_capabilities.documentSymbolProvider then
@@ -43,15 +45,35 @@ return {
             return
           end
 
-          --[[ vim.notify("attach navic to " .. client.name) ]]
+          -- vim.notify("attach navic to " .. client.name)
           navic.attach(client, bufnr)
         end
+      end
+    end
+
+    local function try_attach_inlay_hints(client, bufnr)
+      if not client.server_capabilities.inlayHintProvider then
+        vim.notify('has no inlay hints')
+      else
+        vim.api.nvim_create_augroup("lsp_augroup", { clear = true })
+
+        vim.api.nvim_create_autocmd("InsertEnter", {
+          buffer = bufnr,
+          callback = function() vim.lsp.buf.inlay_hint(bufnr, true) end,
+          group = "lsp_augroup",
+        })
+        vim.api.nvim_create_autocmd("InsertLeave", {
+          buffer = bufnr,
+          callback = function() vim.lsp.buf.inlay_hint(bufnr, false) end,
+          group = "lsp_augroup",
+        })
       end
     end
 
     local function on_attach(client, bufnr)
       -- print(client.name)
       -- require("lt.utils.functions").tprint_keys(client.server_capabilities)
+
       remaps.set_default_on_buffer(client, bufnr)
 
       if presentLspStatus then
@@ -63,6 +85,7 @@ return {
       end
 
       try_attach_navic(client, bufnr)
+      try_attach_inlay_hints(client, bufnr)
 
       if client.name == "tsserver" then
         -- let prettier format
@@ -142,7 +165,7 @@ return {
       eslint = require("lt.plugins.lsp.servers.eslint")(on_attach),
       -- svelte = {},
       angularls = {},
-      -- tailwindcss = {},
+      tailwindcss = {},
       texlab = {},
       ansiblels = {},
       gopls = {},

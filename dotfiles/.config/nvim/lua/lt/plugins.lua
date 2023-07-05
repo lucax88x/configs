@@ -64,7 +64,8 @@ return {
 
   -- navigation
   --[[ require("lt.plugins.leap"), ]]
-  require("lt.plugins.hop"),
+  -- require("lt.plugins.hop"),
+  require("lt.plugins.flash"),
 
   -- fuzzy finder
   require("lt.plugins.telescope"),
@@ -82,6 +83,7 @@ return {
   require("lt.plugins.mason-null-ls"),
 
   require("lt.plugins.null-ls"),
+  -- require("lt.plugins.typescript-tools"),
   require("lt.plugins.lsp"),
 
   -- autocompletion
@@ -105,6 +107,7 @@ return {
   require("lt.plugins.refactoring"),
 
   -- tree
+  -- require("lt.plugins.oil"),
   require("lt.plugins.tree"),
 
   -- tests

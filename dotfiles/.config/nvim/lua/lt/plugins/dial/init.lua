@@ -1,29 +1,6 @@
 return {
   "monaqa/dial.nvim",
   init = function()
-    local r = require("lt.utils.remaps")
-
-    r.noremap("n", "<C-a>", function()
-      require("dial.map").inc_normal()
-    end, "Dial increment normal")
-    r.noremap("n", "<C-x>", function()
-      require("dial.map").dec_normal()
-    end, "Dial decrement normal")
-    r.noremap("v", "<C-a>", function()
-      require("dial.map").inc_visual()
-    end, "Dial increment visual")
-    r.noremap("v", "<C-x>", function()
-      require("dial.map").dec_visual()
-    end, "Dial decrement visual")
-
-    r.noremap("v", "g<C-a>", function()
-      require("dial.map").inc_gvisual()
-    end, "Dial increment global visual")
-    r.noremap("v", "g<C-x>", function()
-      require("dial.map").dec_gvisual()
-    end, "Dial decrement global visual")
-  end,
-  config = function()
     local dial_config = require("dial.config")
 
     local augend = require("dial.augend")
@@ -90,5 +67,34 @@ return {
       },
     })
   end,
-  keys = { "<C-a>", "<C-x>" },
+  keys = {
+    { "<C-a>",  function() require("dial.map").inc_normal() end,  noremap = true },
+    { "<C-x>",  function() require("dial.map").dec_normal() end,  noremap = true },
+    { "g<C-a>", function() require("dial.map").inc_gnormal() end, noremap = true },
+    { "g<C-x>", function() require("dial.map").dec_gnormal() end, noremap = true },
+    {
+      "<C-a>",
+      function() require("dial.map").inc_visual() end,
+      noremap = true,
+      mode = 'v'
+    },
+    {
+      "<C-x>",
+      function() require("dial.map").dec_visual() end,
+      noremap = true,
+      mode = 'v'
+    },
+    {
+      "g<C-a>",
+      function() require("dial.map").inc_gvisual() end,
+      noremap = true,
+      mode = 'v'
+    },
+    {
+      "g<C-x>",
+      function() require("dial.map").dec_gvisual() end,
+      noremap = true,
+      mode = 'v'
+    },
+  }
 }

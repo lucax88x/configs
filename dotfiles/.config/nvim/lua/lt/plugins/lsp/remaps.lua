@@ -89,7 +89,7 @@ function M.set_default_on_buffer(client, bufnr)
       filter = function(format_client)
         if is_typescript then
           if format_client.name == "null-ls" then
-            --[[ vim.notify("format " .. filetype .. " with " .. format_client.name) ]]
+            -- vim.notify("format " .. filetype .. " with " .. format_client.name)
             return true
           else
             return false
@@ -125,9 +125,12 @@ function M.set_default_on_buffer(client, bufnr)
   end
 
   if cap.renameProvider then
-    -- buf_set_keymap("n", "<leader>rr", vim.lsp.buf.rename, "Rename")
-    buf_set_keymap("n", "<leader>rr", ":IncRename ", "Rename")
-    -- function() return ":IncRename " .. vim.fn.expand("<cword>") end, desc = "Rename", expr = true },
+    buf_set_keymap("n", "<leader>rR", vim.lsp.buf.rename, "Rename")
+    -- buf_set_keymap("n", "<leader>rr", ":IncRename ", "Rename")
+    --
+    buf_set_keymap("n", "<leader>rr", function()
+      return ":IncRename " .. vim.fn.expand("<cword>")
+    end, "Rename", { expr = true })
   end
 
   buf_set_keymap("n", "<leader>lsc", function()

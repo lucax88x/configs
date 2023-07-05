@@ -1,7 +1,7 @@
 return {
   "jose-elias-alvarez/null-ls.nvim",
   event = { "BufReadPre", "BufNewFile", "BufEnter" },
-  dependencies = { "mason.nvim" },
+  dependencies = { "mason.nvim", "jose-elias-alvarez/typescript.nvim" },
   config = function()
     local nls = require("null-ls")
     local formatting = nls.builtins.formatting
@@ -53,6 +53,7 @@ return {
         -- code_actions.gitsigns,
         code_actions.refactoring,
         code_actions.shellcheck,
+        require("typescript.extensions.null-ls.code-actions")
       },
     })
   end,
