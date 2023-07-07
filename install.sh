@@ -25,61 +25,6 @@ cd $TEMP_DIR || exit
 
 echo '# GLOBAL SOFTWARE #'
 
-installYabai
-installHammerspoon
-installJetbrainsMono
-installOpensans
-installRoboto
-installFontawesome
-installFreetype
-installSFMono
-installSFPro
-installHackNerdFont
-
-# if ! [ -f ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox ]; then
-# 	echo INSTALLING JETBRAINS TOOLBOX
-#
-# 	paru -S --noconfirm jetbrains-toolbox
-# else
-# 	echo JETBRAINS TOOLBOX ALREADY INSTALLED
-# fi
-
-# if ! [ -x "$(command -v smerge)" ]; then
-# 	echo INSTALLING SUBLIME MERGE
-#
-# 	curl -O https://download.sublimetext.com/sublimehq-pub.gpg && sudo yay-key --add sublimehq-pub.gpg && sudo yay-key --lsign-key 8A8F901A && rm sublimehq-pub.gpg
-# 	echo -e "\n[sublime-text]\nServer = https://download.sublimetext.com/arch/stable/x86_64" | sudo tee -a /etc/yay.conf
-# 	paru -Sy --noconfirm sublime-merge
-# else
-# 	echo SUBLIME MERGE ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v dotnet)" ]; then
-# 	echo INSTALLING DOTNETCORE SDK
-#
-# 	paru -Sy --noconfirm dotnet-sdk-bin
-# 	paru -Sy --noconfirm aspnet-runtime-bin
-# else
-# 	echo DOTNETCORE SDK ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v node)" ]; then
-# 	echo INSTALLING NODE
-#
-# 	curl https://get.volta.sh | bash
-
-# else
-# 	echo VOLTA ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v yarn)" ]; then
-# 	echo INSTALLING YARN
-#
-# 	paru -Sy --noconfirm yarn
-# else
-# 	echo YARN ALREADY INSTALLED
-# fi
-#
 # if ! [ -x "$(command -v docker)" ]; then
 # 	echo INSTALLING DOCKER
 #
@@ -103,30 +48,7 @@ installHackNerdFont
 # 	echo DOCKER-COMPOSE ALREADY INSTALLED
 # fi
 #
-# if ! [ -x "$(command -v teams)" ]; then
-# 	echo INSTALLING TEAMS
-#
-# 	paru -Sy --noconfirm teams
-# else
-# 	echo TEAMS ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v kubectl)" ]; then
-# 	echo INSTALLING KUBECTL
-#
-# 	paru -Sy --noconfirm kubectl-bin
-# else
-# 	echo KUBECTL ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v slack)" ]; then
-# 	echo INSTALLING SLACK
-#
-# 	paru -Sy --noconfirm slack-desktop
-# else
-# 	echo SLACK ALREADY INSTALLED
-# fi
-#
+
 # if [ ! -f ~/.config/i3/config ]; then
 # 	echo INSTALLING I3
 #
@@ -186,37 +108,6 @@ installHackNerdFont
 # 	paru -Sy --noconfirm libsecret
 # else
 # 	echo KEYRING ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v fzf)" ]; then
-# 	echo INSTALLING FZF
-#
-# 	paru -Sy --noconfirm fzf
-# else
-# 	echo FZF ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v delta)" ]; then
-# 	echo INSTALLING DELTA
-#
-# 	paru -Sy --noconfirm git-delta
-# else
-# 	echo DELTA ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v rg)" ]; then
-# 	echo INSTALLING RG
-# 	paru -Sy --noconfirm ripgrep
-# else
-# 	echo RG ALREADY INSTALLED
-# fi
-#
-# if ! [ -x "$(command -v fd)" ]; then
-# 	echo INSTALLING FD
-#
-# 	paru -Sy --noconfirm fd
-# else
-# 	echo FD ALREADY INSTALLED
 # fi
 #
 # if ! [ -x "$(command -v ranger)" ]; then

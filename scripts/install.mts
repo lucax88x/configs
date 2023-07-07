@@ -1,10 +1,9 @@
 #!/usr/bin/env npx --package=ts-node -- ts-node-esm --swc
 import "zx/globals";
 
-import { installers } from "./installers.mts";
+// suppress stdout
+$.verbose = true;
 
-for (let i = 0; i < installers.length; i++) {
-  const installer = installers[i];
+import { installAll } from "./installers.mts";
 
-  await installer();
-}
+installAll();

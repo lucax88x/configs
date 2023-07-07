@@ -1,32 +1,59 @@
-import { spinner } from "zx/experimental";
+// import { spinner } from "zx/experimental";
 
-type DISTROS = "OSX" | "ARCH";
+export type DISTROS = "OSX" | "ARCH" | "WIN";
 
-const DISTRO: DISTROS = "OSX";
+export async function askConfirmation(quest: string): Promise<boolean> {
+  let confirmation = await question(`${quest} (y)`);
+
+  return confirmation.toLowerCase() === "y";
+}
 
 export function exists(command: string) {
+  return async () => {
+    try {
+      let node = await which(command);
+      return node !== "";
+    } catch (error) {
+      return false;
+    }
+  };
+}
+
+export function existsByPwsh(command: string) {
   return async () => !!(await $`command -v ${command}`);
 }
 
-export const noop = async () => false;
+export type Installer = [() => Promise<boolean>, () => Promise<boolean>];
 
-const debug = true;
+export const noop: Installer = [async () => true, async () => false];
+
+const debug = false;
 export function installByParu(pkg: string) {
   return async () => {
     if (debug) {
-      console.debug("would install by paru");
-    } else {
-      await $`paru -S --noconfirm ${pkg}`;
+      console.info(chalk.red("would install by paru"));
+      await $`sleep 1`;
+      return true;
     }
+
+    $.verbose = true;
+    await $`paru -S --noconfirm ${pkg}`;
 
     return true;
   };
 }
 
-export function installByBrew(pkg: string) {
+export function installByBrew(pkg: string, asCask: boolean = false) {
   return async () => {
     if (debug) {
-      console.debug("would install by brew");
+      console.info(chalk.red("would install by brew"));
+      await $`sleep 1`;
+      return true;
+    }
+
+    $.verbose = true;
+    if (asCask) {
+      await $`brew install --cask ${pkg}`;
     } else {
       await $`brew install ${pkg}`;
     }
@@ -35,39 +62,49 @@ export function installByBrew(pkg: string) {
   };
 }
 
-export function installByBrewAsCask(pkg: string) {
+export function installByScoop(pkg: string) {
   return async () => {
     if (debug) {
-      console.debug("would install by brew");
-    } else {
-      await $`brew install --cask ${pkg}`;
+      console.info(chalk.red("would install by scoop"));
+      await $`sleep 2`;
+      return true;
     }
+
+    $.verbose = true;
+    await $`scoop install ${pkg}`;
 
     return true;
   };
 }
 
-export async function install({
+export function install({
   command,
-  condition,
   installers,
 }: {
   command: string;
-  condition: () => Promise<boolean>;
-  installers: Record<DISTROS, () => Promise<boolean>>;
+  installers: Record<DISTROS, Installer>;
 }) {
-  if (!(await condition())) {
-    console.info(`Installing ${command} for ${DISTRO}`);
-    const fn = installers[DISTRO];
+  return async (distro: DISTROS) => {
+    console.info(chalk.blue(`checking ${command}`));
 
-    const result = await spinner(command, fn);
+    const [condition, installer] = installers[distro];
 
-    if (result) {
-      console.info(`Installed ${command}`);
+    if (!(await condition())) {
+      if (
+        !(await askConfirmation(`are you sure you want to install ${command}?`))
+      ) {
+        return;
+      }
+
+      // const result = await spinner(`installing ${command}`, () => installer());
+      console.info(chalk.blue(`installing ${command}`));
+      const result = await installer();
+
+      if (result) {
+        console.info(chalk.green(`installed ${command}`));
+      }
     } else {
-      console.info(`Skipping ${command}`);
+      console.info(chalk.grey(`already installed ${command}`));
     }
-  } else {
-    console.info(`Already installed ${command}`);
-  }
+  };
 }
