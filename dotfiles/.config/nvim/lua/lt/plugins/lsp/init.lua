@@ -171,6 +171,7 @@ return {
       gopls = {},
       terraformls = {},
       clangd = {},
+      azure_pipelines_ls = {},
     }
 
     local default_lsp_config = {

@@ -3,6 +3,7 @@ import {
   DISTROS,
   askConfirmation,
   exists,
+  existsApplicationInOsx,
   existsByPwsh,
   install,
   installByBrew,
@@ -229,7 +230,10 @@ const chrome = install({
   command: "google-chrome",
   installers: {
     WIN: [existsByPwsh("google-chrome-stable"), installByScoop("kubectl")],
-    OSX: [exists("google-chrome-stable"), installByBrew("google-chrome", true)],
+    OSX: [
+      existsApplicationInOsx("Google Chrome"),
+      installByBrew("google-chrome", true),
+    ],
     ARCH: [
       exists("google-chrome-stable"),
       installByParu("google-chrome libvdpau vdpauinfo"),
@@ -241,7 +245,10 @@ const telegram = install({
   command: "telegram-desktop",
   installers: {
     WIN: [existsByPwsh("telegram-desktop"), installByScoop("telegram-desktop")],
-    OSX: [exists("telegram-desktop"), installByBrew("telegram-desktop", true)],
+    OSX: [
+      existsApplicationInOsx("Telegram Desktop"),
+      installByBrew("telegram-desktop", true),
+    ],
     ARCH: [exists("telegram-desktop"), installByParu("telegram-desktop")],
   },
 });
@@ -250,7 +257,7 @@ const slack = install({
   command: "slack",
   installers: {
     WIN: [exists("slack"), installByScoop("slack")],
-    OSX: [exists("slack"), installByBrew("slack")],
+    OSX: [existsApplicationInOsx("Slack"), installByBrew("slack")],
     ARCH: [exists("slack"), installByParu("slack")],
   },
 });
@@ -260,7 +267,7 @@ const jetbrainsToolbox = install({
   command: "jetbrains toolbox",
   installers: {
     WIN: [exists("jetbrains-toolbox"), installByScoop("jetbrains-toolbox")],
-    OSX: [exists("jetbrains-toolbox"), installByBrew("jetbrains-toolbox")],
+    OSX: [existsApplicationInOsx("Jetbrains Toolbox"), installByBrew("jetbrains-toolbox")],
     ARCH: [exists("jetbrains-toolbox"), installByParu("jetbrains-toolbox")],
   },
 });
@@ -271,7 +278,7 @@ const sublimeMerge = install({
   command: "sublime merge",
   installers: {
     WIN: [exists("smerge"), installByScoop("sublime-merge")],
-    OSX: [exists("smerge"), installByBrew("sublime-merge")],
+    OSX: [existsApplicationInOsx("Sublime Merge"), installByBrew("sublime-merge")],
     ARCH: [exists("smerge"), installByParu("sublime-merge")],
   },
 });

@@ -11,8 +11,18 @@ export async function askConfirmation(quest: string): Promise<boolean> {
 export function exists(command: string) {
   return async () => {
     try {
-      let node = await which(command);
-      return node !== "";
+      let found = await which(command);
+      return found !== "";
+    } catch (error) {
+      return false;
+    }
+  };
+}
+
+export function existsApplicationInOsx(app: string) {
+  return async () => {
+    try {
+      return await fs.exists(`/Applications/${app}.app`);
     } catch (error) {
       return false;
     }
