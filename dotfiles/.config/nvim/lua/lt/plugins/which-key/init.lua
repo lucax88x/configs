@@ -17,6 +17,8 @@ return {
       ["ps"] = { name = "session" },
       w = { name = "window" },
       g = { name = "git" },
+      gd = { name = "diffview" },
+      h = { name = "hunks" },
       t = { name = "types" },
       r = { name = "refactor" },
       l = { name = "lsp" },

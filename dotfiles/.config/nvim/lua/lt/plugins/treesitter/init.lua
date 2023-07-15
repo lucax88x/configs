@@ -4,7 +4,6 @@ return {
     -- shows treesitter context in end of parenthesis
     "haringsrob/nvim_context_vt",
     "RRethy/nvim-treesitter-textsubjects",
-    "nvim-treesitter/nvim-treesitter-textobjects",
   },
   event = { "BufReadPost", "BufNewFile", "BufEnter" },
   config = function()

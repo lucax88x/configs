@@ -52,19 +52,17 @@ return {
     end
 
     local function try_attach_inlay_hints(client, bufnr)
-      if not client.server_capabilities.inlayHintProvider then
-        vim.notify('has no inlay hints')
-      else
+      if client.server_capabilities.inlayHintProvider then
         vim.api.nvim_create_augroup("lsp_augroup", { clear = true })
 
         vim.api.nvim_create_autocmd("InsertEnter", {
           buffer = bufnr,
-          callback = function() vim.lsp.buf.inlay_hint(bufnr, true) end,
+          callback = function() vim.lsp.inlay_hint(bufnr, true) end,
           group = "lsp_augroup",
         })
         vim.api.nvim_create_autocmd("InsertLeave", {
           buffer = bufnr,
-          callback = function() vim.lsp.buf.inlay_hint(bufnr, false) end,
+          callback = function() vim.lsp.inlay_hint(bufnr, false) end,
           group = "lsp_augroup",
         })
       end

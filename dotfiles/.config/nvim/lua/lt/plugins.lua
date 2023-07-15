@@ -52,10 +52,11 @@ return {
 
   -- treesitter
   require("lt.plugins.treesitter"),
-  require("lt.plugins.mini-ai"),
+  -- require("lt.plugins.mini-ai"),
 
   -- git
-  require("lt.plugins.fugitive"),
+  -- require("lt.plugins.fugitive"),
+  require("lt.plugins.neogit"),
   require("lt.plugins.gitsigns"),
 
   -- quick list
@@ -107,8 +108,8 @@ return {
   require("lt.plugins.refactoring"),
 
   -- tree
-  -- require("lt.plugins.oil"),
-  require("lt.plugins.tree"),
+  require("lt.plugins.oil"),
+  -- require("lt.plugins.tree"),
 
   -- tests
   require("lt.plugins.neotest"),
