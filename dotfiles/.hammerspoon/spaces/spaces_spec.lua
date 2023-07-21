@@ -5,212 +5,221 @@ helpers.setDefault()
 local spaces = require("spaces.init")
 local ScreenBuilder = require("spec.mocks.hammerspoon.screen")
 local SpaceBuilder = require("spec.mocks.hammerspoon.space")
+local WindowBuilder = require("spec.mocks.hammerspoon.window")
 
 describe("spaces", function()
-	hs = helpers.resetMocks()
+  hs = helpers.resetMocks()
 
-	describe("move_to_space", function()
-		hs.screen = ScreenBuilder:new():withMainScreen(5):build()
+  describe("move_to_space", function()
+    hs.screen = ScreenBuilder:new():withMainScreen(5):build()
 
-		it("should return error if we cannot get spaces", function()
-			-- given
-			hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, nil):build()
+    it("should return error if we cannot get spaces", function()
+      -- given
+      hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, nil):build()
 
-			-- when
-			local _, error = spaces.move_to_space(5)
+      -- when
+      local _, error = spaces.move_to_space(5)
 
-			-- then
-			assert.are.same("cannot get spaces", error)
-		end)
+      -- then
+      assert.are.same("cannot get spaces", error)
+    end)
 
-		it("should not move if cant find index", function()
-			-- given
-			hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, { 1 }):build()
+    it("should not move if cant find index", function()
+      -- given
+      hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, { 1 }):build()
 
-			-- when
-			local result, error = spaces.move_to_space(2)
+      -- when
+      local result, error = spaces.move_to_space(2)
 
-			-- then
-			assert.are.same("there's no space to move", error)
-			assert.are.same(nil, result)
-		end)
+      -- then
+      assert.are.same("there's no space to move", error)
+      assert.are.same(nil, result)
+    end)
 
-		it("should move", function()
-			-- given
-			hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, { 1, 2, 3 }):withGotoSpace(true, nil):build()
+    it("should move", function()
+      -- given
+      hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, { 1, 2, 3 }):withGotoSpace(true, nil):build()
 
-			-- when
-			local result, error = spaces.move_to_space(3)
+      -- when
+      local result, error = spaces.move_to_space(3)
 
-			-- then
-			assert.are.same(nil, error)
-			assert.are.same(true, result)
-		end)
-	end)
+      -- then
+      assert.are.same(nil, error)
+      assert.are.same(true, result)
+    end)
+  end)
 
-	describe("purge_empty_spaces", function()
-		hs.screen = ScreenBuilder:new():withMainScreen(5):build()
+  describe("purge_empty_spaces", function()
+    hs.screen = ScreenBuilder:new():withMainScreen(5):build()
 
-		it("should return error if we cannot get spaces", function()
-			-- given
-			hs.spaces = SpaceBuilder:new():withAllSpaces(nil):build()
+    it("should return error if we cannot get spaces", function()
+      -- given
+      hs.spaces = SpaceBuilder:new():withAllSpaces(nil):build()
 
-			-- when
-			local _, error = spaces.purge_empty_spaces()
+      -- when
+      local _, error = spaces.purge_empty_spaces()
 
-			-- then
-			assert.are.same("cannot get spaces", error)
-		end)
+      -- then
+      assert.are.same("cannot get spaces", error)
+    end)
 
-		it("should purge nothing if only your space remains", function()
-			-- given
-			hs.spaces = SpaceBuilder:new():withAllSpaces({ "screen5-uuid", { 1 } }):withFocusedSpace(1):build()
+    it("should purge nothing if only your space remains", function()
+      -- given
+      hs.spaces = SpaceBuilder:new():withAllSpaces({ "screen5-uuid", { 1 } }):withFocusedSpace(1):build()
 
-			-- when
-			local result, error = spaces.purge_empty_spaces()
+      -- when
+      local result, error = spaces.purge_empty_spaces()
 
-			-- then
-			assert.are.same(nil, error)
-			assert.are.same({}, result)
-		end)
+      -- then
+      assert.are.same(nil, error)
+      assert.are.same({}, result)
+    end)
 
-		it("should skip if cannot remove specific space", function()
-			-- given
-			hs.spaces = SpaceBuilder
-				:new()
-				:withAllSpaces({ "screen1-uuid", { 1, 2, 3 } })
-				:withFocusedSpace(1)
-				-- how to argument assert?
-				:withRemoveSpace(nil, "cannot remove!")
-				:build()
+    it("should skip if cannot remove specific space", function()
+      -- given
+      hs.spaces = SpaceBuilder:new()
+          :withAllSpaces({ "screen1-uuid", { 1, 2, 3 } })
+          :withFocusedSpace(1)
+          :withRemoveSpace(function(space_id, _)
+            if space_id == 2 then
+              return { nil, "cannot remove!" }
+            end
+          end)
+          :build()
 
-			-- when
-			local result, error = spaces.purge_empty_spaces()
+      -- when
+      local result, error = spaces.purge_empty_spaces()
 
-			-- then
-			assert.are.same(nil, error)
-			assert.are.same({ 2 }, result)
-		end)
+      -- then
+      assert.are.same(nil, error)
+      assert.are.same({ 2 }, result)
+    end)
 
-		it("should purge all other spaces if they have no windows", function()
-			-- given
-			hs.spaces = SpaceBuilder:new()
-				:withAllSpaces({ "screen1-uuid", { 1, 2, 3 }, "screen2-uuid", { 5, 8, 10 } })
-				:withFocusedSpace(1)
-				:build()
+    it("should purge all other spaces if they have no windows", function()
+      -- given
+      hs.spaces = SpaceBuilder:new()
+          :withAllSpaces({ "screen1-uuid", { 1, 2, 3 }, "screen2-uuid", { 5, 8, 10 } })
+          :withFocusedSpace(1)
+          :withWindowsForSpace(1, { 10, 11, 12 })
+          :withWindowsForSpace(2, { 20, 21, 22 })
+          :withWindowsForSpace(8, { 80 })
+          :build()
 
-			-- when
-			local result, error = spaces.purge_empty_spaces()
+      hs.window =
+          WindowBuilder:new():withWindow(10):withWindow(11):withWindow(12):withWindow(21):withWindow(80):build()
 
-			-- then
-			assert.are.same(nil, error)
-			assert.are.same({ 2, 3, 5, 8, 10 }, result)
-		end)
-	end)
+      -- when
+      local result, error = spaces.purge_empty_spaces()
 
-	describe("kill_current_space", function()
-		hs.screen = ScreenBuilder:new():withMainScreen(5):build()
+      -- then
+      assert.are.same(nil, error)
+      assert.are.same({ 3, 5, 10 }, result)
+    end)
+  end)
 
-		it("should not kill any and give error because no other spaces", function()
-			-- given
-			hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, nil):build()
+  describe("kill_current_space", function()
+    hs.screen = ScreenBuilder:new():withMainScreen(5):build()
 
-			-- when
-			local _, error = spaces.kill_current_space()
+    it("should not kill any and give error because no other spaces", function()
+      -- given
+      hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, nil):build()
 
-			-- then
-			assert.are.same("cannot get spaces", error)
-		end)
+      -- when
+      local _, error = spaces.kill_current_space()
 
-		it("should not kill any and give error because no other spaces", function()
-			-- given
-			hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, { 1 }):withFocusedSpace(1):build()
+      -- then
+      assert.are.same("cannot get spaces", error)
+    end)
 
-			-- when
-			local _, error = spaces.kill_current_space()
+    it("should not kill any and give error because no other spaces", function()
+      -- given
+      hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, { 1 }):withFocusedSpace(1):build()
 
-			-- then
-			assert.are.same("cannot kill because last space", error)
-		end)
+      -- when
+      local _, error = spaces.kill_current_space()
 
-		it("should give error if cannot move to next", function()
-			-- given
-			hs.spaces = SpaceBuilder:new()
-				:withSpacesForScreen(5, { 1, 2 })
-				:withFocusedSpace(1)
-				:withGotoSpace(nil, "cannot move!")
-				:build()
+      -- then
+      assert.are.same("cannot kill because last space", error)
+    end)
 
-			-- when
-			local _, error = spaces.kill_current_space()
+    it("should give error if cannot move to next", function()
+      -- given
+      hs.spaces = SpaceBuilder:new()
+          :withSpacesForScreen(5, { 1, 2 })
+          :withFocusedSpace(1)
+          :withGotoSpace(nil, "cannot move!")
+          :build()
 
-			-- then
-			assert.are.same("cannot move!", error)
-		end)
+      -- when
+      local _, error = spaces.kill_current_space()
 
-		it("should give error if cannot kill, even if it moves", function()
-			-- given
-			hs.spaces = SpaceBuilder:new()
-				:withSpacesForScreen(5, { 1, 2 })
-				:withFocusedSpace(1)
-				:withGotoSpace(true, nil)
-				:withRemoveSpace(nil, "cannot remove!")
-				:build()
+      -- then
+      assert.are.same("cannot move!", error)
+    end)
 
-			-- when
-			local _, error = spaces.kill_current_space()
+    it("should give error if cannot kill, even if it moves", function()
+      -- given
+      hs.spaces = SpaceBuilder:new()
+          :withSpacesForScreen(5, { 1, 2 })
+          :withFocusedSpace(1)
+          :withGotoSpace(true, nil)
+          :withRemoveSpace(nil, "cannot remove!")
+          :build()
 
-			-- then
-			assert.are.same("cannot remove!", error)
-		end)
+      -- when
+      local _, error = spaces.kill_current_space()
 
-		it("should move to next space and kill current", function()
-			-- given
-			hs.spaces = SpaceBuilder:new()
-				:withSpacesForScreen(5, { 1, 2 })
-				:withFocusedSpace(1)
-				:withGotoSpace(true, nil)
-				:withRemoveSpace(true, nil)
-				:build()
+      -- then
+      assert.are.same("cannot remove!", error)
+    end)
 
-			-- when
-			local result, error = spaces.kill_current_space()
+    it("should move to next space and kill current", function()
+      -- given
+      hs.spaces = SpaceBuilder:new()
+          :withSpacesForScreen(5, { 1, 2 })
+          :withFocusedSpace(1)
+          :withGotoSpace(true, nil)
+          :withRemoveSpace(true, nil)
+          :build()
 
-			-- then
-			assert.are.same(nil, error)
-			assert.are.same(2, result)
-		end)
+      -- when
+      local result, error = spaces.kill_current_space()
 
-		it("should focus to first space if we want to remove last space", function()
-			-- given
-			hs.spaces = SpaceBuilder:new()
-				:withSpacesForScreen(5, { 1, 2 })
-				:withFocusedSpace(2)
-				:withGotoSpace(true, nil)
-				:withRemoveSpace(true, nil)
-				:build()
+      -- then
+      assert.are.same(nil, error)
+      assert.are.same(2, result)
+    end)
 
-			-- when
-			local result, error = spaces.kill_current_space()
+    it("should focus to first space if we want to remove last space", function()
+      -- given
+      hs.spaces = SpaceBuilder:new()
+          :withSpacesForScreen(5, { 1, 2 })
+          :withFocusedSpace(2)
+          :withGotoSpace(true, nil)
+          :withRemoveSpace(true, nil)
+          :build()
 
-			-- then
-			assert.are.same(nil, error)
-			assert.are.same(1, result)
-		end)
-	end)
+      -- when
+      local result, error = spaces.kill_current_space()
 
-	describe("create_space_and_move_current_window", function()
-		hs.screen = ScreenBuilder:new():withMainScreen(5):build()
+      -- then
+      assert.are.same(nil, error)
+      assert.are.same(1, result)
+    end)
+  end)
 
-		it("wip", function()
-			-- given
-			hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, nil):build()
+  describe("create_space_and_move_current_window", function()
+    hs.screen = ScreenBuilder:new():withMainScreen(5):build()
 
-			-- when
-			local _, error = spaces.create_space_and_move_current_window()
+    it("wip", function()
+      -- given
+      hs.spaces = SpaceBuilder:new():withSpacesForScreen(5, nil):build()
 
-			-- then
-			assert.are.same("cannot get spaces", error)
-		end)
-	end)
+      -- when
+      local _, error = spaces.create_space_and_move_current_window()
+
+      -- then
+      assert.are.same("cannot get spaces", error)
+    end)
+  end)
 end)

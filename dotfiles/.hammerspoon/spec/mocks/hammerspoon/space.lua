@@ -17,6 +17,11 @@ function SpaceBuilder:new()
       return self.focusedSpaceId
     end,
 
+    windowsForSpaceTable = {},
+    windowsForSpace = function(spaceId)
+      return self.windowsForSpaceTable[spaceId]
+    end,
+
     gotoSpaceResult = { nil, nil },
     gotoSpace = function()
       return self.gotoSpaceResult[1], self.gotoSpaceResult[2]
@@ -38,8 +43,13 @@ function SpaceBuilder:withSpacesForScreen(screenId, spacesForScreen)
   return self
 end
 
-function SpaceBuilder:withFocusedSpace(spaceId)
-  self.focusedSpaceId = spaceId
+function SpaceBuilder:withFocusedSpace(focusedSpaceId)
+  self.focusedSpaceId = focusedSpaceId
+  return self
+end
+
+function SpaceBuilder:withWindowsForSpace(spaceId, windowIds)
+  self.windowsForSpaceTable[spaceId] = windowIds
   return self
 end
 

@@ -42,15 +42,18 @@ function M.purge_empty_spaces()
       if space_id == focused_space_id then
         log:i("keeping current space " .. space_id)
       else
-        -- hs.spaces.windowsForSpace(space_id)
-        log:i("purging space " .. space_id)
+        if not is_space_empty(space_id) then
+          log:i("purging space " .. space_id)
 
-        local _, remove_err = hs.spaces.removeSpace(space_id, false)
+          local _, remove_err = hs.spaces.removeSpace(space_id, false)
 
-        if remove_err == nil then
-          table.insert(purged_space_ids, space_id)
+          if remove_err == nil then
+            table.insert(purged_space_ids, space_id)
+          else
+            log:i("cannot purge space " .. space_id .. " because " .. remove_err)
+          end
         else
-          log:i("cannot purge space " .. space_id .. " because " .. remove_err)
+          log:i("cannot purge space " .. space_id .. " because is not empty!")
         end
       end
     end
@@ -136,6 +139,27 @@ function M.kill_current_space()
     log:e("cannot remove space" .. remove_err)
     return nil, remove_err
   end
+end
+
+function exists_window(id)
+  local window = hs.window.get(id)
+  return window ~= nil
+end
+
+function is_space_empty(space_id)
+  local window_ids_for_space = hs.spaces.windowsForSpace(space_id)
+
+  local has_at_least_one_window = false
+  if window_ids_for_space ~= nil then
+    for _, window_id in ipairs(window_ids_for_space) do
+      if exists_window(window_id) then
+        has_at_least_one_window = true
+        break
+      end
+    end
+  end
+
+  return has_at_least_one_window
 end
 
 return M

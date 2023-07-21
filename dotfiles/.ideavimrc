@@ -98,6 +98,13 @@ nnoremap <leader>ss :action FindInPath<CR>
 " nnoremap <leader>tl :action Rerun<CR>
 " nnoremap <leader>tf :action RerunFailedTests<CR>
 
+" Tests
+nnoremap <leader>;r :action RiderUnitTestRunContextAction<CR>
+nnoremap <leader>;d :action RiderUnitTestDebugContextAction<CR>
+nnoremap <leader>;t :action RiderUnitTestRepeatPreviousRunAction<CR>
+nnoremap <leader>;l :action RiderUnitTestRunSolutionAction<CR>
+nnoremap <leader>;s :action RiderUnitTestSessionAbortAction<CR>
+
 " Undo
 nnoremap <leader>u :action LocalHistory.ShowHistory<CR>
 

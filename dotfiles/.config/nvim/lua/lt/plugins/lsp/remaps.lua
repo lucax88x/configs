@@ -30,11 +30,11 @@ function M.set_default_on_buffer(client, bufnr)
   -- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
   if cap.definitionProvider then
-    buf_set_keymap("n", "gd", vim.lsp.buf.definition, "Preview definition")
+    buf_set_keymap("n", "gd", vim.lsp.buf.definition, "Go to definition")
   end
-  -- if cap.declarationProvider then
-  -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  -- end
+  if cap.declarationProvider then
+    buf_set_keymap("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+  end
   if cap.implementationProvider then
     buf_set_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
     buf_set_keymap("n", "gI", function() require("fzf-lua").lsp_implementations() end, "Search implementations")
