@@ -18,8 +18,6 @@ ARRAY_OSX=(
     .config/nvim
     .config/ranger/rc.conf
     .config/yabai
-    .config/skhd
-    .config/sketchybar
     .gitconfig
     .hammerspoon
     bin
@@ -28,8 +26,6 @@ ARRAY_OSX=(
     .p10k.zsh
     .zprofile
     .tmux.conf
-    .tmuxinator
-    .imwheelrc
     .local/share/navi/cheats/lucatrazzi__cheats
     .ssh/config
     backgrounds
@@ -38,8 +34,7 @@ ARRAY_OSX=(
 ARRAY_LINUX=(
     .config/rofi
     .config/dunst/dunstrc
-    .config/kitty/kitty.conf
-    .config/picom/picom.conf
+    .config/kitty
     .config/nvim
     .config/X11
     .config/polybar
@@ -55,12 +50,10 @@ ARRAY_LINUX=(
     .p10k.zsh
     .zprofile
     .tmux.conf
-    .tmuxinator
     .imwheelrc
     .local/share/navi/cheats/lucatrazzi__cheats
     .ssh/config
     backgrounds
-    .i3/i3-resurrect
 )
 
 function sync()

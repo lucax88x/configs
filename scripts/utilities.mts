@@ -12,9 +12,7 @@ export function exists(command: string) {
   return async (): Promise<Condition> => {
     try {
       const found = await which(command);
-      if (found !== "") return "exists";
-
-      return "not exists";
+      return toCondition(found !== "");
     } catch (error) {
       return "not exists";
     }
@@ -24,10 +22,7 @@ export function exists(command: string) {
 export function existsApplicationInOsx(app: string) {
   return async (): Promise<Condition> => {
     try {
-      const found = await fs.exists(`/Applications/${app}.app`);
-      if (found) return "exists";
-
-      return "not exists";
+      return toCondition(await fs.exists(`/Applications/${app}.app`));
     } catch (error) {
       return "not exists";
     }
@@ -37,10 +32,7 @@ export function existsApplicationInOsx(app: string) {
 export function existsByPwsh(command: string) {
   return async (): Promise<Condition> => {
     try {
-      const found = !!(await $`command -v ${command}`);
-      if (found) return "exists";
-
-      return "not exists";
+      return toCondition(!!(await $`command -v ${command}`));
     } catch (error) {
       return "not exists";
     }
@@ -49,6 +41,8 @@ export function existsByPwsh(command: string) {
 
 export type Installer = [() => Promise<Condition>, () => Promise<boolean>];
 export type Condition = "exists" | "not exists" | "skipped";
+export const toCondition = (bool: boolean): Condition =>
+  bool ? "exists" : "not exists";
 
 export const noop: Installer = [async () => "skipped", async () => false];
 

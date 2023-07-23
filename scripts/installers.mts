@@ -195,7 +195,7 @@ const rg = install({
   installers: {
     WIN: [existsByPwsh("rg"), installByScoop("rg")],
     OSX: [exists("rg"), installByBrew("rg")],
-    ARCH: [exists("rg"), installByParu("rg")],
+    ARCH: [exists("rg"), installByParu("ripgrep-git")],
   },
 });
 
@@ -236,7 +236,7 @@ const chrome = install({
     ],
     ARCH: [
       exists("google-chrome-stable"),
-      installByParu("google-chrome libvdpau vdpauinfo"),
+      installByParu("google-chrome"),
     ],
   },
 });
@@ -330,6 +330,10 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   delta,
   fd,
   kubectl,
+
+
+  // i3
+  // kde?
 
   // ui
   chrome,

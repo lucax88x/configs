@@ -1,4 +1,4 @@
-import { Installer } from "./utilities.mjs";
+import { Condition, Installer, toCondition } from "./utilities.mts";
 
 const email = "lucax88x@gmail.com";
 
@@ -11,6 +11,7 @@ const createSshKey = (type: string, output: string) => async () => {
 };
 
 export const createEd25119SshKey = [
-  () => fs.exists("~/.ssh/id_ed25519"),
+  async (): Promise<Condition> =>
+    toCondition(await fs.exists("~/.ssh/id_ed25519")),
   createSshKey("ed25519", "~/.ssh/id_ed25519"),
 ] satisfies Installer;
