@@ -6,6 +6,7 @@ return {
     "haydenmeade/neotest-jest",
     "marilari88/neotest-vitest",
     "Issafalcon/neotest-dotnet",
+    "nvim-neotest/neotest-plenary",
   },
   keys = {
     {
@@ -72,7 +73,8 @@ return {
           jestCommand = "jest --watch ",
         }),
         require('neotest-vitest'),
-        require('neotest-dotnet')
+        require('neotest-dotnet'),
+        require("neotest-plenary"),
       },
     })
   end,

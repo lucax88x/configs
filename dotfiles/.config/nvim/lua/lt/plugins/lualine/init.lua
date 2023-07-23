@@ -84,12 +84,13 @@ return {
         },
         lualine_z = {
           { "searchcount" },
+          { "selectioncount" },
           function()
             return " " .. os.date("%R")
           end,
         },
       },
-      extensions = { "neo-tree", "nvim-dap-ui", "quickfix" },
+      extensions = { "nvim-dap-ui", "quickfix" },
     }
   end,
 }

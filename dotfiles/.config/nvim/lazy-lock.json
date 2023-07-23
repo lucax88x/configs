@@ -41,6 +41,7 @@
   "neotest": { "branch": "master", "commit": "fb0b31ae1dcdc7d68af5c66db4434ae5ebeffcfc" },
   "neotest-dotnet": { "branch": "main", "commit": "9de0e49f6ea3b0bb2891bfa85b40b4f94ce4c9ae" },
   "neotest-jest": { "branch": "main", "commit": "22b1050dda3ebd401780ec4b8e193cf52523a4da" },
+  "neotest-plenary": { "branch": "master", "commit": "e0d9b1530307a03abcc52fc0ae28f054dea3f752" },
   "neotest-vitest": { "branch": "main", "commit": "41bf2f6b743f2ac5c5e9bd0949cee77ca7f2372c" },
   "neovim-session-manager": { "branch": "master", "commit": "51827268c5ee56567b7033af9ed547ab704553b9" },
   "no-neck-pain.nvim": { "branch": "main", "commit": "fb27d3bff0834d9178250b439d46bfa04b4e1ae2" },

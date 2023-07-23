@@ -35,7 +35,7 @@ const paru = install({
     OSX: noop,
     WIN: noop,
     ARCH: [
-      exists("brew"),
+      exists("paru"),
       async () => {
         await $`git clone https://aur.archlinux.org/paru.git`;
         await $`cd paru && makepkg -si --noconfirm && cd ..`;

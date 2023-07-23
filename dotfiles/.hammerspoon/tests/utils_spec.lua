@@ -13,20 +13,6 @@ _G.hs = {
 local utils = require("utils")
 
 describe("utils", function()
-	describe("stringify_array", function()
-		it("should stringify simple array", function()
-			local result = utils.stringify_array({ 1, 2, "test" })
-			assert.are.same(result, "1,2,test")
-		end)
-	end)
-
-	-- describe("stringify", function()
-	--   it("should stringify simple array", function()
-	--     local result = utils.stringify({ 1, 2, "test" })
-	--     assert.are.same(result, "1,2,test")
-	--   end)
-	-- end)
-
 	describe("length", function()
 		it("should give length of simple array", function()
 			local result = utils.length({ 1, 2, "test" })
@@ -105,5 +91,28 @@ describe("utils", function()
 				assert.are.same(counter, 2)
 			end)
 		end)
+	end)
+
+	describe("starts_with_any", function()
+		local test_data = { "Apple", "Banana", "cherry", "Grape" }
+
+		it("should return true if the string starts with any string from the array (case-insensitive)", function()
+			assert.is_true(utils.starts_with_any(test_data, "Apple"))
+			assert.is_true(utils.starts_with_any(test_data, "apple"))
+			assert.is_true(utils.starts_with_any(test_data, "App"))
+			assert.is_true(utils.starts_with_any(test_data, "Apple 4"))
+			assert.is_true(utils.starts_with_any(test_data, "appleappleapple"))
+			assert.is_true(utils.starts_with_any(test_data, "Cherry"))
+			assert.is_true(utils.starts_with_any(test_data, "cherry"))
+		end)
+
+		it(
+			"should return false if the string does not start with any string from the array (case-insensitive)",
+			function()
+				assert.is_false(utils.starts_with_any(test_data, "peach"))
+				assert.is_false(utils.starts_with_any(test_data, "ape"))
+				assert.is_false(utils.starts_with_any(test_data, "Kiwi"))
+			end
+		)
 	end)
 end)

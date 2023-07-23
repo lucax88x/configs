@@ -1,6 +1,8 @@
+require("luarocks.loader")
 local toast = require("toast")
 --
 hs.loadSpoon("SpoonInstall")
+hs.window.animationDuration = 0.2
 --
 spoon.SpoonInstall:updateRepo()
 spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })

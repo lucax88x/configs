@@ -33,9 +33,10 @@ export function existsByPwsh(command: string) {
   return async () => !!(await $`command -v ${command}`);
 }
 
-export type Installer = [() => Promise<boolean>, () => Promise<boolean>];
+export type Installer = [() => Promise<Condition>, () => Promise<boolean>];
+export type Condition = "exists" | "not exists" | "skipped";
 
-export const noop: Installer = [async () => true, async () => false];
+export const noop: Installer = [async () => "skipped", async () => false];
 
 const debug = false;
 export function installByParu(pkg: string) {
@@ -99,22 +100,35 @@ export function install({
 
     const [condition, installer] = installers[distro];
 
-    if (!(await condition())) {
-      if (
-        !(await askConfirmation(`are you sure you want to install ${command}?`))
-      ) {
-        return;
-      }
+    const conditionOutput = await condition();
 
-      // const result = await spinner(`installing ${command}`, () => installer());
-      console.info(chalk.blue(`installing ${command}`));
-      const result = await installer();
+    switch (conditionOutput) {
+      case "not exists":
+        if (
+          !(await askConfirmation(
+            `are you sure you want to install ${command}?`
+          ))
+        ) {
+          return;
+        }
 
-      if (result) {
-        console.info(chalk.green(`installed ${command}`));
-      }
-    } else {
-      console.info(chalk.grey(`already installed ${command}`));
+        // const result = await spinner(`installing ${command}`, () => installer());
+        console.info(chalk.blue(`installing ${command}`));
+        const result = await installer();
+
+        if (result) {
+          console.info(chalk.green(`installed ${command}`));
+        }
+        break;
+        
+      case "exists":
+        console.info(chalk.grey(`already installed ${command}`));
+        break;
+
+      default:
+      case "skipped":
+        console.info(chalk.grey(`skipping ${command}`));
+        break;
     }
   };
 }

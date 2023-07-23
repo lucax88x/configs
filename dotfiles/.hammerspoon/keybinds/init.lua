@@ -38,28 +38,52 @@ local actions = {
 		text = "Move to new space",
 		bind = { mods.option, "n" },
 		action = function()
-			spaces.create_space_and_move_current_window()
-
-			toast("moved to new space")
+			spaces.create_space_and_move_current_window(function(_, error)
+				if error == nil then
+					toast("moved to new space")
+				else
+					toast("cannot move to new space")
+				end
+			end)
 		end,
 	},
 	{
 		text = "Purge empty spaces",
 		action = function()
-			spaces.purge_empty_spaces()
-			toast("empty spaces purged")
+			spaces.purge_empty_spaces(function(_, error)
+				if error == nil then
+					toast("purged space")
+				else
+					toast("cannot purge space")
+				end
+			end)
 		end,
 	},
 	{
 		text = "Purge focused space",
 		bind = { mods.option, "k" },
 		action = function()
-			local _, error = spaces.kill_current_space()
-			if error == nil then
-				toast("purged space")
-			else
-				toast("cannot purge space")
-			end
+			spaces.purge_current_space(function(_, error)
+				if error == nil then
+					toast("purged space")
+				else
+					toast("cannot purge space")
+				end
+			end)
+		end,
+	},
+	{
+		text = "Move window to right space",
+		bind = { mods.option, "l" },
+		action = function()
+			windows.move_window_one_space("right", true)
+		end,
+	},
+	{
+		text = "Move window to left space",
+		bind = { mods.option, "h" },
+		action = function()
+			windows.move_window_one_space("left", true)
 		end,
 	},
 }
@@ -89,4 +113,3 @@ for index, space in ipairs({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }) do
 		spaces.move_to_space(index)
 	end)
 end
-
