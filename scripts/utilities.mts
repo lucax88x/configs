@@ -9,28 +9,42 @@ export async function askConfirmation(quest: string): Promise<boolean> {
 }
 
 export function exists(command: string) {
-  return async () => {
+  return async (): Promise<Condition> => {
     try {
-      let found = await which(command);
-      return found !== "";
+      const found = await which(command);
+      if (found !== "") return "exists";
+
+      return "not exists";
     } catch (error) {
-      return false;
+      return "not exists";
     }
   };
 }
 
 export function existsApplicationInOsx(app: string) {
-  return async () => {
+  return async (): Promise<Condition> => {
     try {
-      return await fs.exists(`/Applications/${app}.app`);
+      const found = await fs.exists(`/Applications/${app}.app`);
+      if (found) return "exists";
+
+      return "not exists";
     } catch (error) {
-      return false;
+      return "not exists";
     }
   };
 }
 
 export function existsByPwsh(command: string) {
-  return async () => !!(await $`command -v ${command}`);
+  return async (): Promise<Condition> => {
+    try {
+      const found = !!(await $`command -v ${command}`);
+      if (found) return "exists";
+
+      return "not exists";
+    } catch (error) {
+      return "not exists";
+    }
+  };
 }
 
 export type Installer = [() => Promise<Condition>, () => Promise<boolean>];
@@ -120,7 +134,7 @@ export function install({
           console.info(chalk.green(`installed ${command}`));
         }
         break;
-        
+
       case "exists":
         console.info(chalk.grey(`already installed ${command}`));
         break;
