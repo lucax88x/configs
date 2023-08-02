@@ -26,9 +26,9 @@ return {
       end,
       desc = "Search neovim config"
     },
-    { "<leader>pf", function() require("telescope.builtin").find_files() end,     desc = "Find files" },
-    { "<leader>po", function() require("telescope.builtin").oldfiles() end,  desc = "Find files" },
-    { "<leader>pg", function() require("telescope.builtin").git_files() end, desc = "Find git files" },
+    { "<leader>pf", function() require("telescope.builtin").find_files() end, desc = "Find files" },
+    { "<leader>po", function() require("telescope.builtin").oldfiles() end,   desc = "Find files" },
+    { "<leader>pg", function() require("telescope.builtin").git_files() end,  desc = "Find git files" },
     {
       "<leader>pp",
       function()
@@ -138,7 +138,6 @@ return {
     })
 
     if functions.is_macunix() == 1 then
-      vim.notify("using fzf")
       telescope.load_extension("fzf")
     else
       vim.notify("not using fzf")
@@ -162,10 +161,10 @@ return {
       vim.notify("telescope not using advanced_git_search")
     end
 
-    if pcall(require, "NeoComposer") then
-      telescope.load_extension('macros')
-    else
-      vim.notify("telescope not using neocomposer")
-    end
+    -- if pcall(require, "NeoComposer") then
+    --   telescope.load_extension('macros')
+    -- else
+    --   vim.notify("telescope not using neocomposer")
+    -- end
   end,
 }

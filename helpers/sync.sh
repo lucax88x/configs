@@ -18,6 +18,7 @@ ARRAY_OSX=(
     .config/nvim
     .config/ranger/rc.conf
     .config/yabai
+    .config/wezterm
     .gitconfig
     .hammerspoon
     bin
@@ -43,6 +44,7 @@ ARRAY_LINUX=(
     .config/chrome-flags.conf
     .config/ranger/rc.conf
     .config/gtk-3.0/settings.ini
+    .config/wezterm
     .gitconfig
     bin
     .ideavimrc
