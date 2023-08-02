@@ -28,6 +28,9 @@ return {
   -- Change surrounding marks
   require("lt.plugins.surround"),
 
+  -- multi-cursor
+  require("lt.plugins.visual-multi"),
+
   -- extends . repeat
   { "tpope/vim-repeat", event = "VeryLazy" },
   -- allows to move by camelCase with w e
@@ -124,7 +127,7 @@ return {
   require("lt.plugins.modes"),
   require("lt.plugins.indent-blankline"),
   require("lt.plugins.no-neck-pain"),
-  require("lt.plugins.neocomposer"),
+  -- require("lt.plugins.neocomposer"),
   require("lt.plugins.inc_rename"),
 
   -- status bar

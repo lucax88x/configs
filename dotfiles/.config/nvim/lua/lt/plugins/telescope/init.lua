@@ -98,6 +98,7 @@ return {
     })
 
     if functions.is_macunix() then
+      vim.notify("using fzf")
       telescope.load_extension("fzf")
     else
       vim.notify("not using fzf")

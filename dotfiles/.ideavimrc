@@ -47,9 +47,9 @@ nnoremap <leader>rr :action RenameElement<CR>
 " nnoremap <leader>rf :action RenameFile<CR>
 
 " Comment
-nnoremap <leader>cc :action CommentByLineComment<CR>
-vmap <leader>cc :action CommentByLineComment<CR>
-vmap <leader>cb :action CommentByBlockComment<CR>
+" nnoremap <leader>cc :action CommentByLineComment<CR>
+" vmap <leader>cc :action CommentByLineComment<CR>
+" vmap <leader>cb :action CommentByBlockComment<CR>
 
 " Menus
 " nnoremap <leader>m :action ActivateProjectToolWindow<CR>
@@ -125,6 +125,11 @@ nnoremap [q :action PreviousOccurence<cr>
 nnoremap ]q :action NextOccurence<cr>
 nnoremap [m :action MethodUp<cr>
 nnoremap ]m :action MethodDown<cr>
+
+" Compile
+nnoremap <leader>cp :action BuildOnlyCurrentProject<CR>
+nnoremap <leader>cr :action RebuildSolutionAction<CR>
+nnoremap <leader>cs :action BuildWholeSolutionAction<CR>
 
 " Misc
 nnoremap <leader><cr> :source ~/.ideavimrc<CR>

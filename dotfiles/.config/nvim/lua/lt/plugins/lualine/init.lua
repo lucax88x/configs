@@ -55,7 +55,7 @@ return {
               modified = "  ", readonly = "", unnamed = ""
             }
           },
-          { require('NeoComposer.ui').status_recording },
+          -- { require('NeoComposer.ui').status_recording },
         },
         lualine_x = {
           {

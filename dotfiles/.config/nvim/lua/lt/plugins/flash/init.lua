@@ -5,6 +5,9 @@ return {
     modes = {
       char = {
         jump_labels = true
+      },
+      search = {
+        enabled = true,
       }
     }
   },
