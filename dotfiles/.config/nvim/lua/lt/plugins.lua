@@ -73,7 +73,7 @@ return {
 
   -- fuzzy finder
   require("lt.plugins.telescope"),
-  require("lt.plugins.fzf"),
+  -- require("lt.plugins.fzf"),
 
   -- search
   require("lt.plugins.ctrlsf"),

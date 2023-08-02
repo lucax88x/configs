@@ -217,6 +217,16 @@ const fd = install({
   },
 });
 
+const seq = install({
+  command: "seq",
+  installers: {
+    WIN: [existsByPwsh("seq"), installByScoop("seq")],
+    OSX: [exists("seq"), installByBrew("seq")],
+    ARCH: [exists("seq"), installByParu(" seq")],
+  },
+});
+
+
 const kubectl = install({
   command: "kubectl",
   installers: {
@@ -329,6 +339,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   rg,
   delta,
   fd,
+  seq,
   kubectl,
 
 

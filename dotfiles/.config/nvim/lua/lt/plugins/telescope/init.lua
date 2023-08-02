@@ -7,6 +7,46 @@ return {
   },
   cmd = "Telescope",
   keys = {
+    { "<leader>/c", function() require("telescope.builtin").commands() end,        desc = "Search commands" },
+    { "<leader>/C", function() require("telescope.builtin").command_history() end, desc = "Search command history" },
+    { "<leader>sl", function() require("telescope.builtin").live_grep() end,       desc = "Live grep" },
+    -- { "<leader>sL", function()
+    --   require("telescope.builtin").live_grep({
+    --     prompt = "< Config >",
+    --     cwd = "cwd?",
+    --   })
+    -- end, desc = "Search neovim config" },
+    {
+      "<leader>sc",
+      function()
+        require("telescope.builtin").find_files({
+          prompt = "< Config >",
+          cwd = "$HOME/.config/nvim",
+        })
+      end,
+      desc = "Search neovim config"
+    },
+    { "<leader>pf", function() require("telescope.builtin").find_files() end,     desc = "Find files" },
+    { "<leader>po", function() require("telescope.builtin").oldfiles() end,  desc = "Find files" },
+    { "<leader>pg", function() require("telescope.builtin").git_files() end, desc = "Find git files" },
+    {
+      "<leader>pp",
+      function()
+        require("lt.plugins.project.functions").switch_project()
+      end,
+      desc = "Switch projects"
+    },
+    { "<leader>/h",  function() require("telescope.builtin").highlights() end,   desc = "Search highlights" },
+    { "<leader>/r",  function() require("telescope.builtin").registers() end,    desc = "Search registers" },
+    { "<leader>/M",  function() require("telescope.builtin").marks() end,        desc = "Search marks" },
+    { "<leader>/k",  function() require("telescope.builtin").keymaps() end,      desc = "Search keymaps" },
+    { "<leader>/t",  function() require("telescope.builtin").treesitter() end,   desc = "Search treesitter" },
+    { "<leader>/gb", function() require("telescope.builtin").git_branches() end, desc = "Search git branches" },
+    { "<leader>/gc", function() require("telescope.builtin").git_commits() end,  desc = "Search git commits" },
+    { "<leader>/gC", function() require("telescope.builtin").git_bcommits() end, desc = "Search git buffer commits" },
+    { "<leader>bc",  function() require("telescope.builtin").git_bcommits() end, desc = "Search git buffer commits" },
+    { "<leader>bl",  function() require("telescope.builtin").buffers() end,      desc = "Search buffers" },
+    { "<leader>//",  function() require("telescope.builtin").resume() end,       desc = "Resume Telescope" },
     {
       "<leader>/gr",
       function()
@@ -86,18 +126,18 @@ return {
         lsp_range_code_actions = { theme = "cursor" },
         loclist = { previewer = false },
       },
-      extensions = {
-        fzf = {
-          fuzzy = true,
-          override_generic_sorter = false, -- override the generic sorter
-          override_file_sorter = true,     -- override the file sorter
-          case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-          -- the default case_mode is "smart_case"
-        },
-      },
+      -- extensions = {
+      --   fzf = {
+      --     fuzzy = true,
+      --     override_generic_sorter = false, -- override the generic sorter
+      --     override_file_sorter = true,     -- override the file sorter
+      --     case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+      --     -- the default case_mode is "smart_case"
+      --   },
+      -- },
     })
 
-    if functions.is_macunix() then
+    if functions.is_macunix() == 1 then
       vim.notify("using fzf")
       telescope.load_extension("fzf")
     else
