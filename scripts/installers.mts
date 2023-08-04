@@ -293,6 +293,24 @@ const sublimeMerge = install({
   },
 });
 
+const roboto = install({
+  command: "roboto",
+  installers: {
+    WIN: noop,
+    OSX: noop,
+    ARCH: [exists("ttf-roboto-mono"), installByParu("ttf-roboto-mono")],
+  },
+});
+
+const jetbrainsMono = install({
+  command: "jetbrains mono",
+  installers: {
+    WIN: noop,
+    OSX: noop,
+    ARCH: [exists("ttf-jetbrains-mono"), installByParu("ttf-jetbrains-mono")],
+  },
+});
+
 // 	paru -Sy --noconfirm dotnet-sdk-bin
 // 	paru -Sy --noconfirm aspnet-runtime-bin
 
@@ -352,6 +370,9 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   slack,
   jetbrainsToolbox,
   sublimeMerge,
+
+  roboto,
+  jetbrainsMono
 
   // configuration
   configureEd25119Ssh,

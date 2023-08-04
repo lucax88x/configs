@@ -29,21 +29,20 @@ ARRAY_OSX=(
     .tmux.conf
     .local/share/navi/cheats/lucatrazzi__cheats
     .ssh/config
-    backgrounds
 )
 
 ARRAY_LINUX=(
-    .config/rofi
-    .config/dunst/dunstrc
+    # .config/rofi
+    # .config/dunst/dunstrc
     .config/kitty
     .config/nvim
     .config/X11
-    .config/polybar
+    # .config/polybar
     .config/fontconfig/fonts.conf
-    .config/i3/config
+    # .config/i3/config
     .config/chrome-flags.conf
     .config/ranger/rc.conf
-    .config/gtk-3.0/settings.ini
+    .config/gtk-3.0
     .config/wezterm
     .gitconfig
     bin
@@ -51,11 +50,10 @@ ARRAY_LINUX=(
     .zshrc
     .p10k.zsh
     .zprofile
-    .tmux.conf
-    .imwheelrc
+    # .tmux.conf
+    # .imwheelrc
     .local/share/navi/cheats/lucatrazzi__cheats
     .ssh/config
-    backgrounds
 )
 
 function sync()
@@ -94,8 +92,8 @@ function sync()
 
 mkdir -p $HOME_DIR
 
-for ((I = 1; I < $#ARRAY_OSX + 1; I++)); do
-  VALUE=$ARRAY_OSX[$I]
+for ((I = 1; I < $#ARRAY_LINUX + 1; I++)); do
+  VALUE=$ARRAY_LINUX[$I]
   echo $VALUE
   echo $PWD
   FROM="$PWD/dotfiles/$VALUE"

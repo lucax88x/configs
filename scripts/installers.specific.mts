@@ -10,6 +10,7 @@ const createSshKey = (type: string, output: string) => async () => {
   return true;
 };
 
+// TODO: check if exists folder ~/.ssh as well
 export const createEd25119SshKey = [
   async (): Promise<Condition> =>
     toCondition(await fs.exists("~/.ssh/id_ed25519")),

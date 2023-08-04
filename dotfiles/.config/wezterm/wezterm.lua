@@ -16,6 +16,7 @@ local config = {
   launch_menu = {},
   leader = { key = "a", mods = "CTRL" },
   disable_default_key_bindings = true,
+  hide_tab_bar_if_only_one_tab = true,
   -- keys = {
   --   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   --   { key = "a",  mods = "LEADER|CTRL",  action = wezterm.action({ SendString = "\x01" }) },

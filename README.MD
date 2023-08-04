@@ -10,6 +10,24 @@ how to run
 ./scripts/install.mts --distro ARCH|WIN|OSX
 ```
 
+after installing arch, remember to install:
+
+enable multilib
+https://wiki.archlinux.org/title/Official_repositories#multilib
+enable parallel download
+
+
+git
+networkmanager 
+sudo systemctl enable NetworkManager.service
+sudo systemctl enable wpa_supplicant.service
+# amd-ucode thermald
+# xorg-server
+# plasma-meta kde-system-meta  dolphin
+# vulkan-radeon lib32-vulkan-radeon mesa lib32-mesa xf86-video-amdgpu vulkan-icd-loader lib32-vulkan-icd-loader
+# 
+
+
 if in ARCH you need to install first npm
   
 ```shell
@@ -19,6 +37,9 @@ cd paru
 makepkg -si
 
 paru -S volta-bin
+volta setup
+volta install node
+volta install pnpm
 ```
 
 **DO NOT RUN AS SUDO!**
