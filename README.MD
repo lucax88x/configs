@@ -21,10 +21,37 @@ git
 networkmanager 
 sudo systemctl enable NetworkManager.service
 sudo systemctl enable wpa_supplicant.service
+
+# bluez bluez-utils
+sudo systemctl enable bluetooth.service
+sudo systemctl enable bluetooth.service
 # amd-ucode thermald
 # xorg-server
 # plasma-meta kde-system-meta  dolphin
+# install sddm by installer.sh
 # vulkan-radeon lib32-vulkan-radeon mesa lib32-mesa xf86-video-amdgpu vulkan-icd-loader lib32-vulkan-icd-loader
+# install thermald by installer.sh
+# flatpak
+# dropbox
+# udiskie
+# navi
+# btop
+# ranger
+# kitty
+# flameshot
+# flatpak steam?
+# protonup-qt
+# albert?
+# zoxide
+# chsh -s $(which zsh)
+# bob
+# ttf-nerd-fonts-symbols-mono
+# 
+#  flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# flatpak --user install flathub com.valvesoftware.Steam
+# flatpak run com.valvesoftware.Steam
+# steam-devices-git
+# 
 # 
 
 

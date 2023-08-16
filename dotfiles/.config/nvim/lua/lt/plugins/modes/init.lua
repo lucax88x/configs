@@ -11,19 +11,25 @@ return {
       return
     end
 
-    local palette = catppuccin_palettes.get_palette("mocha")
+    -- local palette = catppuccin_palettes.get_palette("mocha")
 
     vim.opt.cursorline = true
 
     modes.setup({
+      -- colors = {
+      --   copy = palette.yellow,
+      --   delete = palette.red,
+      --   insert = palette.green,
+      --   visual = palette.purple,
+      -- },
       colors = {
-        copy = palette.yellow,
-        delete = palette.red,
-        insert = palette.green,
-        visual = palette.purple,
+        copy = "#f5c359",
+        delete = "#c75c6a",
+        insert = "#78ccc5",
+        visual = "#9745be",
       },
       -- Cursorline highlight opacity
-      line_opacity = 0.2,
+      line_opacity = 0.30,
       -- Highlight cursor
       set_cursor = true,
     })

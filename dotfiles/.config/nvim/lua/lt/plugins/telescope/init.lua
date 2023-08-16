@@ -10,12 +10,6 @@ return {
     { "<leader>/c", function() require("telescope.builtin").commands() end,        desc = "Search commands" },
     { "<leader>/C", function() require("telescope.builtin").command_history() end, desc = "Search command history" },
     { "<leader>sl", function() require("telescope.builtin").live_grep() end,       desc = "Live grep" },
-    -- { "<leader>sL", function()
-    --   require("telescope.builtin").live_grep({
-    --     prompt = "< Config >",
-    --     cwd = "cwd?",
-    --   })
-    -- end, desc = "Search neovim config" },
     {
       "<leader>sc",
       function()
@@ -47,6 +41,11 @@ return {
     { "<leader>bc",  function() require("telescope.builtin").git_bcommits() end, desc = "Search git buffer commits" },
     { "<leader>bl",  function() require("telescope.builtin").buffers() end,      desc = "Search buffers" },
     { "<leader>//",  function() require("telescope.builtin").resume() end,       desc = "Resume Telescope" },
+    {
+      "<leader>/m",
+      "<cmd>Telescope macros<cr>",
+      desc = "Search macros"
+    },
     {
       "<leader>/gr",
       function()
@@ -137,7 +136,7 @@ return {
       -- },
     })
 
-    if functions.is_macunix() == 1 then
+    if functions.is_macunix() then
       telescope.load_extension("fzf")
     else
       vim.notify("not using fzf")

@@ -1,16 +1,13 @@
 return {
   'ibhagwan/fzf-lua',
-  requires = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = {
+    { 'nvim-tree/nvim-web-devicons' },
+    { "aaronhallaert/advanced-git-search.nvim" },
+  },
   keys = {
     { "<leader>/c", function() require("fzf-lua").commands() end,        desc = "Search commands" },
     { "<leader>/C", function() require("fzf-lua").command_history() end, desc = "Search command history" },
     { "<leader>sl", function() require("fzf-lua").live_grep() end,       desc = "Live grep" },
-    -- { "<leader>sL", function()
-    --   require("fzf-lua").live_grep({
-    --     prompt = "< Config >",
-    --     cwd = "cwd?",
-    --   })
-    -- end, desc = "Search neovim config" },
     {
       "<leader>sc",
       function()
@@ -42,6 +39,48 @@ return {
     { "<leader>bc",  function() require("fzf-lua").git_bcommits() end, desc = "Search git buffer commits" },
     { "<leader>bl",  function() require("fzf-lua").buffers() end,      desc = "Search buffers" },
     { "<leader>//",  function() require("fzf-lua").resume() end,       desc = "Resume FZF" },
+    {
+      "<leader>/gr",
+      function()
+        require('advanced_git_search.fzf.pickers').checkout_reflog()
+      end,
+      desc = "Git Search: Checkout Reflog"
+    },
+    {
+      "<leader>/gdb",
+      function()
+        require('advanced_git_search.fzf.pickers').diff_branch_file()
+      end,
+      desc = "Git Search: Diff branch file"
+    },
+    {
+      "<leader>/gdf",
+      function()
+        require('advanced_git_search.fzf.pickers').diff_commit_file()
+      end,
+      desc = "Git Search: Diff commit file"
+    },
+    {
+      "<leader>/gdl",
+      function()
+        require('advanced_git_search.fzf.pickers').diff_commit_line()
+      end,
+      desc = "Git Search: Diff commit line"
+    },
+    {
+      "<leader>/gl",
+      function()
+        require('advanced_git_search.fzf.pickers').search_log_content()
+      end,
+      desc = "Git Search: Log content"
+    },
+    {
+      "<leader>/gL",
+      function()
+        require('advanced_git_search.fzf.pickers').search_log_content_file()
+      end,
+      desc = "Git Search: Log content file"
+    },
   },
   config = function()
     require('fzf-lua').setup({
@@ -51,6 +90,8 @@ return {
         },
       },
     })
+    require("advanced_git_search.fzf").setup {
+    }
   end,
   init = function()
     require("fzf-lua").register_ui_select()

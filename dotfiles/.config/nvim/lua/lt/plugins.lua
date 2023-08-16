@@ -1,3 +1,12 @@
+local functions = require("lt.utils.functions")
+
+local finder = nil
+if functions.is_macunix() then
+  finder = require("lt.plugins.fzf")
+else
+  finder = require("lt.plugins.telescope")
+end
+
 return {
   "nvim-lua/plenary.nvim",
 
@@ -55,11 +64,13 @@ return {
 
   -- treesitter
   require("lt.plugins.treesitter"),
+  require("lt.plugins.wildfire"),
   -- require("lt.plugins.mini-ai"),
 
   -- git
   -- require("lt.plugins.fugitive"),
   require("lt.plugins.neogit"),
+  require("lt.plugins.blame"),
   require("lt.plugins.gitsigns"),
 
   -- quick list
@@ -72,8 +83,8 @@ return {
   require("lt.plugins.flash"),
 
   -- fuzzy finder
-  require("lt.plugins.telescope"),
-  -- require("lt.plugins.fzf"),
+  finder,
+  --
 
   -- search
   require("lt.plugins.ctrlsf"),
