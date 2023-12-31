@@ -34,7 +34,7 @@ return {
     end, "Inline variable", opts)
 
     r.noremap({ "n", "v" }, "<leader>rl", function()
-      require("telescope").extensions.refactoring.refactors()
+      require("refactoring").select_refactor()
     end, "Refactor", opts)
   end,
   config = function()

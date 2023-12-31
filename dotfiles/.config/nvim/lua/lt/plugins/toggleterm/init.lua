@@ -17,16 +17,21 @@ return {
       end,
       desc = "Open Lazygit (Toggleterm)"
     },
+    -- {
+    --   "<leader>kk",
+    --   function()
+    --     local Terminal = require('toggleterm.terminal').Terminal
+    --     local terminal = Terminal:new({
+    --       direction = "float",
+    --     })
+    --
+    --     terminal:toggle()
+    --   end,
+    --   desc = "Open Toggleterm"
+    -- },
     {
       "<leader>kk",
-      function()
-        local Terminal = require('toggleterm.terminal').Terminal
-        local terminal = Terminal:new({
-          direction = "float",
-        })
-
-        terminal:toggle()
-      end,
+      "<Cmd>ToggleTerm direction=float<CR>",
       desc = "Open Toggleterm"
     },
   }

@@ -1,4 +1,5 @@
-#!/usr/bin/env -S npx --package=ts-node -- ts-node-esm --swc
+#!/usr/bin/env npx tsx
+
 import "zx/globals";
 
 // suppress stdout

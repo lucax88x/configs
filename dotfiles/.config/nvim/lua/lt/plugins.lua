@@ -26,12 +26,11 @@ return {
     "MunifTanjim/nui.nvim",
     event = "VeryLazy",
   },
-  require("lt.plugins.noice"),
+  -- require("lt.plugins.noice"),
 
   -- shortcuts
   require("lt.plugins.better-escape"),
   require("lt.plugins.which-key"),
-  require("lt.plugins.hydra"),
   require("lt.plugins.mini-bracketed"),
 
   -- Change surrounding marks
@@ -72,10 +71,11 @@ return {
   require("lt.plugins.neogit"),
   require("lt.plugins.blame"),
   require("lt.plugins.gitsigns"),
+  require("lt.plugins.diffview"),
+  require("lt.plugins.tardis"),
 
   -- quick list
   require("lt.plugins.bqf"),
-  require("lt.plugins.diffview"),
 
   -- navigation
   --[[ require("lt.plugins.leap"), ]]
@@ -95,9 +95,11 @@ return {
   -- lsp
   require("lt.plugins.mason"),
   require("lt.plugins.mason-dap"),
-  require("lt.plugins.mason-null-ls"),
+  require("lt.plugins.mason-tools"),
 
   require("lt.plugins.null-ls"),
+  require("lt.plugins.lint"),
+  require("lt.plugins.conform"),
   -- require("lt.plugins.typescript-tools"),
   require("lt.plugins.lsp"),
 
@@ -151,6 +153,8 @@ return {
   require("lt.plugins.truezen"),
   require("lt.plugins.peek"),
   require("lt.plugins.toggleterm"),
+  require("lt.plugins.scrollback"),
+  require("lt.plugins.chatgpt"),
 
   -- require("lt.plugins.profile"),
 

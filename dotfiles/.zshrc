@@ -37,9 +37,9 @@ if [ `tput colors` = "256" ]; then
 fi 
 
 # PLUGINS
-# zinit ice depth=1
-# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-# zinit light jeffreytse/zsh-vimode
+zinit ice depth=1
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+zinit light jeffreytse/zsh-vi-mode
 
 zinit light zsh-users/zsh-completions
 zinit light MichaelAquilina/zsh-auto-notify
@@ -49,7 +49,7 @@ zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
 # autocomplete
-zinit snippet OMZ::plugins/docker/_docker
+# zinit snippet OMZ::plugins/docker/_docker
 
 # those should stay last
 # 
@@ -67,6 +67,10 @@ export MANGOHUD=1
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# pyenv
+export PATH="$(pyenv root)/shims:${PATH}"
+
 # add yarn globals to path
 # export PATH="$(yarn global bin):$PATH"
 # add local bin (python executables, for example)
@@ -79,11 +83,16 @@ export PATH="$HOME/.dotnet/tools:$PATH"
 # used by jetbrains toolbox for OSX
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 export PATH="$PATH:$HOME/repos/dotmemory"
+export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
+export PATH="$PATH:$HOME/.config/emacs/bin"
 
 # export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
 # export DOTNET_ROOT="$HOME/.dotnet"
-# END ENV VAR
  
+source "$HOME/.zshrc.env"
+# END ENV VAR
+
+
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 source "$HOME/bin/functions/ks"
 
@@ -112,6 +121,7 @@ eval "$(zoxide init zsh)"
 
 # ALIASES
 alias k='kubectl'
+alias c='xclip -selection clipboard'
 alias v='nvim'
 
 alias ls='lsd'
@@ -135,6 +145,8 @@ alias ssk="kitty +kitten ssh"
 alias lg="lazygit"
 alias p="pnpm"
 alias run="run.mjs"
+alias zipgit="git archive HEAD -o ${PWD##*/}.zip"
+# alias zip7git="7z a -bd ${PWD##*/}.7z * '-xr@./.gitignore'"
 
 # END ALIASES
 
@@ -146,6 +158,14 @@ function prj(){
 compctl -W $REPOSITORIES_FOLDER -/ prj
 # END FUNCTIONS
 
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
 [[ ! -f $HOME/.p10k.zsh ]] || zinit snippet $HOME/.p10k.zsh
 
 # zprof
@@ -153,3 +173,13 @@ compctl -W $REPOSITORIES_FOLDER -/ prj
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/pnpm.zsh ]] && . ~/.config/tabtab/zsh/pnpm.zsh || true
+
+# To customize prompt, run `p10k configure` or edit ~/.zinit/snippets/Users--luca.trazzi/.p10k.zsh/.p10k.zsh.
+[[ ! -f ~/.zinit/snippets/Users--luca.trazzi/.p10k.zsh/.p10k.zsh ]] || source ~/.zinit/snippets/Users--luca.trazzi/.p10k.zsh/.p10k.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/repos/configs/dotfiles/.p10k.zsh.
+[[ ! -f ~/repos/configs/dotfiles/.p10k.zsh ]] || source ~/repos/configs/dotfiles/.p10k.zsh
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/luca.trazzi/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

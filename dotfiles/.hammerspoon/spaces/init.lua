@@ -114,6 +114,7 @@ function M.purge_empty_spaces(callback)
 
 	check_spaces_recursively(spaces_to_check, 1)
 
+  local a = _
 	hs.timer.waitUntil(function()
 		if finished or recursions >= 50 then
 			return true

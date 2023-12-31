@@ -7,7 +7,7 @@ return {
     diffview.setup({})
   end,
   keys = {
-    { "<leader>gt",  "<cmd>DiffviewFileHistory<CR>", desc = "Navigate history",        mode = { "n", "v" } },
+    { "<leader>gT",  "<cmd>DiffviewFileHistory<CR>", desc = "Navigate history (diffview)",        mode = { "n", "v" } },
     { "<leader>gdo", "<cmd>DiffviewOpen<CR>",        desc = "Open diffview" },
     { "<leader>gdc", "<cmd>DiffviewClose<CR>",       desc = "Close diffview" },
     { "<leader>gdr", "<cmd>DiffviewRefresh<CR>",     desc = "Refresh diffview" },

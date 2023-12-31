@@ -12,6 +12,7 @@
 	autoStash = true
   
 [core]
+  ignorecase = false
   pager = delta 
 	autocrlf = input
 

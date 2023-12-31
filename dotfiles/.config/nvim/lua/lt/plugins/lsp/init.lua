@@ -30,7 +30,7 @@ return {
 
     local function try_attach_navic(client, bufnr)
       if not presentNavic then
-        vim.notify('navic not present')
+        vim.notify("navic not present")
       else
         local filetype = vim.api.nvim_buf_get_option(bufnr or 0, "filetype")
 
@@ -51,18 +51,36 @@ return {
       end
     end
 
+    ---@param buf? number
+    ---@param value? boolean
+    local function inlay_hints(buf, value)
+      local ih = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
+      if type(ih) == "function" then
+        ih(buf, value)
+      elseif type(ih) == "table" and ih.enable then
+        if value == nil then
+          value = not ih.is_enabled(buf)
+        end
+        ih.enable(buf, value)
+      end
+    end
+
     local function try_attach_inlay_hints(client, bufnr)
       if client.server_capabilities.inlayHintProvider then
         vim.api.nvim_create_augroup("lsp_augroup", { clear = true })
 
         vim.api.nvim_create_autocmd("InsertEnter", {
           buffer = bufnr,
-          callback = function() vim.lsp.inlay_hint(bufnr, true) end,
+          callback = function()
+            inlay_hints(bufnr, true)
+          end,
           group = "lsp_augroup",
         })
         vim.api.nvim_create_autocmd("InsertLeave", {
           buffer = bufnr,
-          callback = function() vim.lsp.inlay_hint(bufnr, false) end,
+          callback = function()
+            inlay_hints(bufnr, false)
+          end,
           group = "lsp_augroup",
         })
       end
@@ -94,9 +112,9 @@ return {
 
     local signs = {
       { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-      { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warn },
-      { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
-      { name = "DiagnosticSignInfo",  text = icons.diagnostics.Info },
+      { name = "DiagnosticSignWarn", text = icons.diagnostics.Warn },
+      { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+      { name = "DiagnosticSignInfo", text = icons.diagnostics.Info },
     }
 
     for _, sign in ipairs(signs) do

@@ -1,45 +1,60 @@
 return {
   "mfussenegger/nvim-dap",
-  -- keys = { "<leader>ddc" },
   init = function()
     -- dap.set_log_level("TRACE")
 
     local r = require("lt.utils.remaps")
 
-    r.which_key("<leader>dd", "debugger")
-    r.which_key("<leader>dds", "step")
-    r.which_key("<leader>db", "breakpoints")
     r.which_key("<leader>dv", "variables")
     r.which_key("<leader>dw", "widgets")
     r.which_key("<leader>dr", "repl")
     r.which_key("<leader>/d", "dap")
 
-    r.noremap("n", "<leader>ddc", function()
+    r.noremap("n", "<F5>", function()
       local dap = require("dap")
       dap.continue()
-    end, "Start/Continue")
-    r.noremap("n", "<leader>ddsv", function()
+    end, "Debugger start/continue (F5)")
+    r.noremap("n", "<leader>dd", function()
+      local dap = require("dap")
+      dap.continue()
+    end, "Debugger start/continue")
+
+    r.noremap("n", "<leader>do", function()
+      local dap = require("dap")
+      dap.step_over()
+    end, "Step over (f8)")
+    r.noremap("n", "<F8>", function()
       local dap = require("dap")
       dap.step_over()
     end, "Step over")
-    r.noremap("n", "<leader>ddsi", function()
+
+    r.noremap("n", "<leader>di", function()
+      local dap = require("dap")
+      dap.step_into()
+    end, "Step into (f7)")
+    r.noremap("n", "<F7>", function()
       local dap = require("dap")
       dap.step_into()
     end, "Step into")
-    r.noremap("n", "<leader>ddso", function()
+
+    r.noremap("n", "<leader>dO", function()
       local dap = require("dap")
       dap.step_out()
     end, "Step out")
 
-    r.noremap("n", "<leader>dbt", function()
+    r.noremap("n", "<leader>db", function()
       local dap = require("dap")
       dap.toggle_breakpoint()
     end, "Toggle breakpoint")
-    r.noremap("n", "<leader>dbc", function()
-      local dap = require("dap")
 
-      dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-    end, "Set breakpoint")
+    r.noremap({ "n", "v" }, "<Leader>dh", function()
+      require("dap.ui.widgets").hover()
+    end, "hover widgets")
+
+    -- r.noremap("n", "<leader>dbc", function()
+    --   local dap = require("dap")
+    --   dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+    -- end, "Set breakpoint")
     -- r.noremap(
     -- "n",
     -- 	"<leader>dbm",

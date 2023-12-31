@@ -28,6 +28,7 @@ return {
       n = { name = "notifications" },
       q = { name = "quick switcher" },
       k = { name = "terminal" },
+      c = { name = "chatgpt" },
       [";"] = { name = "test" },
       ["'"] = { name = "marks" },
       ['"'] = { name = "registers" },

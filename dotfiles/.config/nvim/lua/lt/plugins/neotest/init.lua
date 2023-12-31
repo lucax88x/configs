@@ -7,63 +7,64 @@ return {
     "marilari88/neotest-vitest",
     "Issafalcon/neotest-dotnet",
     "nvim-neotest/neotest-plenary",
+    "nvim-neotest/neotest-go",
   },
   keys = {
     {
-      "<leader>;f",
+      "<leader>;r",
       function()
         require("neotest").run.run()
       end,
-      desc = "Run the nearest test"
+      desc = "Run the nearest test",
     },
     {
       "<leader>;t",
       function()
         require("neotest").run.run_last()
       end,
-      desc = "Run latest test"
+      desc = "Run latest test",
     },
     {
       "<leader>;l",
       function()
         require("neotest").run.run(vim.fn.expand("%"))
       end,
-      desc = "Run tests the current file"
+      desc = "Run tests the current file",
     },
     {
       "<leader>;d",
       function()
         require("neotest").run.run({ strategy = "dap" })
       end,
-      desc = "Debug the nearest test (requires nvim-dap and adapter support)"
+      desc = "Debug the nearest test (requires nvim-dap and adapter support)",
     },
     {
       "<leader>;s",
       function()
         require("neotest").run.stop()
       end,
-      desc = "Stop the nearest test"
+      desc = "Stop the nearest test",
     },
     {
       "<leader>;;",
       function()
         require("neotest").summary()
       end,
-      desc = "Summary of tests"
+      desc = "Summary of tests",
     },
     {
       "<leader>;w",
       function()
         require("neotest").watch()
       end,
-      desc = "Watch tests"
+      desc = "Watch tests",
     },
     {
       "<leader>;o",
       function()
         require("neotest").output_panel()
       end,
-      desc = "Output panel"
+      desc = "Output panel",
     },
   },
   config = function()
@@ -72,9 +73,10 @@ return {
         require("neotest-jest")({
           jestCommand = "jest --watch ",
         }),
-        require('neotest-vitest'),
-        require('neotest-dotnet'),
+        require("neotest-vitest"),
+        require("neotest-dotnet"),
         require("neotest-plenary"),
+        require("neotest-go"),
       },
     })
   end,

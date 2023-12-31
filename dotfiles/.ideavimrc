@@ -1,5 +1,6 @@
 " https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
 " or :actionlist
+ 
 set ideajoin
 let mapleader = " "
 set surround
@@ -17,6 +18,13 @@ set scrolloff=3 " Display at least 3 lines around you cursor
 
 set ignorecase " Ignore case when searching
 set smartcase " If there is an uppercase in your search term
+
+" Plug 'easymotion/vim-easymotion'
+" set easymotion
+" map <Leader> <Plug>(easymotion-prefix)
+" Plug 'easymotion/vim-easymotion'
+" nnoremap <leader>s :action KJumpAction<cr>
+nmap s :action KJumpAction.Word1<cr>
 
 " KEYMAP
 inoremap jk <esc>

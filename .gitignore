@@ -5,6 +5,7 @@ dotfiles/.config/nvim/.netrwhist
 dotfiles/.hammerspoon/Spoons
 dotfiles/.hammerspoon/rcmd
 dotfiles/.hammerspoon/stackline
+dotfiles/.zshrc.env
 
 node_modules
 

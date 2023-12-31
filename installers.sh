@@ -241,7 +241,6 @@ configureOs() {
 	defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 	defaults write com.apple.LaunchServices LSQuarantine -bool false
 	defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-	defaults write NSGlobalDomain KeyRepeat -int 1
 	defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 	defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 	defaults write NSGlobalDomain _HIHideMenuBar -bool true
@@ -268,4 +267,17 @@ configureOs() {
 	defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 	defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 	defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+  defaults write -g NSWindowShouldDragOnGesture YES
+
+
+   # 15 is lowest setting on UI
+  # 8 was too fast causing duplicate keystrokes
+  # 10 i think this causes issues in bash cli when editing commands, not sure
+  defaults write -g InitialKeyRepeat -int 12
+
+  # 2 is lowest setting on UI
+  defaults write -g KeyRepeat -int 1
+
+  # allow holding key instead of mac default holding key to choose alternate key
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 }

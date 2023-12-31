@@ -1,9 +1,10 @@
 return {
-  'stevearc/oil.nvim',
+  "stevearc/oil.nvim",
   opts = {},
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = function()
+  init = function()
     require("oil").setup({
+      default_file_explorer = true,
       keymaps = {
         ["H"] = "actions.toggle_hidden",
       },
@@ -18,7 +19,7 @@ return {
       function()
         require("oil").open()
       end,
-      desc = "Open file explorer"
+      desc = "Open file explorer",
     },
-  }
+  },
 }
