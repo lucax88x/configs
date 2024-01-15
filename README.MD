@@ -104,3 +104,7 @@ scoop install extras/rancher-desktop
 scoop install wget curl
 scoop install unzip gzip
 scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json 
+
+Install-Module -Name PSFzf -Scope CurrentUser -Force
+
+

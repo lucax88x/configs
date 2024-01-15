@@ -10,8 +10,7 @@ local config = {
     brightness = 1.0,
   },
   default_prog = { "/bin/zsh", "-l" },
-  font_size = 20.0,
-  window_decorations = "NONE",
+  font_size = 16.0,
   -- font = wezterm.font("JetBrains Mono"),
   launch_menu = {},
   leader = { key = "a", mods = "CTRL" },
@@ -71,6 +70,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   end
 else
   table.insert(config.launch_menu, { label = "zsh", args = { "zsh", "-l" } })
+
+  config.window_decorations = "NONE";
 end
 
 return config
