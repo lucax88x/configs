@@ -9,6 +9,7 @@ return {
         typescript = { { "prettierd", "prettier" } },
         javascriptreact = { { "prettierd", "prettier" } },
         typescriptreact = { { "prettierd", "prettier" } },
+        vue = { { "prettierd", "prettier" } },
         css = { { "prettierd", "prettier" } },
         bash = { "shfmt" },
         yaml = { "yamlfmt" },

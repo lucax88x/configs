@@ -4,7 +4,7 @@ enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 [mode.main.binding]
-alt-enter = 'exec-and-forget open -n /Applications/kitty.app'
+# alt-enter = 'exec-and-forget open -n /Applications/kitty.app'
 
 alt-shift-c = 'reload-config'
 alt-shift-r = 'reload-config'
@@ -14,10 +14,10 @@ alt-j = 'focus down'
 alt-h = 'focus left'
 alt-l = 'focus right'
 
-alt-shift-j = 'move-through left'
-alt-shift-k = 'move-through down'
-alt-shift-l = 'move-through up'
-alt-shift-semicolon = 'move-through right'
+alt-shift-k = 'move-through up'
+alt-shift-j = 'move-through down'
+alt-shift-h = 'move-through left'
+alt-shift-l = 'move-through right'
 
 # alt-g = 'split horizontal'
 # alt-v = 'split vertical'
@@ -39,21 +39,22 @@ alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 # should be supported at all https://github.com/nikitabobko/AeroSpace/issues/5
 # alt-a = 'focus parent'
 
-# [workspace-to-monitor-force-assignment]
-# 1 = ['']                            # Monitor sequence number from left to right. 1-based indexing
-# 2 = 'main'                       # Main monitor
-# 3 = 'secondary'                  # Non-main monitor in case when there are only two monitors
-# 4 = 'built-in'                   # Case insensitive regex substring
-# 5 = '^built-in retina display$'  # Case insensitive regex match
-# 6 = ['secondary', 'dell']        # You can specify multiple patterns. The first matching pattern will be used
-
+# chat
 alt-1 = 'workspace 1'
+# ide
 alt-2 = 'workspace 2'
+# terminal
 alt-3 = 'workspace 3'
+# browser
 alt-4 = 'workspace 4'
+# virtualization
 alt-5 = 'workspace 5'
+# emails
 alt-6 = 'workspace 6'
+# devtools
 alt-7 = 'workspace 7'
+# gaming
+alt-8 = 'workspace 8'
 
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
@@ -62,9 +63,13 @@ alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
 
-# ctrl-alt-shift-h = 'move-workspace-to-monitor prev'
-# ctrl-alt-shift-l = 'move-workspace-to-monitor next'
+# alt-shift-h = 'move-node-to-workspace prev'
+# alt-shift-l = 'move-node-to-workspace next'
+
+ctrl-alt-shift-h = 'move-workspace-to-monitor prev'
+ctrl-alt-shift-l = 'move-workspace-to-monitor next'
 
 alt-r = 'mode resize'
 
@@ -89,6 +94,14 @@ if.app-id = 'net.whatsapp.WhatsApp'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
+if.app-id = 'com.jetbrains.rider'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Terminal'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
 run = 'move-node-to-workspace 3'
 
@@ -101,10 +114,37 @@ if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
-if.app-id = 'com.jetbrains.rider'
-run = 'move-node-to-workspace 2'
+if.app-id = 'com.microsoft.Outlook'
+run = 'move-node-to-workspace 6'
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.datagrip'
+run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'com.sublimemerge'
+run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'io.rancherdesktop.app'
+run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'com.valvesoftware.steam'
+run = 'move-node-to-workspace 8'
 
 # [[on-window-detected]]
 # if.app-id = 'com.jetbrains.intellij'
 # if.window-title-regex-substring
 # run = 'layout floating
+
+# left 'DELL U2715H (2)'
+# right 'DELL U2715H (1)'
+# center LC32G5xT
+[workspace-to-monitor-force-assignment]
+1 = 'DELL U2715H (1)'                   
+2 = 'LC32G5xT'            
+3 = 'DELL U2715H (2)'    
+4 = 'DELL U2715H (1)'   
+# 5 = '^built-in retina display$'  
+# 6 = 'secondary'

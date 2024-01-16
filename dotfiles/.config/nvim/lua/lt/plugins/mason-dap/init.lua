@@ -12,8 +12,9 @@ return {
       auto_update = false,
       run_on_start = false,
       automatic_setup = true,
-      handlers = {}
+      handlers = {},
     })
   end,
   dependencies = { "williamboman/mason.nvim" },
+  cmd = { "Mason", "MasonInstall" },
 }

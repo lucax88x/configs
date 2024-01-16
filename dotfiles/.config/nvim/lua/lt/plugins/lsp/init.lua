@@ -175,7 +175,8 @@ return {
       dockerls = {},
       -- csharp_ls = {},
       -- omnisharp = {},
-      -- vuels = {},
+      -- volar=vue
+      volar = {},
       graphql = {},
       -- rust_analyzer = {},
       eslint = require("lt.plugins.lsp.servers.eslint")(on_attach),

@@ -22,4 +22,5 @@ return {
     })
   end,
   dependencies = { "williamboman/mason.nvim" },
+  cmd = { "Mason", "MasonInstall" },
 }

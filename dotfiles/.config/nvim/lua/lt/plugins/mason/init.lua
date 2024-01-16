@@ -5,4 +5,5 @@ return {
 
     mason.setup()
   end,
+  cmd = { "Mason", "MasonInstall" },
 }

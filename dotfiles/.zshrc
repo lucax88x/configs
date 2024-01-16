@@ -1,5 +1,10 @@
 # if you need to profile
 # zmodload zsh/zprof
+# 
+
+if [[ $INTELLIJ_ENVIRONMENT_READER ]]; then
+  return
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -38,8 +43,9 @@ fi
 
 # PLUGINS
 zinit ice depth=1
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-zinit light jeffreytse/zsh-vi-mode
+
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# zinit light jeffreytse/zsh-vi-mode
 
 zinit light zsh-users/zsh-completions
 zinit light MichaelAquilina/zsh-auto-notify
@@ -87,6 +93,7 @@ export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
 export PATH="$PATH:$HOME/.config/emacs/bin"
 
 # export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
+export DOTNET_ROOT="$(dirname $(which dotnet))"
 # export DOTNET_ROOT="$HOME/.dotnet"
  
 source "$HOME/.zshrc.env"

@@ -26,12 +26,13 @@ return {
     "MunifTanjim/nui.nvim",
     event = "VeryLazy",
   },
-  -- require("lt.plugins.noice"),
+  require("lt.plugins.noice"),
 
   -- shortcuts
   require("lt.plugins.better-escape"),
   require("lt.plugins.which-key"),
   require("lt.plugins.mini-bracketed"),
+  require("lt.plugins.hawtkeys"),
 
   -- Change surrounding marks
   require("lt.plugins.surround"),
@@ -151,10 +152,13 @@ return {
   "mbbill/undotree",
   require("lt.plugins.dial"),
   require("lt.plugins.truezen"),
-  require("lt.plugins.peek"),
   require("lt.plugins.toggleterm"),
   require("lt.plugins.scrollback"),
   require("lt.plugins.chatgpt"),
+  
+  -- renderer (markdown, plantuml, etc)
+  require("lt.plugins.peek"),
+  require("lt.plugins.plantuml"),
 
   -- require("lt.plugins.profile"),
 
