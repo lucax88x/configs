@@ -41,12 +41,15 @@ alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
 # chat
 alt-1 = 'workspace 1'
+alt-t = 'workspace 1'
 # ide
 alt-2 = 'workspace 2'
+alt-r = 'workspace 2'
 # terminal
 alt-3 = 'workspace 3'
 # browser
 alt-4 = 'workspace 4'
+alt-c = 'workspace 4'
 # virtualization
 alt-5 = 'workspace 5'
 # emails
@@ -68,18 +71,18 @@ alt-shift-8 = 'move-node-to-workspace 8'
 # alt-shift-h = 'move-node-to-workspace prev'
 # alt-shift-l = 'move-node-to-workspace next'
 
-ctrl-alt-shift-h = 'move-workspace-to-monitor prev'
-ctrl-alt-shift-l = 'move-workspace-to-monitor next'
-
-alt-r = 'mode resize'
-
-[mode.resize.binding]
-h = 'resize width -50'
-j = 'resize height +50'
-k = 'resize height -50'
-l = 'resize width +50'
-enter = 'mode main'
-esc = 'mode esc'
+ctrl-alt-shift-h = 'move-workspace-to-monitor prev --wrap-around'
+ctrl-alt-shift-l = 'move-workspace-to-monitor next --wrap-around'
+#
+# alt-r = 'mode resize'
+#
+# [mode.resize.binding]
+# h = 'resize width -50'
+# j = 'resize height +50'
+# k = 'resize height -50'
+# l = 'resize width +50'
+# enter = 'mode main'
+# esc = 'mode esc'
 
 [[on-window-detected]]
 if.app-id = 'com.tdesktop.Telegram'
@@ -107,6 +110,10 @@ run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'dev.warp.Warp-Stable'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]

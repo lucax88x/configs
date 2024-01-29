@@ -14,7 +14,8 @@
 [core]
   ignorecase = false
   pager = delta 
-	autocrlf = input
+	eol = lf
+	autocrlf = false
 
 [interactive]
   diffFilter = delta --color-only
