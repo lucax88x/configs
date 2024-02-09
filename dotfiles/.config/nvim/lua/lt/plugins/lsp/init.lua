@@ -189,6 +189,7 @@ return {
       terraformls = {},
       clangd = {},
       azure_pipelines_ls = {},
+      powershell_es = {},
     }
 
     local default_lsp_config = {

@@ -2,9 +2,11 @@ local functions = require("lt.utils.functions")
 
 local finder = nil
 if functions.is_macunix() then
+  print('ismacunix')
   finder = require("lt.plugins.fzf")
 else
-  finder = require("lt.plugins.telescope")
+  print('iswindows')
+ finder = require("lt.plugins.telescope")
 end
 
 return {

@@ -143,3 +143,4 @@ Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 # `echo $profile` in PowerShell):
 #
 # Invoke-Expression (& { (zoxide init powershell | Out-String) })
+

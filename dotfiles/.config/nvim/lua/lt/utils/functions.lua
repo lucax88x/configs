@@ -61,7 +61,11 @@ M.reload = function()
 end
 
 function M.is_macunix()
-  return vim.fn.has("macunix")
+  -- return vim.fn.has("macunix")
+  local os = vim.loop.os_uname().sysname
+
+  -- return os == "Windows_NT"
+  return not M.starts_with(os, "Windows")
 end
 
 function M.link_highlight(from, to, override)

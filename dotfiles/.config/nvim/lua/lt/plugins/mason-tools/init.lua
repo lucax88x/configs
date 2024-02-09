@@ -18,6 +18,7 @@ return {
         "prettierd",
         "shfmt",
         "xmlformatter",
+        "powershell-editor-services",
       },
     })
   end,
