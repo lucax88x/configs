@@ -60,6 +60,7 @@ local options = {
 
   -- global statusline
   laststatus = 3,
+  conceallevel = 1,
 }
 
 for k, v in pairs(options) do

@@ -1,59 +1,114 @@
 # if you need to profile
 # zmodload zsh/zprof
- 
+# 
+
 if [[ $INTELLIJ_ENVIRONMENT_READER ]]; then
   return
 fi
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+### ZINIT
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-{'readurl','bin-gem-node','patch-dl','rust'}
+
+
+### END ZINIT
+
+if [ `tput colors` = "256" ]; then  
+  if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+    zinit light romkatv/powerlevel10k
+  fi
+fi 
+
+# PLUGINS
+zinit ice depth=1
+
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# zinit light jeffreytse/zsh-vi-mode
+
+zinit light zsh-users/zsh-completions
+zinit light MichaelAquilina/zsh-auto-notify
+# zinit light zdharma-continuum/history-search-multi-word
+zinit snippet OMZ::lib/history.zsh 
+
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+
+# autocomplete
+# zinit snippet OMZ::plugins/docker/_docker
+
+# those should stay last
+# 
+zinit light zsh-users/zsh-autosuggestions
+# for some reason really slow in osx
+# zinit light zdharma-continuum/fast-syntax-highlighting
+#
+
+# COMPINIT 
+autoload -Uz compinit
+compinit
+zinit cdreplay -q
 
 # ENV VAR
-export VOLTA_HOME="$HOME/.volta"
-export PATH="/opt/homebrew/bin:$PATH" # add brew for OSX
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export VOLTA_HOME="$HOME/.volta"
 export EDITOR=nvim
 export VISUAL=nvim
 export MANGOHUD=1
 
-export PATH="$HOME/bin:$PATH"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
 # pyenv
-# export PATH="$(pyenv root)/shims:${PATH}"
+export PATH="$(pyenv root)/shims:${PATH}"
 
-# add yarn globals to path
-# export PATH="$(yarn global bin):$PATH"
-# add local bin (python executables, for example)
-export PATH="$HOME/.local/bin:$PATH"
-
-# add dotnet globals to path
-export PATH="/usr/share/dotnet:$PATH"
-export PATH="$HOME/.dotnet/tools:$PATH"
-
-# used by jetbrains toolbox for OSX
-export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-export PATH="$PATH:$HOME/repos/dotmemory"
-export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
+# emacs
 export PATH="$PATH:$HOME/.config/emacs/bin"
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/luca.trazzi/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-
-# export DOTNET_ROOT="$(dirname "$(readlink "$(command -v dotnet)")")"
-export DOTNET_ROOT="$(dirname $(which dotnet))"
-# export DOTNET_ROOT="$HOME/.dotnet"
- 
 source "$HOME/.zshrc.env"
 # END ENV VAR
 
+
+source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
+source "$HOME/bin/functions/ks"
+
+# awaits, necessary for vi mode
+zinit ice lucid wait
+zinit snippet OMZP::fzf
+zinit light Aloxaf/fzf-tab
+zinit light Tarrasch/zsh-bd
+# zinit snippet $HOME/.fzf.zsh
+#
+zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
+zinit light g-plane/zsh-yarn-autocompletions
+
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=true
+zinit light zsh-users/zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# zinit snippet OMZ::lib/key-bindings.zsh 
+ 
 eval "$(zoxide init zsh)"
+# gh completion -s zsh > /Users/luca.trazzi/.zinit/completions/_gh
+# https://cli.github.com/manual/gh_completion
+
 # END PLUGINS
 
 # ALIASES
-alias g='git'
 alias k='kubectl'
 alias c='xclip -selection clipboard'
 alias v='nvim'
+alias nv='neovide'
 
 alias ls='lsd'
 alias l='ls -l'
@@ -88,3 +143,21 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+[[ ! -f $HOME/.p10k.zsh ]] || zinit snippet $HOME/.p10k.zsh
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/pnpm.zsh ]] && . ~/.config/tabtab/zsh/pnpm.zsh || true
+
+# To customize prompt, run `p10k configure` or edit ~/.zinit/snippets/Users--luca.trazzi/.p10k.zsh/.p10k.zsh.
+[[ ! -f ~/.zinit/snippets/Users--luca.trazzi/.p10k.zsh/.p10k.zsh ]] || source ~/.zinit/snippets/Users--luca.trazzi/.p10k.zsh/.p10k.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/repos/configs/dotfiles/.p10k.zsh.
+[[ ! -f ~/repos/configs/dotfiles/.p10k.zsh ]] || source ~/repos/configs/dotfiles/.p10k.zsh
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/luca.trazzi/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+# zprof

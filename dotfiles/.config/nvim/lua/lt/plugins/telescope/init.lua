@@ -23,13 +23,6 @@ return {
     { "<leader>pf", function() require("telescope.builtin").find_files() end, desc = "Find files" },
     { "<leader>po", function() require("telescope.builtin").oldfiles() end,   desc = "Find files" },
     { "<leader>pg", function() require("telescope.builtin").git_files() end,  desc = "Find git files" },
-    {
-      "<leader>pp",
-      function()
-        require("lt.plugins.project.functions").switch_project()
-      end,
-      desc = "Switch projects"
-    },
     { "<leader>/h",  function() require("telescope.builtin").highlights() end,   desc = "Search highlights" },
     { "<leader>/r",  function() require("telescope.builtin").registers() end,    desc = "Search registers" },
     { "<leader>/M",  function() require("telescope.builtin").marks() end,        desc = "Search marks" },

@@ -31,6 +31,8 @@ alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
 alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
+alt-o = 'workspace-back-and-forth'
+
 # Not supported, because this command is redundant in AeroSpace mental model.
 # See: https://nikitabobko.github.io/AeroSpace/guide.html#floating-windows
 #alt-space = 'focus toggle_tiling_floating'
@@ -41,7 +43,7 @@ alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
 # chat
 alt-1 = 'workspace 1'
-alt-t = 'workspace 1'
+# alt-t = 'workspace 1'
 # ide
 alt-2 = 'workspace 2'
 alt-r = 'workspace 2'
@@ -50,13 +52,13 @@ alt-3 = 'workspace 3'
 # browser
 alt-4 = 'workspace 4'
 alt-c = 'workspace 4'
-# virtualization
+# notes
 alt-5 = 'workspace 5'
 # emails
 alt-6 = 'workspace 6'
 # devtools
 alt-7 = 'workspace 7'
-# gaming
+# notes
 alt-8 = 'workspace 8'
 
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -101,6 +103,10 @@ if.app-id = 'com.jetbrains.rider'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
+if.app-id = 'com.neovide.neovide'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
 if.app-id = 'com.apple.Terminal'
 run = 'move-node-to-workspace 3'
 
@@ -121,6 +127,10 @@ if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
 run = 'move-node-to-workspace 6'
 
@@ -135,10 +145,6 @@ run = 'move-node-to-workspace 7'
 [[on-window-detected]]
 if.app-id = 'io.rancherdesktop.app'
 run = 'move-node-to-workspace 7'
-
-[[on-window-detected]]
-if.app-id = 'com.valvesoftware.steam'
-run = 'move-node-to-workspace 8'
 
 # [[on-window-detected]]
 # if.app-id = 'com.jetbrains.intellij'

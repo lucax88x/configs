@@ -6,4 +6,5 @@
 -- |_|\__,_|\___\__,_|\__|_|  \__,_/___/___|_|
 
 require("lt.defaults")
+require("lt.neovide")
 require("lt.lazy")

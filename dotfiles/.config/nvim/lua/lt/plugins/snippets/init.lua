@@ -15,6 +15,7 @@ return {
 
     local r = require("lt.utils.remaps")
 
+    print("started")
     r.map({ "i", "s" }, "<c-n>", function()
       if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
@@ -31,8 +32,6 @@ return {
       if luasnip.choice_active() then
         luasnip.change_choice(1)
       end
-    end, "Show list of options")
-
-    -- vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>")
+    end, "Show list of options", { silent = true })
   end,
 }

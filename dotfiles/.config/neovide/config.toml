@@ -1,0 +1,6 @@
+frame = "buttonless"
+title-hidden = true
+
+[font]
+normal = "JetBrains Mono"
+size = 22

@@ -58,13 +58,6 @@ return {
       desc = "Find git files",
     },
     {
-      "<leader>pp",
-      function()
-        require("lt.plugins.project.functions").switch_project()
-      end,
-      desc = "Switch projects",
-    },
-    {
       "<leader>/h",
       function()
         require("fzf-lua").highlights()

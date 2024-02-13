@@ -42,7 +42,42 @@ return {
       end,
     }
 
+    local function too_big(bufnr)
+      local max_filesize = 10 * 1024 -- 100 KB
+      local check_stats = (vim.uv or vim.loop).fs_stat
+      local ok, stats = pcall(check_stats, vim.api.nvim_buf_get_name(bufnr))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      else
+        return false
+      end
+    end
+
+    local preferred_sources = {
+      { name = "nvim_lsp_signature_help", group_index = 1 },
+      { name = "nvim_lsp", max_item_count = 20, group_index = 1 },
+      { name = "luasnip", max_item_count = 5, group_index = 1 },
+      { name = "nvim_lua", group_index = 1 },
+      { name = "path", group_index = 2 },
+    }
+
+    vim.api.nvim_create_autocmd("BufRead", {
+      group = vim.api.nvim_create_augroup("CmpBufferDisableGrp", { clear = true }),
+      callback = function(ev)
+        local sources = preferred_sources
+        if not too_big(ev.buf) then
+          sources[#sources + 1] = { name = "buffer", keyword_length = 4 }
+        end
+        cmp.setup.buffer({
+          sources = cmp.config.sources(sources),
+        })
+      end,
+    })
+
     cmp.setup({
+      -- performance = {
+      --   max_view_entries = 7,
+      -- },
       view = {
         entries = { name = "custom", selection_order = "near_cursor" },
       },
@@ -91,25 +126,10 @@ return {
         documentation = cmp.config.window.bordered(),
       },
       formatting = formatting_style,
-      sources = {
-        -- { name = "copilot", priority = 1, group_index = 1 },
-        { name = "nvim_lsp_signature_help", group_index = 1 },
-        { name = "nvim_lsp", max_item_count = 20, group_index = 1 },
-        { name = "luasnip", max_item_count = 5, group_index = 1 },
-        { name = "nvim_lua", group_index = 1 },
-        { name = "path", group_index = 2 },
-        { name = "buffer", keyword_length = 2, max_item_count = 5, group_index = 2 },
-      },
-      -- sorting = {
-      --   comparators = {
-      --     cmp.config.compare.offset,
-      --     cmp.config.compare.exact,
-      --     cmp.config.compare.score,
-      --     cmp.config.compare.recently_used,
-      --     -- require("cmp-under-comparator").under,
-      --     cmp.config.compare.kind,
-      --   },
-      -- },
+
+      sources = cmp.config.sources(vim.tbl_extend("force", preferred_sources, {
+        { name = "buffer", keyword_length = 4 },
+      })),
     })
 
     cmp.setup.filetype("gitcommit", {

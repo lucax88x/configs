@@ -9,7 +9,9 @@ M.switch_project = function()
   require("fzf-lua").fzf_exec(reverse, {
     actions = {
       ["default"] = function(e)
-        vim.cmd.cd(e[1])
+        local path = e[1]
+        vim.cmd.cd(path)
+        vim.cmd("Oil " .. path)
       end,
       ["ctrl-d"] = function(x)
         local choice = vim.fn.confirm("Delete '" .. #x .. "' projects? ", "&Yes\n&No", 2)

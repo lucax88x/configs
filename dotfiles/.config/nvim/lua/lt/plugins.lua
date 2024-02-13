@@ -84,6 +84,7 @@ return {
   --[[ require("lt.plugins.leap"), ]]
   -- require("lt.plugins.hop"),
   require("lt.plugins.flash"),
+  require("lt.plugins.harpoon"),
 
   -- fuzzy finder
   finder,
@@ -128,7 +129,6 @@ return {
 
   -- tree
   require("lt.plugins.oil"),
-  -- require("lt.plugins.tree"),
 
   -- tests
   require("lt.plugins.neotest"),
@@ -157,11 +157,11 @@ return {
   require("lt.plugins.toggleterm"),
   require("lt.plugins.scrollback"),
   require("lt.plugins.chatgpt"),
-  
+
   -- renderer (markdown, plantuml, etc)
   require("lt.plugins.peek"),
   require("lt.plugins.plantuml"),
-
+  require("lt.plugins.obsidian"),
   -- require("lt.plugins.profile"),
 
   --[[ { ]]
