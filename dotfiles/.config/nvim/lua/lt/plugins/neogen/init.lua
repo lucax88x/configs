@@ -1,12 +1,5 @@
 return {
   "danymat/neogen",
-  init = function()
-    local r = require("lt.utils.remaps")
-
-    r.map("n", "<leader>tc", function()
-      require("neogen").generate()
-    end, "Add documentation for the method/class/function ")
-  end,
   config = function()
     local neogen = require("neogen")
 
@@ -16,5 +9,13 @@ return {
     })
   end,
   dependencies = "nvim-treesitter/nvim-treesitter",
-  keys = "<leader>tc",
+  keys = {
+    {
+      "<leader>tc",
+      function()
+        require("neogen").generate()
+      end,
+      desc = "Add documentation for the method/class/function "
+    },
+  }
 }

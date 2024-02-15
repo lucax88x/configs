@@ -1,13 +1,4 @@
-local functions = require("lt.utils.functions")
-
-local finder = nil
-if functions.is_macunix() then
-  print('ismacunix')
-  finder = require("lt.plugins.fzf")
-else
-  print('iswindows')
- finder = require("lt.plugins.telescope")
-end
+-- local functions = require("lt.utils.functions")
 
 return {
   "nvim-lua/plenary.nvim",
@@ -87,7 +78,7 @@ return {
   require("lt.plugins.harpoon"),
 
   -- fuzzy finder
-  finder,
+  require("lt.plugins.fzf")
   --
 
   -- search

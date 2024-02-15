@@ -1,5 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
+  branch = "windows",
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
     { "aaronhallaert/advanced-git-search.nvim" },
