@@ -184,6 +184,15 @@ const wget = install({
   },
 });
 
+const coreutils = install({
+  command: "mkdir",
+  installers: {
+    WIN: [existsByPwsh("mkdir"), installByScoop("coreutils")],
+    OSX: noop,
+    ARCH: noop,
+  },
+});
+
 const curl = install({
   command: "curl",
   installers: {
