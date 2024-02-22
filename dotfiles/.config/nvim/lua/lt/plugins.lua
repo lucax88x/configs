@@ -1,5 +1,3 @@
--- local functions = require("lt.utils.functions")
-
 return {
   "nvim-lua/plenary.nvim",
 
@@ -57,6 +55,8 @@ return {
 
   -- treesitter
   require("lt.plugins.treesitter"),
+  require("lt.plugins.treesitter-context"),
+  -- incremental selection
   require("lt.plugins.wildfire"),
   -- require("lt.plugins.mini-ai"),
 
@@ -78,7 +78,7 @@ return {
   require("lt.plugins.harpoon"),
 
   -- fuzzy finder
-  require("lt.plugins.fzf")
+  require("lt.plugins.fzf"),
   --
 
   -- search

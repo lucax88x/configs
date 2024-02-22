@@ -60,7 +60,8 @@ local options = {
 
   -- global statusline
   laststatus = 3,
-  conceallevel = 1,
+  -- hides stuff, like in the json it will hide double quotes
+  conceallevel = 2,
 }
 
 for k, v in pairs(options) do

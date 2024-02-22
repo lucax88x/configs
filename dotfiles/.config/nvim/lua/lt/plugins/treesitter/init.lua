@@ -3,7 +3,7 @@ return {
   dependencies = {
     -- shows treesitter context in end of parenthesis
     "haringsrob/nvim_context_vt",
-    "RRethy/nvim-treesitter-textsubjects",
+    "RRethy/nvim-treesitter-textsubjects"
   },
   event = { "BufReadPost", "BufNewFile", "BufEnter" },
   config = function()
