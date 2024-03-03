@@ -2,3 +2,4 @@ std="neovim"
 
 [rules]
 global_usage = "allow"
+mixed_tables = "allow"

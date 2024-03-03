@@ -97,6 +97,8 @@ nnoremap <leader>pg :action SearchEverywhere<CR>
 nnoremap <leader>pf :action GotoFile<CR>
 nnoremap <leader>pg :action GotoClass<CR>
 nnoremap <leader>pp :action RecentProjectListGroup<CR>
+nnoremap <leader>pd :action ShowNavBar<CR>
+
 " nnoremap <leader>ra :action GotoAction<CR>
 nnoremap <leader>ss :action FindInPath<CR>
 " nnoremap <leader>fr :action ReplaceInPath<CR>

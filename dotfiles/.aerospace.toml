@@ -52,7 +52,7 @@ alt-3 = 'workspace 3'
 # browser
 alt-4 = 'workspace 4'
 alt-c = 'workspace 4'
-# notes
+# db & finder
 alt-5 = 'workspace 5'
 # emails
 alt-6 = 'workspace 6'
@@ -128,7 +128,7 @@ run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace 8'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
@@ -136,7 +136,7 @@ run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'
-run = 'move-node-to-workspace 7'
+run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'com.sublimemerge'
@@ -145,6 +145,14 @@ run = 'move-node-to-workspace 7'
 [[on-window-detected]]
 if.app-id = 'io.rancherdesktop.app'
 run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'com.electron.dockerdesktop'
+run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'move-node-to-workspace 5'
 
 # [[on-window-detected]]
 # if.app-id = 'com.jetbrains.intellij'
@@ -155,9 +163,11 @@ run = 'move-node-to-workspace 7'
 # right 'DELL U2715H (1)'
 # center LC32G5xT
 [workspace-to-monitor-force-assignment]
-1 = 'DELL U2715H (1)'                   
-2 = 'LC32G5xT'            
-3 = 'DELL U2715H (2)'    
-4 = 'DELL U2715H (1)'   
-# 5 = '^built-in retina display$'  
-# 6 = 'secondary'
+1 = 'built-in'                   
+2 = 'main'            
+3 = 'DELL U2715H \(2\)'    
+4 = 'DELL U2715H \(1\)'   
+5 = 'main'
+6 = 'DELL U2715H \(2\)'   
+7 = 'DELL U2715H \(1\)'
+8 = 'DELL U2715H \(1\)'

@@ -72,8 +72,6 @@ return {
   require("lt.plugins.bqf"),
 
   -- navigation
-  --[[ require("lt.plugins.leap"), ]]
-  -- require("lt.plugins.hop"),
   require("lt.plugins.flash"),
   require("lt.plugins.harpoon"),
 
@@ -96,6 +94,8 @@ return {
   require("lt.plugins.lint"),
   require("lt.plugins.conform"),
   -- require("lt.plugins.typescript-tools"),
+  require("lt.plugins.ts-error-translator"),
+  require("lt.plugins.tsc"),
   require("lt.plugins.lsp"),
 
   -- autocompletion
@@ -133,7 +133,6 @@ return {
   require("lt.plugins.colorizer"),
   require("lt.plugins.modes"),
   require("lt.plugins.indent-blankline"),
-  require("lt.plugins.no-neck-pain"),
   -- require("lt.plugins.neocomposer"),
   require("lt.plugins.inc_rename"),
 
@@ -144,7 +143,7 @@ return {
   -- rest
   "mbbill/undotree",
   require("lt.plugins.dial"),
-  require("lt.plugins.truezen"),
+  require("lt.plugins.zen"),
   require("lt.plugins.toggleterm"),
   require("lt.plugins.scrollback"),
   require("lt.plugins.chatgpt"),

@@ -41,31 +41,42 @@ return {
             separator = "",
             padding = {
               left = 1,
-              right = 0
-            }
+              right = 0,
+            },
           },
           {
             "filename",
             path = 1,
             fmt = function(path)
-              return table.concat({ vim.fs.basename(vim.fs.dirname(path)),
-                vim.fs.basename(path) }, package.config:sub(1, 1))
+              return table.concat(
+                { vim.fs.basename(vim.fs.dirname(path)), vim.fs.basename(path) },
+                package.config:sub(1, 1)
+              )
             end,
             symbols = {
-              modified = "  ", readonly = "", unnamed = ""
-            }
+              modified = "  ",
+              readonly = "",
+              unnamed = "",
+            },
           },
-          -- { require('NeoComposer.ui').status_recording },
         },
         lualine_x = {
           {
-            function() return require("noice").api.status.command.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = fg("Statement")
+            function()
+              return require("noice").api.status.command.get()
+            end,
+            cond = function()
+              return package.loaded["noice"] and require("noice").api.status.command.has()
+            end,
+            color = fg("Statement"),
           },
           {
-            function() return require("noice").api.status.mode.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+            function()
+              return require("noice").api.status.mode.get()
+            end,
+            cond = function()
+              return package.loaded["noice"] and require("noice").api.status.mode.has()
+            end,
             color = fg("Constant"),
           },
           { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = fg("Special") },
@@ -79,14 +90,18 @@ return {
           },
         },
         lualine_y = {
-          { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
+          {
+            "fileformat",
+            icons_enabled = true,
+          },
+          { "progress", separator = " ", padding = { left = 1, right = 0 } },
           { "location", padding = { left = 0, right = 1 } },
         },
         lualine_z = {
           { "searchcount" },
           { "selectioncount" },
           function()
-            return " " .. os.date("%R")
+            return os.date("%R")
           end,
         },
       },

@@ -1,5 +1,5 @@
 return {
-  'stevearc/conform.nvim',
+  "stevearc/conform.nvim",
   opts = {},
   config = function()
     require("conform").setup({
@@ -15,9 +15,17 @@ return {
         yaml = { "yamlfmt" },
         xml = { "xmlformatter" },
         json = { "jq" },
+        python = { "isort", "ruff_format" },
+        -- python = function(bufnr)
+        --   -- if require("conform").get_formatter_info("ruff_format", bufnr).available then
+        --   return { "ruff_format" }
+        --   -- else
+        --   --   return { "isort", "black" }
+        --   -- end
+        -- end,
       },
     })
-  end
+  end,
 }
 
 -- formatting.prettierd,

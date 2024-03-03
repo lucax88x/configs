@@ -4,7 +4,6 @@ return {
     require("mason-tool-installer").setup({
       ensure_installed = {
         -- lint
-        "shellcheck",
         "selene",
         "stylelint",
         "yamllint",
@@ -19,6 +18,10 @@ return {
         "shfmt",
         "xmlformatter",
         "powershell-editor-services",
+        
+        -- python
+        "ruff",
+        "isort"
       },
     })
   end,

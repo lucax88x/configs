@@ -20,6 +20,7 @@ return {
       dashboard.button("s", " Restore Session", ":SessionManager load_last_session<CR>"),
       dashboard.button("S", " Sessions", ":SessionManager load_session<CR>"),
       dashboard.button("p", " Projects", ':lua require("lt.plugins.project.functions").switch_project()<CR>'),
+      dashboard.button("n", " Notes", ":ObsidianQuickSwitch<CR>"),
       dashboard.button("r", " Recent files", ":FzfLua oldfiles<CR>"),
       dashboard.button("c", " Config", ":e $MYVIMRC | pwd<CR>"),
       dashboard.button("u p", " Lazy", ":Lazy<CR>"),

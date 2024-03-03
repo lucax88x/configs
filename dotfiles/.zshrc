@@ -1,7 +1,6 @@
 # if you need to profile
 # zmodload zsh/zprof
-# 
-
+ 
 if [[ $INTELLIJ_ENVIRONMENT_READER ]]; then
   return
 fi
@@ -67,9 +66,6 @@ export VOLTA_HOME="$HOME/.volta"
 export EDITOR=nvim
 export VISUAL=nvim
 export MANGOHUD=1
-
-# pyenv
-export PATH="$(pyenv root)/shims:${PATH}"
 
 # emacs
 export PATH="$PATH:$HOME/.config/emacs/bin"

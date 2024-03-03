@@ -190,6 +190,9 @@ return {
       clangd = {},
       azure_pipelines_ls = {},
       powershell_es = {},
+      pyright = require("lt.plugins.lsp.servers.pyright")(on_attach),
+      ruff_lsp = {},
+      -- pylsp = {},
     }
 
     local default_lsp_config = {

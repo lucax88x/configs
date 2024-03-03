@@ -14,7 +14,7 @@ return {
       b = { name = "buffer" },
       s = { name = "search" },
       p = { name = "project" },
-      ["ps"] = { name = "session" },
+      ["pc"] = { name = "compile" },
       w = { name = "window" },
       g = { name = "git" },
       gd = { name = "diffview" },

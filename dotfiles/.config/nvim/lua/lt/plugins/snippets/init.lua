@@ -15,7 +15,6 @@ return {
 
     local r = require("lt.utils.remaps")
 
-    print("started")
     r.map({ "i", "s" }, "<c-n>", function()
       if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()

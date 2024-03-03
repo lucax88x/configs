@@ -9,7 +9,7 @@ return {
 
     -- done by mason now
     -- npm install -g @fsouza/prettierd  stylelint
-    -- paru -S selene-linter shfmt shellcheck-bin yamllint actionlint-bin stylua
+    -- paru -S selene-linter shfmt yamllint actionlint-bin stylua
 
     -- paru -S nginxbeautifier ansible-lint-git
     -- brew install ansible-lint gitlint stylelint
@@ -21,21 +21,18 @@ return {
       sources = {
         -- github actions
         -- diagnostics.actionlint,
-        -- diagnostics.selene,
+        diagnostics.selene,
 
-        diagnostics.shellcheck,
         diagnostics.zsh,
         diagnostics.stylelint,
         diagnostics.yamllint,
         diagnostics.ansiblelint,
         diagnostics.golangci_lint,
         diagnostics.gitlint,
-        diagnostics.jsonlint,
         diagnostics.tfsec,
 
         -- code_actions.gitsigns,
         code_actions.refactoring,
-        code_actions.shellcheck,
         require("typescript.extensions.null-ls.code-actions")
       },
     })

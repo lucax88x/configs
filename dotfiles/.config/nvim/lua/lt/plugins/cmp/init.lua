@@ -75,9 +75,9 @@ return {
     })
 
     cmp.setup({
-      -- performance = {
-      --   max_view_entries = 7,
-      -- },
+      performance = {
+        max_view_entries = 7,
+      },
       view = {
         entries = { name = "custom", selection_order = "near_cursor" },
       },

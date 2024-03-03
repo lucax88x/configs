@@ -22,6 +22,7 @@ return {
         "scss",
         -- "ruby",
         "rasi",
+        "python",
         "dockerfile",
         "bash",
         "c_sharp",

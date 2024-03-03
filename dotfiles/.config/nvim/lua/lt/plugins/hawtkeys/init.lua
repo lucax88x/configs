@@ -6,7 +6,7 @@ return {
     {
       "<leader>/K",
       "<cmd>Hawtkeys<cr>",
-      desc = "Sugget new keymaps",
+      desc = "Suggest new keymaps",
     },
   },
   cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },

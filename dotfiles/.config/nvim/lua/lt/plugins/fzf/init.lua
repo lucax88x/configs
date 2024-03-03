@@ -45,6 +45,20 @@ return {
       desc = "Find files",
     },
     {
+      "<leader>pd",
+      function()
+        local current_file_path = vim.fn.expand("%:p")
+        local directory = vim.fn.fnamemodify(current_file_path, ":h")
+        print(directory)
+        
+        require("fzf-lua").files({
+          prompt = "< Navigation Bar >",
+          cwd = directory,
+        })
+      end,
+      desc = "Navigation bar",
+    },
+    {
       "<leader>po",
       function()
         require("fzf-lua").oldfiles()
