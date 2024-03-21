@@ -1,6 +1,6 @@
 // import { spinner } from "zx/experimental";
 
-export type DISTROS = "OSX" | "ARCH" | "WIN";
+export type DISTROS = "OSX" | "ARCH" | "WIN" | "DEB";
 
 export async function askConfirmation(quest: string): Promise<boolean> {
   let confirmation = await question(`${quest} (y)`);
@@ -57,6 +57,36 @@ export function installByParu(pkg: string) {
 
     $.verbose = true;
     await $`paru -S --noconfirm ${pkg}`;
+
+    return true;
+  };
+}
+
+export function installByApt(pkg: string) {
+  return async () => {
+    if (debug) {
+      console.info(chalk.red("would install by apt"));
+      await $`sleep 1`;
+      return true;
+    }
+
+    $.verbose = true;
+    await $`apt install -y ${pkg}`;
+
+    return true;
+  };
+}
+
+export function installByNala(pkg: string) {
+  return async () => {
+    if (debug) {
+      console.info(chalk.red("would install by nala"));
+      await $`sleep 1`;
+      return true;
+    }
+
+    $.verbose = true;
+    await $`nala install -y ${pkg}`;
 
     return true;
   };

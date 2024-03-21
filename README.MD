@@ -7,7 +7,11 @@ how to run
 
 
 ```shell
-./scripts/install.mts --distro ARCH|WIN|OSX
+./scripts/install.mts --distro ARCH|OSX
+```
+
+```shell
+npx tsx ./scripts/install.mts --distro WIN
 ```
 
 after installing arch, remember to install:
