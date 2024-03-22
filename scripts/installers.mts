@@ -458,7 +458,6 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   go,
   //
   zsh,
-  volta,
 
   // tools
   coreutils,
