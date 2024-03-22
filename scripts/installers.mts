@@ -507,6 +507,9 @@ export const installAll = async () => {
     case "win":
       distro = "WIN";
       break;
+    case "deb":
+      distro = "DEB";
+      break;
     default:
       throw Error("must pass --distro");
   }
