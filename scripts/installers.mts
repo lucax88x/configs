@@ -446,8 +446,8 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   brew,
   paru,
   scoop,
-  pwsh,
   nala,
+  pwsh,
   baseDevel,
   git,
 
