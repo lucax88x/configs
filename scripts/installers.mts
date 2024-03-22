@@ -18,7 +18,15 @@ const brew = install({
   command: "brew",
   installers: {
     ARCH: noop,
-    DEB: noop,
+    DEB: [
+      exists("brew"),
+      async () => {
+        await $`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`;
+        await $`brew analytics off`;
+
+        return true;
+      },
+    ],
     WIN: noop,
     OSX: [
       exists("brew"),
@@ -84,8 +92,8 @@ const nala = install({
       async () => {
         await installByApt("nala")();
 
-        await $`nala update`;
-        await $`nala upgrade`;   
+        await $`sudo nala update`;
+        await $`sudo nala upgrade`;   
 
         return true;
       },
@@ -99,7 +107,7 @@ const pwsh = install({
     WIN: [existsByPwsh("pwsh"), installByScoop("pwsh")],
     OSX: [exists("pwsh"), installByBrew("pwsh")],
     ARCH: [exists("pwsh"), installByParu("pwsh")],
-    DEB: [exists("pwsh"), installByNala("pwsh")],
+    DEB: [exists("pwsh"), installByBrew("pwsh")],
   },
 });
 
