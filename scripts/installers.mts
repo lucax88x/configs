@@ -303,10 +303,20 @@ const zoxide = install({
   },
 });
 
+const gh = install({
+  command: "gh",
+  installers: {
+    WIN: [existsByPwsh("gh"), installByScoop("gh")],
+    OSX: [exists("gh"), installByBrew("gh")],
+    ARCH: [exists("gh"), installByParu("gh")],
+    DEB: [exists("gh"), installByNala("gh")],
+  },
+});
+
 const chrome = install({
   command: "google-chrome",
   installers: {
-    WIN: [existsByPwsh("google-chrome-stable"), installByScoop("google-chrome")],
+    WIN: [existsByPwsh("google-chrome-stable"), installByScoop("googlechrome")],
     OSX: [
       existsApplicationInOsx("Google Chrome"),
       installByBrew("google-chrome", true),
@@ -463,6 +473,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   fd,
   kubectl,
   zoxide,
+  gh,
 
   // i3
   // kde?
