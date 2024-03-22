@@ -71,7 +71,7 @@ export function installByApt(pkg: string) {
     }
 
     $.verbose = true;
-    await $`apt install -y ${pkg}`;
+    await $`sudo apt install -y ${pkg}`;
 
     return true;
   };
@@ -86,7 +86,7 @@ export function installByNala(pkg: string) {
     }
 
     $.verbose = true;
-    await $`nala install -y ${pkg}`;
+    await $`sudo nala install -y ${pkg}`;
 
     return true;
   };
