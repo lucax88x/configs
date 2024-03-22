@@ -10,7 +10,6 @@ import {
   installByParu,
   installByScoop,
   installByApt,
-  installByNala,
   noop,
 } from "./utilities.mts";
 
@@ -22,6 +21,10 @@ const brew = install({
       exists("brew"),
       async () => {
         await $`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`;
+        await $`(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/lucatrazzi/.bashrc`;
+        await $`eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`;
+        await $`sudo apt-get install build-essential`;
+        await $`brew install gcc`;
         await $`brew analytics off`;
 
         return true;
@@ -117,7 +120,7 @@ const baseDevel = install({
     WIN: [existsByPwsh("make"), installByScoop("make")],
     OSX: noop,
     ARCH: [exists("make"), installByParu("base-devel")],
-    DEB: [exists("make"), installByNala("base-devel")],
+    DEB: noop,
   },
 });
 
@@ -127,7 +130,7 @@ const git = install({
     WIN: [existsByPwsh("git"), installByScoop("git")],
     OSX: [exists("git"), installByBrew("git")],
     ARCH: [exists("git"), installByParu("git")],
-    DEB: [exists("git"), installByNala("git")],
+    DEB: [exists("git"), installByBrew("git")],
   },
 });
 
@@ -135,9 +138,9 @@ const zig = install({
   command: "zig",
   installers: {
     WIN: [existsByPwsh("zig"), installByScoop("zig")],
-    OSX: noop,
+    OSX: [exists("zig"), installByBrew("zig")],
     ARCH: [exists("zig"), installByParu("zig")],
-    DEB: [exists("zig"), installByNala("zig")],
+    DEB: [exists("zig"), installByBrew("zig")],
   },
 });
 
@@ -147,7 +150,7 @@ const rustup = install({
     WIN: noop,
     OSX: noop,
     ARCH: [exists("rustup"), installByParu("rustup")],
-    DEB: [exists("rustup"), installByNala("rustup")],
+    DEB: noop,
   },
 });
 
@@ -157,7 +160,7 @@ const go = install({
     WIN: [existsByPwsh("go"), installByScoop("go")],
     OSX: noop,
     ARCH: [exists("go"), installByParu("go")],
-    DEB: [exists("go"), installByNala("go")],
+    DEB: noop,
   },
 });
 
@@ -177,7 +180,7 @@ const wget = install({
     WIN: [existsByPwsh("wget"), installByScoop("wget")],
     OSX: [exists("wget"), installByBrew("wget")],
     ARCH: [exists("wget"), installByParu("wget")],
-    DEB: [exists("wget"), installByNala("wget")],
+    DEB: [exists("wget"), installByBrew("wget")],
   },
 });
 
@@ -187,7 +190,7 @@ const curl = install({
     WIN: [existsByPwsh("curl"), installByScoop("curl")],
     OSX: [exists("curl"), installByBrew("curl")],
     ARCH: [exists("curl"), installByParu("curl")],
-    DEB: [exists("curl"), installByNala("curl")],
+    DEB: [exists("curl"), installByBrew("curl")],
   },
 });
 
@@ -197,7 +200,7 @@ const ssh = install({
     WIN: noop,
     OSX: noop,
     ARCH: [exists("ssh-keygen"), installByParu("openssh")],
-    DEB: [exists("ssh-keygen"), installByNala("openssh")],
+    DEB: noop,
   },
 });
 
@@ -207,7 +210,7 @@ const unzip = install({
     WIN: [existsByPwsh("unzip"), installByScoop("unzip")],
     OSX: [exists("unzip"), installByBrew("unzip")],
     ARCH: [exists("unzip"), installByParu("unzip")],
-    DEB: [exists("unzip"), installByNala("unzip")],
+    DEB: [exists("unzip"), installByBrew("unzip")],
   },
 });
 
@@ -217,17 +220,7 @@ const zsh = install({
     WIN: noop,
     OSX: noop,
     ARCH: [exists("zsh"), installByParu("zsh")],
-    DEB: [exists("zsh"), installByNala("zsh")],
-  },
-});
-
-const volta = install({
-  command: "volta",
-  installers: {
-    WIN: [existsByPwsh("volta"), installByScoop("volta")],
-    OSX: [exists("volta"), installByBrew("volta")],
-    ARCH: [exists("volta"), installByParu("volta-bin")],
-    DEB: [exists("volta"), installByNala("volta")],
+    DEB: [exists("zsh"), installByBrew("zsh")],
   },
 });
 
@@ -237,7 +230,7 @@ const bat = install({
     WIN: [existsByPwsh("bat"), installByScoop("bat")],
     OSX: [exists("bat"), installByBrew("bat")],
     ARCH: [exists("bat"), installByParu("bat")],
-    DEB: [exists("bat"), installByNala("bat")],
+    DEB: [exists("bat"), installByBrew("bat")],
   },
 });
 
@@ -247,7 +240,7 @@ const lsd = install({
     WIN: [existsByPwsh("lsd"), installByScoop("lsd")],
     OSX: [exists("lsd"), installByBrew("lsd")],
     ARCH: [exists("lsd"), installByParu("lsd")],
-    DEB: [exists("lsd"), installByNala("lsd")],
+    DEB: [exists("lsd"), installByBrew("lsd")],
   },
 });
 
@@ -257,7 +250,7 @@ const fzf = install({
     WIN: [existsByPwsh("fzf"), installByScoop("fzf")],
     OSX: [exists("fzf"), installByBrew("fzf")],
     ARCH: [exists("fzf"), installByParu("fzf")],
-    DEB: [exists("fzf"), installByNala("fzf")],
+    DEB: [exists("fzf"), installByBrew("fzf")],
   },
 });
 
@@ -267,7 +260,7 @@ const rg = install({
     WIN: [existsByPwsh("rg"), installByScoop("ripgrep")],
     OSX: [exists("rg"), installByBrew("rg")],
     ARCH: [exists("rg"), installByParu("ripgrep-git")],
-    DEB: [exists("rg"), installByNala("ripgrep")],
+    DEB: [exists("rg"), installByBrew("ripgrep")],
   },
 });
 
@@ -277,7 +270,7 @@ const delta = install({
     WIN: [existsByPwsh("delta"), installByScoop("delta")],
     OSX: [exists("delta"), installByBrew("git-delta")],
     ARCH: [exists("delta"), installByParu("git-delta")],
-    DEB: [exists("delta"), installByNala("delta")],
+    DEB: [exists("delta"), installByBrew("delta")],
   },
 });
 
@@ -287,7 +280,7 @@ const fd = install({
     WIN: [existsByPwsh("fd"), installByScoop("fd")],
     OSX: [exists("fd"), installByBrew("fd")],
     ARCH: [exists("fd"), installByParu("fd")],
-    DEB: [exists("fd"), installByNala("fd")],
+    DEB: [exists("fd"), installByBrew("fd")],
   },
 });
 
@@ -297,7 +290,7 @@ const kubectl = install({
     WIN: [existsByPwsh("kubectl"), installByScoop("kubectl")],
     OSX: [exists("kubectl"), installByBrew("kubernetes-cli")],
     ARCH: [exists("kubectl"), installByParu("kubectl-bin")],
-    DEB: [exists("kubectl"), installByNala("kubectl")],
+    DEB: [exists("kubectl"), installByBrew("kubernetes-cli")],
   },
 });
 
@@ -307,7 +300,7 @@ const zoxide = install({
     WIN: [existsByPwsh("z"), installByScoop("zoxide")],
     OSX: [exists("z"), installByBrew("zoxide")],
     ARCH: [exists("z"), installByParu("zoxide")],
-    DEB: [exists("z"), installByNala("zoxide")],
+    DEB: [exists("z"), installByBrew("zoxide")],
   },
 });
 
@@ -317,7 +310,7 @@ const gh = install({
     WIN: [existsByPwsh("gh"), installByScoop("gh")],
     OSX: [exists("gh"), installByBrew("gh")],
     ARCH: [exists("gh"), installByParu("gh")],
-    DEB: [exists("gh"), installByNala("gh")],
+    DEB: [exists("gh"), installByBrew("gh")],
   },
 });
 
@@ -335,7 +328,7 @@ const chrome = install({
     ],
     DEB: [
       exists("google-chrome-stable"),
-      installByNala("google-chrome"),
+      installByBrew("google-chrome", true),
     ],
   },
 });
@@ -349,7 +342,7 @@ const telegram = install({
       installByBrew("telegram-desktop", true),
     ],
     ARCH: [exists("telegram-desktop"), installByParu("telegram-desktop")],
-    DEB: [exists("telegram-desktop"), installByNala("telegram-desktop")],
+    DEB: [exists("telegram-desktop"), installByBrew("telegram-desktop", true)],
   },
 });
 
@@ -370,9 +363,9 @@ const slack = install({
   command: "slack",
   installers: {
     WIN: [exists("slack"), installByScoop("slack")],
-    OSX: [existsApplicationInOsx("Slack"), installByBrew("slack")],
+    OSX: [existsApplicationInOsx("Slack"), installByBrew("slack", true)],
     ARCH: [exists("slack"), installByParu("slack")],
-    DEB: [exists("slack"), installByNala("slack")],
+    DEB: [exists("slack"), installByBrew("slack", true)],
   },
 });
 
@@ -381,9 +374,9 @@ const jetbrainsToolbox = install({
   command: "jetbrains toolbox",
   installers: {
     WIN: [exists("jetbrains-toolbox"), installByScoop("jetbrains-toolbox")],
-    OSX: [existsApplicationInOsx("Jetbrains Toolbox"), installByBrew("jetbrains-toolbox")],
+    OSX: [existsApplicationInOsx("Jetbrains Toolbox"), installByBrew("jetbrains-toolbox", true)],
     ARCH: [exists("jetbrains-toolbox"), installByParu("jetbrains-toolbox")],
-    DEB: [exists("jetbrains-toolbox"), installByNala("jetbrains-toolbox")],
+    DEB: [exists("jetbrains-toolbox"), installByBrew("jetbrains-toolbox", true)],
   },
 });
 
@@ -393,9 +386,9 @@ const sublimeMerge = install({
   command: "sublime merge",
   installers: {
     WIN: [exists("smerge"), installByScoop("sublime-merge")],
-    OSX: [existsApplicationInOsx("Sublime Merge"), installByBrew("sublime-merge")],
+    OSX: [existsApplicationInOsx("Sublime Merge"), installByBrew("sublime-merge", true)],
     ARCH: [exists("smerge"), installByParu("sublime-merge")],
-    DEB: [exists("smerge"), installByNala("sublime-merge")],
+    DEB: [exists("smerge"), installByBrew("sublime-merge", true)],
   },
 });
 
@@ -403,9 +396,9 @@ const wezterm = install({
   command: "wezterm",
   installers: {
     WIN: [exists("wezterm"), installByScoop("wezterm")],
-    OSX: [existsApplicationInOsx("Wezterm"), installByBrew("wezterm")],
+    OSX: [existsApplicationInOsx("Wezterm"), installByBrew("wezterm", true)],
     ARCH: [exists("wezterm"), installByParu("wezterm")],
-    DEB: [exists("wezterm"), installByNala("wezterm")],
+    DEB: [exists("wezterm"), installByBrew("wezterm", true)],
   },
 });
 
