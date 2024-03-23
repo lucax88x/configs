@@ -108,9 +108,9 @@ const pwsh = install({
   command: "pwsh",
   installers: {
     WIN: [existsByPwsh("pwsh"), installByScoop("pwsh")],
-    OSX: [exists("pwsh"), installByBrew("pwsh")],
+    OSX: [exists("pwsh"), installByBrew("powershell", true)],
     ARCH: [exists("pwsh"), installByParu("pwsh")],
-    DEB: [exists("pwsh"), installByBrew("pwsh")],
+    DEB: [exists("pwsh"), installByBrew("powershell", true)],
   },
 });
 

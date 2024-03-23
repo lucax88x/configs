@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 
-import { question, os, fs } from "zx";
+import { question, os, fs, path } from "zx";
 import "zx/globals";
 
 console.log(chalk.cyan("Creating symlinks from repo to home directory"));
@@ -82,7 +82,9 @@ async function sync(from: string, to: string) {
 
 async function syncAll(paths: string[]) {
   try {
-    await fs.mkdir(os.homedir());
+    const configDir  = path.join(os.homedir(), '.config')
+    console.info(chalk.blue(`creating ${configDir}`));
+    await fs.mkdir(configDir, { recursive: true });
   } catch (error) {
     console.error(error);
   }
