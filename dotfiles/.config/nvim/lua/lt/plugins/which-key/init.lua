@@ -28,7 +28,7 @@ return {
       n = { name = "notes" },
       q = { name = "quick switcher" },
       k = { name = "terminal" },
-      c = { name = "chatgpt" },
+      i = { name = "llm" },
       C = { name = "compile" },
       [";"] = { name = "test" },
       ["'"] = { name = "marks" },

@@ -18,6 +18,7 @@ return {
     event = "VeryLazy",
   },
   require("lt.plugins.noice"),
+  require("lt.plugins.edgy"),
 
   -- shortcuts
   require("lt.plugins.better-escape"),
@@ -146,7 +147,10 @@ return {
   require("lt.plugins.zen"),
   require("lt.plugins.toggleterm"),
   require("lt.plugins.scrollback"),
-  require("lt.plugins.chatgpt"),
+  -- require("lt.plugins.chatgpt"),
+  require("lt.plugins.gen"),
+  -- require("lt.plugins.codecompanion"),
+  -- require("lt.plugins.llm"),
 
   -- renderer (markdown, plantuml, etc)
   require("lt.plugins.peek"),

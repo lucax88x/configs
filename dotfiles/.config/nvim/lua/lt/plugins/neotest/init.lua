@@ -48,9 +48,16 @@ return {
     {
       "<leader>;;",
       function()
-        require("neotest").summary()
+        require("neotest").summary.toggle()
       end,
-      desc = "Summary of tests",
+      desc = "Toggle summary of tests",
+    },
+    {
+      "<leader>;:",
+      function()
+        require("neotest").summary.open()
+      end,
+      desc = "Open Summary of tests",
     },
     {
       "<leader>;w",
@@ -62,10 +69,30 @@ return {
     {
       "<leader>;o",
       function()
-        require("neotest").output_panel()
+        require("neotest").output_panel.toggle()
       end,
-      desc = "Output panel",
+      desc = "Neotest toggle Output panel",
     },
+    {
+      "<leader>;o",
+      function()
+        require("neotest").output_panel.open()
+      end,
+      desc = "Neotest open Output panel",
+    },
+    -- vim.api.nvim_set_keymap(
+    --     "n",
+    --     "<leader>twr",
+    --     "<cmd>lua require('neotest').run.run({ vitestCommand = 'vitest --watch' })<cr>",
+    --     {desc = "Run Watch"}
+    -- )
+    --
+    -- vim.api.nvim_set_keymap(
+    --     "n",
+    --     "<leader>twf",
+    --     "<cmd>lua require('neotest').run.run({ vim.fn.expand("%"), vitestCommand = 'vitest --watch' })<cr>",
+    --     {desc = "Run Watch File"}
+    -- )
   },
   config = function()
     require("neotest").setup({

@@ -1,6 +1,5 @@
 return {
   "stevearc/oil.nvim",
-  opts = {},
   dependencies = { "nvim-tree/nvim-web-devicons" },
   init = function()
     require("oil").setup({
@@ -9,7 +8,7 @@ return {
         ["H"] = "actions.toggle_hidden",
       },
       view_options = {
-        show_hidden = false,
+        show_hidden = true,
       },
     })
   end,
@@ -19,7 +18,16 @@ return {
       function()
         require("oil").open()
       end,
-      desc = "Open file explorer",
+      desc = "open oil",
+    },
+    {
+      "<leader>pw",
+      function()
+        local current_dir = require("oil").get_current_dir()
+        vim.notify("changing pwd to " .. current_dir)
+        vim.cmd.cd(current_dir)
+      end,
+      desc = "change pwd to current oil buffer (only when oil is open)",
     },
   },
 }

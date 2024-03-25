@@ -11,6 +11,7 @@ M.switch_project = function()
       ["default"] = function(e)
         local path = e[1]
         vim.cmd.cd(path)
+        -- vim.cmd("ProjectRoot '" .. path .. "'")
         vim.cmd("Oil " .. path)
       end,
       ["ctrl-d"] = function(x)

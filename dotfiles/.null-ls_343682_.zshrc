@@ -41,7 +41,7 @@ zinit ice depth=1
 zinit light zsh-users/zsh-completions
 zinit light MichaelAquilina/zsh-auto-notify
 # zinit light zdharma-continuum/history-search-multi-word
-# zinit snippet OMZ::lib/history.zsh 
+zinit snippet OMZ::lib/history.zsh 
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
@@ -74,13 +74,6 @@ source "$HOME/.zshrc.env"
 # END ENV VAR
 
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-# end pyenv
-
-
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 source "$HOME/bin/functions/ks"
 
@@ -88,17 +81,16 @@ source "$HOME/bin/functions/ks"
 zinit ice lucid wait
 zinit snippet OMZP::fzf
 zinit light Aloxaf/fzf-tab
-# zinit light Tarrasch/zsh-bd
+zinit light Tarrasch/zsh-bd
 # zinit snippet $HOME/.fzf.zsh
 #
 zinit ice atload"zpcdreplay" atclone'./zplug.zsh'
-# zinit light g-plane/zsh-yarn-autocompletions
+zinit light g-plane/zsh-yarn-autocompletions
 
-# HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=true
-# zinit light zsh-users/zsh-history-substring-search
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
-zinit load atuinsh/atuin
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=true
+zinit light zsh-users/zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # zinit snippet OMZ::lib/key-bindings.zsh 
  

@@ -37,7 +37,7 @@ return {
           },
           {
             "filetype",
-            icon_only = true,
+            icon_only = false,
             separator = "",
             padding = {
               left = 1,

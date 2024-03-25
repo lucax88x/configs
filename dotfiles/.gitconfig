@@ -188,3 +188,8 @@
   refactor = "!f() { git commit -m \"refactor: $1\";  }; f"
   fix = "!f() { git commit -m \"fix: $1\";  }; f"
   docs = "!f() { git commit -m \"docs: $1\";  }; f"
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

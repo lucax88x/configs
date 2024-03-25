@@ -188,10 +188,10 @@ return {
       gopls = {},
       terraformls = {},
       clangd = {},
-      azure_pipelines_ls = {},
+      -- azure_pipelines_ls = {},
       powershell_es = {},
       pyright = require("lt.plugins.lsp.servers.pyright")(on_attach),
-      ruff_lsp = {},
+      -- ruff_lsp = {},
       -- pylsp = {},
     }
 
@@ -208,12 +208,14 @@ return {
     for server_name, _ in pairs(servers) do
       table.insert(server_names, server_name)
     end
-    --[[ setupped by typescript package so we need to ensure installed by mason ]]
+    -- setupped by typescript package so we need to ensure installed by mason
     table.insert(server_names, "tsserver")
 
     local present_mason, mason = pcall(require, "mason-lspconfig")
     if present_mason then
       mason.setup({ ensure_installed = server_names })
+    else
+      vim.notify("mason not there, cannot install lsp servers")
     end
 
     local present_typescript, typescript = pcall(require, "typescript")

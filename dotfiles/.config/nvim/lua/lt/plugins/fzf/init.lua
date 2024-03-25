@@ -1,6 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
-  branch = "windows",
+  branch = "main",
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
     { "aaronhallaert/advanced-git-search.nvim" },
@@ -49,8 +49,6 @@ return {
       function()
         local current_file_path = vim.fn.expand("%:p")
         local directory = vim.fn.fnamemodify(current_file_path, ":h")
-        print(directory)
-        
         require("fzf-lua").files({
           prompt = "< Navigation Bar >",
           cwd = directory,
