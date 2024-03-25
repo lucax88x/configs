@@ -86,7 +86,7 @@ source "$HOME/bin/functions/ks"
 
 # awaits, necessary for vi mode
 zinit ice lucid wait
-zinit snippet OMZP::fzf
+# zinit snippet OMZP::fzf
 zinit light Aloxaf/fzf-tab
 # zinit light Tarrasch/zsh-bd
 # zinit snippet $HOME/.fzf.zsh

@@ -144,7 +144,7 @@ export function install({
       case "not exists":
         if (
           !(await askConfirmation(
-            `are you sure you want to install ${command}?`
+            `are you sure you want to install ${command}?`,
           ))
         ) {
           return;
