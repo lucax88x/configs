@@ -136,6 +136,7 @@ return {
   require("lt.plugins.indent-blankline"),
   -- require("lt.plugins.neocomposer"),
   require("lt.plugins.inc_rename"),
+  require("lt.plugins.headlines"),
 
   -- status bar
   require("lt.plugins.lualine"),

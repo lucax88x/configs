@@ -58,6 +58,21 @@ switch (os.type()) {
     break;
 }
 
+async function ensureParentDirectoryIfFile(to: string) {
+  const isFile = path.extname(to) !== "";
+
+  if (isFile) {
+    const toDirectory = path.dirname(to);
+
+    if (!(await fs.exists(toDirectory))) {
+      console.info(chalk.blue(`Creating parent dir ${toDirectory}`));
+      await fs.mkdir(toDirectory, { recursive: true });
+    } else {
+      console.info(chalk.green(`Parent dir ${toDirectory} already there`));
+    }
+  }
+}
+
 async function sync(from: string, to: string) {
   console.log(`PROCESSING ${from} to ${to}`);
 
@@ -71,6 +86,8 @@ async function sync(from: string, to: string) {
         await $`exit 1`;
       }
     } else {
+      await ensureParentDirectoryIfFile(to);
+
       await fs.symlink(from, to);
       console.log(chalk.green("Created!"));
     }
@@ -82,7 +99,7 @@ async function sync(from: string, to: string) {
 
 async function syncAll(paths: string[]) {
   try {
-    const configDir  = path.join(os.homedir(), '.config')
+    const configDir = path.join(os.homedir(), ".config");
     console.info(chalk.blue(`creating ${configDir}`));
     await fs.mkdir(configDir, { recursive: true });
   } catch (error) {
