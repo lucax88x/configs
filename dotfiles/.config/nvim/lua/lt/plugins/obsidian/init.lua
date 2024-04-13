@@ -11,20 +11,21 @@ return {
     new_notes_location = "notes_subdir",
     workspaces = {
       {
-        name = "personal",
-        path = "~/vaults/personal",
-      },
-      {
         name = "work",
         path = "~/vaults/work",
       },
+      {
+        name = "personal",
+        path = "~/vaults/personal",
+      },
     },
   },
-  cmd = "ObsidianQuickSwitch",
+  cmd = "ObsidianSearch",
   keys = {
     { "<leader>no", "<cmd>ObsidianOpen<cr>", desc = "Open Obsidian" },
     { "<leader>nn", "<cmd>ObsidianNew<cr>", desc = "New note" },
     { "<leader>ns", "<cmd>ObsidianSearch<cr>", desc = "Search notes" },
+    { "<leader>nt", "<cmd>ObsidianTags<cr>", desc = "List notes by tags" },
     { "<leader>nq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick switch in obsidian workspace" },
     { "<leader>nw", "<cmd>ObsidianWorkspace work<cr>", desc = "Change to workspace work in obsidian" },
     { "<leader>np", "<cmd>ObsidianWorkspace personal<cr>", desc = "Change to workspace home in obsidian" },

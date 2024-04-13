@@ -37,6 +37,7 @@ return {
         "markdown",
         "markdown_inline",
         "regex",
+        "http",
       },
       highlight = {
         enable = true,

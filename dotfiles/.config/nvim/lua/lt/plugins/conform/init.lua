@@ -11,6 +11,7 @@ return {
         typescriptreact = { { "prettierd", "prettier" } },
         vue = { { "prettierd", "prettier" } },
         css = { { "prettierd", "prettier" } },
+        go = { "gofmt" },
         bash = { "shfmt" },
         yaml = { "yamlfmt" },
         xml = { "xmlformatter" },

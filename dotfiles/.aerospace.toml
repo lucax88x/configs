@@ -41,34 +41,34 @@ alt-o = 'workspace-back-and-forth'
 # should be supported at all https://github.com/nikitabobko/AeroSpace/issues/5
 # alt-a = 'focus parent'
 
-# chat
-alt-1 = 'workspace 1'
+# C - chat
+alt-1 = 'workspace C'
 # alt-t = 'workspace 1'
-# ide
-alt-2 = 'workspace 2'
-alt-r = 'workspace 2'
+# I - ide
+alt-2 = 'workspace I'
+alt-r = 'workspace I'
 # terminal
-alt-3 = 'workspace 3'
-# browser
-alt-4 = 'workspace 4'
-alt-c = 'workspace 4'
-# db & finder
-alt-5 = 'workspace 5'
-# emails
-alt-6 = 'workspace 6'
+alt-3 = 'workspace T'
+# B - browser
+alt-4 = 'workspace B'
+alt-c = 'workspace B'
+# F - finder
+alt-5 = 'workspace F'
+# E- emails
+alt-6 = 'workspace E'
 # devtools
-alt-7 = 'workspace 7'
-# notes
-alt-8 = 'workspace 8'
+alt-7 = 'workspace D'
+# N - notes
+alt-8 = 'workspace N'
 
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-1 = 'move-node-to-workspace C'
+alt-shift-2 = 'move-node-to-workspace I'
+alt-shift-3 = 'move-node-to-workspace T'
+alt-shift-4 = 'move-node-to-workspace B'
+alt-shift-5 = 'move-node-to-workspace F'
+alt-shift-6 = 'move-node-to-workspace E'
+alt-shift-7 = 'move-node-to-workspace D'
+alt-shift-8 = 'move-node-to-workspace N'
 
 # alt-shift-h = 'move-node-to-workspace prev'
 # alt-shift-l = 'move-node-to-workspace next'
@@ -88,71 +88,87 @@ ctrl-alt-shift-l = 'move-workspace-to-monitor next --wrap-around'
 
 [[on-window-detected]]
 if.app-id = 'com.tdesktop.Telegram'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.rider'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace I'
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.WebStorm'
+run = 'move-node-to-workspace I'
 
 [[on-window-detected]]
 if.app-id = 'com.neovide.neovide'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace I'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Terminal'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'dev.warp.Warp-Stable'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 4'
+run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace 8'
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Word'
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Powerpoint'
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Excel'
+run = 'move-node-to-workspace N'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
-run = 'move-node-to-workspace 6'
-
-[[on-window-detected]]
-if.app-id = 'com.jetbrains.datagrip'
-run = 'move-node-to-workspace 5'
-
-[[on-window-detected]]
-if.app-id = 'com.sublimemerge'
-run = 'move-node-to-workspace 7'
-
-[[on-window-detected]]
-if.app-id = 'io.rancherdesktop.app'
-run = 'move-node-to-workspace 7'
-
-[[on-window-detected]]
-if.app-id = 'com.electron.dockerdesktop'
-run = 'move-node-to-workspace 7'
+run = 'move-node-to-workspace E'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace F'
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.datagrip'
+run = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+if.app-id = 'com.sublimemerge'
+run = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+if.app-id = 'io.rancherdesktop.app'
+run = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+if.app-id = 'com.electron.dockerdesktop'
+run = 'move-node-to-workspace D'
 
 # [[on-window-detected]]
 # if.app-id = 'com.jetbrains.intellij'
@@ -162,12 +178,13 @@ run = 'move-node-to-workspace 5'
 # left 'DELL U2715H (2)'
 # right 'DELL U2715H (1)'
 # center LC32G5xT
+# office DELL U3415W
 [workspace-to-monitor-force-assignment]
-1 = 'built-in'                   
-2 = 'main'            
-3 = ['DELL U2715H \(2\)', 'built-in']    
-4 = 'DELL U2715H \(1\)'   
-5 = 'main'
-6 = ['DELL U2715H \(2\)', 'built-in']    
-7 = 'DELL U2715H \(1\)'
-8 = 'DELL U2715H \(1\)'
+C = 'built-in'                   
+I = 'main'            
+T = ['DELL U2715H \(2\)', 'built-in']    
+B = 'DELL U2715H \(1\)'   
+F = 'main'
+E = ['DELL U2715H \(2\)', 'built-in']    
+D = 'DELL U2715H \(1\)'
+N = 'DELL U2715H \(1\)'

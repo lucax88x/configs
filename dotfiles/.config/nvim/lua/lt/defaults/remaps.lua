@@ -26,15 +26,29 @@ r.noremap("n", "N", "Nzzzv", "When going to previous search, we center screen")
 -- bufremove
 -- r.noremap("n", "<leader>bd", "<cmd>bd<CR>", "Deletes buffer")
 -- r.noremap("n", "<leader>bD", "<cmd>bd!<CR>", "Force delete buffer")
-r.noremap("n", "<leader>bad", "<cmd>%bd<CR>", "Deletes all buffers")
+r.noremap("n", "<leader>bA", "<cmd>%bd<CR>", "Deletes all buffers")
 r.noremap("n", "<leader>bw", "<cmd>update<CR>", "Saves/writes/updates buffer")
 r.noremap("n", "<leader>bW", "<cmd>update!<CR>", "Force save/write/update buffer")
 
+vim.keymap.set("n", "<leader>ww", function()
+  vim.opt.wrap = not vim.o.wrap
+end, { desc = "Toggles window wrap" })
+
+vim.keymap.set("n", "<leader>wc", function()
+  local current_level = vim.o.conceallevel + 1
+
+  if current_level > 3 then
+    current_level = 0
+  end
+
+  vim.opt.conceallevel = current_level
+end, { desc = "Toggles conceal level" })
+
 -- maps c-n / c-t to navigate while searching with /
 vim.api.nvim_exec(
-	[[
+  [[
 cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
 cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
 ]],
-	false
+  false
 )

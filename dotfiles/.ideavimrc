@@ -47,8 +47,8 @@ vmap <leader>ra :action ShowIntentionActions<CR>
 
 nnoremap <leader>rc :action CopyElement<CR>
 
-nnoremap <leader>rF :action ReformatCode<CR>
-nnoremap <leader>rf :action com.intellij.csharpier.ReformatWithCSharpierAction<CR>
+nnoremap <leader>rf :action ReformatCode<CR>
+nnoremap <leader>rF :action com.intellij.csharpier.ReformatWithCSharpierAction<CR>
 
 nnoremap <leader>rio :action OptimizeImports<CR>
 

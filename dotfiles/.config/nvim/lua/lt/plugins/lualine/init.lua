@@ -21,6 +21,11 @@ return {
         theme = "auto",
         globalstatus = true,
         disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
+        refresh = {
+          statusline = 500,
+          tabline = 1000,
+          winbar = 1000,
+        },
       },
       sections = {
         lualine_a = { "mode" },
@@ -59,8 +64,22 @@ return {
               unnamed = "",
             },
           },
+          {
+            function()
+              return require("possession.session").session_name or "no session"
+            end,
+          },
+          {
+            require("nvim-possession").status,
+            cond = function()
+              return require("nvim-possession").status() ~= nil
+            end,
+          },
         },
         lualine_x = {
+          {
+            require("lt.plugins.lualine.codecompanion"),
+          },
           {
             function()
               return require("noice").api.status.command.get()
@@ -72,7 +91,7 @@ return {
           },
           {
             function()
-              return require("noice").api.status.mode.get()
+              return eequire("noice").api.status.mode.get()
             end,
             cond = function()
               return package.loaded["noice"] and require("noice").api.status.mode.has()

@@ -2,27 +2,48 @@
 return {
   "olimorris/codecompanion.nvim",
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
     "nvim-lua/plenary.nvim",
   },
   init = function()
     require("codecompanion").setup({
-      adapters = {
+      strategies = {
         chat = "ollama",
         inline = "ollama",
       },
+
+      adapters = {
+        ollama = require("codecompanion.adapters").use("ollama", {
+          schema = {
+            model = {
+              default = "deepseek-coder:6.7b",
+            },
+          },
+        }),
+      },
     })
   end,
+  config = function()
+    -- Expand `cc` into CodeCompanion in the command line
+    vim.cmd([[cab cc CodeCompanion]])
+  end,
   keys = {
-    { "<leader>cc", "<cmd>CodeCompanionChat<CR>", desc = "Chat with code companion" },
-    { "<leader>cC", "<cmd>CodeCompanionToggle<CR>", desc = "Toggle chat with code companion" },
-    { "<leader>cr", "<cmd>CodeCompanion<CR>", desc = "Code companion", mode = { "n", "v" } },
-    { "<leader>ca", "<cmd>CodeCompanionActions<CR>", desc = "Code companion actions", mode = { "n", "v" } },
-    -- vim.api.nvim_set_keymap("n", "<LocalLeader>a", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true })
-
-    -- vim.api.nvim_set_keymap("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-    -- vim.api.nvim_set_keymap("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-    -- vim.api.nvim_set_keymap("n", "<LocalLeader>a", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true })
-    -- vim.api.nvim_set_keymap("v", "<LocalLeader>a", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true })
+    {
+      "<leader>ic",
+      "<cmd>CodeCompanionToggle<CR>",
+      desc = "A[I] [C]hat",
+      mode = { "n", "v" },
+    },
+    {
+      "<leader>ia",
+      "<cmd>CodeCompanion<CR>",
+      desc = "A[I] [A]sk",
+      mode = { "n", "v" },
+    },
+    {
+      "<leader>il",
+      "<cmd>CodeCompanionActions<CR>",
+      desc = "A[I] [L]ist of actions",
+      mode = { "n", "v" },
+    },
   },
 }

@@ -14,7 +14,8 @@ return {
     notify.setup({
       stages = "fade",
       render = "compact",
-      top_down = false,
+      top_down = true,
+      -- top_down = false,
     })
 
     vim.notify = notify

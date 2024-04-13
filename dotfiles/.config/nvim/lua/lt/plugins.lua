@@ -47,7 +47,6 @@ return {
 
   -- start screen & project management
   require("lt.plugins.alpha"),
-  require("lt.plugins.project"),
   require("lt.plugins.session-manager"),
 
   -- scroll
@@ -130,13 +129,17 @@ return {
   require("lt.plugins.dap-ui"),
   require("lt.plugins.dap-virtual-text"),
 
+  -- http
+  require("lt.plugins.luarocks"),
+  require("lt.plugins.rest"),
+
   -- ui
   require("lt.plugins.colorizer"),
   require("lt.plugins.modes"),
   require("lt.plugins.indent-blankline"),
   -- require("lt.plugins.neocomposer"),
   require("lt.plugins.inc_rename"),
-  require("lt.plugins.headlines"),
+  -- require("lt.plugins.headlines"),
 
   -- status bar
   require("lt.plugins.lualine"),
@@ -149,8 +152,8 @@ return {
   require("lt.plugins.toggleterm"),
   require("lt.plugins.scrollback"),
   -- require("lt.plugins.chatgpt"),
-  require("lt.plugins.gen"),
-  -- require("lt.plugins.codecompanion"),
+  -- require("lt.plugins.gen"),
+  require("lt.plugins.codecompanion"),
   -- require("lt.plugins.llm"),
 
   -- renderer (markdown, plantuml, etc)

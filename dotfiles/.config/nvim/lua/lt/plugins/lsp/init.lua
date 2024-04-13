@@ -3,7 +3,7 @@ return {
   dependencies = {
     "folke/neodev.nvim",
     "nvim-lua/lsp-status.nvim",
-    "jose-elias-alvarez/typescript.nvim",
+    "pmizio/typescript-tools.nvim",
     "b0o/schemastore.nvim",
     "williamboman/mason-lspconfig.nvim",
     "SmiteshP/nvim-navic",
@@ -134,7 +134,7 @@ return {
       severity_sort = true,
       float = {
         focus = false,
-        focusable = false,
+        focusable = true,
         style = "minimal",
         border = "rounded",
         source = "always",
@@ -218,14 +218,19 @@ return {
       vim.notify("mason not there, cannot install lsp servers")
     end
 
-    local present_typescript, typescript = pcall(require, "typescript")
+    local present_typescript, typescript = pcall(require, "typescript-tools")
 
     if present_typescript then
       typescript.setup({
-        server = {
-          on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
-          end,
+        on_attach = on_attach,
+        expose_as_code_action = "all",
+        settings = {
+          tsserver_file_preferences = {
+            -- includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHints = nil,
+            importModuleSpecifierPreference = "non-relative",
+          },
+          -- code_lens = "implementations_only",
         },
       })
     end

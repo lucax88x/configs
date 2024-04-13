@@ -1,12 +1,9 @@
 return {
-  "NvChad/nvim-colorizer.lua",
+  "brenoprata10/nvim-highlight-colors",
   config = function()
-    local colorizer = require("colorizer")
-
-    colorizer.setup({
-      user_default_options = {
-        tailwind = true,
-      },
+    require("nvim-highlight-colors").setup({
+      render = "virtual",
+      enable_tailwind = true,
     })
   end,
 }

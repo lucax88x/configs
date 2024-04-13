@@ -74,11 +74,11 @@ return {
       desc = "Neotest toggle Output panel",
     },
     {
-      "<leader>;o",
+      "<leader>;O",
       function()
-        require("neotest").output_panel.open()
+        require("neotest").output.open()
       end,
-      desc = "Neotest open Output panel",
+      desc = "Neotest open Output",
     },
     -- vim.api.nvim_set_keymap(
     --     "n",

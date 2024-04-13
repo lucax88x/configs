@@ -30,12 +30,19 @@ return {
     {
       "<leader>sc",
       function()
-        require("fzf-lua").files({
-          prompt = "< Config >",
-          cwd = "$HOME/.config/nvim",
-        })
+        require("lt.plugins.fzf.functions").search_config()
       end,
       desc = "Search neovim config",
+    },
+    {
+      "<leader>s~",
+      function()
+        require("fzf-lua").files({
+          prompt = "< Profile >",
+          cwd = "$HOME",
+        })
+      end,
+      desc = "Search profile",
     },
     {
       "<leader>pf",
@@ -106,21 +113,21 @@ return {
       desc = "Search treesitter",
     },
     {
-      "<leader>/gb",
+      "<leader>g/b",
       function()
         require("fzf-lua").git_branches()
       end,
       desc = "Search git branches",
     },
     {
-      "<leader>/gc",
+      "<leader>g/c",
       function()
         require("fzf-lua").git_commits()
       end,
       desc = "Search git commits",
     },
     {
-      "<leader>/gC",
+      "<leader>g/C",
       function()
         require("fzf-lua").git_bcommits()
       end,
@@ -148,42 +155,42 @@ return {
       desc = "Resume FZF",
     },
     {
-      "<leader>/gr",
+      "<leader>g/r",
       function()
         require("advanced_git_search.fzf.pickers").checkout_reflog()
       end,
       desc = "Git Search: Checkout Reflog",
     },
     {
-      "<leader>/gdb",
+      "<leader>g/db",
       function()
         require("advanced_git_search.fzf.pickers").diff_branch_file()
       end,
       desc = "Git Search: Diff branch file",
     },
     {
-      "<leader>/gdf",
+      "<leader>g/df",
       function()
         require("advanced_git_search.fzf.pickers").diff_commit_file()
       end,
       desc = "Git Search: Diff commit file",
     },
     {
-      "<leader>/gdl",
+      "<leader>g/dl",
       function()
         require("advanced_git_search.fzf.pickers").diff_commit_line()
       end,
       desc = "Git Search: Diff commit line",
     },
     {
-      "<leader>/gl",
+      "<leader>g/l",
       function()
         require("advanced_git_search.fzf.pickers").search_log_content()
       end,
       desc = "Git Search: Log content",
     },
     {
-      "<leader>/gL",
+      "<leader>g/L",
       function()
         require("advanced_git_search.fzf.pickers").search_log_content_file()
       end,

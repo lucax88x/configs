@@ -16,7 +16,6 @@ end
 function M.set_default_on_buffer(client, bufnr)
   local buf_set_keymap = generate_buf_keymapper(bufnr)
   local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr or 0 })
-  -- print(filetype)
   local is_typescript = filetype == "typescript" or filetype == "typescriptreact"
 
   local cap = client.server_capabilities
@@ -30,10 +29,17 @@ function M.set_default_on_buffer(client, bufnr)
 
   if cap.definitionProvider then
     buf_set_keymap("n", "gd", vim.lsp.buf.definition, "Go to definition")
+
+    if is_typescript then
+      buf_set_keymap("n", "gD", function()
+        local typescript = require("typescript-tools.api")
+        typescript.go_to_source_definition(false)
+      end, "Go to definition")
+    end
   end
-  if cap.declarationProvider then
-    buf_set_keymap("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-  end
+  -- if cap.declarationProvider then
+  --   buf_set_keymap("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+  -- end
   if cap.implementationProvider then
     buf_set_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
     buf_set_keymap("n", "gI", function()
@@ -95,19 +101,19 @@ function M.set_default_on_buffer(client, bufnr)
     r.which_key("<leader>ri", "import")
 
     buf_set_keymap("n", "<leader>rio", function()
-      local typescript = require("typescript")
-      typescript.actions.organizeImports()
+      local typescript = require("typescript-tools.api")
+      typescript.organize_imports(false)
     end, "Organize imports (TS)")
 
     buf_set_keymap("n", "<leader>riu", function()
-      local typescript = require("typescript")
-      typescript.actions.removeUnused()
+      local typescript = require("typescript-tools.api")
+      typescript.remove_unused(false)
     end, "Remove unused variables (TS)")
 
     buf_set_keymap("n", "<leader>rim", function()
-      local typescript = require("typescript")
-      typescript.actions.addMissingImports()
-    end, "Import all (TS)")
+      local typescript = require("typescript-tools.api")
+      typescript.add_missing_imports(false)
+    end, "Import missing imports (TS)")
   end
 
   if cap.renameProvider then
@@ -120,7 +126,7 @@ function M.set_default_on_buffer(client, bufnr)
   end
 
   buf_set_keymap("n", "<leader>lsc", function()
-    print(vim.inspect(vim.lsp.get_active_clients()))
+    print(vim.inspect(vim.lsp.get_clients()))
   end, "LSP clients")
 
   buf_set_keymap("n", "<leader>lsl", function()

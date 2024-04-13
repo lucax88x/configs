@@ -27,8 +27,9 @@ return {
       { ft = "neotest-output-panel", title = "Neotest OutputPanel", size = { height = 0.3 } },
     },
     right = {
-      { ft = "codecompanion", title = "Code Companion Chat", size = { width = 0.45 } },
-      { ft = "neotest-summary", title = "Neotest Summary", size = { width = 0.3 } },
+      { ft = "codecompanion", title = "Code Companion Chat", size = { width = 0.4 } },
+      { ft = "neotest-summary", title = "Neotest Summary", size = { width = 0.4 } },
+      { ft = "aerial", title = "Symbols", size = { width = 0.4 } },
     },
   },
 }

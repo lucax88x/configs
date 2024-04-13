@@ -17,15 +17,20 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button("e", " New file", ":ene <BAR> startinsert<CR>"),
       dashboard.button("f", "󰱼 Find file", ":FzfLua files cwd=$HOME<CR>"),
-      dashboard.button("s", " Restore Session", ":SessionManager load_last_session<CR>"),
-      dashboard.button("S", " Sessions", ":SessionManager load_session<CR>"),
-      dashboard.button("p", " Projects", ':lua require("lt.plugins.project.functions").switch_project()<CR>'),
-      dashboard.button("n", " Notes", ":ObsidianQuickSwitch<CR>"),
+      dashboard.button("s", " Sessions", function()
+        local possession = require("nvim-possession")
+        possession.list()
+      end),
+      dashboard.button("p", " Projects", function()
+        require("lt.project.functions").switch_project()
+      end),
+      dashboard.button("n", " Notes", ":ObsidianSearch<CR>"),
       dashboard.button("r", " Recent files", ":FzfLua oldfiles<CR>"),
-      dashboard.button("c", " Config", ":e $MYVIMRC | pwd<CR>"),
+      dashboard.button("c", " Config", function()
+        require("lt.plugins.fzf.functions").search_config()
+      end),
       dashboard.button("u p", " Lazy", ":Lazy<CR>"),
       dashboard.button("u l", " Mason", ":Mason<CR>"),
-
       dashboard.button("q", "󰿅 Quit NVIM", ":qa<CR>"),
     }
 

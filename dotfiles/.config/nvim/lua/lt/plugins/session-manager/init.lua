@@ -1,13 +1,41 @@
 return {
-  "shatur/neovim-session-manager",
-  event = "BufReadPre",
-  cmd = "SessionManager",
-  -- config = function()
-  --   local session = require("session_manager")
-  --
-  --   session.setup({
-  --     -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
-  --     autoload_mode = require("session_manager.config").AutoloadMode.Disabled,
-  --   })
-  -- end,
+  "gennaro-tedesco/nvim-possession",
+  dependencies = {
+    "ibhagwan/fzf-lua",
+  },
+  config = true,
+  keys = {
+    {
+      "<leader>Sl",
+      function()
+        local possession = require("nvim-possession")
+        possession.list()
+      end,
+      desc = "List sessions",
+    },
+    {
+      "<leader>Sn",
+      function()
+        local possession = require("nvim-possession")
+        possession.new()
+      end,
+      desc = "Create session",
+    },
+    {
+      "<leader>Su",
+      function()
+        local possession = require("nvim-possession")
+        possession.update()
+      end,
+      desc = "Update session",
+    },
+    {
+      "<leader>Sd",
+      function()
+        local possession = require("nvim-possession")
+        possession.delete()
+      end,
+      desc = "Delete session",
+    },
+  },
 }

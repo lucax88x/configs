@@ -1,7 +1,7 @@
 return {
   "nvimtools/none-ls.nvim",
   event = { "BufReadPre", "BufNewFile", "BufEnter" },
-  dependencies = { "mason.nvim", "jose-elias-alvarez/typescript.nvim" },
+  dependencies = { "mason.nvim" },
   config = function()
     local nls = require("null-ls")
     local diagnostics = nls.builtins.diagnostics
@@ -14,7 +14,6 @@ return {
     -- paru -S nginxbeautifier ansible-lint-git
     -- brew install ansible-lint gitlint stylelint
     -- brew install tfsec
-
 
     nls.setup({
       debug = false,
@@ -33,7 +32,6 @@ return {
 
         -- code_actions.gitsigns,
         code_actions.refactoring,
-        require("typescript.extensions.null-ls.code-actions")
       },
     })
   end,

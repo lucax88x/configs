@@ -4,7 +4,11 @@
 -- | | | | |/ __/ _` | __| '__/ _` |_  /_  / |
 -- | | |_| | (_| (_| | |_| | | (_| |/ / / /| |
 -- |_|\__,_|\___\__,_|\__|_|  \__,_/___/___|_|
-
-require("lt.defaults")
-require("lt.neovide")
-require("lt.lazy")
+--
+if vim.g.vscode then
+else
+  require("lt.defaults")
+  require("lt.neovide")
+  require("lt.project")
+  require("lt.lazy")
+end

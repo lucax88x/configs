@@ -21,6 +21,7 @@ const forBoth = [
   ".config/wezterm",
   ".config/yamlfmt",
   ".config/neovide",
+  ".config/nushell",
   ".gitconfig",
   "bin",
   ".ideavimrc",
