@@ -8,7 +8,7 @@ return {
       mode = { "n" },
       function()
         local harpoon = require("harpoon")
-        harpoon:list():append()
+        harpoon:list():add()
       end,
       desc = "Append to harpoon",
     },
@@ -47,6 +47,15 @@ return {
         harpoon:list():select(3)
       end,
       desc = "Select Harpoon 3",
+    },
+    {
+      "<leader>q4",
+      mode = { "n" },
+      function()
+        local harpoon = require("harpoon")
+        harpoon:list():select(4)
+      end,
+      desc = "Select Harpoon 4",
     },
     -- {
     --   "<C-S-P>",

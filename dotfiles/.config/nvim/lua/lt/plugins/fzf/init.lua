@@ -3,6 +3,7 @@ return {
   branch = "main",
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
+    { "tpope/vim-fugitive" },
     { "aaronhallaert/advanced-git-search.nvim" },
   },
   keys = {

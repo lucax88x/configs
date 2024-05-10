@@ -11,22 +11,17 @@ return function(on_attach)
     settings = {
       Lua = {
         hint = {
-          enable = true
+          enable = true,
         },
         runtime = {
           version = "LuaJIT",
         },
         diagnostics = {
-          globals = { "vim", "hs", "spoon" },
+          globals = { "vim" },
         },
         workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.tbl_extend(
-            "keep",
-            api.nvim_get_runtime_file("", true),
-            { "~/.hammerspoon/Spoons/EmmyLua.spoon/annotations" }
-          ),
           checkThirdParty = false,
+          library = vim.api.nvim_get_runtime_file("lua", true),
         },
         -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = { enable = false },

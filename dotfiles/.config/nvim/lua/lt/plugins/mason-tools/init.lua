@@ -8,7 +8,11 @@ return {
         "stylelint",
         "yamllint",
         "jsonlint",
-        "golangci-lint",
+
+        -- go
+        -- "golangci-lint",
+        "gofmt",
+        "goimports",
 
         -- format
         "stylua",

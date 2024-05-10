@@ -51,20 +51,6 @@ return {
       end
     end
 
-    ---@param buf? number
-    ---@param value? boolean
-    local function inlay_hints(buf, value)
-      local ih = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
-      if type(ih) == "function" then
-        ih(buf, value)
-      elseif type(ih) == "table" and ih.enable then
-        if value == nil then
-          value = not ih.is_enabled(buf)
-        end
-        ih.enable(buf, value)
-      end
-    end
-
     local function try_attach_inlay_hints(client, bufnr)
       if client.server_capabilities.inlayHintProvider then
         vim.api.nvim_create_augroup("lsp_augroup", { clear = true })
@@ -72,14 +58,14 @@ return {
         vim.api.nvim_create_autocmd("InsertEnter", {
           buffer = bufnr,
           callback = function()
-            inlay_hints(bufnr, true)
+            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
           end,
           group = "lsp_augroup",
         })
         vim.api.nvim_create_autocmd("InsertLeave", {
           buffer = bufnr,
           callback = function()
-            inlay_hints(bufnr, false)
+            vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
           end,
           group = "lsp_augroup",
         })
@@ -186,6 +172,7 @@ return {
       texlab = {},
       ansiblels = {},
       gopls = {},
+      golangci_lint_ls = {},
       terraformls = {},
       clangd = {},
       -- azure_pipelines_ls = {},

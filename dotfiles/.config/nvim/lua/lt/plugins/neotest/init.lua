@@ -5,6 +5,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "haydenmeade/neotest-jest",
     "marilari88/neotest-vitest",
+    "MisanthropicBit/neotest-busted",
     "Issafalcon/neotest-dotnet",
     "nvim-neotest/neotest-plenary",
     "nvim-neotest/neotest-go",
@@ -104,6 +105,7 @@ return {
         require("neotest-dotnet"),
         require("neotest-plenary"),
         require("neotest-go"),
+        require("neotest-busted"),
       },
     })
   end,

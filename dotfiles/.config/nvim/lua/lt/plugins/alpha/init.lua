@@ -17,9 +17,8 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button("e", " New file", ":ene <BAR> startinsert<CR>"),
       dashboard.button("f", "󰱼 Find file", ":FzfLua files cwd=$HOME<CR>"),
-      dashboard.button("s", " Sessions", function()
-        local possession = require("nvim-possession")
-        possession.list()
+      dashboard.button("s", " Restore Session", function()
+        require("persistence").load({ last = true })
       end),
       dashboard.button("p", " Projects", function()
         require("lt.project.functions").switch_project()

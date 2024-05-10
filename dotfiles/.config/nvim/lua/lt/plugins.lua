@@ -96,6 +96,7 @@ return {
   -- require("lt.plugins.typescript-tools"),
   require("lt.plugins.ts-error-translator"),
   require("lt.plugins.tsc"),
+  require("lt.plugins.neodev"),
   require("lt.plugins.lsp"),
 
   -- autocompletion
@@ -160,6 +161,7 @@ return {
   require("lt.plugins.peek"),
   require("lt.plugins.plantuml"),
   require("lt.plugins.obsidian"),
+  -- require("lt.plugins.hardtime"),
   -- require("lt.plugins.profile"),
 
   --[[ { ]]

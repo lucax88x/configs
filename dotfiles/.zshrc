@@ -80,6 +80,11 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 # end pyenv
 
+# go
+export GOPATH=$HOME/go
+export GOROOT=/opt/homebrew/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+# end go
 
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 source "$HOME/bin/functions/ks"

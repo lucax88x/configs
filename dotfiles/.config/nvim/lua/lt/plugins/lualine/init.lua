@@ -64,17 +64,6 @@ return {
               unnamed = "",
             },
           },
-          {
-            function()
-              return require("possession.session").session_name or "no session"
-            end,
-          },
-          {
-            require("nvim-possession").status,
-            cond = function()
-              return require("nvim-possession").status() ~= nil
-            end,
-          },
         },
         lualine_x = {
           {

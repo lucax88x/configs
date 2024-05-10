@@ -4,27 +4,27 @@ return {
   "Everduin94/nvim-quick-switcher",
   keys = {
     {
-      "<leader>qh",
+      "<leader>Qh",
       function()
         local quick_switcher = require("nvim-quick-switcher")
         quick_switcher.toggle("component.ts", "component.html")
       end,
-      desc = "component.ts <-> component.html"
+      desc = "component.ts <-> component.html",
     },
     {
-      "<leader>qs",
+      "<leader>Qs",
       function()
         local quick_switcher = require("nvim-quick-switcher")
         quick_switcher.toggle("ts", "scss")
       end,
-      desc = "component.ts <-> component.scss"
+      desc = "component.ts <-> component.scss",
     },
     {
-      "<leader>qt",
+      "<leader>Qt",
       function()
-        local quick_switcher = require("nvim-quick-switcher")
-        quick_switcher.toggle("spec.ts", "ts")
+        require("nvim-quick-switcher").find(".+test|.+spec", { regex = true, prefix = "full" })
       end,
-      desc = "spec <-> code" }
+      desc = "spec <-> code",
+    },
   },
 }

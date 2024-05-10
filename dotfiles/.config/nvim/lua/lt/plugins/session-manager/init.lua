@@ -1,41 +1,28 @@
 return {
-  "gennaro-tedesco/nvim-possession",
-  dependencies = {
-    "ibhagwan/fzf-lua",
-  },
-  config = true,
+  "folke/persistence.nvim",
+  event = "BufReadPre",
+  opts = { options = vim.opt.sessionoptions:get() },
   keys = {
+    {
+      "<leader>Ss",
+      function()
+        require("persistence").load()
+      end,
+      desc = "Restore Session",
+    },
     {
       "<leader>Sl",
       function()
-        local possession = require("nvim-possession")
-        possession.list()
+        require("persistence").load({ last = true })
       end,
-      desc = "List sessions",
-    },
-    {
-      "<leader>Sn",
-      function()
-        local possession = require("nvim-possession")
-        possession.new()
-      end,
-      desc = "Create session",
-    },
-    {
-      "<leader>Su",
-      function()
-        local possession = require("nvim-possession")
-        possession.update()
-      end,
-      desc = "Update session",
+      desc = "Restore Last Session",
     },
     {
       "<leader>Sd",
       function()
-        local possession = require("nvim-possession")
-        possession.delete()
+        require("persistence").stop()
       end,
-      desc = "Delete session",
+      desc = "Don't Save Current Session",
     },
   },
 }

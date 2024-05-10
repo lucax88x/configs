@@ -26,7 +26,7 @@ return {
         diagnostics.stylelint,
         diagnostics.yamllint,
         diagnostics.ansiblelint,
-        diagnostics.golangci_lint,
+        -- diagnostics.golangci_lint,
         diagnostics.gitlint,
         diagnostics.tfsec,
 

@@ -25,11 +25,21 @@ return {
         end,
       },
       { ft = "neotest-output-panel", title = "Neotest OutputPanel", size = { height = 0.3 } },
+      {
+        ft = "toggleterm",
+        title = "Term",
+        size = { height = 0.4 },
+        filter = function(buf)
+          return not vim.b[buf].lazyterm_cmd
+        end,
+      },
+    },
+    left = {
+      { ft = "neotest-summary", title = "Neotest Summary", size = { width = 0.4 } },
     },
     right = {
       { ft = "codecompanion", title = "Code Companion Chat", size = { width = 0.4 } },
-      { ft = "neotest-summary", title = "Neotest Summary", size = { width = 0.4 } },
-      { ft = "aerial", title = "Symbols", size = { width = 0.4 } },
+      { ft = "aerial", title = "Symbols", size = { width = 0.2 } },
     },
   },
 }
