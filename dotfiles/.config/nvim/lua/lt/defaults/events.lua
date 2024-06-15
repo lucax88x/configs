@@ -31,3 +31,13 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.bo.filetype = "typescript"
   end,
 })
+--
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   callback = function(ctx)
+--     local root = vim.fs.root(ctx.buf, { ".git", "Makefile" })
+--     if root then
+--       vim.notify("root found, could change to " .. root)
+--       -- vim.uv.chdir(root)
+--     end
+--   end,
+-- })

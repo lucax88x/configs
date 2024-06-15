@@ -24,7 +24,6 @@ local options = {
   backup = false,
   undofile = true,
   incsearch = true,
-  termguicolors = true,
   scrolloff = 8,
 
   -- live preview of substitutions
@@ -72,3 +71,4 @@ vim.opt.shortmess:append("c")
 
 vim.g.loaded_matchparen = 1
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","

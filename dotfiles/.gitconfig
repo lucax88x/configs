@@ -118,7 +118,7 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --name-only
 	lga = log --oneline --graph --decorate --all
 	lgaa = log --graph --decorate --all
-	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Creset%Cgreen(%an %cr)%Creset%Cred%d' --abbrev-commit
+	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Creset%Cgreen(%an %ad)%Creset%Cred%d' --abbrev-commit
 	lgb = log --oneline --graph --decorate --branches
 	b = branch
 	br = branch -r

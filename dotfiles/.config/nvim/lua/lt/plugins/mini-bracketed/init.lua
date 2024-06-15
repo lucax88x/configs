@@ -5,7 +5,8 @@ return {
   config = function()
     require("mini.bracketed").setup({
       diagnostic = { suffix = "e", options = {} },
-      comment = nil,
+      quickfix = { suffix = "" },
+      comment = { suffix = "" },
     })
   end,
 }

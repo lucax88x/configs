@@ -1,5 +1,4 @@
-std="neovim"
+std="vim"
 
-[rules]
-global_usage = "allow"
-mixed_table = "allow"
+[lints]
+mixed_table = 'allow'

@@ -42,15 +42,17 @@ function M.set_default_on_buffer(client, bufnr)
   -- end
   if cap.implementationProvider then
     buf_set_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
-    buf_set_keymap("n", "gI", function()
-      require("fzf-lua").lsp_implementations()
-    end, "Search implementations")
+    -- buf_set_keymap("n", "gI", function()
+    --   require("fzf-lua").lsp_implementations()
+    -- end, "Search implementations")
+    buf_set_keymap("n", "gI", "<cmd>Trouble lsp_implementations toggle focus=false<cr>", "Search implementations")
   end
 
   if cap.referencesProvider then
-    buf_set_keymap("n", "gr", function()
-      require("fzf-lua").lsp_references()
-    end, "Show references")
+    -- buf_set_keymap("n", "gr", function()
+    --   require("fzf-lua").lsp_references()
+    -- end, "Show references")
+    buf_set_keymap("n", "gr", "<cmd>Trouble lsp_references toggle focus=false<cr>", "Show references")
   end
 
   if cap.hoverProvider then
@@ -64,16 +66,19 @@ function M.set_default_on_buffer(client, bufnr)
     end, "Document symbols")
 
     if pcall(require, "aerial") then
-      buf_set_keymap("n", "<leader>to", "<cmd>AerialToggle!<CR>", "(Aerial) Document symbols")
+      -- buf_set_keymap("n", "<leader>to", "<cmd>AerialToggle!<CR>", "(Aerial) Document symbols")
+      buf_set_keymap("n", "<leader>to", "<cmd>Trouble lsp_document_symbols toggle focus=false<cr>", "Document symbols")
     end
   end
 
   buf_set_keymap("n", "<leader>ts", vim.lsp.buf.signature_help, "Show signature")
 
-  buf_set_keymap("n", "<leader>te", function()
-    require("fzf-lua").diagnostics_document()
-  end, "Show diagnostics")
-  buf_set_keymap("n", "<leader>tE", vim.diagnostic.open_float, "Show line diagnostics")
+  -- buf_set_keymap("n", "<leader>te", function()
+  --   require("fzf-lua").diagnostics_document()
+  -- end, "Show diagnostics")
+  buf_set_keymap("n", "<leader>tE", "<cmd>Trouble diagnostics toggle<cr>", "Show workspace diagnostics")
+  buf_set_keymap("n", "<leader>te", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "Show buffer diagnostics")
+  -- buf_set_keymap("n", "<leader>tE", vim.diagnostic.open_float, "Show line diagnostics")
 
   -- if cap.workspaceSymbolProvider then
   --   map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)

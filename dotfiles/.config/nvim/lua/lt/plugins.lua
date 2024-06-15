@@ -29,9 +29,6 @@ return {
   -- Change surrounding marks
   require("lt.plugins.surround"),
 
-  -- multi-cursor
-  require("lt.plugins.visual-multi"),
-
   -- extends . repeat
   { "tpope/vim-repeat", event = "VeryLazy" },
   -- allows to move by camelCase with w e
@@ -80,10 +77,8 @@ return {
   --
 
   -- search
-  require("lt.plugins.ctrlsf"),
-  require("lt.plugins.ssr"),
+  require("lt.plugins.grug-far"),
   require("lt.plugins.hlslens"),
-  require("lt.plugins.spectre"),
 
   -- lsp
   require("lt.plugins.mason"),
@@ -96,7 +91,9 @@ return {
   -- require("lt.plugins.typescript-tools"),
   require("lt.plugins.ts-error-translator"),
   require("lt.plugins.tsc"),
-  require("lt.plugins.neodev"),
+  -- lua
+  require("lt.plugins.lazydev"),
+  require("lt.plugins.trouble"),
   require("lt.plugins.lsp"),
 
   -- autocompletion
@@ -108,8 +105,8 @@ return {
 
   -- comments & annotation
   require("lt.plugins.neogen"),
-  require("lt.plugins.mini-comment"),
   require("lt.plugins.todo-comments"),
+  require("lt.plugins.ts-comments"),
 
   -- fold
   require("lt.plugins.ufo"),

@@ -1,7 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "folke/neodev.nvim",
     "nvim-lua/lsp-status.nvim",
     "pmizio/typescript-tools.nvim",
     "b0o/schemastore.nvim",
@@ -12,8 +11,6 @@ return {
   },
   event = { "BufReadPre", "BufNewFile", "BufEnter" },
   config = function()
-    require("neodev").setup({})
-
     local lspconfig = require("lspconfig")
 
     local remaps = require("lt.plugins.lsp.remaps")
@@ -66,6 +63,7 @@ return {
           buffer = bufnr,
           callback = function()
             vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+        
           end,
           group = "lsp_augroup",
         })
@@ -96,28 +94,10 @@ return {
       end
     end
 
-    local signs = {
-      { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-      { name = "DiagnosticSignWarn", text = icons.diagnostics.Warn },
-      { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-      { name = "DiagnosticSignInfo", text = icons.diagnostics.Info },
-    }
-
-    for _, sign in ipairs(signs) do
-      vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-    end
-
     local config = {
-      virtual_text = true,
-      -- enables lsp_lines but we want to start disabled
-      virtual_lines = false,
       -- show signs
-      signs = {
-        active = signs,
-      },
       update_in_insert = true,
       underline = true,
-      severity_sort = true,
       float = {
         focus = false,
         focusable = true,
@@ -126,6 +106,32 @@ return {
         source = "always",
         header = "",
         prefix = "",
+      },
+      virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = "●",
+      },
+      -- enables lsp_lines but we want to start disabled
+      virtual_lines = false,
+      severity_sort = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+          [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+          [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+          [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+        },
+      },
+      inlay_hints = {
+        enabled = true,
+        exclude = {}, -- filetypes for which you don't want to enable inlay hints
+      },
+      codelens = {
+        enabled = false,
+      },
+      document_highlight = {
+        enabled = true,
       },
     }
 

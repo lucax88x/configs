@@ -99,6 +99,10 @@ if.app-id = 'net.whatsapp.WhatsApp'
 run = 'move-node-to-workspace C'
 
 [[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace C'
+
+[[on-window-detected]]
 if.app-id = 'com.jetbrains.rider'
 run = 'move-node-to-workspace I'
 
@@ -182,7 +186,7 @@ run = 'move-node-to-workspace D'
 # left 'DELL U2715H (2)'
 # right 'DELL U2715H (1)'
 # center LC32G5xT
-# office DELL U3415W
+# office DELL U3425WE
 [workspace-to-monitor-force-assignment]
 C = 'built-in'                   
 I = 'main'            

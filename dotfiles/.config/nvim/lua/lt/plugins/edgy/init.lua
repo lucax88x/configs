@@ -40,6 +40,7 @@ return {
     right = {
       { ft = "codecompanion", title = "Code Companion Chat", size = { width = 0.4 } },
       { ft = "aerial", title = "Symbols", size = { width = 0.2 } },
+      "Trouble",
     },
   },
 }
