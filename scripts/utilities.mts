@@ -39,6 +39,16 @@ export function existsByPwsh(command: string) {
   };
 }
 
+export function existsFontInUnix(font: string) {
+  return async (): Promise<Condition> => {
+    try {
+      return toCondition(!!(await $`fc-list | grep -i ${font}`));
+    } catch (error) {
+      return "not exists";
+    }
+  };
+}
+
 export type Installer = [() => Promise<Condition>, () => Promise<boolean>];
 export type Condition = "exists" | "not exists" | "skipped";
 export const toCondition = (bool: boolean): Condition =>
@@ -129,12 +139,16 @@ export function installByScoop(pkg: string) {
 export function install({
   command,
   installers,
+  description,
 }: {
   command: string;
   installers: Record<DISTROS, Installer>;
+  description?: string;
 }) {
   return async (distro: DISTROS) => {
-    console.info(chalk.blue(`checking ${command}`));
+    description = description ?? command;
+
+    console.info(chalk.blue(`checking ${description}`));
 
     const [condition, installer] = installers[distro];
 
@@ -144,28 +158,28 @@ export function install({
       case "not exists":
         if (
           !(await askConfirmation(
-            `are you sure you want to install ${command}?`,
+            `are you sure you want to install ${description}?`,
           ))
         ) {
           return;
         }
 
         // const result = await spinner(`installing ${command}`, () => installer());
-        console.info(chalk.blue(`installing ${command}`));
+        console.info(chalk.blue(`installing ${description}`));
         const result = await installer();
 
         if (result) {
-          console.info(chalk.green(`installed ${command}`));
+          console.info(chalk.green(`installed ${description}`));
         }
         break;
 
       case "exists":
-        console.info(chalk.grey(`already installed ${command}`));
+        console.info(chalk.grey(`already installed ${description}`));
         break;
 
       default:
       case "skipped":
-        console.info(chalk.grey(`skipping ${command}`));
+        console.info(chalk.grey(`skipping ${description}`));
         break;
     }
   };

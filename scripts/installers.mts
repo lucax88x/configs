@@ -11,6 +11,7 @@ import {
   installByScoop,
   installByApt,
   noop,
+  existsFontInUnix,
 } from "./utilities.mts";
 
 const brew = install({
@@ -158,18 +159,8 @@ const go = install({
   command: "go",
   installers: {
     WIN: [existsByPwsh("go"), installByScoop("go")],
-    OSX: noop,
+    OSX: [exists("go"), installByBrew("go")],
     ARCH: [exists("go"), installByParu("go")],
-    DEB: noop,
-  },
-});
-
-const coreutils = install({
-  command: "coreutils",
-  installers: {
-    WIN: [existsByPwsh("coreutils"), installByScoop("coreutils")],
-    OSX: noop,
-    ARCH: noop,
     DEB: noop,
   },
 });
@@ -186,10 +177,12 @@ const wget = install({
 
 const coreutils = install({
   command: "mkdir",
+  description: "coreutils",
   installers: {
     WIN: [existsByPwsh("mkdir"), installByScoop("coreutils")],
     OSX: noop,
     ARCH: noop,
+    DEB: noop,
   },
 });
 
@@ -306,10 +299,10 @@ const kubectl = install({
 const zoxide = install({
   command: "zoxide",
   installers: {
-    WIN: [existsByPwsh("z"), installByScoop("zoxide")],
-    OSX: [exists("z"), installByBrew("zoxide")],
-    ARCH: [exists("z"), installByParu("zoxide")],
-    DEB: [exists("z"), installByBrew("zoxide")],
+    WIN: [existsByPwsh("zoxide"), installByScoop("zoxide")],
+    OSX: [exists("zoxide"), installByBrew("zoxide")],
+    ARCH: [exists("zoxide"), installByParu("zoxide")],
+    DEB: [exists("zoxide"), installByBrew("zoxide")],
   },
 });
 
@@ -442,7 +435,7 @@ const neovide = install({
 });
 
 const switcheroo = install({
-  command: "neovide",
+  command: "todoswitcheroo",
   installers: {
     WIN: [exists("switcheroo"), installByScoop("switcheroo")],
     OSX: noop,
@@ -456,6 +449,16 @@ const keypirinha = install({
   installers: {
     WIN: [exists("keypirinha"), installByScoop("keypirinha")],
     OSX: noop,
+    ARCH: noop,
+    DEB: noop,
+  },
+});
+
+const fontconfig = install({
+  command: "fc-list",
+  installers: {
+    WIN: noop,
+    OSX: [exists("fc-list"), installByBrew("fontconfig")],
     ARCH: noop,
     DEB: noop,
   },
@@ -475,9 +478,18 @@ const jetbrainsMono = install({
   command: "jetbrains mono",
   installers: {
     WIN: noop,
-    OSX: noop,
-    ARCH: [exists("ttf-jetbrains-mono"), installByParu("ttf-jetbrains-mono")],
-    DEB: noop,
+    OSX: [
+      existsFontInUnix("JetBrainsMono"),
+      installByBrew("font-jetbrains-mono"),
+    ],
+    ARCH: [
+      existsFontInUnix("JetBrainsMono"),
+      installByParu("ttf-jetbrains-mono"),
+    ],
+    DEB: [
+      existsFontInUnix("JetBrainsMono"),
+      installByBrew("font-jetbrains-mono"),
+    ],
   },
 });
 
@@ -493,13 +505,6 @@ const configureEd25119Ssh = install({
     DEB: createEd25119SshKey,
   },
 });
-
-// # if [ ! -f ~/.ssh/id_rsa.pub ]; then
-// # 	echo CONFIGURING SSH
-// #
-// # else
-// # 	echo SSH ALREADY CONFIGURED
-// # fi
 
 export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   // base
@@ -551,6 +556,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   switcheroo,
   keypirinha,
 
+  fontconfig,
   roboto,
   jetbrainsMono,
 
@@ -583,7 +589,7 @@ export const installAll = async () => {
   ) {
     return;
   }
-  
+
   for (let i = 0; i < installers.length; i++) {
     const installer = installers[i];
 
