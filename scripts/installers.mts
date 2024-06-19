@@ -41,6 +41,15 @@ const brew = install({
         return true;
       },
     ],
+    FED: [
+      exists("brew"),
+      async () => {
+        await $`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`;
+        await $`brew analytics off`;
+
+        return true;
+      },
+    ],
   },
 });
 
@@ -87,6 +96,7 @@ const scoop = install({
 
 const nala = install({
   command: "nala",
+  description: "nala (better apt)",
   installers: {
     OSX: noop,
     ARCH: noop,
@@ -112,6 +122,17 @@ const pwsh = install({
     OSX: [exists("pwsh"), installByBrew("powershell", true)],
     ARCH: [exists("pwsh"), installByParu("pwsh")],
     DEB: [exists("pwsh"), installByBrew("powershell", true)],
+  },
+});
+
+const volta = install({
+  command: "volta",
+  installers: {
+    WIN: [existsByPwsh("volta"), installByScoop("volta")],
+    OSX: [exists("volta"), installByBrew("volta")],
+    ARCH: [exists("volta"), installByParu("volta")],
+    DEB: [exists("volta"), installByBrew("volta")],
+    FED: [exists("volta"), installByBrew("volta")],
   },
 });
 
@@ -514,6 +535,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   nala,
   pwsh,
   baseDevel,
+  volta,
   git,
 
   // compilers

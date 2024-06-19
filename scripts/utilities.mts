@@ -1,6 +1,6 @@
 // import { spinner } from "zx/experimental";
 
-export type DISTROS = "OSX" | "ARCH" | "WIN" | "DEB";
+export type DISTROS = "OSX" | "ARCH" | "WIN" | "DEB" | "FED";
 
 export async function askConfirmation(quest: string): Promise<boolean> {
   let confirmation = await question(`${quest} (y)`);

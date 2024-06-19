@@ -5,6 +5,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "build:arch": "docker build -f ./arch.Dockerfile ."
+  },
   "dependencies": {
     "zx": "^7.2.2"
   },
