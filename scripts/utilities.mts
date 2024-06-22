@@ -138,17 +138,13 @@ export function installByScoop(pkg: string) {
 
 export function install({
   command,
-  installers,
-  description,
+  installers
 }: {
   command: string;
   installers: Record<DISTROS, Installer>;
-  description?: string;
 }) {
   return async (distro: DISTROS) => {
-    description = description ?? command;
-
-    console.info(chalk.blue(`checking ${description}`));
+    console.info(chalk.blue(`checking ${command}`));
 
     const [condition, installer] = installers[distro];
 
@@ -158,28 +154,28 @@ export function install({
       case "not exists":
         if (
           !(await askConfirmation(
-            `are you sure you want to install ${description}?`,
+            `are you sure you want to install ${command}?`,
           ))
         ) {
           return;
         }
 
         // const result = await spinner(`installing ${command}`, () => installer());
-        console.info(chalk.blue(`installing ${description}`));
+        console.info(chalk.blue(`installing ${command}`));
         const result = await installer();
 
         if (result) {
-          console.info(chalk.green(`installed ${description}`));
+          console.info(chalk.green(`installed ${command}`));
         }
         break;
 
       case "exists":
-        console.info(chalk.grey(`already installed ${description}`));
+        console.info(chalk.grey(`already installed ${command}`));
         break;
 
       default:
       case "skipped":
-        console.info(chalk.grey(`skipping ${description}`));
+        console.info(chalk.grey(`skipping ${command}`));
         break;
     }
   };
