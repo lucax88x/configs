@@ -123,8 +123,8 @@ const pwsh = install({
     WIN: [existsByPwsh("pwsh"), installByScoop("pwsh")],
     OSX: [exists("pwsh"), installByBrew("powershell", true)],
     ARCH: [exists("pwsh"), installByParu("pwsh")],
-    DEB: [exists("pwsh"), installByBrew("powershell")],
-    FED: [exists("pwsh"), installByBrew("powershell")],
+    DEB: [exists("pwsh"), installByNala("powershell")],
+    FED: noop,
   },
 });
 
@@ -176,10 +176,10 @@ const bun = install({
   command: "bun",
   installers: {
     WIN: [existsByPwsh("bun"), installByScoop("bun")],
-    OSX: [exists("bun"), installByBrew("bun")],
-    ARCH: [exists("bun"), installByParu("bun")],
-    DEB: [exists("bun"), installByBrew("bun")],
-    FED: [exists("bun"), installByBrew("bun")],
+    OSX: [exists("bun"), installByBrew("oven-sh/bun/bun")],
+    ARCH: [exists("bun"), installByParu("oven-sh/bun/bun")],
+    DEB: [exists("bun"), installByBrew("oven-sh/bun/bun")],
+    FED: [exists("bun"), installByBrew("oven-sh/bun/bun")],
   },
 });
 
