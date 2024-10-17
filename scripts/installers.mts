@@ -9,6 +9,7 @@ import {
   installByParu,
   installByScoop,
   installByApt,
+  installByNala,
   noop,
   existsFontInUnix,
 } from "./utilities.mts";
@@ -122,8 +123,8 @@ const pwsh = install({
     WIN: [existsByPwsh("pwsh"), installByScoop("pwsh")],
     OSX: [exists("pwsh"), installByBrew("powershell", true)],
     ARCH: [exists("pwsh"), installByParu("pwsh")],
-    DEB: [exists("pwsh"), installByBrew("powershell", true)],
-    FED: [exists("pwsh"), installByBrew("powershell", true)],
+    DEB: [exists("pwsh"), installByBrew("powershell")],
+    FED: [exists("pwsh"), installByBrew("powershell")],
   },
 });
 
@@ -170,6 +171,18 @@ const zig = install({
     FED: [exists("zig"), installByBrew("zig")],
   },
 });
+
+const bun = install({
+  command: "bun",
+  installers: {
+    WIN: [existsByPwsh("bun"), installByScoop("bun")],
+    OSX: [exists("bun"), installByBrew("bun")],
+    ARCH: [exists("bun"), installByParu("bun")],
+    DEB: [exists("bun"), installByBrew("bun")],
+    FED: [exists("bun"), installByBrew("bun")],
+  },
+});
+
 
 const rustup = install({
   command: "rustup",
@@ -436,8 +449,8 @@ const chrome = install({
       installByBrew("google-chrome", true),
     ],
     ARCH: [exists("google-chrome-stable"), installByParu("google-chrome")],
-    DEB: [exists("google-chrome"), installByBrew("google-chrome", true)],
-    FED: [exists("google-chrome"), installByBrew("google-chrome", true)],
+    DEB: [exists("google-chrome"), installByNala("google-chrome")],
+    FED: noop,
   },
 });
 
@@ -450,8 +463,8 @@ const edge = install({
       installByBrew("microsoft-edge", true),
     ],
     ARCH: [exists("microsoft-edge"), installByParu("google-chrome")],
-    DEB: [exists("microsoft-edge"), installByBrew("microsoft-edge", true)],
-    FED: [exists("microsoft-edge"), installByBrew("microsoft-edge", true)],
+    DEB: [exists("microsoft-edge"), installByNala("microsoft-edge")],
+    FED: noop,
   },
 });
 
@@ -464,7 +477,7 @@ const telegram = install({
       installByBrew("telegram-desktop", true),
     ],
     ARCH: [exists("telegram-desktop"), installByParu("telegram-desktop")],
-    DEB: [exists("telegram-desktop"), installByBrew("telegram-desktop", true)],
+    DEB: [exists("telegram-desktop"), installByNala("telegram-desktop")],
     FED: [exists("telegram-desktop"), installByBrew("telegram-desktop", true)],
   },
 });
@@ -486,8 +499,8 @@ const slack = install({
     WIN: [exists("slack"), installByScoop("slack")],
     OSX: [existsApplicationInOsx("Slack"), installByBrew("slack", true)],
     ARCH: [exists("slack"), installByParu("slack")],
-    DEB: [exists("slack"), installByBrew("slack", true)],
-    FED: [exists("slack"), installByBrew("slack", true)],
+    DEB: [exists("slack"), installByNala("slack")],
+    FED: noop,
   },
 });
 
@@ -503,12 +516,9 @@ const jetbrainsToolbox = install({
     ARCH: [exists("jetbrains-toolbox"), installByParu("jetbrains-toolbox")],
     DEB: [
       exists("jetbrains-toolbox"),
-      installByBrew("jetbrains-toolbox", true),
+      installByNala("jetbrains-toolbox"),
     ],
-    FED: [
-      exists("jetbrains-toolbox"),
-      installByBrew("jetbrains-toolbox", true),
-    ],
+    FED: noop,
   },
 });
 
@@ -523,8 +533,8 @@ const sublimeMerge = install({
       installByBrew("sublime-merge", true),
     ],
     ARCH: [exists("smerge"), installByParu("sublime-merge")],
-    DEB: [exists("smerge"), installByBrew("sublime-merge", true)],
-    FED: [exists("smerge"), installByBrew("sublime-merge", true)],
+    DEB: [exists("smerge"), installByNala("sublime-merge")],
+    FED: noop,
   },
 });
 
@@ -537,8 +547,8 @@ const dockerDesktop = install({
       installByBrew("docker", true),
     ],
     ARCH: [exists("docker"), installByParu("docker-desktop")],
-    DEB: [exists("docker"), installByBrew("docker", true)],
-    FED: [exists("docker"), installByBrew("docker", true)],
+    DEB: [exists("docker"), installByNala("docker")],
+    FED: noop,
   },
 });
 
@@ -548,8 +558,8 @@ const wezterm = install({
     WIN: [exists("wezterm"), installByScoop("wezterm")],
     OSX: [existsApplicationInOsx("Wezterm"), installByBrew("wezterm", true)],
     ARCH: [exists("wezterm"), installByParu("wezterm")],
-    DEB: [exists("wezterm"), installByBrew("wezterm", true)],
-    FED: [exists("wezterm"), installByBrew("wezterm", true)],
+    DEB: [exists("wezterm"), installByNala("wezterm")],
+    FED: noop,
   },
 });
 
@@ -559,8 +569,8 @@ const kitty = install({
     WIN: noop,
     OSX: [existsApplicationInOsx("kitty"), installByBrew("kitty", true)],
     ARCH: [exists("kitty"), installByParu("kitty")],
-    DEB: [exists("kitty"), installByBrew("kitty", true)],
-    FED: [exists("kitty"), installByBrew("kitty", true)],
+    DEB: [exists("kitty"), installByNala("kitty")],
+    FED: noop,
   },
 });
 
@@ -570,8 +580,8 @@ const neovide = install({
     WIN: noop,
     OSX: [existsApplicationInOsx("Neovide"), installByBrew("neovide", true)],
     ARCH: [exists("neovide"), installByParu("neovide")],
-    DEB: [exists("neovide"), installByBrew("neovide", true)],
-    FED: [exists("neovide"), installByBrew("neovide", true)],
+    DEB: [exists("neovide"), installByNala("neovide")],
+    FED: noop,
   },
 });
 
@@ -641,10 +651,10 @@ const switcheroo = install({
   },
 });
 
-const keypirinha = install({
-  command: "keypirinha",
+const flowLauncher = install({
+  command: "flowLauncher",
   installers: {
-    WIN: [exists("keypirinha"), installByScoop("keypirinha")],
+    WIN: [exists("todoflowlauncher"), installByScoop("flowlauncher")],
     OSX: noop,
     ARCH: noop,
     DEB: noop,
@@ -731,11 +741,12 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   nala,
   pwsh,
   baseDevel,
-  volta,
   git,
 
-  // compilers
+  // dev
+  volta,
   zig,
+  bun,
   rustup,
   go,
   //
@@ -784,7 +795,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   contexts,
   obsidian,
   switcheroo,
-  keypirinha,
+  flowLauncher,
 
   fontconfig,
   roboto,
