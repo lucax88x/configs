@@ -415,14 +415,25 @@ const bob = install({
   },
 });
 
+const yazi = install({
+  command: "yazi",
+  installers: {
+    WIN: [exists("yazi"), installByScoop("yazi")],
+    OSX: [exists("yazi"), installByBrew("yazi")],
+    ARCH: [exists("yazi"), installByParu("yazi")],
+    DEB: [exists("yazi"), installByBrew("yazi")],
+    FED: [exists("yazi"), installByBrew("yazi")],
+  },
+});
+
 const ollama = install({
   command: "ollama",
   installers: {
-    WIN: [exists("bob"), installByScoop("bob")],
-    OSX: [exists("bob"), installByBrew("bob")],
-    ARCH: [exists("bob"), installByParu("bob")],
-    DEB: [exists("bob"), installByBrew("bob")],
-    FED: [exists("bob"), installByBrew("bob")],
+    WIN: noop,
+    OSX: [exists("ollama"), installByBrew("ollama", true)],
+    ARCH: [exists("ollama"), installByBrew("ollama", true)],
+    DEB: [exists("ollama"), installByBrew("ollama", true)],
+    FED: [exists("ollama"), installByBrew("ollama", true)],
   },
 });
 
@@ -434,6 +445,26 @@ const aerospace = install({
       exists("aerospace"),
       installByBrew("nikitabobko/tap/aerospace", true),
     ],
+    ARCH: noop,
+    DEB: noop,
+    FED: noop,
+  },
+});
+
+const sketchybar = install({
+  command: "sketchybar (menubar for osx)",
+  installers: {
+    WIN: noop,
+    OSX: [
+      exists("sketchybar"),
+      async () => {
+        await installByBrew("FelixKratz/formulae/sketchybar")();
+        await $`brew services start sketchybar`;
+
+        return true;
+      },
+    ],
+
     ARCH: noop,
     DEB: noop,
     FED: noop,
@@ -542,10 +573,7 @@ const dockerDesktop = install({
   command: "docker desktop",
   installers: {
     WIN: noop,
-    OSX: [
-      exists("docker"),
-      installByBrew("docker", true),
-    ],
+    OSX: [exists("docker"), installByBrew("docker", true)],
     ARCH: [exists("docker"), installByParu("docker-desktop")],
     DEB: [exists("docker"), installByNala("docker")],
     FED: noop,
@@ -597,10 +625,13 @@ const raycast = install({
 });
 
 const bartender = install({
-  command: "bartender (menubar arrange for osx)",
+  command: "bartender (menubar arrange)",
   installers: {
     WIN: noop,
-    OSX: [existsApplicationInOsx("Bartender 5"), installByBrew("bartender", true)],
+    OSX: [
+      existsApplicationInOsx("Bartender 5"),
+      installByBrew("bartender", true),
+    ],
     ARCH: noop,
     DEB: noop,
     FED: noop,
@@ -612,6 +643,42 @@ const contexts = install({
   installers: {
     WIN: noop,
     OSX: [existsApplicationInOsx("Contexts"), installByBrew("contexts", true)],
+    ARCH: noop,
+    DEB: noop,
+    FED: noop,
+  },
+});
+
+const tgPro = install({
+  command: "tg pro (thermal monitor for osx)",
+  installers: {
+    WIN: noop,
+    OSX: [existsApplicationInOsx("Tg Pro"), installByBrew("tg-pro", true)],
+    ARCH: noop,
+    DEB: noop,
+    FED: noop,
+  },
+});
+
+const daisyDisk = install({
+  command: "daisy disk (disk size check)",
+  installers: {
+    WIN: noop,
+    OSX: [
+      existsApplicationInOsx("DaisyDisk"),
+      installByBrew("daisydisk", true),
+    ],
+    ARCH: noop,
+    DEB: noop,
+    FED: noop,
+  },
+});
+
+const dropbox = install({
+  command: "dropbox",
+  installers: {
+    WIN: noop,
+    OSX: [existsApplicationInOsx("Dropbox"), installByBrew("dropbox", true)],
     ARCH: noop,
     DEB: noop,
     FED: noop,
@@ -662,6 +729,28 @@ const flowLauncher = install({
   },
 });
 
+const flowLauncher = install({
+  command: "flow-launcher",
+  installers: {
+    WIN: [exists("flow-launcher"), installByScoop("flow-launcher")],
+    OSX: noop,
+    ARCH: noop,
+    DEB: noop,
+    FED: noop,
+  },
+});
+
+const cygwin = install({
+  command: "cygwin",
+  installers: {
+    WIN: [exists("cywin"), installByScoop("cygwin")],
+    OSX: noop,
+    ARCH: noop,
+    DEB: noop,
+    FED: noop,
+  },
+});
+
 const fontconfig = install({
   command: "fc-list",
   installers: {
@@ -703,6 +792,52 @@ const jetbrainsMono = install({
     FED: [
       existsFontInUnix("JetBrainsMono"),
       installByBrew("font-jetbrains-mono"),
+    ],
+  },
+});
+
+const hackNerdFont = install({
+  command: "hack nerd font",
+  installers: {
+    WIN: noop,
+    OSX: [
+      existsFontInUnix("HackNerdFont"),
+      installByBrew("font-hack-nerd-font", true),
+    ],
+    ARCH: [
+      existsFontInUnix("HackNerdFont"),
+      installByBrew("font-hack-nerd-font", true),
+    ],
+    DEB: [
+      existsFontInUnix("HackNerdFont"),
+      installByBrew("font-hack-nerd-font", true),
+    ],
+    FED: [
+      existsFontInUnix("HackNerdFont"),
+      installByBrew("font-hack-nerd-font", true),
+    ],
+  },
+});
+
+const sfPro = install({
+  command: "san francisco pro font",
+  installers: {
+    WIN: noop,
+    OSX: [
+      existsFontInUnix("SF Pro"),
+      installByBrew("font-sf-pro", true),
+    ],
+    ARCH: [
+      existsFontInUnix("SF Pro"),
+      installByBrew("font-sf-pro", true),
+    ],
+    DEB: [
+      existsFontInUnix("SF Pro"),
+      installByBrew("font-sf-pro", true),
+    ],
+    FED: [
+      existsFontInUnix("SF Pro"),
+      installByBrew("font-sf-pro", true),
     ],
   },
 });
@@ -771,13 +906,15 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   atuin,
   btop,
   bob,
-  // ollama,
+  yazi,
+  ollama,
 
   // i3
+  aerospace,
+  sketchybar,
   // kde?
 
   // ui
-  aerospace,
   chrome,
   edge,
   telegram,
@@ -793,13 +930,20 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   stats,
   bartender,
   contexts,
+  tgPro,
+  daisyDisk,
+  dropbox,
   obsidian,
   switcheroo,
+  // keypirinha,
   flowLauncher,
+  cygwin,
 
   fontconfig,
   roboto,
   jetbrainsMono,
+  hackNerdFont,
+  sfPro,
   // nerdFonts,
 ];
 

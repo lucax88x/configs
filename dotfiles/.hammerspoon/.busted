@@ -1,8 +1,0 @@
-return {
-  default = {
-    verbose = true
-  },
-  apiUnit = {
-    verbose = true
-  }
-}

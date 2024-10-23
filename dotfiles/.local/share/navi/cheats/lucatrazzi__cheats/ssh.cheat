@@ -1,9 +1,0 @@
-% copy-ssh-id
-
-# copy ssh keys to avoid to use passwords
-ssh-copy-id -i ~/.ssh/id_rsa.pub lucatrazzi@<server>
-
-% ssh
-
-# connect to ssh
-ssh lucatrazzi@<server>

@@ -1,7 +1,0 @@
-host = vpn.garaio.com
-port = 10443
-username = luca.trazzi@garaio.com
-password = <<PASSWORD>>
-ca-file = /home/lucatrazzi/.ssl/garaio.com.crt
-user-cert = /home/lucatrazzi/.ssl/client.crt
-user-key = /home/lucatrazzi/.ssl/client.key
