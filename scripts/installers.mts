@@ -183,7 +183,6 @@ const bun = install({
   },
 });
 
-
 const rustup = install({
   command: "rustup",
   installers: {
@@ -545,10 +544,7 @@ const jetbrainsToolbox = install({
       installByBrew("jetbrains-toolbox", true),
     ],
     ARCH: [exists("jetbrains-toolbox"), installByParu("jetbrains-toolbox")],
-    DEB: [
-      exists("jetbrains-toolbox"),
-      installByNala("jetbrains-toolbox"),
-    ],
+    DEB: [exists("jetbrains-toolbox"), installByNala("jetbrains-toolbox")],
     FED: noop,
   },
 });
@@ -719,17 +715,6 @@ const switcheroo = install({
 });
 
 const flowLauncher = install({
-  command: "flowLauncher",
-  installers: {
-    WIN: [exists("todoflowlauncher"), installByScoop("flowlauncher")],
-    OSX: noop,
-    ARCH: noop,
-    DEB: noop,
-    FED: noop,
-  },
-});
-
-const flowLauncher = install({
   command: "flow-launcher",
   installers: {
     WIN: [exists("flow-launcher"), installByScoop("flow-launcher")],
@@ -823,22 +808,10 @@ const sfPro = install({
   command: "san francisco pro font",
   installers: {
     WIN: noop,
-    OSX: [
-      existsFontInUnix("SF Pro"),
-      installByBrew("font-sf-pro", true),
-    ],
-    ARCH: [
-      existsFontInUnix("SF Pro"),
-      installByBrew("font-sf-pro", true),
-    ],
-    DEB: [
-      existsFontInUnix("SF Pro"),
-      installByBrew("font-sf-pro", true),
-    ],
-    FED: [
-      existsFontInUnix("SF Pro"),
-      installByBrew("font-sf-pro", true),
-    ],
+    OSX: [existsFontInUnix("SF Pro"), installByBrew("font-sf-pro", true)],
+    ARCH: [existsFontInUnix("SF Pro"), installByBrew("font-sf-pro", true)],
+    DEB: [existsFontInUnix("SF Pro"), installByBrew("font-sf-pro", true)],
+    FED: [existsFontInUnix("SF Pro"), installByBrew("font-sf-pro", true)],
   },
 });
 
