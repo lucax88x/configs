@@ -2,8 +2,11 @@
 
 import "zx/globals";
 
-// suppress stdout
-$.verbose = true;
+// // suppress stdout
+// $.verbose = true;
+
+// add to developer group
+await $`sudo dscl . append /Groups/_developer GroupMembership luca.trazzi`
 
 // 15 is lowest setting on UI
 // 8 was too fast causing duplicate keystrokes
@@ -46,7 +49,7 @@ await $`defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool
 await $`defaults write NSGlobalDomain AppleShowAllExtensions -bool true`
 
 // Hides the menu bar (it will show when you move the mouse to the top of the screen).
-// await $`defaults write NSGlobalDomain _HIHideMenuBar -bool true`
+await $`defaults write NSGlobalDomain _HIHideMenuBar -bool true`
 
 // Saves screenshots to the Desktop.
 await $`defaults write com.apple.screencapture location -string "$HOME/Desktop"`
@@ -92,6 +95,10 @@ await $`defaults write com.apple.finder ShowStatusBar -bool false`
 
 // Stops Time Machine from prompting to use new disks for backup.
 await $`defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool YES`
+
+// For aerospace
+await $`defaults write com.apple.spaces spans-displays -bool true`
+await $`defaults write com.apple.dock expose-group-apps -bool true`
 
 // // Enables the Develop menu in Safari.
 // await $`defaults write com.apple.Safari IncludeDevelopMenu -bool true`

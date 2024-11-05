@@ -1,6 +1,5 @@
 import {
-  DISTROS,
-  askConfirmation,
+  DISTROS, askConfirmation,
   exists,
   existsApplicationInOsx,
   existsByPwsh,
@@ -41,15 +40,7 @@ const brew = install({
         return true;
       },
     ],
-    FED: [
-      exists("brew"),
-      async () => {
-        await $`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`;
-        await $`brew analytics off`;
-
-        return true;
-      },
-    ],
+    FED: noop,
   },
 });
 
@@ -122,7 +113,7 @@ const pwsh = install({
   installers: {
     WIN: [existsByPwsh("pwsh"), installByScoop("pwsh")],
     OSX: [exists("pwsh"), installByBrew("powershell", true)],
-    ARCH: [exists("pwsh"), installByParu("pwsh")],
+    ARCH: [exists("pwsh"), installByParu("powershell")],
     DEB: [exists("pwsh"), installByNala("powershell")],
     FED: noop,
   },
@@ -692,6 +683,28 @@ const stats = install({
   },
 });
 
+const karabiner = install({
+  command: "karabiner",
+  installers: {
+    WIN: noop,
+    OSX: [existsApplicationInOsx("Karabiner-Elements"), installByBrew("karabiner-elements", true)],
+    ARCH: noop,
+    DEB: noop,
+    FED: noop,
+  },
+});
+
+const office = install({
+  command: "microsoft office",
+  installers: {
+    WIN: noop,
+    OSX: [existsApplicationInOsx("Microsoft Outlook"), installByBrew("microsoft-office", true)],
+    ARCH: noop,
+    DEB: noop,
+    FED: noop,
+  },
+});
+
 const obsidian = install({
   command: "obsidian",
   installers: {
@@ -901,6 +914,8 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
   neovide,
   raycast,
   stats,
+  karabiner,
+  office,
   bartender,
   contexts,
   tgPro,
