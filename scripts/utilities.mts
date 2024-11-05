@@ -102,6 +102,22 @@ export function installByNala(pkg: string) {
   };
 }
 
+export function installByDnf(pkg: string) {
+  return async () => {
+    if (debug) {
+      console.info(chalk.red("would install by dnf"));
+      await $`sleep 1`;
+      return true;
+    }
+
+    $.verbose = true;
+    await $`sudo dnf install -y ${pkg}`;
+
+    return true;
+  };
+}
+
+
 export function installByBrew(pkg: string, asCask: boolean = false) {
   return async () => {
     if (debug) {
