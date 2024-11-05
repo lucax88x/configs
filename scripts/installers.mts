@@ -244,7 +244,14 @@ const chezmoi = install({
     OSX: [exists("chezmoi"), installByBrew("chezmoi")],
     ARCH: [exists("chezmoi"), installByParu("chezmoi")],
     DEB: [exists("chezmoi"), installByNala("chezmoi")],
-    FED: [exists("chezmoi"), installByDnf("chezmoi")],
+    FED: [
+      exists("chezmoi"),
+      async () => {
+        await $`sh -c "$(curl -fsLS get.chezmoi.io)"`;
+
+        return true;
+      },
+    ],
   },
 });
 
