@@ -127,7 +127,7 @@ export function installFont(url: string) {
 		await $`unzip ~/Downloads/${zipName} -d ~/Downloads/${folderName}`;
 		await $`rm ~/Downloads/${zipName}`;
 		await $`mkdir -p ~/.local/share/fonts`;
-		await $`find ~/Downloads/${folderName} -type f -name "*.ttf" -o -name "*.otf" -exec cp {} ~/.local/share/fonts \;`;
+		await $`find . ~/Downloads/${folderName} -e ttf -e otf -exec cp {} ~/.local/share/fonts \;`;
 		await $`fc-cache -f -v`;
 		await $`rm -rf ~/Downloads/${folderName}`;
 
