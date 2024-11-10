@@ -121,6 +121,23 @@ const volta = install({
 	},
 });
 
+const installPnpm = async () => {
+	await $`curl -fsSL https://get.pnpm.io/install.sh | sh -`;
+
+	return true;
+};
+
+const pnpm = install({
+	command: "pnpm",
+	installers: {
+		WIN: [existsByPwsh("pnpm"), installPnpm],
+		OSX: [exists("pnpm"), installPnpm],
+		ARCH: [exists("pnpm"), installPnpm],
+		DEB: [exists("pnpm"), installPnpm],
+		FED: [exists("pnpm"), installPnpm],
+	},
+});
+
 const baseDevel = install({
 	command: "base-devel (make)",
 	installers: {
@@ -367,7 +384,7 @@ const kubectl = install({
 	installers: {
 		WIN: [existsByPwsh("kubectl"), installByScoop("kubectl")],
 		OSX: [exists("kubectl"), installByBrew("kubernetes-cli")],
-		ARCH: [exists("kubectl"), installByParu("kubectl-bin")],
+		ARCH: [exists("kubectl"), installByParu("kubectl")],
 		DEB: [exists("kubectl"), installByNala("kubernetes-cli")],
 		FED: [exists("kubectl"), installByDnf("kubernetes-client")],
 	},
@@ -389,7 +406,7 @@ const gh = install({
 	installers: {
 		WIN: [existsByPwsh("gh"), installByScoop("gh")],
 		OSX: [exists("gh"), installByBrew("gh")],
-		ARCH: [exists("gh"), installByParu("gh")],
+		ARCH: [exists("gh"), installByParu("github-client")],
 		DEB: [exists("gh"), installByNala("gh")],
 		FED: [exists("gh"), installByDnf("gh")],
 	},
@@ -462,7 +479,7 @@ const hyprland = install({
 	installers: {
 		WIN: noop,
 		OSX: noop,
-		ARCH: noop,
+		ARCH: [exists("hyprland"), installByParu("hyprland")],
 		DEB: noop,
 		FED: [
 			exists("hyprland"),
@@ -473,6 +490,17 @@ const hyprland = install({
 				return true;
 			},
 		],
+	},
+});
+
+const walker = install({
+	command: "walker (albert/rofi)",
+	installers: {
+		WIN: noop,
+		OSX: noop,
+		ARCH: [exists("walker"), installByParu("walker")],
+		DEB: noop,
+		FED: noop,
 	},
 });
 
@@ -863,7 +891,12 @@ const jetbrainsMono = install({
 			existsFontInUnix("JetBrainsMono"),
 			installByNala("font-jetbrains-mono"),
 		],
-		FED: [existsFontInUnix("JetBrainsMono"), installFont("https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip")],
+		FED: [
+			existsFontInUnix("JetBrainsMono"),
+			installFont(
+				"https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip",
+			),
+		],
 	},
 });
 
@@ -913,6 +946,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 
 	// dev
 	volta,
+  pnpm,
 	zig,
 	bun,
 	rustup,
@@ -945,6 +979,8 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 
 	// i3
 	hyprland,
+	walker,
+
 	aerospace,
 	sketchybar,
 	// kde?
