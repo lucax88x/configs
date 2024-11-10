@@ -877,7 +877,7 @@ const hackNerdFont = install({
 		],
 		ARCH: [
 			existsFontInUnix("HackNerdFont"),
-			installByBrew("font-hack-nerd-font", true),
+			installByParu("ttf-hack-nerd"),
 		],
 		DEB: [
 			existsFontInUnix("HackNerdFont"),
@@ -895,9 +895,9 @@ const sfPro = install({
 	installers: {
 		WIN: noop,
 		OSX: [existsFontInUnix("SF Pro"), installByBrew("font-sf-pro", true)],
-		ARCH: [existsFontInUnix("SF Pro"), installByBrew("font-sf-pro", true)],
-		DEB: [existsFontInUnix("SF Pro"), installByNala("font-sf-pro")],
-		FED: [existsFontInUnix("SF Pro"), installByDnf("font-sf-pro")],
+		ARCH: noop,
+		DEB: noop,
+		FED: noop,
 	},
 });
 
