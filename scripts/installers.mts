@@ -649,13 +649,25 @@ const docker = install({
 	installers: {
 		WIN: noop,
 		OSX: noop,
-		ARCH: noop,
+		ARCH: [
+			exists("docker"),
+			async () => {
+				await installByParu("docker")();
+				await installByParu("docker-compose")();
+				await $`sudo systemctl enable docker.service`;
+				await $`sudo systemctl start docker.service`;
+				await $`sudo usermod -aG docker $USER`;
+
+				return true;
+			},
+		],
 		DEB: noop,
 		FED: [
 			exists("docker"),
 			async () => {
 				await $`sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo`;
 				await $`sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`;
+				await $`sudo systemctl enable docker`;
 				await $`sudo systemctl start docker`;
 				await $`sudo usermod -aG docker $USER`;
 
@@ -908,10 +920,7 @@ const hackNerdFont = install({
 			existsFontInUnix("HackNerdFont"),
 			installByBrew("font-hack-nerd-font", true),
 		],
-		ARCH: [
-			existsFontInUnix("HackNerdFont"),
-			installByParu("ttf-hack-nerd"),
-		],
+		ARCH: [existsFontInUnix("HackNerdFont"), installByParu("ttf-hack-nerd")],
 		DEB: [
 			existsFontInUnix("HackNerdFont"),
 			installByNala("font-hack-nerd-font"),
@@ -946,7 +955,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 
 	// dev
 	volta,
-  pnpm,
+	pnpm,
 	zig,
 	bun,
 	rustup,
