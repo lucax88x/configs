@@ -118,7 +118,7 @@ const asdf = install({
 		OSX: [exists("asdf"), installByBrew("asdf")],
 		ARCH: [exists("asdf"), installByParu("asdf-vm")],
 		DEB: noop,
-		FED: noop,
+		FED: [exists("asdf"), installByDnf("asdf-vm")],
 	},
 });
 

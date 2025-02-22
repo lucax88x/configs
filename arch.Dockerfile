@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM archlinux:base-devel
 
 WORKDIR /build
 

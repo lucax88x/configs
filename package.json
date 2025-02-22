@@ -6,7 +6,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build:arch": "docker build -f ./arch.Dockerfile ."
+    "build:arch": "docker build -f ./arch.Dockerfile .",
+    "build:fedora": "docker build -f ./fedora.Dockerfile ."
   },
   "dependencies": {
     "zx": "^8.3.2"
