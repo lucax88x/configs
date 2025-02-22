@@ -198,6 +198,22 @@ const bun = install({
 	},
 });
 
+const installNode = installByAsdf(
+	"nodejs",
+	"22.14.0",
+	"https://github.com/asdf-vm/asdf-nodejs",
+);
+const node = install({
+	command: "node",
+	installers: {
+		WIN: [existsByPwsh("node"), installNode],
+		OSX: [exists("node"), installNode],
+		ARCH: [exists("node"), installNode],
+		DEB: [exists("node"), installNode],
+		FED: [exists("node"), installNode],
+	},
+});
+
 const rustup = install({
 	command: "rustup",
 	installers: {
@@ -212,7 +228,7 @@ const rustup = install({
 // asdf plugin add golang https://github.com/kennyp/asdf-golang.git
 const installGo = installByAsdf(
 	"go",
-	"1.2.3",
+	"1.23.0",
 	"https://github.com/kennyp/asdf-golang.git",
 );
 const go = install({
@@ -973,6 +989,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	pnpm,
 	zig,
 	bun,
+  node,
 	rustup,
 	go,
 	//
