@@ -14,6 +14,7 @@ import {
 	noop,
 	existsFontInUnix,
 	installFont,
+	installByAsdf,
 } from "./utilities.mts";
 
 const brew = install({
@@ -110,22 +111,27 @@ const pwsh = install({
 	},
 });
 
-const volta = install({
-	command: "volta",
+const asdf = install({
+	command: "asdf",
 	installers: {
-		WIN: [existsByPwsh("volta"), installByScoop("volta")],
-		OSX: [exists("volta"), installByBrew("volta")],
-		ARCH: [exists("volta"), installByParu("volta")],
-		DEB: [exists("volta"), installByNala("volta")],
+		WIN: [existsByPwsh("asdf"), installByScoop("asdf")],
+		OSX: [exists("asdf"), installByBrew("asdf")],
+		ARCH: [exists("asdf"), installByParu("asdf-vm")],
+		DEB: noop,
 		FED: noop,
 	},
 });
 
-const installPnpm = async () => {
-	await $`curl -fsSL https://get.pnpm.io/install.sh | sh -`;
-
-	return true;
-};
+// const installPnpm = async () => {
+// 	await $`curl -fsSL https://get.pnpm.io/install.sh | sh -`;
+//
+// 	return true;
+// };
+const installPnpm = installByAsdf(
+	"pnpm",
+	"10.4.1",
+	"https://github.com/jonathanmorley/asdf-pnpm",
+);
 
 const pnpm = install({
 	command: "pnpm",
@@ -160,32 +166,35 @@ const git = install({
 	},
 });
 
+const installZig = installByAsdf(
+	"zig",
+	"0.13.0",
+	"https://github.com/asdf-community/asdf-zig",
+);
 const zig = install({
 	command: "zig",
 	installers: {
-		WIN: [existsByPwsh("zig"), installByScoop("zig")],
-		OSX: [exists("zig"), installByBrew("zig")],
-		ARCH: [exists("zig"), installByParu("zig")],
-		DEB: [exists("zig"), installByNala("zig")],
-		FED: [exists("zig"), installByDnf("zig")],
+		WIN: [existsByPwsh("zig"), installZig],
+		OSX: [exists("zig"), installZig],
+		ARCH: [exists("zig"), installZig],
+		DEB: [exists("zig"), installZig],
+		FED: [exists("zig"), installZig],
 	},
 });
 
+const installBun = installByAsdf(
+	"bun",
+	"1.2.3",
+	"https://github.com/cometkim/asdf-bun",
+);
 const bun = install({
 	command: "bun",
 	installers: {
-		WIN: [existsByPwsh("bun"), installByScoop("bun")],
-		OSX: [exists("bun"), installByBrew("oven-sh/bun/bun")],
-		ARCH: [exists("bun"), installByParu("bun")],
-		DEB: [exists("bun"), installByNala("bun")],
-		FED: [
-			exists("bun"),
-			async () => {
-				await $`curl -fsSL https://bun.sh/install | bash`;
-
-				return true;
-			},
-		],
+		WIN: [existsByPwsh("bun"), installBun],
+		OSX: [exists("bun"), installBun],
+		ARCH: [exists("bun"), installBun],
+		DEB: [exists("bun"), installBun],
+		FED: [exists("bun"), installBun],
 	},
 });
 
@@ -194,20 +203,26 @@ const rustup = install({
 	installers: {
 		WIN: noop,
 		OSX: noop,
-		ARCH: [exists("rustup"), installByParu("rustup")],
+		ARCH: noop,
 		DEB: noop,
 		FED: noop,
 	},
 });
 
+// asdf plugin add golang https://github.com/kennyp/asdf-golang.git
+const installGo = installByAsdf(
+	"go",
+	"1.2.3",
+	"https://github.com/kennyp/asdf-golang.git",
+);
 const go = install({
 	command: "go",
 	installers: {
-		WIN: [existsByPwsh("go"), installByScoop("go")],
-		OSX: [exists("go"), installByBrew("go")],
-		ARCH: [exists("go"), installByParu("go")],
+		WIN: [existsByPwsh("go"), installGo],
+		OSX: [exists("go"), installGo],
+		ARCH: [exists("go"), installGo],
 		DEB: noop,
-		FED: [exists("go"), installByDnf("go")],
+		FED: [exists("go"), installGo],
 	},
 });
 
@@ -950,11 +965,11 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	scoop,
 	nala,
 	pwsh,
+	asdf,
 	baseDevel,
 	git,
 
 	// dev
-	volta,
 	pnpm,
 	zig,
 	bun,
@@ -991,7 +1006,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	walker,
 
 	aerospace,
-	sketchybar,
+	// sketchybar,
 	// kde?
 
 	// ui

@@ -169,6 +169,23 @@ export function installByScoop(pkg: string) {
 	};
 }
 
+export function installByAsdf(pkg: string, version: string, plugin: string) {
+	return async () => {
+		if (debug) {
+			console.info(chalk.red("would install by asdf"));
+			await $`sleep 1`;
+			return true;
+		}
+
+		$.verbose = true;
+
+		await $`asdf plugin add ${pkg} ${plugin}`;
+		await $`asdf install ${pkg} ${version}`;
+
+		return true;
+	};
+}
+
 export function install({
 	command,
 	installers,
