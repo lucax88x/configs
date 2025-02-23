@@ -15,6 +15,7 @@ import {
 	existsFontInUnix,
 	installFont,
 	installByAsdf,
+  installByCargo,
 } from "./utilities.mts";
 
 const brew = install({
@@ -185,6 +186,17 @@ const baseDevel = install({
 		ARCH: [exists("make"), installByParu("base-devel")],
 		DEB: noop,
 		FED: [exists("make"), installByDnf("make")],
+	},
+});
+
+const gcc = install({
+	command: "gcc",
+	installers: {
+		WIN: noop,
+		OSX: noop,
+		ARCH: noop,
+		DEB: noop,
+		FED: [exists("gcc"), installByDnf("gcc")],
 	},
 });
 
@@ -515,13 +527,7 @@ const bob = install({
 		OSX: [exists("bob"), installByBrew("bob")],
 		ARCH: [exists("bob"), installByParu("bob")],
 		DEB: [exists("bob"), installByNala("bob")],
-		FED: [exists("bob"), 
-			async () => {
-				await $`cargo install --git https://github.com/MordechaiHadad/bob.git`;
-
-				return true;
-			},
-],
+		FED: [exists("bob"), installByCargo('https://github.com/MordechaiHadad/bob.git', 'bob')],
 	},
 });
 
@@ -532,7 +538,7 @@ const yazi = install({
 		OSX: [exists("yazi"), installByBrew("yazi")],
 		ARCH: [exists("yazi"), installByParu("yazi")],
 		DEB: [exists("yazi"), installByNala("yazi")],
-		FED: [exists("yazi"), installByDnf("yazi")],
+		FED: [exists("yazi"), installByCargo('https://github.com/sxyazi/yazi.git', 'yazi-fm yazi-cli')],
 	},
 });
 

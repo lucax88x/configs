@@ -187,6 +187,22 @@ export function installByAsdf(pkg: string, version: string, plugin: string) {
 	};
 }
 
+export function installByCargo(repository: string, packages: string) {
+	return async () => {
+		if (debug) {
+			console.info(chalk.red("would install by cargo"));
+			await $`sleep 1`;
+			return true;
+		}
+
+		$.verbose = true;
+
+		await $`cargo install --locked --git ${repository} ${packages}`;
+
+		return true;
+	};
+}
+
 export function install({
 	command,
 	installers,
