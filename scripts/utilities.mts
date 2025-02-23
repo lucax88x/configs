@@ -187,7 +187,7 @@ export function installByAsdf(pkg: string, version: string, plugin: string) {
 	};
 }
 
-export function installByCargo(repository: string, packages: string) {
+export function installByCargo(repository: string, packages?: string) {
 	return async () => {
 		if (debug) {
 			console.info(chalk.red("would install by cargo"));
@@ -197,7 +197,12 @@ export function installByCargo(repository: string, packages: string) {
 
 		$.verbose = true;
 
-		await $`cargo install --locked --git ${repository} ${packages.split(' ')}`;
+    if (packages {
+      await $`cargo install --locked --git ${repository} ${packages.split(' ')}`;
+    }
+    else {
+      await $`cargo install --locked --git ${repository}`;
+    }
 
 		return true;
 	};

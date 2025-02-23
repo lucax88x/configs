@@ -527,7 +527,7 @@ const bob = install({
 		OSX: [exists("bob"), installByBrew("bob")],
 		ARCH: [exists("bob"), installByParu("bob")],
 		DEB: [exists("bob"), installByNala("bob")],
-		FED: [exists("bob"), installByCargo('https://github.com/MordechaiHadad/bob.git', 'bob')],
+		FED: [exists("bob"), installByCargo('https://github.com/MordechaiHadad/bob.git')],
 	},
 });
 
