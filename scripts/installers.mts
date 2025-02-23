@@ -111,6 +111,36 @@ const pwsh = install({
 	},
 });
 
+
+async function installAsdf() {
+  const ASDF_VERSION = process.env.ASDF_VERSION || 'v0.16.4' 
+  const ARCH = process.env.ARCH || 'darwin-arm64'
+    try {
+      await $`mkdir -p /tmp/asdf-install`
+      cd('/tmp/asdf-install')
+
+      const filename = `asdf-${ASDF_VERSION}-${ARCH}.tar.gz`
+      const downloadUrl = `https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/${filename}`
+      
+      console.log(`Downloading ASDF ${ASDF_VERSION} for ${ARCH}...`)
+      await $`wget ${downloadUrl}`
+      
+      await $`mkdir -p ~/.asdf`
+      
+      console.log('Extracting ASDF...')
+      await $`tar -xzf ${filename} -C ~/.asdf`
+      
+      console.log('Cleaning up...')
+      await $`rm -rf /tmp/asdf-install`
+      
+      return true
+    } catch (error) {
+      console.error('Installation failed:', error.message)
+      await $`rm -rf /tmp/asdf-install`
+      return false
+    }
+}
+
 const asdf = install({
 	command: "asdf",
 	installers: {
@@ -118,16 +148,7 @@ const asdf = install({
 		OSX: [exists("asdf"), installByBrew("asdf")],
 		ARCH: [exists("asdf"), installByParu("asdf-vm")],
 		DEB: noop,
-		FED: [
-			exists("asdf"),
-			async () => {
-				await $`git clone https://aur.archlinux.org/asdf-vm.git ~/.asdf`;
-				await $`cd ~/.asdf && makepkg -si`;
-				await $`rm -rf ~/.asdf`;
-
-				return true;
-			},
-		],
+		FED: [ exists("asdf"), installAsdf],
 	},
 });
 
@@ -160,7 +181,7 @@ const baseDevel = install({
 		OSX: noop,
 		ARCH: [exists("make"), installByParu("base-devel")],
 		DEB: noop,
-		FED: noop,
+		FED: [exists("make"), installByDnf("make")],
 	},
 });
 
@@ -223,14 +244,19 @@ const node = install({
 	},
 });
 
-const rustup = install({
-	command: "rustup",
+const installRust = installByAsdf(
+	"rust",
+	"1.85.0",
+	"https://github.com/asdf-community/asdf-rust.git",
+);
+const rust = install({
+	command: "rust",
 	installers: {
 		WIN: noop,
-		OSX: noop,
-		ARCH: noop,
-		DEB: noop,
-		FED: noop,
+		OSX: [exists("cargo"), installRust],
+		ARCH: [exists("cargo"), installRust],
+		DEB: [exists("cargo"), installRust],
+		FED: [exists("cargo"), installRust],
 	},
 });
 
@@ -1022,7 +1048,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	zig,
 	bun,
   node,
-	rustup,
+	rust,
 	go,
 	//
 	zsh,
