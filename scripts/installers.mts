@@ -118,7 +118,16 @@ const asdf = install({
 		OSX: [exists("asdf"), installByBrew("asdf")],
 		ARCH: [exists("asdf"), installByParu("asdf-vm")],
 		DEB: noop,
-		FED: [exists("asdf"), installByDnf("asdf-vm")],
+		FED: [
+			exists("asdf"),
+			async () => {
+				await $`git clone https://aur.archlinux.org/asdf-vm.git ~/.asdf`;
+				await $`cd ~/.asdf && makepkg -si`;
+				await $`rm -rf ~/.asdf`;
+
+				return true;
+			},
+		],
 	},
 });
 
@@ -985,16 +994,6 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	baseDevel,
 	git,
 
-	// dev
-	pnpm,
-	zig,
-	bun,
-  node,
-	rustup,
-	go,
-	//
-	zsh,
-
 	// tools
 	coreutils,
 	wget,
@@ -1017,6 +1016,16 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	bob,
 	yazi,
 	ollama,
+
+	// dev
+	pnpm,
+	zig,
+	bun,
+  node,
+	rustup,
+	go,
+	//
+	zsh,
 
 	// i3
 	hyprland,
