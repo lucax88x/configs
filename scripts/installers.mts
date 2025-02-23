@@ -535,7 +535,7 @@ const yazi = install({
 	command: "yazi",
 	installers: {
 		WIN: [exists("yazi"), installByScoop("yazi")],
-		OSX: [exists("yazi"), installByBrew("yazi")],
+		OSX: [exists("yazi"), installByCargo('https://github.com/sxyazi/yazi.git', 'yazi-fm yazi-cli')],
 		ARCH: [exists("yazi"), installByParu("yazi")],
 		DEB: [exists("yazi"), installByNala("yazi")],
 		FED: [exists("yazi"), installByCargo('https://github.com/sxyazi/yazi.git', 'yazi-fm yazi-cli')],

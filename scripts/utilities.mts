@@ -197,7 +197,7 @@ export function installByCargo(repository: string, packages: string) {
 
 		$.verbose = true;
 
-		await $`cargo install --locked --git ${repository} ${packages}`;
+		await $`cargo install --locked --git ${repository} ${packages.split(' ')}`;
 
 		return true;
 	};
