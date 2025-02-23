@@ -756,6 +756,20 @@ const docker = install({
 	},
 });
 
+const podman = install({
+	command: "podman",
+	installers: {
+		WIN: noop,
+		OSX: noop,
+		ARCH: noop,
+		DEB: noop,
+		FED: [
+			exists("podman"),
+			installByDnf("podman"),
+		],
+	},
+});
+
 const wezterm = install({
 	command: "wezterm",
 	installers: {
@@ -1085,6 +1099,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	sublimeMerge,
 	dockerDesktop,
 	docker,
+  podman,
 	// wezterm,
 	kitty,
 	neovide,
