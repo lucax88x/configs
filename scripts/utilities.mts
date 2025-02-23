@@ -181,6 +181,7 @@ export function installByAsdf(pkg: string, version: string, plugin: string) {
 
 		await $`asdf plugin add ${pkg} ${plugin}`;
 		await $`asdf install ${pkg} ${version}`;
+		await $`asdf set -u ${pkg} ${version}`;
 
 		return true;
 	};

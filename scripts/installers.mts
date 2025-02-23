@@ -112,33 +112,36 @@ const pwsh = install({
 });
 
 
-async function installAsdf() {
+const installAsdf = (arch: 'darwin-arm64' | 'linux-arm64') => async () => {
   const ASDF_VERSION = process.env.ASDF_VERSION || 'v0.16.4' 
-  const ARCH = process.env.ARCH || 'darwin-arm64'
-    try {
-      await $`mkdir -p /tmp/asdf-install`
-      cd('/tmp/asdf-install')
+  const ASDF_INSTALL_DIR = process.env.INSTALL_DIR || '/usr/bin'
 
-      const filename = `asdf-${ASDF_VERSION}-${ARCH}.tar.gz`
-      const downloadUrl = `https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/${filename}`
-      
-      console.log(`Downloading ASDF ${ASDF_VERSION} for ${ARCH}...`)
-      await $`wget ${downloadUrl}`
-      
-      await $`mkdir -p ~/.asdf`
-      
-      console.log('Extracting ASDF...')
-      await $`tar -xzf ${filename} -C ~/.asdf`
-      
-      console.log('Cleaning up...')
-      await $`rm -rf /tmp/asdf-install`
-      
-      return true
-    } catch (error) {
-      console.error('Installation failed:', error.message)
-      await $`rm -rf /tmp/asdf-install`
-      return false
-    }
+  try {
+    await $`mkdir -p /tmp/asdf-install`
+    cd('/tmp/asdf-install')
+
+    const filename = `asdf-${ASDF_VERSION}-${arch}.tar.gz`
+    const downloadUrl = `https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/${filename}`
+    
+    console.log(`downloading ASDF ${ASDF_VERSION} for ${arch}...`)
+    await $`wget ${downloadUrl}`
+    
+    await $`mkdir -p ~/.asdf`
+    
+    console.log('extracting ASDF...')
+    await $`tar -xzf ${filename} -C ~/.asdf`
+
+    await $`sudo install -Dm755 ~/.asdf/asdf "${ASDF_INSTALL_DIR}/asdf"`
+    
+    console.log('cleaning up...')
+    await $`rm -rf /tmp/asdf-install`
+    
+    return true
+  } catch (error) {
+    console.error('installation failed:', error.message)
+    await $`rm -rf /tmp/asdf-install`
+    return false
+  }
 }
 
 const asdf = install({
@@ -148,7 +151,7 @@ const asdf = install({
 		OSX: [exists("asdf"), installByBrew("asdf")],
 		ARCH: [exists("asdf"), installByParu("asdf-vm")],
 		DEB: noop,
-		FED: [ exists("asdf"), installAsdf],
+		FED: [ exists("asdf"), installAsdf('linux-arm64')],
 	},
 });
 
@@ -321,21 +324,19 @@ const ssh = install({
 	},
 });
 
+const installChezmoi = installByAsdf(
+	"chezmoi",
+	"2.59.1",
+	"https://github.com/joke/asdf-chezmoi",
+);
 const chezmoi = install({
 	command: "chezmoi",
 	installers: {
-		WIN: [existsByPwsh("chezmoi"), installByScoop("chezmoi")],
-		OSX: [exists("chezmoi"), installByBrew("chezmoi")],
-		ARCH: [exists("chezmoi"), installByParu("chezmoi")],
-		DEB: [exists("chezmoi"), installByNala("chezmoi")],
-		FED: [
-			exists("chezmoi"),
-			async () => {
-				await $`sh -c "$(curl -fsLS get.chezmoi.io)"`;
-
-				return true;
-			},
-		],
+		WIN: [existsByPwsh("chezmoi"), installChezmoi],
+		OSX: [exists("chezmoi"), installChezmoi],
+		ARCH: [exists("chezmoi"), installChezmoi],
+		DEB: [exists("chezmoi"), installChezmoi],
+		FED: [ exists("chezmoi"),installChezmoi],
 	},
 });
 
@@ -514,7 +515,13 @@ const bob = install({
 		OSX: [exists("bob"), installByBrew("bob")],
 		ARCH: [exists("bob"), installByParu("bob")],
 		DEB: [exists("bob"), installByNala("bob")],
-		FED: [exists("bob"), installByDnf("bob")],
+		FED: [exists("bob"), 
+			async () => {
+				await $`cargo install --git https://github.com/MordechaiHadad/bob.git`;
+
+				return true;
+			},
+],
 	},
 });
 
@@ -566,7 +573,7 @@ const walker = install({
 		OSX: noop,
 		ARCH: [exists("walker"), installByParu("walker")],
 		DEB: noop,
-		FED: noop,
+		FED: [exists("walker"), installByDnf("walker")],
 	},
 });
 
@@ -750,7 +757,7 @@ const wezterm = install({
 		OSX: [existsApplicationInOsx("Wezterm"), installByBrew("wezterm", true)],
 		ARCH: [exists("wezterm"), installByParu("wezterm")],
 		DEB: [exists("wezterm"), installByNala("wezterm")],
-		FED: noop,
+		FED: [exists("wezterm"), installByNala("wezterm")],
 	},
 });
 
@@ -772,7 +779,7 @@ const neovide = install({
 		OSX: [existsApplicationInOsx("Neovide"), installByBrew("neovide", true)],
 		ARCH: [exists("neovide"), installByParu("neovide")],
 		DEB: [exists("neovide"), installByNala("neovide")],
-		FED: noop,
+		FED: [exists("neovide"), installByNala("neovide")],
 	},
 });
 
@@ -1025,6 +1032,17 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	wget,
 	curl,
 	ssh,
+  
+	// dev
+	pnpm,
+	zig,
+	bun,
+  node,
+	rust,
+	go,
+
+  // sh
+	zsh,
 	starship,
 	chezmoi,
 	unzip,
@@ -1042,16 +1060,6 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	bob,
 	yazi,
 	ollama,
-
-	// dev
-	pnpm,
-	zig,
-	bun,
-  node,
-	rust,
-	go,
-	//
-	zsh,
 
 	// i3
 	hyprland,
@@ -1071,7 +1079,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	sublimeMerge,
 	dockerDesktop,
 	docker,
-	wezterm,
+	// wezterm,
 	kitty,
 	neovide,
 	raycast,
