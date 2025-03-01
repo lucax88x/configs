@@ -15,7 +15,7 @@ import {
 	existsFontInUnix,
 	installFont,
 	installByAsdf,
-  installByCargo,
+	installByCargo,
 } from "./utilities.mts";
 
 const brew = install({
@@ -112,38 +112,37 @@ const pwsh = install({
 	},
 });
 
+const installAsdf = (arch: "darwin-arm64" | "linux-arm64") => async () => {
+	const ASDF_VERSION = process.env.ASDF_VERSION || "v0.16.4";
+	const ASDF_INSTALL_DIR = process.env.INSTALL_DIR || "/usr/bin";
 
-const installAsdf = (arch: 'darwin-arm64' | 'linux-arm64') => async () => {
-  const ASDF_VERSION = process.env.ASDF_VERSION || 'v0.16.4' 
-  const ASDF_INSTALL_DIR = process.env.INSTALL_DIR || '/usr/bin'
+	try {
+		await $`mkdir -p /tmp/asdf-install`;
+		cd("/tmp/asdf-install");
 
-  try {
-    await $`mkdir -p /tmp/asdf-install`
-    cd('/tmp/asdf-install')
+		const filename = `asdf-${ASDF_VERSION}-${arch}.tar.gz`;
+		const downloadUrl = `https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/${filename}`;
 
-    const filename = `asdf-${ASDF_VERSION}-${arch}.tar.gz`
-    const downloadUrl = `https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/${filename}`
-    
-    console.log(`downloading ASDF ${ASDF_VERSION} for ${arch}...`)
-    await $`wget ${downloadUrl}`
-    
-    await $`mkdir -p ~/.asdf`
-    
-    console.log('extracting ASDF...')
-    await $`tar -xzf ${filename} -C ~/.asdf`
+		console.log(`downloading ASDF ${ASDF_VERSION} for ${arch}...`);
+		await $`wget ${downloadUrl}`;
 
-    await $`sudo install -Dm755 ~/.asdf/asdf "${ASDF_INSTALL_DIR}/asdf"`
-    
-    console.log('cleaning up...')
-    await $`rm -rf /tmp/asdf-install`
-    
-    return true
-  } catch (error) {
-    console.error('installation failed:', error.message)
-    await $`rm -rf /tmp/asdf-install`
-    return false
-  }
-}
+		await $`mkdir -p ~/.asdf`;
+
+		console.log("extracting ASDF...");
+		await $`tar -xzf ${filename} -C ~/.asdf`;
+
+		await $`sudo install -Dm755 ~/.asdf/asdf "${ASDF_INSTALL_DIR}/asdf"`;
+
+		console.log("cleaning up...");
+		await $`rm -rf /tmp/asdf-install`;
+
+		return true;
+	} catch (error) {
+		console.error("installation failed:", error);
+		await $`rm -rf /tmp/asdf-install`;
+		return false;
+	}
+};
 
 const asdf = install({
 	command: "asdf",
@@ -152,7 +151,7 @@ const asdf = install({
 		OSX: [exists("asdf"), installByBrew("asdf")],
 		ARCH: [exists("asdf"), installByParu("asdf-vm")],
 		DEB: noop,
-		FED: [ exists("asdf"), installAsdf('linux-arm64')],
+		FED: [exists("asdf"), installAsdf("linux-arm64")],
 	},
 });
 
@@ -348,7 +347,7 @@ const chezmoi = install({
 		OSX: [exists("chezmoi"), installChezmoi],
 		ARCH: [exists("chezmoi"), installChezmoi],
 		DEB: [exists("chezmoi"), installChezmoi],
-		FED: [ exists("chezmoi"),installChezmoi],
+		FED: [exists("chezmoi"), installChezmoi],
 	},
 });
 
@@ -527,7 +526,10 @@ const bob = install({
 		OSX: [exists("bob"), installByBrew("bob")],
 		ARCH: [exists("bob"), installByParu("bob")],
 		DEB: [exists("bob"), installByNala("bob")],
-		FED: [exists("bob"), installByCargo('https://github.com/MordechaiHadad/bob.git')],
+		FED: [
+			exists("bob"),
+			installByCargo("https://github.com/MordechaiHadad/bob.git"),
+		],
 	},
 });
 
@@ -535,10 +537,16 @@ const yazi = install({
 	command: "yazi",
 	installers: {
 		WIN: [exists("yazi"), installByScoop("yazi")],
-		OSX: [exists("yazi"), installByCargo('https://github.com/sxyazi/yazi.git', 'yazi-fm yazi-cli')],
+		OSX: [
+			exists("yazi"),
+			installByCargo("https://github.com/sxyazi/yazi.git", "yazi-fm yazi-cli"),
+		],
 		ARCH: [exists("yazi"), installByParu("yazi")],
 		DEB: [exists("yazi"), installByNala("yazi")],
-		FED: [exists("yazi"), installByCargo('https://github.com/sxyazi/yazi.git', 'yazi-fm yazi-cli')],
+		FED: [
+			exists("yazi"),
+			installByCargo("https://github.com/sxyazi/yazi.git", "yazi-fm yazi-cli"),
+		],
 	},
 });
 
@@ -708,7 +716,17 @@ const sublimeMerge = install({
 		],
 		ARCH: [exists("smerge"), installByParu("sublime-merge")],
 		DEB: [exists("smerge"), installByNala("sublime-merge")],
-		FED: noop,
+		FED: [
+			exists("smerge"),
+			async () => {
+				await $`sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg`;
+				await $`sudo dnf-3 config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo`;
+
+				await installByDnf("sublime-merge")();
+
+				return true;
+			},
+		],
 	},
 });
 
@@ -763,10 +781,7 @@ const podman = install({
 		OSX: noop,
 		ARCH: noop,
 		DEB: noop,
-		FED: [
-			exists("podman"),
-			installByDnf("podman"),
-		],
+		FED: [exists("podman"), installByDnf("podman")],
 	},
 });
 
@@ -1045,6 +1060,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	pwsh,
 	asdf,
 	baseDevel,
+	gcc,
 	git,
 
 	// tools
@@ -1052,16 +1068,16 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	wget,
 	curl,
 	ssh,
-  
+
 	// dev
 	pnpm,
 	zig,
 	bun,
-  node,
+	node,
 	rust,
 	go,
 
-  // sh
+	// sh
 	zsh,
 	starship,
 	chezmoi,
@@ -1099,7 +1115,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	sublimeMerge,
 	dockerDesktop,
 	docker,
-  podman,
+	podman,
 	// wezterm,
 	kitty,
 	neovide,
