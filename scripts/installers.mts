@@ -561,6 +561,17 @@ const ollama = install({
 	},
 });
 
+const xsel = install({
+	command: "xsel",
+	installers: {
+		WIN: noop,
+		OSX: noop,
+		ARCH: [exists("xsel"), installByParu("xsel")],
+		DEB: [exists("xsel"), installByNala("xsel")],
+		FED: [exists("xsel"), installByDnf("xsel")],
+	},
+});
+
 const hyprland = install({
 	command: "hyprland",
 	installers: {
@@ -1138,6 +1149,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	bob,
 	yazi,
 	ollama,
+	xsel,
 
 	// i3
 	hyprland,
