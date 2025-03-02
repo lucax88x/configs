@@ -719,12 +719,54 @@ const sublimeMerge = install({
 		FED: [
 			exists("smerge"),
 			async () => {
-				await $`sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg`;
-				await $`sudo dnf-3 config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo`;
+				console.log(
+					"starting Sublime Merge installation for Fedora aarch64...",
+				);
 
-				await installByDnf("sublime-merge")();
+				// https://www.sublimemerge.com/download_thanks?target=arm-tar#direct-downloads
+				const downloadUrl =
+					"https://download.sublimetext.com/sublime_merge_build_2102_arm64.tar.xz";
+				const tarFile = "sublime_merge_build_arm64.tar.xz";
+				const installDir = "/opt/sublime_merge";
+				const binLink = "/usr/local/bin/smerge";
 
-				return true;
+				try {
+					// Download Sublime Merge
+					console.log(`Downloading Sublime Merge from ${downloadUrl}...`);
+					await $`wget ${downloadUrl} -O ${tarFile}`;
+					await $`tar -xJf ${tarFile}`;
+					await $`rm -rf ${installDir}`;
+					await $`sudo mv sublime_merge ${installDir}`;
+					await $`rm -f ${binLink}`;
+					await $`sudo ln -s ${installDir}/sublime_merge ${binLink}`;
+
+					const desktopEntryPath =
+						"/usr/share/applications/sublime-merge.desktop";
+
+					const desktopEntry = `[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Sublime Merge
+GenericName=Git Client
+Comment=Sublime Merge is a Git client from the makers of Sublime Text
+Exec=${installDir}/sublime_merge %F
+Terminal=false
+MimeType=text/plain;
+Icon=${installDir}/Icon/256x256/sublime-merge.png
+Categories=Development;TextEditor;
+StartupNotify=true`;
+
+					await $`echo ${desktopEntry} | sudo tee ${desktopEntryPath}`;
+
+					await $`rm ${tarFile}`;
+
+					return true;
+				} catch (error) {
+					console.error("An error occurred during installation:");
+					console.error(error);
+
+					return false;
+				}
 			},
 		],
 	},

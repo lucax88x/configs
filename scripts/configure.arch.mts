@@ -1,3 +1,7 @@
+#!/usr/bin/env npx tsx
+
+import "zx/globals";
+
 //
 // pacman -S sudo
 // EDITOR=nvim visudo  => uncomment wheel
@@ -25,7 +29,7 @@
 // paru -S dolphin
 //
 // //sway?
-// //xofi? 
+// //xofi?
 //
 // systemctl enable sddm.service
 // systemctl start sddm.service
@@ -36,3 +40,6 @@
 //
 // sudo mount --mkdir /dev/cdrom /mnt/cdrom
 // sudo /mnt/cdrom/install
+
+await $`ssh-keygen -t ed25519 -C "lucax88x@gmail.com"`;
+await $`eval "$(ssh-agent -s)"`;
