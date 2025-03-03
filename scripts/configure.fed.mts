@@ -4,8 +4,9 @@ import "zx/globals";
 // suppress stdout
 $.verbose = true;
 
-await $`chezmoi init https://github.com/lucax88x/dotfiles.git`
-await $`chezmoi apply`
+// navigate to ~/.asdf/shims
+await $`~/.asdf/shims/chezmoi init https://github.com/lucax88x/dotfiles.git`
+await $`~/.asdf/shims/chezmoi apply`
 
 // UTM/QEMU virtualization
 await $`sudo dnf install spice-vdagent`

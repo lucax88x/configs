@@ -867,7 +867,7 @@ const neovide = install({
 		OSX: [existsApplicationInOsx("Neovide"), installByBrew("neovide", true)],
 		ARCH: [exists("neovide"), installByParu("neovide")],
 		DEB: [exists("neovide"), installByNala("neovide")],
-		FED: [exists("neovide"), installByNala("neovide")],
+		FED: noop,
 	},
 });
 
@@ -1066,9 +1066,7 @@ const jetbrainsMono = install({
 		],
 		FED: [
 			existsFontInUnix("JetBrainsMono"),
-			installFont(
-				"https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip",
-			),
+			installByDnf("jetbrains-mono-fonts"),
 		],
 	},
 });
@@ -1088,7 +1086,7 @@ const hackNerdFont = install({
 		],
 		FED: [
 			existsFontInUnix("HackNerdFont"),
-			installByDnf("font-hack-nerd-font"),
+			installByDnf("source-foundry-hack-fonts.noarch"),
 		],
 	},
 });
