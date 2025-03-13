@@ -112,37 +112,38 @@ const pwsh = install({
 	},
 });
 
-const installAsdf = (arch: "darwin-arm64" | "linux-arm64") => async () => {
-	const ASDF_VERSION = process.env.ASDF_VERSION || "v0.16.4";
-	const ASDF_INSTALL_DIR = process.env.INSTALL_DIR || "/usr/bin";
+const installAsdf =
+	(arch: "darwin-arm64" | "linux-arm64" | "linux-amd64") => async () => {
+		const ASDF_VERSION = process.env.ASDF_VERSION || "v0.16.4";
+		const ASDF_INSTALL_DIR = process.env.INSTALL_DIR || "/usr/bin";
 
-	try {
-		await $`mkdir -p /tmp/asdf-install`;
-		cd("/tmp/asdf-install");
+		try {
+			await $`mkdir -p /tmp/asdf-install`;
+			cd("/tmp/asdf-install");
 
-		const filename = `asdf-${ASDF_VERSION}-${arch}.tar.gz`;
-		const downloadUrl = `https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/${filename}`;
+			const filename = `asdf-${ASDF_VERSION}-${arch}.tar.gz`;
+			const downloadUrl = `https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/${filename}`;
 
-		console.log(`downloading ASDF ${ASDF_VERSION} for ${arch}...`);
-		await $`wget ${downloadUrl}`;
+			console.log(`downloading ASDF ${ASDF_VERSION} for ${arch}...`);
+			await $`wget ${downloadUrl}`;
 
-		await $`mkdir -p ~/.asdf`;
+			await $`mkdir -p ~/.asdf`;
 
-		console.log("extracting ASDF...");
-		await $`tar -xzf ${filename} -C ~/.asdf`;
+			console.log("extracting ASDF...");
+			await $`tar -xzf ${filename} -C ~/.asdf`;
 
-		await $`sudo install -Dm755 ~/.asdf/asdf "${ASDF_INSTALL_DIR}/asdf"`;
+			await $`sudo install -Dm755 ~/.asdf/asdf "${ASDF_INSTALL_DIR}/asdf"`;
 
-		console.log("cleaning up...");
-		await $`rm -rf /tmp/asdf-install`;
+			console.log("cleaning up...");
+			await $`rm -rf /tmp/asdf-install`;
 
-		return true;
-	} catch (error) {
-		console.error("installation failed:", error);
-		await $`rm -rf /tmp/asdf-install`;
-		return false;
-	}
-};
+			return true;
+		} catch (error) {
+			console.error("installation failed:", error);
+			await $`rm -rf /tmp/asdf-install`;
+			return false;
+		}
+	};
 
 const asdf = install({
 	command: "asdf",
@@ -150,7 +151,7 @@ const asdf = install({
 		WIN: [existsByPwsh("asdf"), installByScoop("asdf")],
 		OSX: [exists("asdf"), installByBrew("asdf")],
 		ARCH: [exists("asdf"), installByParu("asdf-vm")],
-		DEB: noop,
+		DEB: [exists("asdf"), installAsdf("linux-amd64")],
 		FED: [exists("asdf"), installAsdf("linux-arm64")],
 	},
 });
@@ -276,7 +277,7 @@ const rust = install({
 
 // asdf plugin add golang https://github.com/kennyp/asdf-golang.git
 const installGo = installByAsdf(
-	"go",
+	"golang",
 	"1.23.0",
 	"https://github.com/kennyp/asdf-golang.git",
 );
@@ -815,6 +816,7 @@ const docker = install({
 		FED: [
 			exists("docker"),
 			async () => {
+				await installByDnf("dnf-command(config-manager)")();
 				await $`sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo`;
 				await $`sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`;
 				await $`sudo systemctl enable docker`;
@@ -835,6 +837,42 @@ const podman = install({
 		ARCH: noop,
 		DEB: noop,
 		FED: [exists("podman"), installByDnf("podman")],
+	},
+});
+
+const podmanCompose = install({
+	command: "podman compose",
+	installers: {
+		WIN: noop,
+		OSX: noop,
+		ARCH: noop,
+		DEB: noop,
+		FED: [exists("podman-compose"), installByDnf("podman-compose")],
+	},
+});
+
+const podmanDesktop = install({
+	command: "podman desktop",
+	installers: {
+		WIN: noop,
+		OSX: noop,
+		ARCH: noop,
+		DEB: noop,
+		FED: [
+			exists("podman-desktop"),
+			installByDnf("podman-desktop", "curtisy/podman-desktop"),
+		],
+	},
+});
+
+const jujutsu = install({
+	command: "jujutsu",
+	installers: {
+		WIN: noop,
+		OSX: noop,
+		ARCH: noop,
+		DEB: noop,
+		FED: [exists("jj"), installByCargo("jj jj-cli")],
 	},
 });
 
@@ -1168,7 +1206,10 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	dockerDesktop,
 	docker,
 	podman,
-	// wezterm,
+	podmanCompose,
+	podmanDesktop,
+	jujutsu,
+	wezterm,
 	kitty,
 	neovide,
 	raycast,
@@ -1235,3 +1276,7 @@ export const installAll = async () => {
 		await installer(distro);
 	}
 };
+
+// lazygit
+// $ sudo dnf copr enable atim/lazygit -y
+// $ sudo dnf install lazygit

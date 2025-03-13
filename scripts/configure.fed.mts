@@ -9,8 +9,11 @@ await $`~/.asdf/shims/chezmoi init https://github.com/lucax88x/dotfiles.git`
 await $`~/.asdf/shims/chezmoi apply`
 
 // UTM/QEMU virtualization
-await $`sudo dnf install spice-vdagent`
 await $`sudo dnf install qemu-guest-agent`
+await $`sudo systemctl enable qemu-guest-agent`
+await $`sudo systemctl start qemu-guest-agent`
+
+await $`sudo dnf install spice-vdagent`
 await $`sudo dnf install spice-webdavd`
 
 await $`chsh -s $(which zsh)`

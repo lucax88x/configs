@@ -102,7 +102,7 @@ export function installByNala(pkg: string) {
 	};
 }
 
-export function installByDnf(pkg: string) {
+export function installByDnf(pkg: string, copr?: string) {
 	return async () => {
 		if (debug) {
 			console.info(chalk.red("would install by dnf"));
@@ -111,6 +111,11 @@ export function installByDnf(pkg: string) {
 		}
 
 		$.verbose = true;
+    
+		if (copr) {
+			await $`sudo dnf copr enable ${copr}`;
+		}
+
 		await $`sudo dnf install -y ${pkg}`;
 
 		return true;
