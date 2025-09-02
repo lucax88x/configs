@@ -184,7 +184,7 @@ const baseDevel = install({
 		WIN: [existsByPwsh("make"), installByScoop("make")],
 		OSX: noop,
 		ARCH: [exists("make"), installByParu("base-devel")],
-		DEB: noop,
+		DEB: [exists("make"), installByNala("make")],
 		FED: [exists("make"), installByDnf("make")],
 	},
 });
@@ -275,7 +275,6 @@ const rust = install({
 	},
 });
 
-// asdf plugin add golang https://github.com/kennyp/asdf-golang.git
 const installGo = installByAsdf(
 	"golang",
 	"1.23.0",
@@ -287,7 +286,7 @@ const go = install({
 		WIN: [existsByPwsh("go"), installGo],
 		OSX: [exists("go"), installGo],
 		ARCH: [exists("go"), installGo],
-		DEB: noop,
+		DEB: [exists("go"), installGo],
 		FED: [exists("go"), installGo],
 	},
 });
@@ -307,6 +306,17 @@ const coreutils = install({
 	command: "coreutils",
 	installers: {
 		WIN: [existsByPwsh("mkdir"), installByScoop("coreutils")],
+		OSX: noop,
+		ARCH: noop,
+		DEB: noop,
+		FED: noop,
+	},
+});
+
+const cygwin = install({
+	command: "cygwin",
+	installers: {
+		WIN: [exists("cywin"), installByScoop("cygwin")],
 		OSX: noop,
 		ARCH: noop,
 		DEB: noop,
@@ -341,6 +351,7 @@ const installChezmoi = installByAsdf(
 	"2.59.1",
 	"https://github.com/joke/asdf-chezmoi",
 );
+
 const chezmoi = install({
 	command: "chezmoi",
 	installers: {
@@ -469,6 +480,22 @@ const kubectl = install({
 	},
 });
 
+const k9s = install({
+	command: "k9s",
+	installers: {
+		WIN: noop,
+		OSX: [exists("k9s"), installByBrew("k9s")],
+		ARCH: [exists("k9s"), installByParu("k9s")],
+		DEB: noop,
+		FED: [exists("k9s"), installByDnf("k9s", "luminoso/k9s")],
+	},
+});
+
+// curl -O https://cdn.teleport.dev/teleport-v16.4.8-linux-arm64-bin.tar.gz 
+// tar -xzf teleport-v16.4.8-linux-arm64-bin.tar.gz
+// cd ./teleport
+// sudo ./install
+//
 const zoxide = install({
 	command: "zoxide",
 	installers: {
@@ -526,7 +553,10 @@ const bob = install({
 		WIN: [exists("bob"), installByScoop("bob")],
 		OSX: [exists("bob"), installByBrew("bob")],
 		ARCH: [exists("bob"), installByParu("bob")],
-		DEB: [exists("bob"), installByNala("bob")],
+		DEB: [
+			exists("bob"),
+			installByCargo("https://github.com/MordechaiHadad/bob.git"),
+		],
 		FED: [
 			exists("bob"),
 			installByCargo("https://github.com/MordechaiHadad/bob.git"),
@@ -543,7 +573,10 @@ const yazi = install({
 			installByCargo("https://github.com/sxyazi/yazi.git", "yazi-fm yazi-cli"),
 		],
 		ARCH: [exists("yazi"), installByParu("yazi")],
-		DEB: [exists("yazi"), installByNala("yazi")],
+		DEB: [
+			exists("yazi"),
+			installByCargo("https://github.com/sxyazi/yazi.git", "yazi-fm yazi-cli"),
+		],
 		FED: [
 			exists("yazi"),
 			installByCargo("https://github.com/sxyazi/yazi.git", "yazi-fm yazi-cli"),
@@ -570,25 +603,6 @@ const xsel = install({
 		ARCH: [exists("xsel"), installByParu("xsel")],
 		DEB: [exists("xsel"), installByNala("xsel")],
 		FED: [exists("xsel"), installByDnf("xsel")],
-	},
-});
-
-const hyprland = install({
-	command: "hyprland",
-	installers: {
-		WIN: noop,
-		OSX: noop,
-		ARCH: [exists("hyprland"), installByParu("hyprland")],
-		DEB: noop,
-		FED: [
-			exists("hyprland"),
-			async () => {
-				await installByDnf("hyprland")();
-				await installByDnf("waybar")();
-
-				return true;
-			},
-		],
 	},
 });
 
@@ -629,6 +643,21 @@ const sketchybar = install({
 
 				return true;
 			},
+		],
+
+		ARCH: noop,
+		DEB: noop,
+		FED: noop,
+	},
+});
+
+const borders = install({
+	command: "borders (borders for osx)",
+	installers: {
+		WIN: noop,
+		OSX: [
+			exists("borders"),
+			installByBrew("FelixKratz/formulae/borders"),
 		],
 
 		ARCH: noop,
@@ -1053,17 +1082,6 @@ const flowLauncher = install({
 	},
 });
 
-const cygwin = install({
-	command: "cygwin",
-	installers: {
-		WIN: [exists("cywin"), installByScoop("cygwin")],
-		OSX: noop,
-		ARCH: noop,
-		DEB: noop,
-		FED: noop,
-	},
-});
-
 const fontconfig = install({
 	command: "fc-list",
 	installers: {
@@ -1154,6 +1172,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 
 	// tools
 	coreutils,
+  cygwin,
 	wget,
 	curl,
 	ssh,
@@ -1178,6 +1197,9 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	delta,
 	fd,
 	kubectl,
+  k9s,
+  // teleport,
+
 	zoxide,
 	gh,
 	atuin,
@@ -1188,11 +1210,11 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	xsel,
 
 	// i3
-	hyprland,
 	walker,
 
 	aerospace,
 	// sketchybar,
+	borders,
 	// kde?
 
 	// ui
@@ -1225,7 +1247,6 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	switcheroo,
 	// keypirinha,
 	flowLauncher,
-	cygwin,
 
 	fontconfig,
 	roboto,

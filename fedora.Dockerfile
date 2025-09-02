@@ -2,10 +2,10 @@ FROM fedora:latest
 
 WORKDIR /build
 
-COPY ./scripts /build
+COPY . /build
 
-WORKDIR /build/scripts
+RUN sudo dnf install -y nodejs
 
-RUN sudo dnf nodejs
 RUN npm i
-RUN npx tsx install.mts --distro FED
+
+RUN npx tsx ./scripts/install.mts --distro FED
