@@ -949,13 +949,13 @@ const raycast = install({
 	},
 });
 
-const bartender = install({
-	command: "bartender (menubar arrange)",
+const maccy = install({
+	command: "maccy (clipboard)",
 	installers: {
 		WIN: noop,
 		OSX: [
-			existsApplicationInOsx("Bartender 5"),
-			installByBrew("bartender", true),
+			existsApplicationInOsx("Maccy"),
+			installByBrew("maccy", true),
 		],
 		ARCH: noop,
 		DEB: noop,
@@ -1238,7 +1238,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	stats,
 	karabiner,
 	office,
-	bartender,
+	maccy,
 	contexts,
 	tgPro,
 	daisyDisk,
