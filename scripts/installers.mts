@@ -261,7 +261,7 @@ const node = install({
 
 const installRust = installByAsdf(
 	"rust",
-	"1.85.0",
+	"1.89.0",
 	"https://github.com/asdf-community/asdf-rust.git",
 );
 const rust = install({
@@ -277,7 +277,7 @@ const rust = install({
 
 const installGo = installByAsdf(
 	"golang",
-	"1.23.0",
+	"1.25.0",
 	"https://github.com/kennyp/asdf-golang.git",
 );
 const go = install({
@@ -288,6 +288,22 @@ const go = install({
 		ARCH: [exists("go"), installGo],
 		DEB: [exists("go"), installGo],
 		FED: [exists("go"), installGo],
+	},
+});
+
+const installDotnet = installByAsdf(
+  "dotnet",
+	"8.0.413",
+	"https://github.com/hensou/asdf-dotnet.git",
+);
+const dotnet = install({
+	command: "dotnet",
+	installers: {
+		WIN: noop,
+		OSX: [exists("dotnet"), installDotnet],
+		ARCH: [exists("dotnet"), installDotnet],
+		DEB: [exists("dotnet"), installDotnet],
+		FED: [exists("dotnet"), installDotnet],
 	},
 });
 
@@ -1183,6 +1199,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	bun,
 	node,
 	rust,
+	dotnet,
 	go,
 
 	// sh
