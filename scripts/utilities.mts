@@ -3,7 +3,7 @@
 export type DISTROS = "OSX" | "ARCH" | "WIN" | "DEB" | "FED";
 
 export async function askConfirmation(quest: string): Promise<boolean> {
-	let confirmation = await question(`${quest} (y)`);
+	const confirmation = await question(`${quest} (y)`);
 
 	return confirmation.toLowerCase() === "y";
 }
@@ -43,6 +43,16 @@ export function existsFontInUnix(font: string) {
 	return async (): Promise<Condition> => {
 		try {
 			return toCondition(!!(await $`fc-list | grep -i ${font}`));
+		} catch (error) {
+			return "not exists";
+		}
+	};
+}
+
+export function existsInFlatpak(pkg: string) {
+	return async (): Promise<Condition> => {
+		try {
+			return toCondition(!!(await $`flatpak list | grep -i ${pkg}`));
 		} catch (error) {
 			return "not exists";
 		}
@@ -102,6 +112,29 @@ export function installByNala(pkg: string) {
 	};
 }
 
+export function installByFlatpak(
+	pkg: string,
+	external?: { name: string; url: string },
+) {
+	return async () => {
+		if (debug) {
+			console.info(chalk.red("would install by flatpak"));
+			await $`sleep 1`;
+			return true;
+		}
+
+		$.verbose = true;
+
+		if (external) {
+			await $`flatpak remote-add --user --if-not-exists ${external.name} ${external.url}`;
+		}
+
+		await $`flatpak install -y ${pkg}`;
+
+		return true;
+	};
+}
+
 export function installByDnf(pkg: string, copr?: string) {
 	return async () => {
 		if (debug) {
@@ -111,7 +144,7 @@ export function installByDnf(pkg: string, copr?: string) {
 		}
 
 		$.verbose = true;
-    
+
 		if (copr) {
 			await $`sudo dnf copr enable ${copr}`;
 		}
@@ -227,7 +260,7 @@ export function install({
 		const conditionOutput = await condition();
 
 		switch (conditionOutput) {
-			case "not exists":
+			case "not exists": {
 				if (
 					!(await askConfirmation(
 						`are you sure you want to install ${command}?`,
@@ -244,6 +277,7 @@ export function install({
 					console.info(chalk.green(`installed ${command}`));
 				}
 				break;
+			}
 
 			case "exists":
 				console.info(chalk.grey(`already installed ${command}`));

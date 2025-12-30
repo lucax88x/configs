@@ -1,21 +1,22 @@
 import {
-	DISTROS,
 	askConfirmation,
+	type DISTROS,
 	exists,
 	existsApplicationInOsx,
 	existsByPwsh,
+	existsFontInUnix,
+	existsInFlatpak,
 	install,
+	installByApt,
+	installByAsdf,
 	installByBrew,
+	installByCargo,
+	installByDnf,
+	installByFlatpak,
+	installByNala,
 	installByParu,
 	installByScoop,
-	installByApt,
-	installByNala,
-	installByDnf,
 	noop,
-	existsFontInUnix,
-	installFont,
-	installByAsdf,
-	installByCargo,
 } from "./utilities.mts";
 
 const brew = install({
@@ -507,7 +508,7 @@ const k9s = install({
 	},
 });
 
-// curl -O https://cdn.teleport.dev/teleport-v16.4.8-linux-arm64-bin.tar.gz 
+// curl -O https://cdn.teleport.dev/teleport-v16.4.8-linux-arm64-bin.tar.gz
 // tar -xzf teleport-v16.4.8-linux-arm64-bin.tar.gz
 // cd ./teleport
 // sudo ./install
@@ -671,10 +672,7 @@ const borders = install({
 	command: "borders (borders for osx)",
 	installers: {
 		WIN: noop,
-		OSX: [
-			exists("borders"),
-			installByBrew("FelixKratz/formulae/borders"),
-		],
+		OSX: [exists("borders"), installByBrew("FelixKratz/formulae/borders")],
 
 		ARCH: noop,
 		DEB: noop,
@@ -969,10 +967,7 @@ const maccy = install({
 	command: "maccy (clipboard)",
 	installers: {
 		WIN: noop,
-		OSX: [
-			existsApplicationInOsx("Maccy"),
-			installByBrew("maccy", true),
-		],
+		OSX: [existsApplicationInOsx("Maccy"), installByBrew("maccy", true)],
 		ARCH: noop,
 		DEB: noop,
 		FED: noop,
@@ -1072,7 +1067,13 @@ const obsidian = install({
 		OSX: [existsApplicationInOsx("Obsidian"), installByBrew("obsidian", true)],
 		ARCH: noop,
 		DEB: noop,
-		FED: noop,
+		FED: [
+			existsInFlatpak("Obsidian"),
+			installByFlatpak("obsidian", {
+				name: "flathub",
+				url: "https://flathub.org/repo/flathub.flatpakrepo",
+			}),
+		],
 	},
 });
 
@@ -1188,7 +1189,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 
 	// tools
 	coreutils,
-  cygwin,
+	cygwin,
 	wget,
 	curl,
 	ssh,
@@ -1214,8 +1215,8 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	delta,
 	fd,
 	kubectl,
-  k9s,
-  // teleport,
+	k9s,
+	// teleport,
 
 	zoxide,
 	gh,
