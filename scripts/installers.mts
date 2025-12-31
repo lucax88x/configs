@@ -150,7 +150,14 @@ const mise = install({
 	command: "mise",
 	installers: {
 		WIN: [existsByPwsh("mise"), installByScoop("mise")],
-		OSX: [exists("mise"), installByBrew("mise")],
+		OSX: [
+			exists("mise"),
+			async () => {
+				await $`curl https://mise.run | sh`;
+
+				return true;
+			},
+		],
 		ARCH: [exists("mise"), installByParu("mise")],
 		DEB: noop,
 		FED: [
