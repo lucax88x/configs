@@ -1,0 +1,8 @@
+[tools]
+bun = "latest"
+chezmoi = "latest"
+dotnet = "latest"
+go = "latest"
+pnpm = "10.4.1"
+rust = "latest"
+zig = "latest"

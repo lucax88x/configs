@@ -561,6 +561,23 @@ const ollama = install({
 	},
 });
 
+const installClaudeCode = async () => {
+	await $`curl -fsSL https://claude.ai/install.sh | bash`;
+
+	return true;
+};
+
+const claudeCode = install({
+	command: "claude-code",
+	installers: {
+		WIN: noop,
+		OSX: [exists("claude"), installClaudeCode],
+		ARCH: [exists("claude"), installClaudeCode],
+		DEB: [exists("claude"), installClaudeCode],
+		FED: [exists("claude"), installClaudeCode],
+	},
+});
+
 const xsel = install({
 	command: "xsel",
 	installers: {
@@ -1173,8 +1190,11 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	btop,
 	bob,
 	yazi,
-	ollama,
 	xsel,
+
+	// ai
+	ollama,
+	claudeCode,
 
 	// i3
 	walker,
