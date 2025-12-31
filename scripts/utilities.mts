@@ -207,19 +207,17 @@ export function installByScoop(pkg: string) {
 	};
 }
 
-export function installByAsdf(pkg: string, version: string, plugin: string) {
+export function installByMise(pkg: string, version: string) {
 	return async () => {
 		if (debug) {
-			console.info(chalk.red("would install by asdf"));
+			console.info(chalk.red("would install by mise"));
 			await $`sleep 1`;
 			return true;
 		}
 
 		$.verbose = true;
 
-		await $`asdf plugin add ${pkg} ${plugin}`;
-		await $`asdf install ${pkg} ${version}`;
-		await $`asdf set -u ${pkg} ${version}`;
+		await $`mise use ${pkg}@${version}`;
 
 		return true;
 	};

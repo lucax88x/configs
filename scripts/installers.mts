@@ -8,11 +8,11 @@ import {
 	existsInFlatpak,
 	install,
 	installByApt,
-	installByAsdf,
 	installByBrew,
 	installByCargo,
 	installByDnf,
 	installByFlatpak,
+	installByMise,
 	installByNala,
 	installByParu,
 	installByScoop,
@@ -113,7 +113,7 @@ const pwsh = install({
 	},
 });
 
-const installAsdf =
+const installMise =
 	(arch: "darwin-arm64" | "linux-arm64" | "linux-amd64") => async () => {
 		const ASDF_VERSION = process.env.ASDF_VERSION || "v0.16.4";
 		const ASDF_INSTALL_DIR = process.env.INSTALL_DIR || "/usr/bin";
@@ -146,14 +146,21 @@ const installAsdf =
 		}
 	};
 
-const asdf = install({
-	command: "asdf",
+const mise = install({
+	command: "mise",
 	installers: {
-		WIN: [existsByPwsh("asdf"), installByScoop("asdf")],
-		OSX: [exists("asdf"), installByBrew("asdf")],
-		ARCH: [exists("asdf"), installByParu("asdf-vm")],
-		DEB: [exists("asdf"), installAsdf("linux-amd64")],
-		FED: [exists("asdf"), installAsdf("linux-arm64")],
+		WIN: [existsByPwsh("mise"), installByScoop("mise")],
+		OSX: [exists("mise"), installByBrew("mise")],
+		ARCH: [exists("mise"), installByParu("mise")],
+		DEB: noop,
+		FED: [
+			exists("mise"),
+			async () => {
+				await $`curl https://mise.run | sh`;
+
+				return true;
+			},
+		],
 	},
 });
 
@@ -162,11 +169,7 @@ const asdf = install({
 //
 // 	return true;
 // };
-const installPnpm = installByAsdf(
-	"pnpm",
-	"10.4.1",
-	"https://github.com/jonathanmorley/asdf-pnpm",
-);
+const installPnpm = installByMise("pnpm", "10.4.1");
 
 const pnpm = install({
 	command: "pnpm",
@@ -212,11 +215,7 @@ const git = install({
 	},
 });
 
-const installZig = installByAsdf(
-	"zig",
-	"0.13.0",
-	"https://github.com/asdf-community/asdf-zig",
-);
+const installZig = installByMise("zig", "latest");
 const zig = install({
 	command: "zig",
 	installers: {
@@ -228,11 +227,7 @@ const zig = install({
 	},
 });
 
-const installBun = installByAsdf(
-	"bun",
-	"1.2.3",
-	"https://github.com/cometkim/asdf-bun",
-);
+const installBun = installByMise("bun", "latest");
 const bun = install({
 	command: "bun",
 	installers: {
@@ -244,11 +239,7 @@ const bun = install({
 	},
 });
 
-const installNode = installByAsdf(
-	"nodejs",
-	"22.14.0",
-	"https://github.com/asdf-vm/asdf-nodejs",
-);
+const installNode = installByMise("nodejs", "latest");
 const node = install({
 	command: "node",
 	installers: {
@@ -260,11 +251,7 @@ const node = install({
 	},
 });
 
-const installRust = installByAsdf(
-	"rust",
-	"1.89.0",
-	"https://github.com/asdf-community/asdf-rust.git",
-);
+const installRust = installByMise("rust", "latest");
 const rust = install({
 	command: "rust",
 	installers: {
@@ -276,11 +263,7 @@ const rust = install({
 	},
 });
 
-const installGo = installByAsdf(
-	"golang",
-	"1.25.0",
-	"https://github.com/kennyp/asdf-golang.git",
-);
+const installGo = installByMise("golang", "latest");
 const go = install({
 	command: "go",
 	installers: {
@@ -292,11 +275,7 @@ const go = install({
 	},
 });
 
-const installDotnet = installByAsdf(
-  "dotnet",
-	"8.0.413",
-	"https://github.com/hensou/asdf-dotnet.git",
-);
+const installDotnet = installByMise("dotnet", "latest");
 const dotnet = install({
 	command: "dotnet",
 	installers: {
@@ -363,11 +342,7 @@ const ssh = install({
 	},
 });
 
-const installChezmoi = installByAsdf(
-	"chezmoi",
-	"2.59.1",
-	"https://github.com/joke/asdf-chezmoi",
-);
+const installChezmoi = installByMise("chezmoi", "latest");
 
 const chezmoi = install({
 	command: "chezmoi",
@@ -1182,7 +1157,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	scoop,
 	nala,
 	pwsh,
-	asdf,
+	mise,
 	baseDevel,
 	gcc,
 	git,
