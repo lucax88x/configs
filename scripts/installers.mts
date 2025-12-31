@@ -1051,7 +1051,7 @@ const obsidian = install({
 		DEB: noop,
 		FED: [
 			existsInFlatpak("Obsidian"),
-			installByFlatpak("obsidian", {
+			installByFlatpak("flathub md.obsidian.Obsidian", {
 				name: "flathub",
 				url: "https://flathub.org/repo/flathub.flatpakrepo",
 			}),
