@@ -113,39 +113,6 @@ const pwsh = install({
 	},
 });
 
-const installMise =
-	(arch: "darwin-arm64" | "linux-arm64" | "linux-amd64") => async () => {
-		const ASDF_VERSION = process.env.ASDF_VERSION || "v0.16.4";
-		const ASDF_INSTALL_DIR = process.env.INSTALL_DIR || "/usr/bin";
-
-		try {
-			await $`mkdir -p /tmp/asdf-install`;
-			cd("/tmp/asdf-install");
-
-			const filename = `asdf-${ASDF_VERSION}-${arch}.tar.gz`;
-			const downloadUrl = `https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/${filename}`;
-
-			console.log(`downloading ASDF ${ASDF_VERSION} for ${arch}...`);
-			await $`wget ${downloadUrl}`;
-
-			await $`mkdir -p ~/.asdf`;
-
-			console.log("extracting ASDF...");
-			await $`tar -xzf ${filename} -C ~/.asdf`;
-
-			await $`sudo install -Dm755 ~/.asdf/asdf "${ASDF_INSTALL_DIR}/asdf"`;
-
-			console.log("cleaning up...");
-			await $`rm -rf /tmp/asdf-install`;
-
-			return true;
-		} catch (error) {
-			console.error("installation failed:", error);
-			await $`rm -rf /tmp/asdf-install`;
-			return false;
-		}
-	};
-
 const mise = install({
 	command: "mise",
 	installers: {
@@ -612,7 +579,7 @@ const walker = install({
 		OSX: noop,
 		ARCH: [exists("walker"), installByParu("walker")],
 		DEB: noop,
-		FED: [exists("walker"), installByDnf("walker")],
+		FED: noop,
 	},
 });
 
@@ -843,7 +810,7 @@ const docker = install({
 			async () => {
 				await installByDnf("dnf-command(config-manager)")();
 				await $`sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo`;
-				await $`sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`;
+				await $`sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`;
 				await $`sudo systemctl enable docker`;
 				await $`sudo systemctl start docker`;
 				await $`sudo usermod -aG docker $USER`;
