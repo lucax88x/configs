@@ -146,7 +146,7 @@ export function installByDnf(pkg: string, copr?: string) {
 		$.verbose = true;
 
 		if (copr) {
-			await $`sudo dnf copr enable ${copr}`;
+			await $`sudo dnf copr -y enable ${copr}`;
 		}
 
 		await $`sudo dnf install -y ${pkg}`;

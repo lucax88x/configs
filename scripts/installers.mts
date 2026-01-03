@@ -589,6 +589,17 @@ const xsel = install({
 	},
 });
 
+const lazygit = install({
+	command: "lazygit",
+	installers: {
+		WIN: noop,
+		OSX: [exists("borders"), installByBrew("lazygit")],
+		ARCH: [exists("lazygit"), installByParu("lazygit")],
+		DEB: noop,
+		FED: [exists("lazygit"), installByDnf("lazygit", "atim/lazygit")],
+	},
+});
+
 const walker = install({
 	command: "walker (albert/rofi)",
 	installers: {
@@ -639,7 +650,6 @@ const borders = install({
 	installers: {
 		WIN: noop,
 		OSX: [exists("borders"), installByBrew("FelixKratz/formulae/borders")],
-
 		ARCH: noop,
 		DEB: noop,
 		FED: noop,
@@ -1191,6 +1201,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	bob,
 	yazi,
 	xsel,
+	lazygit,
 
 	// ai
 	ollama,
@@ -1284,7 +1295,3 @@ export const installAll = async () => {
 		await installer(distro);
 	}
 };
-
-// lazygit
-// $ sudo dnf copr enable atim/lazygit -y
-// $ sudo dnf install lazygit
