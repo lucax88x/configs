@@ -10,6 +10,7 @@ import {
 	installByApt,
 	installByBrew,
 	installByCargo,
+  installFont,
 	installByDnf,
 	installByFlatpak,
 	installByMise,
@@ -1110,8 +1111,13 @@ const jetbrainsMono = install({
 			installByParu("ttf-jetbrains-mono"),
 		],
 		DEB: [
-			existsFontInUnix("JetBrainsMono"),
-			installByNala("font-jetbrains-mono"),
+			existsFontInUnix("JetBrains Mono"),
+			async () => {
+        const fontVersion = await $(curl -s "https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
+        await installFont(`https://download.jetbrains.com/fonts/JetBrainsMono-${fontVersion}.zip`);
+
+				return true;
+			},
 		],
 		FED: [
 			existsFontInUnix("JetBrainsMono"),
