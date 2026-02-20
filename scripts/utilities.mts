@@ -161,11 +161,12 @@ export function installFont(url: string) {
 		const zipName = url.split("/").pop() || "font.zip";
 		const folderName = zipName.replace(".zip", "");
 
+		await $`mkdir -p ~/Downloads`;
 		await $`curl -L ${url} -o ~/Downloads/${zipName}`;
 		await $`unzip ~/Downloads/${zipName} -d ~/Downloads/${folderName}`;
 		await $`rm ~/Downloads/${zipName}`;
 		await $`mkdir -p ~/.local/share/fonts`;
-		await $`find . ~/Downloads/${folderName} -e ttf -e otf -exec cp {} ~/.local/share/fonts \;`;
+		await $`find ~/Downloads/${folderName} -type f \\( -name "*.ttf" -o -name "*.otf" \\) -exec cp {} ~/.local/share/fonts \\;`;
 		await $`fc-cache -f -v`;
 		await $`rm -rf ~/Downloads/${folderName}`;
 
