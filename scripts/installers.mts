@@ -10,13 +10,13 @@ import {
 	installByApt,
 	installByBrew,
 	installByCargo,
-  installFont,
 	installByDnf,
 	installByFlatpak,
 	installByMise,
 	installByNala,
 	installByParu,
 	installByScoop,
+	installFont,
 	noop,
 } from "./utilities.mts";
 
@@ -103,17 +103,6 @@ const nala = install({
 	},
 });
 
-const pwsh = install({
-	command: "pwsh",
-	installers: {
-		WIN: [existsByPwsh("pwsh"), installByScoop("pwsh")],
-		OSX: [exists("pwsh"), installByBrew("powershell", true)],
-		ARCH: [exists("pwsh"), installByParu("powershell")],
-		DEB: [exists("pwsh"), installByNala("powershell")],
-		FED: noop,
-	},
-});
-
 const mise = install({
 	command: "mise",
 	installers: {
@@ -127,7 +116,14 @@ const mise = install({
 			},
 		],
 		ARCH: [exists("mise"), installByParu("mise")],
-		DEB: noop,
+		DEB: [
+			exists("mise"),
+			async () => {
+				await $`curl https://mise.run | sh`;
+
+				return true;
+			},
+		],
 		FED: [
 			exists("mise"),
 			async () => {
@@ -136,24 +132,6 @@ const mise = install({
 				return true;
 			},
 		],
-	},
-});
-
-// const installPnpm = async () => {
-// 	await $`curl -fsSL https://get.pnpm.io/install.sh | sh -`;
-//
-// 	return true;
-// };
-const installPnpm = installByMise("pnpm", "10.4.1");
-
-const pnpm = install({
-	command: "pnpm",
-	installers: {
-		WIN: [existsByPwsh("pnpm"), installPnpm],
-		OSX: [exists("pnpm"), installPnpm],
-		ARCH: [exists("pnpm"), installPnpm],
-		DEB: [exists("pnpm"), installPnpm],
-		FED: [exists("pnpm"), installPnpm],
 	},
 });
 
@@ -187,78 +165,6 @@ const git = install({
 		ARCH: [exists("git"), installByParu("git")],
 		DEB: [exists("git"), installByNala("git")],
 		FED: [exists("git"), installByDnf("git")],
-	},
-});
-
-const installZig = installByMise("zig", "latest");
-const zig = install({
-	command: "zig",
-	installers: {
-		WIN: [existsByPwsh("zig"), installZig],
-		OSX: [exists("zig"), installZig],
-		ARCH: [exists("zig"), installZig],
-		DEB: [exists("zig"), installZig],
-		FED: [exists("zig"), installZig],
-	},
-});
-
-const installBun = installByMise("bun", "latest");
-const bun = install({
-	command: "bun",
-	installers: {
-		WIN: [existsByPwsh("bun"), installBun],
-		OSX: [exists("bun"), installBun],
-		ARCH: [exists("bun"), installBun],
-		DEB: [exists("bun"), installBun],
-		FED: [exists("bun"), installBun],
-	},
-});
-
-const installNode = installByMise("nodejs", "latest");
-const node = install({
-	command: "node",
-	installers: {
-		WIN: [existsByPwsh("node"), installNode],
-		OSX: [exists("node"), installNode],
-		ARCH: [exists("node"), installNode],
-		DEB: [exists("node"), installNode],
-		FED: [exists("node"), installNode],
-	},
-});
-
-const installRust = installByMise("rust", "latest");
-const rust = install({
-	command: "rust",
-	installers: {
-		WIN: noop,
-		OSX: [exists("cargo"), installRust],
-		ARCH: [exists("cargo"), installRust],
-		DEB: [exists("cargo"), installRust],
-		FED: [exists("cargo"), installRust],
-	},
-});
-
-const installGo = installByMise("golang", "latest");
-const go = install({
-	command: "go",
-	installers: {
-		WIN: [existsByPwsh("go"), installGo],
-		OSX: [exists("go"), installGo],
-		ARCH: [exists("go"), installGo],
-		DEB: [exists("go"), installGo],
-		FED: [exists("go"), installGo],
-	},
-});
-
-const installDotnet = installByMise("dotnet", "latest");
-const dotnet = install({
-	command: "dotnet",
-	installers: {
-		WIN: noop,
-		OSX: [exists("dotnet"), installDotnet],
-		ARCH: [exists("dotnet"), installDotnet],
-		DEB: [exists("dotnet"), installDotnet],
-		FED: [exists("dotnet"), installDotnet],
 	},
 });
 
@@ -358,7 +264,14 @@ const starship = install({
 		WIN: noop,
 		OSX: [exists("starship"), installByBrew("starship")],
 		ARCH: [exists("starship"), installByParu("starship")],
-		DEB: [exists("starship"), installByNala("starship")],
+		DEB: [
+			exists("starship"),
+			async () => {
+				await $`curl -sS https://starship.rs/install.sh | sh`;
+
+				return true;
+			},
+		],
 		FED: [
 			exists("starship"),
 			async () => {
@@ -491,7 +404,14 @@ const atuin = install({
 		WIN: [exists("atuin"), installByScoop("atuin")],
 		OSX: [exists("atuin"), installByBrew("atuin")],
 		ARCH: [exists("atuin"), installByParu("atuin")],
-		DEB: [exists("atuin"), installByNala("atuin")],
+		DEB: [
+			exists("atuin"),
+			async () => {
+				await $`curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh`;
+
+				return true;
+			},
+		],
 		FED: [
 			exists("atuin"),
 			async () => {
@@ -924,7 +844,10 @@ const neovide = install({
 		WIN: noop,
 		OSX: [existsApplicationInOsx("Neovide"), installByBrew("neovide", true)],
 		ARCH: [exists("neovide"), installByParu("neovide")],
-		DEB: [exists("neovide"), installByNala("neovide")],
+		DEB: [
+			exists("neovide"),
+			installByCargo("https://github.com/neovide/neovide.git", "neovide"),
+		],
 		FED: noop,
 	},
 });
@@ -1113,8 +1036,13 @@ const jetbrainsMono = install({
 		DEB: [
 			existsFontInUnix("JetBrains Mono"),
 			async () => {
-        const fontVersion = await $(curl -s "https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
-        await installFont(`https://download.jetbrains.com/fonts/JetBrainsMono-${fontVersion}.zip`);
+				const fontVersion = (
+					await $`curl -s "https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest" | grep -Po '"tag_name": "v\\K[0-9.]+'`
+				).stdout.trim();
+
+				await installFont(
+					`https://download.jetbrains.com/fonts/JetBrainsMono-${fontVersion}.zip`,
+				)();
 
 				return true;
 			},
@@ -1163,7 +1091,6 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	paru,
 	scoop,
 	nala,
-	pwsh,
 	mise,
 	baseDevel,
 	gcc,
@@ -1175,15 +1102,6 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	wget,
 	curl,
 	ssh,
-
-	// dev
-	pnpm,
-	zig,
-	bun,
-	node,
-	rust,
-	dotnet,
-	go,
 
 	// sh
 	zsh,
