@@ -839,13 +839,10 @@ const ghostty = install({
 	command: "ghostty",
 	installers: {
 		WIN: noop,
-		OSX: [
-			existsApplicationInOsx("Ghostty"),
-			installByBrew("ghostty", true),
-		],
+		OSX: [existsApplicationInOsx("Ghostty"), installByBrew("ghostty", true)],
 		ARCH: [exists("ghostty"), installByParu("ghostty")],
 		DEB: noop,
-		FED: noop,
+		FED: [exists("ghostty"), installByDnf("ghostty")],
 	},
 });
 
