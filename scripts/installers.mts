@@ -103,35 +103,20 @@ const nala = install({
 	},
 });
 
+const installMise = async () => {
+	await $`curl https://mise.run | sh`;
+
+	return true;
+};
+
 const mise = install({
 	command: "mise",
 	installers: {
 		WIN: [existsByPwsh("mise"), installByScoop("mise")],
-		OSX: [
-			exists("mise"),
-			async () => {
-				await $`curl https://mise.run | sh`;
-
-				return true;
-			},
-		],
-		ARCH: [exists("mise"), installByParu("mise")],
-		DEB: [
-			exists("mise"),
-			async () => {
-				await $`curl https://mise.run | sh`;
-
-				return true;
-			},
-		],
-		FED: [
-			exists("mise"),
-			async () => {
-				await $`curl https://mise.run | sh`;
-
-				return true;
-			},
-		],
+		OSX: [exists("mise"), installMise],
+		ARCH: [exists("mise"), installMise],
+		DEB: [exists("mise"), installMise],
+		FED: [exists("mise"), installMise],
 	},
 });
 
@@ -395,6 +380,29 @@ const gh = install({
 		ARCH: [exists("gh"), installByParu("github-client")],
 		DEB: [exists("gh"), installByNala("gh")],
 		FED: [exists("gh"), installByDnf("gh")],
+	},
+});
+
+const installHerdr = async () => {
+	await $`curl -fsSL https://herdr.dev/install.sh | sh`;
+
+	return true;
+};
+
+const installHerdrOnWindows = async () => {
+	await $`powershell -ExecutionPolicy Bypass -c "irm https://herdr.dev/install.ps1 | iex"`;
+
+	return true;
+};
+
+const herdr = install({
+	command: "herdr",
+	installers: {
+		WIN: [existsByPwsh("herdr"), installHerdrOnWindows],
+		OSX: [exists("herdr"), installHerdr],
+		ARCH: [exists("herdr"), installHerdr],
+		DEB: [exists("herdr"), installHerdr],
+		FED: [exists("herdr"), installHerdr],
 	},
 });
 
@@ -827,6 +835,20 @@ const wezterm = install({
 	},
 });
 
+const ghostty = install({
+	command: "ghostty",
+	installers: {
+		WIN: noop,
+		OSX: [
+			existsApplicationInOsx("Ghostty"),
+			installByBrew("ghostty", true),
+		],
+		ARCH: [exists("ghostty"), installByParu("ghostty")],
+		DEB: noop,
+		FED: noop,
+	},
+});
+
 const kitty = install({
 	command: "kitty",
 	installers: {
@@ -1120,6 +1142,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 
 	zoxide,
 	gh,
+	herdr,
 	atuin,
 	btop,
 	bob,
@@ -1154,6 +1177,7 @@ export const installers: ((distro: DISTROS) => Promise<void>)[] = [
 	podmanDesktop,
 	jujutsu,
 	wezterm,
+	ghostty,
 	kitty,
 	neovide,
 	raycast,
