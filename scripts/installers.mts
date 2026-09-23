@@ -842,7 +842,7 @@ const ghostty = install({
 		OSX: [existsApplicationInOsx("Ghostty"), installByBrew("ghostty", true)],
 		ARCH: [exists("ghostty"), installByParu("ghostty")],
 		DEB: noop,
-		FED: [exists("ghostty"), installByDnf("ghostty")],
+		FED: [exists("ghostty"), installByDnf("ghostty", "scottames/ghostty")],
 	},
 });
 
