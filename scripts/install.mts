@@ -1,4 +1,4 @@
-#!/usr/bin/env bunx tsx
+#!/usr/bin/env npx tsx
 
 import "zx/globals";
 
